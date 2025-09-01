@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A &#8212; Deep Learning for NLP 2025</title>
+    <title>Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -96,8 +96,8 @@
     <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Week2 - 도구 학습: PyTorch와 최신 프레임워크" href="../week02/index.html" />
-    <link rel="prev" title="Week 1 - Transformer 및 차세대 아키텍처" href="index.html" />
+    <link rel="next" title="Week 2 - Tool Learning: PyTorch and Latest Frameworks" href="../week02/index.html" />
+    <link rel="prev" title="Week 1 - Transformer and Next-Generation Architectures" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -207,17 +207,17 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    딥러닝자연어처리 (131307379A)
+                    Deep Learning for Natural Language Processing (131307379A)
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1 - Transformer 및 차세대 아키텍처</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Week 1 - Transformer and Next-Generation Architectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week2 - 도구 학습: PyTorch와 최신 프레임워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2 - Tool Learning: PyTorch and Latest Frameworks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
@@ -425,7 +425,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Transformer, Mamba, RWKV, Jamba 아키텍처 Q&A</h1>
+    <h1>Transformer, Mamba, RWKV, Jamba Architecture Q&A</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -435,10 +435,10 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba">Mamba 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rwkv">RWKV 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba 아키텍처</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-architecture">Transformer Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba-architecture">Mamba Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rwkv-architecture">RWKV Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-architecture">Jamba Architecture</a></li>
 </ul>
             </nav>
         </div>
@@ -450,49 +450,49 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="transformer-mamba-rwkv-jamba-q-a">
-<h1>Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A<a class="headerlink" href="#transformer-mamba-rwkv-jamba-q-a" title="Link to this heading">#</a></h1>
-<section id="transformer">
-<h2>Transformer 아키텍처<a class="headerlink" href="#transformer" title="Link to this heading">#</a></h2>
-<p><strong>Q:</strong> Transformer에서 Self-Attention이 가지는 주요 장점은 무엇인가? 또한 추론 시 병목 현상은 어떤 부분에서 발생하는가?</p>
-<p><strong>A:</strong> <strong>Transformer</strong>의 핵심인 <strong>Self-Attention(자가 어텐션)</strong> 메커니즘 덕분에 <strong>입력 시퀀스를 병렬 처리</strong>할 수 있다는 점이 가장 큰 장점이다. RNN과 달리 순환 구조가 없어 모든 토큰 간의 관계를 동시에 계산하므로 <strong>긴 의존 관계</strong>도 효율적으로 학습할 수 있고 학습 속도도 빠르다. 다만 <strong>추론(inference)</strong> 단계에서는 <strong>병목 현상</strong>이 발생하는데, 새로운 토큰을 생성할 때마다 <strong>이전 모든 토큰들과의 어텐션</strong>을 계산해야 하기 때문이다. 예를 들어 시퀀스 길이가 <span class="math notranslate nohighlight">\(L\)</span>이면, 현재 토큰을 낼 때 과거 <span class="math notranslate nohighlight">\(L\)</span>개 토큰에 대한 어텐션을 모두 구해야 하므로 토큰을 하나 생성하는 데 <span class="math notranslate nohighlight">\(O(L)\)</span>의 연산이 들고, 전체적으로 보면 생성 과정이 <strong>길이에 따라 느려지는 병목</strong>을 겪는다. 이로 인해 Transformer 모델은 문맥 길이가 길어질수록 <strong>추론 속도가 저하</strong>되고 <strong>메모리 사용량</strong>도 크게 늘어나는 한계가 있다.</p>
-<p><strong>Q:</strong> Transformer 인코더-디코더 구조와 GPT 같은 디코더-Only 구조의 차이를 설명하라.</p>
-<p><strong>A:</strong> <strong>Transformer 인코더-디코더 모델</strong>은 **인코더(encoder)**와 <strong>디코더(decoder)</strong> 두 부분으로 구성된다. 인코더는 입력 시퀀스를 받아 내부 <strong>컨텍스트 표현</strong>으로 변환하고, 디코더는 이 컨텍스트와 이전까지 생성된 토큰들을 참고하여 출력 시퀀스를 한 토큰씩 생성한다. 디코더 층에서는 자기 자신에 <strong>마스크드(masked) Self-Attention</strong>을 적용해 미래 토큰을 보지 못하게 하며, **인코더-디코더 Attention(교차 어텐션)**으로 인코더의 컨텍스트를 참조한다. 반면 <strong>GPT와 같은 디코더-Only 구조</strong>는 <strong>인코더가 없고</strong> 디코더 하나로만 이루어진 <strong>단일 스트림</strong> 구조다. 오직 이전 토큰들에 대한 <strong>Self-Attention</strong>만 사용하여 다음 토큰을 예측하며, 별도의 인코더 입력이나 교차 어텐션이 없다. 요약하면, 인코더-디코더 모델은 <strong>입력 시퀀스와 출력 시퀀스가 분리</strong>되어 상호작용(교차 어텐션)을 하는 구조이고, 디코더-Only 모델은 <strong>하나의 시퀀스</strong>에서 <strong>순차 생성</strong>만을 수행하는 구조다.</p>
-<p><strong>Q:</strong> 시퀀스 길이 <span class="math notranslate nohighlight">\(L\)</span>에 대해 Transformer의 시간 복잡도와 공간 복잡도는 각각 어떻게 스케일링되는가?</p>
-<p><strong>A:</strong> <strong>Transformer</strong>에서 Self-Attention 연산의 <strong>시간 복잡도</strong>는 시퀀스 길이에 대해 **<span class="math notranslate nohighlight">\(O(L^2)\)</span>**로 증가한다. 이는 모든 토큰 쌍마다 유사도를 계산하기 때문에 연산량이 토큰 수의 제곱에 비례하기 때문이다. 마찬가지로 <strong>메모리(공간) 복잡도</strong>도 어텐션 가중치 행렬 등을 저장해야 하므로 **<span class="math notranslate nohighlight">\(O(L^2)\)</span>**로 스케일된다. 예를 들어, 토큰 수 <span class="math notranslate nohighlight">\(L\)</span>이 두 배로 늘어나면 계산량과 메모리 사용량은 네 배 수준으로 늘어나므로, 매우 긴 시퀀스를 처리할 때 Transformer는 연산 비용과 메모리 측면에서 비효율적이다.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="transformer-mamba-rwkv-jamba-architecture-q-a">
+<h1>Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A<a class="headerlink" href="#transformer-mamba-rwkv-jamba-architecture-q-a" title="Link to this heading">#</a></h1>
+<section id="transformer-architecture">
+<h2>Transformer Architecture<a class="headerlink" href="#transformer-architecture" title="Link to this heading">#</a></h2>
+<p><strong>Q:</strong> What are the main advantages of Self-Attention in Transformer? Also, where does the bottleneck occur during inference?</p>
+<p><strong>A:</strong> The biggest advantage of <strong>Self-Attention (self-attention)</strong> mechanism, which is the core of <strong>Transformer</strong>, is that it can <strong>process input sequences in parallel</strong>. Unlike RNNs, there is no recurrent structure, so all token relationships are calculated simultaneously, allowing efficient learning of <strong>long dependencies</strong> and fast training speed. However, <strong>bottlenecks</strong> occur during the <strong>inference</strong> stage because <strong>attention with all previous tokens</strong> must be calculated every time a new token is generated. For example, if the sequence length is <span class="math notranslate nohighlight">\(L\)</span>, when generating the current token, attention with all <span class="math notranslate nohighlight">\(L\)</span> past tokens must be computed, so generating one token requires <span class="math notranslate nohighlight">\(O(L)\)</span> operations, and overall, the generation process experiences <strong>bottlenecks that slow down with length</strong>. Due to this, Transformer models have limitations where <strong>inference speed decreases</strong> and <strong>memory usage</strong> greatly increases as context length increases.</p>
+<p><strong>Q:</strong> Explain the difference between Transformer encoder-decoder structure and decoder-only structure like GPT.</p>
+<p><strong>A:</strong> <strong>Transformer encoder-decoder models</strong> consist of two parts: <strong>encoder</strong> and <strong>decoder</strong>. The encoder receives input sequences and converts them into internal <strong>context representations</strong>, and the decoder generates output sequences token by token by referring to this context and previously generated tokens. In decoder layers, <strong>masked self-attention</strong> is applied to prevent seeing future tokens, and <strong>encoder-decoder attention (cross-attention)</strong> is used to reference the encoder’s context. On the other hand, <strong>decoder-only structures like GPT</strong> are <strong>single-stream</strong> structures with <strong>no encoder</strong>, consisting of only one decoder. They predict the next token using only <strong>self-attention</strong> on previous tokens, with no separate encoder input or cross-attention. In summary, encoder-decoder models are structures where <strong>input and output sequences are separated</strong> and interact (cross-attention), while decoder-only models are structures that perform only <strong>sequential generation</strong> in <strong>one sequence</strong>.</p>
+<p><strong>Q:</strong> How do Transformer’s time complexity and space complexity scale with sequence length <span class="math notranslate nohighlight">\(L\)</span>?</p>
+<p><strong>A:</strong> In <strong>Transformer</strong>, the <strong>time complexity</strong> of Self-Attention operations increases as <strong><span class="math notranslate nohighlight">\(O(L^2)\)</span></strong> with sequence length. This is because similarity is calculated for every token pair, so computational cost is proportional to the square of the number of tokens. Similarly, <strong>memory (space) complexity</strong> also scales as <strong><span class="math notranslate nohighlight">\(O(L^2)\)</span></strong> because attention weight matrices must be stored. For example, if the number of tokens <span class="math notranslate nohighlight">\(L\)</span> doubles, computational cost and memory usage increase by four times, so Transformer is inefficient in terms of computational cost and memory when processing very long sequences.</p>
 </section>
-<section id="mamba">
-<h2>Mamba 아키텍처<a class="headerlink" href="#mamba" title="Link to this heading">#</a></h2>
-<p><strong>Q:</strong> Mamba가 Transformer 대비 갖는 가장 큰 장점은 무엇인가? Mamba는 어떻게 어텐션의 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 병목을 피할 수 있었는지 설명하라.</p>
-<p><strong>A:</strong> <strong>Mamba</strong>는 2024년에 제안된 <strong>새로운 시퀀스 모델</strong>로, <strong>어텐션 없이도</strong> 긴 시퀀스를 효과적으로 처리할 수 있다는 점이 가장 큰 장점이다. <strong>선택적 상태 공간 모델(Selective SSM)</strong> 기반의 순환 구조를 사용하여 <strong>시퀀스 길이에 선형적으로(scale linear)</strong> 처리 시간이 증가하도록 설계되었기에, Transformer처럼 토큰 쌍마다 계산을 하지 않고도 긴 문맥을 다룰 수 있다. Mamba는 내부적으로 <strong>RNN처럼 한 토큰씩 은닉 상태를 갱신</strong>하지만, <strong>하드웨어 친화적인 병렬화 알고리즘</strong>을 도입하여 순차 처리의 병목을 해결했다. 그 결과 <strong>어텐션의 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 연산을 피하면서</strong>도 토큰들 간 정보를 주고받을 수 있게 되었고, 실제로 <strong>추론 시 처리 속도가 Transformer 대비 5배 이상</strong> 높다는 보고가 있다. 요약하면, Mamba의 구조 덕분에 <strong>거의 무한에 가까운 길이의 시퀀스</strong>도 실용적으로 다룰 수 있고, 긴 문맥에서도 <strong>계산 효율과 메모리 사용 측면에서 우수</strong>하다.</p>
-<p><strong>Q:</strong> Mamba의 Selective SSM에서 “선택적”인 동작은 무엇을 뜻하는가? 이로 인해 언어 모델에서 어떤 효과를 얻을 수 있었는가?</p>
-<p><strong>A:</strong> <strong>Selective SSM</strong>에서 “<strong>선택적</strong>”이라는 것은 <strong>상태 공간 모델의 계수(예: 상태 전이 행렬)가 입력 토큰의 함수로 동적으로 결정</strong>된다는 뜻이다. 즉, 모든 시점에 동일한 방식으로 상태를 업데이트하는 것이 아니라, <strong>현재 토큰의 내용에 따라 이전 정보를 얼마나 유지하거나 잊을지 조절</strong>하는 것이다. 이는 마치 RNN의 **게이트(gate)**처럼 동작하여 <strong>중요한 정보는 오래 간직하고 불필요한 정보는 빠르게 망각</strong>하게 한다. 이러한 선택적 상태 제어 덕분에 Mamba는 <strong>토큰 간의 내용 기반 의존성</strong>을 효과적으로 표현할 수 있게 되었고, 고정된 SSM으로는 어려웠던 <strong>자연어와 같은 이산 토큰 데이터</strong>에서도 높은 성능을 발휘할 수 있었다.</p>
-<p><strong>Q:</strong> Mamba-3B 모델이 보여준 성능 관련 특징을 언급하라 (예: 동일 크기 Transformer와의 비교, 두 배 큰 Transformer와의 비교 등).</p>
-<p><strong>A:</strong> <strong>Mamba-3B</strong>는 파라미터 규모 3억 수준의 Mamba 모델로, <strong>동일한 크기의 Transformer보다 더 우수한 성능</strong>을 보였으며 <strong>파라미터 수가 두 배인 Transformer와도 맞먹는 성능</strong>을 달성했다고 보고되었다. 이는 Mamba 아키텍처의 효율성 덕분에 <strong>더 작은 모델로도 Transformer의 성능을 뛰어넘거나 대등하게</strong> 낼 수 있음을 시사한다. 다시 말해, Mamba-3B는 3B 규모의 Transformer보다 언어 모델링 능력이 좋았고, 6B 규모의 Transformer와 유사한 결과를 보임으로써 <strong>모델 크기 대비 뛰어난 성능 효율</strong>을 입증했다. 이러한 결과는 Mamba의 <strong>아키텍처 혁신</strong>이 실제 모델 성능 향상으로 이어졌음을 보여준다.</p>
+<section id="mamba-architecture">
+<h2>Mamba Architecture<a class="headerlink" href="#mamba-architecture" title="Link to this heading">#</a></h2>
+<p><strong>Q:</strong> What is Mamba’s biggest advantage over Transformer? Explain how Mamba can avoid the <span class="math notranslate nohighlight">\(O(n^2)\)</span> bottleneck of attention.</p>
+<p><strong>A:</strong> <strong>Mamba</strong> is a <strong>new sequence model</strong> proposed in 2024, and its biggest advantage is that it can effectively process long sequences <strong>without attention</strong>. It uses a <strong>Selective State Space Model (Selective SSM)</strong> based recurrent structure designed so that processing time increases <strong>linearly with sequence length</strong>, allowing it to handle long contexts without calculating for every token pair like Transformers. Mamba internally <strong>updates hidden states token by token like RNNs</strong>, but introduced <strong>hardware-friendly parallelization algorithms</strong> to solve sequential processing bottlenecks. As a result, it can exchange information between tokens <strong>while avoiding the <span class="math notranslate nohighlight">\(O(n^2)\)</span> computation of attention</strong>, and reports show that <strong>inference processing speed is 5x higher than Transformer</strong>. In summary, thanks to Mamba’s structure, <strong>sequences of nearly infinite length</strong> can be handled practically, and it is <strong>excellent in computational efficiency and memory usage</strong> even in long contexts.</p>
+<p><strong>Q:</strong> What does “selective” behavior mean in Mamba’s Selective SSM? What effects did this achieve in language models?</p>
+<p><strong>A:</strong> In <strong>Selective SSM</strong>, “<strong>selective</strong>” means that <strong>state space model coefficients (e.g., state transition matrices) are dynamically determined as functions of input tokens</strong>. That is, instead of updating states in the same way at all time points, <strong>how much to maintain or forget previous information is controlled according to the current token’s content</strong>. This operates like <strong>gates</strong> in RNNs, <strong>long retaining important information and quickly forgetting unnecessary information</strong>. Thanks to this selective state control, Mamba can effectively express <strong>content-based dependencies between tokens</strong> and achieve high performance even in <strong>discrete token data like natural language</strong> that was difficult with fixed SSMs.</p>
+<p><strong>Q:</strong> Mention performance-related characteristics shown by the Mamba-3B model (e.g., comparison with same-size Transformer, comparison with twice-larger Transformer, etc.).</p>
+<p><strong>A:</strong> <strong>Mamba-3B</strong> is a Mamba model with 300 million parameters, and it reportedly showed <strong>superior performance to same-size Transformers</strong> and achieved <strong>performance comparable to Transformers with twice the parameters</strong>. This suggests that thanks to Mamba architecture’s efficiency, <strong>Transformer performance can be exceeded or matched even with smaller models</strong>. In other words, Mamba-3B had better language modeling capabilities than 3B-scale Transformers and showed similar results to 6B-scale Transformers, proving <strong>outstanding performance efficiency relative to model size</strong>. These results show that Mamba’s <strong>architectural innovation</strong> led to actual model performance improvement.</p>
 </section>
-<section id="rwkv">
-<h2>RWKV 아키텍처<a class="headerlink" href="#rwkv" title="Link to this heading">#</a></h2>
-<p><strong>Q:</strong> RWKV 아키텍처가 Transformer의 어떤 단점을 해결하기 위해 나왔는지 설명하라. 또한 Transformer와 RNN의 장점을 각각 어떤 방식으로 결합했는가?</p>
-<p><strong>A:</strong> <strong>RWKV</strong>는 <strong>Transformer의 한계를 극복</strong>하기 위해 고안된 모델로, <strong>긴 문맥 처리와 높은 자원 소모</strong> 문제에 대한 대안으로 등장했다. Transformer는 어텐션 연산의 제약으로 <strong>컨텍스트 길이에 한계</strong>가 있고 대용량 GPU 자원이 필요하다는 단점이 있는데, RWKV는 <strong>RNN 계열</strong>의 아이디어를 도입하여 <strong>사실상 제약 없는 문맥 길이</strong>를 지원한다. <strong>Transformer의 장점</strong>인 <strong>병렬 학습</strong> 능력을 그대로 받아들여, 학습 시에는 전체 시퀀스를 한꺼번에 처리(특수한 형태의 어텐션 수식으로 변환)함으로써 GPU 효율을 확보했고, <strong>RNN의 장점</strong>인 <strong>순차 추론 효율</strong>을 결합하여 추론 시에는 토큰을 <strong>한 개씩 RNN처럼 생성</strong>하도록 만들었다. 요약하면, RWKV는 <strong>학습 단계에서는 Transformer처럼 빠르고</strong>, <strong>추론 단계에서는 RNN처럼 가볍게</strong> 동작하도록 함으로써 두 구조의 이점을 모두 취한 혼합형 아키텍처다.</p>
-<p><strong>Q:</strong> RWKV의 추론 방식은 Transformer와 어떻게 다르며, 이로 인해 얻는 이점은 무엇인가? (힌트: KV 캐시 vs 은닉 상태)</p>
-<p><strong>A:</strong> <strong>Transformer</strong>는 추론 시 이전 토큰들의 <strong>KV 캐시</strong>를 모두 저장해 두고, 매 생성 스텝마다 그 <strong>전체와 어텐션을 계산</strong>하는 방식을 취한다. 반면 <strong>RWKV</strong>에서는 각 레이어가 **자신의 은닉 상태(state)**를 가지고 있고, 새로운 토큰이 들어오면 <strong>이전 상태를 업데이트</strong>하는 방식으로 동작한다. 따라서 이전 모든 토큰 정보를 거대한 KV 캐시로 보관할 필요 없이 <strong>고정 크기의 은닉 상태만 유지</strong>하면 된다. 이 차이로 인해 얻는 가장 큰 이점은 <strong>메모리 효율과 속도</strong>다. RWKV는 문맥이 길어져도 메모리 사용량이 거의 증가하지 않고, <strong>토큰당 계산량이 일정</strong>하므로 (어텐션처럼 토큰 수에 따라 증가하지 않음) <strong>아주 긴 입력에서도 일관된 속도</strong>를 낸다. 즉, RWKV는 Transformer 대비 <strong>긴 문서 처리에 유리</strong>하며, <strong>저사양 장치</strong>에서도 대용량 LLM을 상대적으로 원활히 구동할 수 있게 해준다.</p>
-<p><strong>Q:</strong> RWKV의 이름이 뜻하는 바는 무엇이며, Time-mix와 Channel-mix의 역할은 무엇인지 간략히 정리하라.</p>
-<p><strong>A:</strong> <strong>RWKV</strong>는 <strong>Receptance, Weight, Key, Value</strong>의 약자로, 네트워크의 4가지 주요 파라미터 이름에서 유래했다. 여기서 **Receptance (R)**는 <strong>과거 정보를 받아들이는 게이트</strong> 역할을 하고, **Weight (W)**는 <strong>과거 정보에 부여하는 지수적 시간 가중치</strong> (시간이 지남에 따라 이전 영향력을 서서히 감소시키는 계수)이며, **Key (K)**와 **Value (V)**는 각각 키/값 벡터로 <strong>현재 토큰이 전달하는 정보</strong>를 나타낸다.</p>
-<p>RWKV 아키텍처의 각 레이어는 두 단계로 나뉘는데, <strong>Time-mix</strong> 단계와 <strong>Channel-mix</strong> 단계가 그것이다. <strong>Time-mix</strong>는 현재 토큰의 입력을 이전 토큰들의 <strong>누적된 Key/Value 정보와 섞어</strong>주는 단계로, R과 W 게이트를 이용해 <strong>이전 상태를 감쇠(decay)시키며 새로운 정보를 통합</strong>한다. 이는 Transformer에서 <strong>어텐션이 시간축 정보를 통합하는 역할</strong>을 대신한다고 볼 수 있다.</p>
-<p>다음으로 <strong>Channel-mix</strong>는 각 토큰의 <strong>채널(피처) 방향의 변환</strong>을 수행하는 단계로, 전형적인 **Feed-Forward Network(FFN)**처럼 <strong>토큰별 비선형 변환</strong>을 적용한다. 이 과정에서 이전 토큰의 출력 일부도 입력으로 활용하여 <strong>게이트를 통한 조정</strong>이 이뤄지며, Transformer의 FFN과 유사한 역할을 한다. 정리하면, RWKV의 Time-mix는 <strong>순차적인 정보 혼합</strong>(시간 축 처리)을, Channel-mix는 <strong>특성 차원의 혼합</strong>(채널 처리)을 담당하여 <strong>어텐션 없이도 토큰 간 의존성과 토큰 내부 변환을 모두 수행</strong>하도록 설계되어 있다.</p>
+<section id="rwkv-architecture">
+<h2>RWKV Architecture<a class="headerlink" href="#rwkv-architecture" title="Link to this heading">#</a></h2>
+<p><strong>Q:</strong> Explain what shortcomings of Transformer RWKV architecture was designed to solve. Also, how did it combine the advantages of Transformer and RNN respectively?</p>
+<p><strong>A:</strong> <strong>RWKV</strong> is a model designed to <strong>overcome Transformer limitations</strong>, emerging as an alternative to <strong>long context processing and high resource consumption</strong> problems. Transformers have limitations in <strong>context length</strong> due to attention operation constraints and require large GPU resources, but RWKV introduces <strong>RNN series</strong> ideas to support <strong>virtually unlimited context length</strong>. It fully accepts <strong>Transformer’s advantage</strong> of <strong>parallel learning</strong> capability, ensuring GPU efficiency by processing entire sequences at once during training (converted to special attention formulas), and combines <strong>RNN’s advantage</strong> of <strong>sequential inference efficiency</strong> to generate tokens <strong>one by one like RNNs</strong> during inference. In summary, RWKV is a hybrid architecture that takes advantage of both structures by making it <strong>fast like Transformer during training</strong> and <strong>light like RNN during inference</strong>.</p>
+<p><strong>Q:</strong> How does RWKV’s inference method differ from Transformer, and what benefits does this provide? (Hint: KV cache vs hidden state)</p>
+<p><strong>A:</strong> <strong>Transformer</strong> stores <strong>KV cache</strong> of all previous tokens during inference and takes the approach of calculating <strong>attention with the entire cache</strong> at each generation step. On the other hand, <strong>RWKV</strong> has each layer maintain <strong>its own hidden state</strong>, and when a new token comes in, it operates by <strong>updating the previous state</strong>. Therefore, there’s no need to store all previous token information in a huge KV cache, just <strong>maintaining a fixed-size hidden state</strong>. The biggest benefit from this difference is <strong>memory efficiency and speed</strong>. RWKV’s memory usage hardly increases even as context lengthens, and <strong>computation per token is constant</strong> (not increasing with token count like attention), so it <strong>maintains consistent speed even with very long inputs</strong>. In other words, RWKV is <strong>advantageous for long document processing</strong> compared to Transformers and allows <strong>large LLMs to run relatively smoothly even on low-spec devices</strong>.</p>
+<p><strong>Q:</strong> What does RWKV’s name mean, and briefly summarize the roles of Time-mix and Channel-mix.</p>
+<p><strong>A:</strong> <strong>RWKV</strong> stands for <strong>Receptance, Weight, Key, Value</strong>, derived from the names of the four main parameters of the network. Here, <strong>Receptance (R)</strong> acts as a <strong>gate that accepts past information</strong>, <strong>Weight (W)</strong> is an <strong>exponential time weight applied to past information</strong> (coefficient that gradually decreases previous influence over time), and <strong>Key (K)</strong> and <strong>Value (V)</strong> are key/value vectors representing <strong>information conveyed by the current token</strong>.</p>
+<p>Each layer of the RWKV architecture is divided into two stages: <strong>Time-mix</strong> stage and <strong>Channel-mix</strong> stage. <strong>Time-mix</strong> is the stage that <strong>mixes current token input with accumulated Key/Value information from previous tokens</strong>, using R and W gates to <strong>decay previous states and integrate new information</strong>. This can be seen as replacing the role of <strong>attention integrating temporal information</strong> in Transformers.</p>
+<p>Next, <strong>Channel-mix</strong> is the stage that performs <strong>channel (feature) direction transformation</strong> for each token, applying <strong>token-wise nonlinear transformation</strong> like typical <strong>Feed-Forward Network (FFN)</strong>. During this process, some output from previous tokens is also used as input for <strong>adjustment through gates</strong>, serving a similar role to Transformer’s FFN. In summary, RWKV’s Time-mix is responsible for <strong>sequential information mixing</strong> (temporal processing), and Channel-mix is responsible for <strong>feature dimension mixing</strong> (channel processing), designed to <strong>perform both token dependencies and internal token transformations without attention</strong>.</p>
 </section>
-<section id="jamba">
-<h2>Jamba 아키텍처<a class="headerlink" href="#jamba" title="Link to this heading">#</a></h2>
-<p><strong>Q:</strong> Jamba 아키텍처에서 Transformer 층과 Mamba 층은 어떤 비율로 배치되는가? 이러한 설계가 메모리 및 속도 측면에 어떤 이점을 주는지 설명하라.</p>
-<p><strong>A:</strong> <strong>Jamba</strong>는 <strong>Transformer 층과 Mamba 층을 혼합</strong>한 <strong>하이브리드 아키텍처</strong>다. 구체적으로 하나의 Transformer (Attention) 층 뒤에 <strong>여러 개의 Mamba 층</strong>이 따라오는 형태로 쌓이는데, <strong>“1 : 7”의 비율</strong>이 대표적인 구성이다. 예를 들어 32개의 레이어로 구성된 Jamba 모델이라면 그 중 <strong>4개 층만 어텐션</strong>을 사용하고, 나머지 <strong>28개 층은 Mamba</strong>로 이루어진다.</p>
-<p>이렇게 <strong>드문드문 어텐션을 삽입</strong>하고 대부분을 Mamba로 채움으로써, <strong>전역적인 패턴 처리</strong>는 간헐적으로 등장하는 어텐션 층이 담당하고 <strong>나머지 상호작용은 효율적인 Mamba 층</strong>들이 처리하도록 한다. 이 설계는 <strong>메모리 사용량과 속도를 크게 개선</strong>하는데, 특히 어텐션 층이 적으므로 <strong>KV 캐시를 저장해야 할 층 수가 줄어들어 전체 메모리 풋프린트가 작아지고</strong>, <strong>긴 문맥을 처리할 때도</strong> 소수의 어텐션만 계산하면 되므로 <strong>Transformer 대비 훨씬 빠른 토큰 처리 속도</strong>를 얻을 수 있다. 실제로 보고된 바에 따르면, Jamba는 <strong>동일 규모의 일반 Transformer보다 메모리를 1/2 수준만 사용</strong>하면서 <strong>128K 토큰 길이 입력에 대해 3배 이상의 속도</strong>로 텍스트를 생성해냈다.</p>
-<p><strong>Q:</strong> Jamba가 MoE를 도입한 이유는 무엇인가? 활성 파라미터와 총 파라미터의 개념을 들어 설명하라.</p>
-<p><strong>A:</strong> <strong>Jamba</strong>는 모델 용량을 키우면서도 효율을 유지하기 위해 <strong>MoE (Mixture-of-Experts, 전문가 혼합)</strong> 기법을 도입했다. 구체적으로, 일부 Transformer의 <strong>MLP 층을 MoE 레이어로 대체</strong>하여 <strong>여러 개의 Expert 네트워크</strong>를 두고, <strong>각 토큰마다 상위 몇 개의 Expert만 활성화</strong>되도록 한다. 예를 들어 Jamba에서는 하나의 MoE 레이어에 16개의 Expert MLP가 있고, **토큰마다 가장 관련 높은 2개의 Expert만 가동(top-2 gating)**되도록 설계되었다.</p>
-<p>이때 <strong>총 파라미터</strong>란 모든 Expert들을 포함한 전체 모델의 파라미터 수를 의미하고, <strong>활성 파라미터</strong>는 <strong>실제 한 번의 추론에서 활성화되어 계산에 사용되는 파라미터 수</strong>를 뜻한다. Jamba의 경우 MoE 도입으로 **총 파라미터 수는 매우 크게 증가(예: 52억 → 520억 등)**하지만, 매 토큰마다 **극히 일부(예: 상위 2개 Expert)**의 파라미터만 사용되므로 <strong>실제 활성 파라미터 규모는 제한</strong>된다. 예를 들어 Jamba 7B 모델은 MoE를 통해 <strong>총 약 520억 개의 파라미터</strong>를 가지지만, <strong>실제 활성화되는 것은 약 120억 개</strong>에 불과하다.</p>
-<p>이렇게 함으로써 **모델의 총 용량(capacity)**은 크게 늘려 <strong>성능 향상</strong>을 도모하면서도, <strong>추론 시 계산량과 메모리 사용량은 활성 파라미터 수준으로 억제</strong>하여 효율을 유지할 수 있다. 요컨대, MoE 도입으로 Jamba는 <strong>“큰 모델의 똑똑함”을 가지되 “작은 모델의 비용”만 치르는 효과</strong>를 얻은 것이다.</p>
-<p><strong>Q:</strong> Jamba가 지원하는 최대 컨텍스트(문맥) 길이는 얼마나 되며, 이렇게 긴 문맥을 처리하면서도 성능을 유지하는 비결은 무엇인가?</p>
-<p><strong>A:</strong> <strong>Jamba</strong>는 무려 <strong>256K(25만 6천) 토큰</strong>에 달하는 초장문의 <strong>컨텍스트 윈도우</strong>를 지원한다. 이는 현재 공개된 Transformer 계열 모델 중 <strong>가장 긴 수준의 문맥 처리 능력</strong>이며, 이 덕분에 아주 긴 문서를 한 번에 입력하여 질의응답이나 요약을 수행하는 것이 가능하다.</p>
-<p>이렇게 긴 문맥을 다루고도 성능을 유지할 수 있는 비결은 앞선 설계 요소들에 있다. 우선, <strong>어텐션 층 수를 최소화</strong>하고 대부분을 Mamba로 구성했기 때문에 <strong>긴 입력에 대해 어텐션 연산으로 인한 부담이 매우 적다</strong>. 또한 Mamba 층은 <strong>선형 시간</strong>에 동작하므로 문맥 길이가 늘어나도 계산 비용이 크게 늘지 않는다. 실제 실험에서 Jamba는 <strong>128K 토큰 입력을 하나의 80GB GPU에서 처리</strong>해냈으며, 동일 규모의 일반 Transformer는 메모리 한계로 이를 처리하지 못하는 반면 Jamba는 <strong>무리 없이 동작하면서도 출력 품질을 최신 LLM 수준으로 유지</strong>했다. 정리하면, Jamba의 아키텍처는 <strong>긴 문맥을 효율적으로 처리하도록 특화</strong>되어 있으며, 덕분에 <strong>긴 입력에서도 빠른 추론과 우수한 성능을 동시에 달성</strong>할 수 있다.</p>
+<section id="jamba-architecture">
+<h2>Jamba Architecture<a class="headerlink" href="#jamba-architecture" title="Link to this heading">#</a></h2>
+<p><strong>Q:</strong> In what ratio are Transformer layers and Mamba layers arranged in Jamba architecture? Explain what advantages this design provides in terms of memory and speed.</p>
+<p><strong>A:</strong> <strong>Jamba</strong> is a <strong>hybrid architecture</strong> that <strong>mixes Transformer layers and Mamba layers</strong>. Specifically, it stacks in a form where <strong>several Mamba layers</strong> follow one Transformer (Attention) layer, with <strong>“1:7 ratio”</strong> being the representative configuration. For example, in a Jamba model with 32 layers, only <strong>4 layers use attention</strong>, and the remaining <strong>28 layers are Mamba</strong>.</p>
+<p>By <strong>sparsely inserting attention</strong> and filling most with Mamba, <strong>global pattern processing</strong> is handled by occasionally appearing attention layers, and <strong>remaining interactions are processed by efficient Mamba layers</strong>. This design <strong>greatly improves memory usage and speed</strong>, especially since there are few attention layers, <strong>reducing the number of layers that need to store KV cache, making the overall memory footprint smaller</strong>, and <strong>when processing long contexts</strong>, only a few attentions need to be calculated, so <strong>much faster token processing speed compared to Transformer</strong> can be obtained. According to actual reports, Jamba <strong>uses only 1/2 level memory compared to same-scale general Transformers</strong> while <strong>generating text 3x faster for 128K token length inputs</strong>.</p>
+<p><strong>Q:</strong> Why did Jamba introduce MoE? Explain using the concepts of active parameters and total parameters.</p>
+<p><strong>A:</strong> <strong>Jamba</strong> introduced <strong>MoE (Mixture-of-Experts)</strong> technique to maintain efficiency while increasing model capacity. Specifically, some Transformer <strong>MLP layers are replaced with MoE layers</strong> to have <strong>multiple Expert networks</strong>, and <strong>only the top few Experts are activated for each token</strong>. For example, in Jamba, there are 16 Expert MLPs in one MoE layer, designed so that <strong>only the 2 most relevant Experts are activated for each token (top-2 gating)</strong>.</p>
+<p>Here, <strong>total parameters</strong> means the total number of parameters of the entire model including all Experts, and <strong>active parameters</strong> means <strong>the number of parameters actually activated and used in computation during one inference</strong>. In Jamba’s case, with MoE introduction, <strong>total parameter count increases very greatly (e.g., 5.2B → 52B, etc.)</strong>, but since <strong>only a very small part (e.g., top 2 Experts)</strong> of parameters are used for each token, <strong>actual active parameter scale is limited</strong>. For example, the Jamba 7B model has <strong>about 52B total parameters</strong> through MoE, but <strong>only about 12B are actually activated</strong>.</p>
+<p>By doing this, <strong>total model capacity</strong> can be greatly increased to <strong>improve performance</strong>, while <strong>inference computation and memory usage are suppressed to active parameter levels</strong> to maintain efficiency. In short, with MoE introduction, Jamba achieved the effect of <strong>“having the intelligence of a large model but paying only the cost of a small model”</strong>.</p>
+<p><strong>Q:</strong> What is the maximum context length that Jamba supports, and what is the secret to maintaining performance while processing such long contexts?</p>
+<p><strong>A:</strong> <strong>Jamba</strong> supports an ultra-long <strong>context window</strong> of <strong>256K (256,000) tokens</strong>. This is among the <strong>longest context processing capabilities</strong> of currently available Transformer series models, and thanks to this, it’s possible to input very long documents at once to perform Q&amp;A or summarization.</p>
+<p>The secret to maintaining performance while handling such long contexts lies in the aforementioned design elements. First, since <strong>attention layer count is minimized</strong> and most are composed of Mamba, <strong>burden from attention operations is very small for long inputs</strong>. Also, Mamba layers operate in <strong>linear time</strong>, so computational cost doesn’t increase much even as context length increases. In actual experiments, Jamba <strong>processed 128K token inputs on a single 80GB GPU</strong>, and while same-scale general Transformers couldn’t process this due to memory limitations, Jamba <strong>operated without difficulty while maintaining output quality at latest LLM levels</strong>. In summary, Jamba’s architecture is <strong>specialized to efficiently process long contexts</strong>, and thanks to this, it can <strong>achieve both fast inference and excellent performance even with long inputs</strong>.</p>
 </section>
 </section>
 
@@ -534,7 +534,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 1 - Transformer 및 차세대 아키텍처</p>
+        <p class="prev-next-title">Week 1 - Transformer and Next-Generation Architectures</p>
       </div>
     </a>
     <a class="right-next"
@@ -542,7 +542,7 @@ document.write(`
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Week2 - 도구 학습: PyTorch와 최신 프레임워크</p>
+        <p class="prev-next-title">Week 2 - Tool Learning: PyTorch and Latest Frameworks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -562,10 +562,10 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer">Transformer 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba">Mamba 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rwkv">RWKV 아키텍처</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba 아키텍처</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-architecture">Transformer Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba-architecture">Mamba Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rwkv-architecture">RWKV Architecture</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-architecture">Jamba Architecture</a></li>
 </ul>
   </nav></div>
 

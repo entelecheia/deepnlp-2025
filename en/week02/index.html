@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week2 - 도구 학습: PyTorch와 최신 프레임워크 &#8212; Deep Learning for NLP 2025</title>
+    <title>Week 2 - Tool Learning: PyTorch and Latest Frameworks &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -97,7 +97,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Syllabus" href="../syllabus/index.html" />
-    <link rel="prev" title="Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A" href="../week01/qna.html" />
+    <link rel="prev" title="Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A" href="../week01/qna.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -207,17 +207,17 @@
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../index.html">
-                    딥러닝자연어처리 (131307379A)
+                    Deep Learning for Natural Language Processing (131307379A)
                 </a>
             </li>
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer 및 차세대 아키텍처</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week2 - 도구 학습: PyTorch와 최신 프레임워크</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 2 - Tool Learning: PyTorch and Latest Frameworks</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
 <ul class="nav bd-sidenav">
@@ -425,7 +425,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week2 - 도구 학습: PyTorch와 최신 프레임워크</h1>
+    <h1>Week 2 - Tool Learning: PyTorch and Latest Frameworks</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -435,27 +435,27 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-autograd">1. PyTorch 기초: 텐서와 Autograd</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-3-attention">2. FlashAttention-3: 빠른 Attention 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers">3. Hugging Face Transformers 실습</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 사전학습 모델과 토크나이저 불러오기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2 토크나이저를 활용한 입력 인코딩</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.3 분류 파이프라인으로 예측하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-basics-tensors-and-autograd">1. PyTorch Basics: Tensors and Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-3-fast-attention-implementation">2. FlashAttention-3: Fast Attention Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers-practice">3. Hugging Face Transformers Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-pre-trained-models-and-tokenizers">3.1 Loading Pre-trained Models and Tokenizers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-encoding-using-tokenizer">3.2 Input Encoding Using Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-classification-pipeline">3.3 Prediction Using Classification Pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">4. 최신 NLP 프레임워크 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-latest-nlp-frameworks">4. Introduction to Latest NLP Frameworks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-declarative-prompt-programming">4.1 DSPy: Declarative Prompt Programming</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack">4.2 Haystack: 문서 기반 검색과 추론</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai">4.3 CrewAI: 역할 기반 멀티 에이전트 프레임워크</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-document-based-search-and-reasoning">4.2 Haystack: Document-based Search and Reasoning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai-role-based-multi-agent-framework">4.3 CrewAI: Role-based Multi-Agent Framework</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-vs-mamba">5. 실습: BERT vs Mamba 모델 비교 실험</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.1 모델 준비 및 추론 코드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.2 결과 비교: 정확도, 속도, 메모리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-bert-vs-mamba-model-comparison-experiment">5. Practice: BERT vs Mamba Model Comparison Experiment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation-and-inference-code">5.1 Model Preparation and Inference Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-comparison-accuracy-speed-memory">5.2 Result Comparison: Accuracy, Speed, Memory</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6. 실험 정리 및 시사점</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">참고자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-summary-and-implications">6. Experiment Summary and Implications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
             </nav>
         </div>
@@ -467,249 +467,249 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week2-pytorch">
-<h1>Week2 - 도구 학습: PyTorch와 최신 프레임워크<a class="headerlink" href="#week2-pytorch" title="Link to this heading">#</a></h1>
-<section id="pytorch-autograd">
-<h2>1. PyTorch 기초: 텐서와 Autograd<a class="headerlink" href="#pytorch-autograd" title="Link to this heading">#</a></h2>
-<p>PyTorch는 <strong>텐서(tensor)</strong> 자료구조와 자동 미분(<strong>Autograd</strong>) 기능을 제공하여 딥러닝 모델 구현을 간소화한다. 텐서는 다차원 배열로서 넘파이 배열과 유사하지만 GPU 가속과 자동 미분을 지원한다. 예를 들어, torch.tensor()로 텐서를 생성하고 덧셈, 곱셈 등의 <strong>텐서 연산</strong>을 수행할 수 있다. 텐서 연산은 브로드캐스팅, 뷰 변환, 행렬 곱 등 과학 계산에 필요한 다양한 기능을 제공한다.</p>
-<p>PyTorch의 <strong>Autograd 원리</strong>는 <strong>계산 그래프</strong>(Computational Graph)에 기반한다. 텐서 연산을 수행하면 PyTorch는 연산자의 <strong>그래프 노드</strong>를 동적으로 생성하고, 각 노드에 역전파를 위한 함수(grad_fn)를 기록한다. 이렇게 생성된 <strong>연산 그래프</strong>는 방향성 비순환 그래프(DAG) 형태로, leaf 노드는 입력 텐서, root 노드는 출력(손실) 텐서다. **연쇄 법칙(chain rule)**에 따라, .backward() 호출 시 그래프의 root에서 leaf로 자동으로 미분이 계산된다. Autograd 엔진은 각 연산의 미분 공식을 정의한 grad_fn을 차례로 호출하여 <strong>Gradient</strong>(기울기)를 전파한다. 그 결과 입력 텐서들의 grad 속성에 d(Output)/d(Input)의 값이 저장된다.</p>
-<p>예를 들어, 간단한 1차 함수의 미분을 자동으로 계산하는 코드는 다음과 같다:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-2-tool-learning-pytorch-and-latest-frameworks">
+<h1>Week 2 - Tool Learning: PyTorch and Latest Frameworks<a class="headerlink" href="#week-2-tool-learning-pytorch-and-latest-frameworks" title="Link to this heading">#</a></h1>
+<section id="pytorch-basics-tensors-and-autograd">
+<h2>1. PyTorch Basics: Tensors and Autograd<a class="headerlink" href="#pytorch-basics-tensors-and-autograd" title="Link to this heading">#</a></h2>
+<p>PyTorch provides <strong>tensor</strong> data structures and automatic differentiation (<strong>Autograd</strong>) functionality to simplify deep learning model implementation. Tensors are multi-dimensional arrays similar to NumPy arrays but support GPU acceleration and automatic differentiation. For example, you can create tensors with torch.tensor() and perform <strong>tensor operations</strong> like addition, multiplication, etc. Tensor operations provide various functions needed for scientific computation such as broadcasting, view transformation, matrix multiplication, etc.</p>
+<p>PyTorch’s <strong>Autograd principle</strong> is based on <strong>computational graphs</strong>. When tensor operations are performed, PyTorch dynamically generates <strong>graph nodes</strong> for operators and records functions (grad_fn) for backpropagation at each node. The generated <strong>computation graph</strong> is in the form of a directed acyclic graph (DAG), where leaf nodes are input tensors and root nodes are output (loss) tensors. According to the <strong>chain rule</strong>, when .backward() is called, differentiation is automatically calculated from the graph’s root to leaf. The Autograd engine calls grad_fn defining differentiation formulas for each operation in sequence to propagate <strong>gradients</strong>. As a result, the value of d(Output)/d(Input) is stored in the grad attribute of input tensors.</p>
+<p>For example, here’s code that automatically calculates the derivative of a simple first-order function:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="c1"># requires_grad=True로 설정하여 gradient 추적 활성화</span>
+<span class="c1"># Set requires_grad=True to activate gradient tracking</span>
 <span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="n">y</span> <span class="o">=</span> <span class="mi">3</span><span class="o">*</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="mi">5</span><span class="o">*</span><span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>            <span class="c1"># y = 3x^2 + 5x + 1</span>
-<span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                   <span class="c1"># y를 x로 미분 (자동 역전파)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>                  <span class="c1"># 출력: tensor(17.)</span>
+<span class="n">y</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>                   <span class="c1"># Differentiate y with respect to x (automatic backpropagation)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">grad</span><span class="p">)</span>                  <span class="c1"># Output: tensor(17.)</span>
 </pre></div>
 </div>
-<p>위 코드에서 y=3x²+5x+1 이므로, 미분 결과는 dy/dx=6x+5 이고 x=2 일 때 6*2+5=17 이 x.grad에 저장된다. 이처럼 PyTorch Autograd는 사용자가 일일이 미분 공식을 계산하지 않아도, <strong>동적 계산 그래프</strong>를 따라 자동으로 미분을 구해준다. 또한 동적 그래프 특성 덕분에 <strong>분기나 반복문</strong>이 있는 복잡한 모델도 매 iteration마다 유연하게 그래프를 구성해 처리할 수 있다.</p>
-<p><em>그림 1: Autograd에 의해 구성되는 계산 그래프의 예시. 파란 노드들은 leaf 텐서(입력)이고, 연산 노드들은 해당 연산의 backward 함수를 나타낸다. .backward() 실행 시 이 그래프를 따라 각 노드의 grad_fn이 호출되며, 최종적으로 입력 텐서들의 grad에 손실에 대한 미분값이 저장된다.</em></p>
-<p>더 나아가, PyTorch에서는 .grad값을 이용해 <strong>경사하강법</strong>으로 모델 매개변수를 갱신할 수 있다. Optimizer (torch.optim.SGD 등)를 활용하면 .backward()로 계산된 gradient를 기반으로 파라미터를 업데이트한다. 이때 주의할 점은, 새 iteration 전에 .zero_grad()를 통해 기존 gradient를 0으로 초기화해야 이전 단계의 gradient 잔재가 누적되지 않는다. 이러한 절차를 거쳐 신경망을 학습시키며, Autograd는 매 스텝 그래프를 재구성하고 역전파를 수행하여 효율적으로 학습을 돕는다. 또한 필요에 따라 사용자 정의 연산에 대해 torch.autograd.Function을 상속받아 커스텀 backward 함수를 구현할 수도 있어, Autograd 엔진을 확장하는 것도 가능하다.</p>
+<p>In the above code, since y=3x²+5x+1, the derivative result is dy/dx=6x+5, and when x=2, 6*2+5=17 is stored in x.grad. Like this, PyTorch Autograd automatically calculates derivatives following the <strong>dynamic computation graph</strong> without users having to calculate differentiation formulas manually. Also, thanks to the dynamic graph characteristics, complex models with <strong>branches or loops</strong> can flexibly construct graphs and process them at each iteration.</p>
+<p><em>Figure 1: Example of computation graph constructed by Autograd. Blue nodes are leaf tensors (inputs), and operation nodes represent backward functions of corresponding operations. When .backward() is executed, grad_fn of each node is called following this graph, and finally, derivative values with respect to loss are stored in grad of input tensors.</em></p>
+<p>Furthermore, in PyTorch, model parameters can be updated using <strong>gradient descent</strong> with .grad values. Using Optimizer (torch.optim.SGD, etc.), parameters are updated based on gradients calculated by .backward(). At this time, it’s important to initialize existing gradients to 0 with .zero_grad() before new iteration to prevent accumulation of gradient residues from previous steps. Through these procedures, neural networks are trained, and Autograd helps efficient learning by reconstructing graphs and performing backpropagation at each step. Also, if needed, you can inherit torch.autograd.Function for custom operations to implement custom backward functions, making it possible to extend the Autograd engine.</p>
 </section>
-<section id="flashattention-3-attention">
-<h2>2. FlashAttention-3: 빠른 Attention 구현<a class="headerlink" href="#flashattention-3-attention" title="Link to this heading">#</a></h2>
-<p>**어텐션 메커니즘(attention)**은 Transformer 모델의 핵심이지만, <strong>계산 복잡도가</strong> O(n²)로서 입력 시퀀스 길이 n에 대해 <strong>이차적으로 연산량</strong>이 증가하는 한계를 갖는다. 예컨대 시퀀스 길이가 길어지면 (질의-키 간 모든 쌍에 대한 연산 수행), 계산 비용과 메모리 사용이 기하급수적으로 늘어나 <strong>병목</strong>이 발생한다. 특히 셀프 어텐션에서는 각 레이어마다 n×n 크기의 score 행렬을 만들고 Softmax까지 거치므로, 매우 긴 입력에 대해서는 연산 시간이 느려지고 GPU 메모리도 많이 요구되어 실용적 한계(예: BERT의 최대 입력 512 토큰 제한)로 작용한다. 이러한 병목을 줄이기 위해 나온 기법 중 하나가 <strong>FlashAttention</strong>이며, 2022년에 Tri Dao 등이 제안한 <strong>FlashAttention-1</strong>은 <strong>메모리 접근 최소화</strong>를 통해 어텐션 연산을 최적화했다. 구체적으로 큰 어텐션 행렬을 한꺼번에 생성하지 않고 <strong>tiling 기법</strong>으로 부분 블록을 반복 처리하며, 필요한 중간값들은 재계산(recompute)함으로써 GPU <strong>글로벌 메모리 I/O를 줄여</strong> 시간과 메모리 사용을 획기적으로 개선했다. 이후 <strong>FlashAttention-2</strong>에서는 시퀀스 차원까지 작업을 병렬화하고 키/밸류를 블록 단위로 나누어 처리하는 등 GPU 활용도를 높였지만, <strong>H100</strong>과 같은 최신 GPU에서는 이조차 이론 성능의 35% 정도 활용에 그쳤다. 이는 최신 하드웨어의 <strong>비동기식 연산</strong> 능력을 충분히 활용하지 못한 한계 등이 있었다.</p>
-<p><strong>FlashAttention-3</strong>는 Hopper 아키텍처(GPU)의 새로운 기능들을 활용하여 어텐션 속도를 더욱 끌어올린 최신 기법이다. 핵심 아이디어는 세 가지로 요약된다:</p>
+<section id="flashattention-3-fast-attention-implementation">
+<h2>2. FlashAttention-3: Fast Attention Implementation<a class="headerlink" href="#flashattention-3-fast-attention-implementation" title="Link to this heading">#</a></h2>
+<p><strong>Attention mechanism</strong> is the core of Transformer models, but has limitations where <strong>computational complexity</strong> increases quadratically with input sequence length n as O(n²). For example, when sequence length increases (performing computation for all query-key pairs), computational cost and memory usage increase exponentially, causing <strong>bottlenecks</strong>. Especially in self-attention, n×n sized score matrices are created for each layer and go through Softmax, so for very long inputs, computation time slows down and GPU memory is heavily required, acting as practical limitations (e.g., BERT’s maximum input 512 token limit). One technique that emerged to reduce such bottlenecks is <strong>FlashAttention</strong>, and <strong>FlashAttention-1</strong> proposed by Tri Dao et al. in 2022 optimized attention operations through <strong>memory access minimization</strong>. Specifically, instead of generating large attention matrices at once, it processes partial blocks repeatedly using <strong>tiling techniques</strong>, and recomputes necessary intermediate values to <strong>reduce GPU global memory I/O</strong>, dramatically improving time and memory usage. Later, <strong>FlashAttention-2</strong> improved GPU utilization by parallelizing work up to sequence dimensions and processing keys/values in block units, but even this only achieved about 35% utilization of theoretical performance on latest GPUs like <strong>H100</strong>. This was due to limitations like not fully utilizing the <strong>asynchronous computation</strong> capabilities of latest hardware.</p>
+<p><strong>FlashAttention-3</strong> is a latest technique that further boosts attention speed by utilizing new features of Hopper architecture (GPU). The core ideas are summarized in three points:</p>
 <ul class="simple">
-<li><p><strong>Warp-specialization 기반 비동기 실행</strong>: 어텐션 연산을 세분화하여, 일부 워프(warp)는 <strong>Tensor Core</strong>를 이용한 행렬곱(GEMM)을 수행하고 다른 워프는 **Tensor Memory Accelerator (TMA)**로 메모리 로드/스토어를 담당하게 한다. 이를 통해 <strong>계산과 데이터 전송을 겹쳐서(오버랩)</strong> 실행함으로써 GPU 자원을 빈틈없이 활용한다. 한 워프그룹이 Softmax를 계산하는 동안 다른 워프그룹은 다음 블록의 matmul을 수행하는 <strong>파이프라이닝</strong>(핑퐁 스케줄링)을 구현해 <strong>전체 연산이 멈추지 않고 흐르게</strong> 한다.</p></li>
-<li><p><strong>MatMul-Softmax 교차 병렬화</strong>: 전통 어텐션은 모든 쿼리-키 곱셈을 마친 후 Softmax를 적용하지만, FlashAttention-3에서는 <strong>블록 단위</strong>로 곱셈과 Softmax를 교차 수행한다. 작은 블록씩 처리를 반복하면서 부분 Softmax 결과를 즉시 계산하여 다음 연산과 겹치는 방식으로, <strong>대기 시간을 감소</strong>시켰다. 이를 통해 H100에서 Tensor Core 연산과 메모리 접근이 최대한 동시에 이루어져 GPU 사용률이 향상된다.</p></li>
-<li><p><strong>FP8 저정밀도 지원</strong>: Hopper GPU가 지원하는 <strong>FP8</strong> 포맷을 활용하여 어텐션 연산을 저정밀도로 수행한다. FP16 대비 연산당 처리량이 2배 늘어나지만, FlashAttention-3는 <strong>블록별 스케일링 및 보정 기법</strong>으로 정밀도 손실을 억제한다. 논문에 따르면 FP8 사용 시 기존 FP8 어텐션 대비 <strong>2.6배 작은 오차</strong>로 정확도를 유지하면서도 연산 성능을 극대화하였다.</p></li>
+<li><p><strong>Warp-specialization based asynchronous execution</strong>: Attention operations are subdivided so that some warps perform matrix multiplication (GEMM) using <strong>Tensor Core</strong> while other warps handle memory load/store with <strong>Tensor Memory Accelerator (TMA)</strong>. This enables <strong>overlapping computation and data transfer</strong> to utilize GPU resources without gaps. <strong>Pipelining</strong> (ping-pong scheduling) is implemented where one warp group calculates Softmax while another warp group performs matmul of the next block, making <strong>entire computation flow without stopping</strong>.</p></li>
+<li><p><strong>MatMul-Softmax interleaved parallelization</strong>: Traditional attention applies Softmax after completing all query-key multiplications, but FlashAttention-3 performs multiplication and Softmax <strong>interleaved in block units</strong>. By repeating processing of small blocks and immediately calculating partial Softmax results to overlap with next operations, <strong>waiting time is reduced</strong>. This enables Tensor Core operations and memory access to occur simultaneously as much as possible on H100, improving GPU utilization.</p></li>
+<li><p><strong>FP8 low-precision support</strong>: Attention operations are performed in low precision using <strong>FP8</strong> format supported by Hopper GPU. Processing per operation increases 2x compared to FP16, but FlashAttention-3 suppresses precision loss through <strong>block-wise scaling and correction techniques</strong>. According to the paper, when using FP8, it maintained accuracy with <strong>2.6x smaller error</strong> compared to existing FP8 attention while maximizing computational performance.</p></li>
 </ul>
-<p>이러한 최적화의 결과, FlashAttention-3는 <strong>H100 GPU에서 기존 대비 1.5–2.0배의 속도 향상</strong>을 이루었다. 예를 들어 FP16 설정에서 H100의 이론 최대 740 TFLOP/s 중 약 **75%**에 달하는 실효 성능을 내며, 이는 FlashAttention-2 대비 두 배 가까운 향상이다. FP8 사용 시는 무려 <strong>1.2 PFLOP/s</strong>에 육박하는 속도를 달성하였다. 아래 그림은 FlashAttention-3와 기존 구현들의 속도를 비교한 결과로, 시퀀스 길이가 길어질수록 그 우수성이 두드러진다.</p>
-<p><em>그림 2: FlashAttention-3의 H100 상 Forward 연산 속도 비교 (FP16, seq길이↑). 파란선은 기존 FlashAttention-2, 주황선은 FlashAttention-3이며, 시퀀스 길이가 증가할수록 FlashAttention-3의 성능 향상이 뚜렷하다.</em></p>
-<p>FlashAttention-3는 현재 GitHub에서 <strong>beta 버전</strong>으로 공개되어 있으며, PyTorch 2.2+ 및 CUDA 12.3 이상 환경에서 H100 GPU를 대상으로 동작한다. 실제 사용 예시로, flash_attn 라이브러리를 설치한 뒤 다음과 같이 호출할 수 있다:</p>
+<p>As a result of these optimizations, FlashAttention-3 achieved <strong>1.5–2.0x speed improvement compared to existing methods on H100 GPU</strong>. For example, in FP16 settings, it achieves effective performance reaching about <strong>75%</strong> of H100’s theoretical maximum 740 TFLOP/s, which is nearly double improvement compared to FlashAttention-2. When using FP8, it achieves speeds approaching <strong>1.2 PFLOP/s</strong>. The figure below shows speed comparison results between FlashAttention-3 and existing implementations, where its superiority becomes more prominent as sequence length increases.</p>
+<p><em>Figure 2: Forward operation speed comparison of FlashAttention-3 on H100 (FP16, seq length↑). Blue line is existing FlashAttention-2, orange line is FlashAttention-3, and FlashAttention-3’s performance improvement becomes more prominent as sequence length increases.</em></p>
+<p>FlashAttention-3 is currently publicly available as <strong>beta version</strong> on GitHub and operates on H100 GPU in PyTorch 2.2+ and CUDA 12.3+ environments. For actual usage example, after installing the flash_attn library, you can call it as follows:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">flash_attn.flash_attn_interface</span><span class="w"> </span><span class="kn">import</span> <span class="n">flash_attn_func</span>
-<span class="c1"># q, k, v: (batch, seq, head, dim) 텐서, sm_scale: 스케일링</span>
+<span class="c1"># q, k, v: (batch, seq, head, dim) tensors, sm_scale: scaling</span>
 <span class="n">out</span> <span class="o">=</span> <span class="n">flash_attn_func</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">sm_scale</span><span class="o">=</span><span class="mf">0.125</span><span class="p">,</span> <span class="n">dropout_p</span><span class="o">=</span><span class="mf">0.0</span><span class="p">,</span> <span class="n">causal</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 함수는 주어진 쿼리, 키, 밸류에 대해 FlashAttention 최적화된 어텐션 출력을 반환한다. PyTorch 기본 API에서도 2.0 버전부터 torch.nn.functional.scaled_dot_product_attention 함수가 제공되어, 내부적으로 GPU 환경에 따라 FlashAttention과 유사한 최적화 경로를 사용할 수 있다. 요약하면, FlashAttention-3는 <strong>어텐션 연산을 하드웨어 친화적으로 재구조화</strong>하여 Transformer의 속도 병목을 크게 완화한 기술로, 최신 대규모 모델에서 <strong>맥락 길이 확장</strong>과 <strong>훈련 속도 개선</strong>에 중요한 역할을 한다.</p>
+<p>This function returns FlashAttention-optimized attention output for given query, key, value. PyTorch basic API also provides torch.nn.functional.scaled_dot_product_attention function from version 2.0, which can use optimization paths similar to FlashAttention internally depending on GPU environment. In summary, FlashAttention-3 is a technology that <strong>restructures attention operations to be hardware-friendly</strong>, greatly alleviating Transformer’s speed bottlenecks, playing an important role in <strong>context length expansion</strong> and <strong>training speed improvement</strong> in latest large-scale models.</p>
 </section>
-<section id="hugging-face-transformers">
-<h2>3. Hugging Face Transformers 실습<a class="headerlink" href="#hugging-face-transformers" title="Link to this heading">#</a></h2>
-<p><strong>Hugging Face Transformers</strong> 라이브러리는 사전학습된 다양한 NLP 모델(BERT, GPT, T5 등)을 손쉽게 불러와 활용할 수 있는 파이썬 툴킷이다. 이번 절에서는 Hugging Face를 사용하여 한국어 문서 분류 예제를 실습한다. <strong>모델 로딩</strong>, <strong>토크나이저(tokenizer) 사용</strong>, 그리고 <strong>파이프라인(pipeline) API</strong> 활용 방법을 단계별로 살펴본다.</p>
-<section id="id1">
-<h3>3.1 사전학습 모델과 토크나이저 불러오기<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
-<p>Hugging Face 허브에는 AutoModel과 AutoTokenizer 클래스가 있어 모델 이름만으로도 손쉽게 사전학습 모델과 대응되는 토크나이저를 불러올 수 있다. 예를 들어 한국어 영화 리뷰 감성분석에 자주 쓰이는 NSMC 데이터셋에 맞게 fine-tuning된 BERT 모델을 로드하는 코드다 (NSMC: Naver Sentiment Movie Corpus, 영화 리뷰에 대한 긍/부정 레이블 데이터):</p>
+<section id="hugging-face-transformers-practice">
+<h2>3. Hugging Face Transformers Practice<a class="headerlink" href="#hugging-face-transformers-practice" title="Link to this heading">#</a></h2>
+<p><strong>Hugging Face Transformers</strong> library is a Python toolkit that allows easy loading and utilization of various pre-trained NLP models (BERT, GPT, T5, etc.). In this section, we practice Korean document classification examples using Hugging Face. We examine <strong>model loading</strong>, <strong>tokenizer usage</strong>, and <strong>pipeline API</strong> utilization methods step by step.</p>
+<section id="loading-pre-trained-models-and-tokenizers">
+<h3>3.1 Loading Pre-trained Models and Tokenizers<a class="headerlink" href="#loading-pre-trained-models-and-tokenizers" title="Link to this heading">#</a></h3>
+<p>Hugging Face Hub has AutoModel and AutoTokenizer classes, so you can easily load pre-trained models and corresponding tokenizers just by model name. For example, here’s code to load a BERT model fine-tuned for NSMC dataset often used in Korean movie review sentiment analysis (NSMC: Naver Sentiment Movie Corpus, positive/negative label data for movie reviews):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
 
-<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;snoop2head/bert-base-nsmc&quot;</span>  <span class="c1"># 예시로 NSMC 감성분석에 fine-tuned된 BERT</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;snoop2head/bert-base-nsmc&quot;</span>  <span class="c1"># Example BERT fine-tuned for NSMC sentiment analysis</span>
 <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 코드에서 model_name으로 지정한 경로의 모델과 토크나이저가 인터넷에서 다운로드된다. AutoTokenizer는 해당 모델에 특화된 토크나이저 (BERT의 WordPiece 등)를 불러오고, AutoModelForSequenceClassification은 분류용으로 fine-tuning된 BERT 모델 가중치를 불러온다. 이렇게 로드된 tokenizer와 model을 사용하면 바로 추론을 해볼 수 있다.</p>
+<p>In the above code, the model and tokenizer at the path specified by model_name are downloaded from the internet. AutoTokenizer loads tokenizers specialized for that model (like BERT’s WordPiece, etc.), and AutoModelForSequenceClassification loads BERT model weights fine-tuned for classification. With the loaded tokenizer and model, you can immediately try inference.</p>
 </section>
-<section id="id2">
-<h3>3.2 토크나이저를 활용한 입력 인코딩<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<p>자연어 텍스트를 모델에 넣기 위해서는 <strong>토크나이저</strong>를 통해 숫자 인덱스 시퀀스로 변환해야 한다. 토크나이저는 문장을 WordPiece나 SentencePiece 등의 단위로 쪼개어 ID를 부여하며, 모델이 이해할 수 있는 input tensor를 만들어준다. 예를 들어:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;영화 정말 재미있었어요!&quot;</span>
+<section id="input-encoding-using-tokenizer">
+<h3>3.2 Input Encoding Using Tokenizer<a class="headerlink" href="#input-encoding-using-tokenizer" title="Link to this heading">#</a></h3>
+<p>To put natural language text into a model, it must be converted to a sequence of numeric indices through a <strong>tokenizer</strong>. The tokenizer splits sentences into units like WordPiece or SentencePiece and assigns IDs, creating input tensors that the model can understand. For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;The movie was really fun!&quot;</span>
 <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>토크나이저는 “영화 정말 재미있었어요!”라는 문장을 subword 단위로 분리하고 각각의 ID로 인코딩한다. return_tensors=’pt’ 옵션을 주면 파이토치 텐서 형태로 반환되며, 출력 inputs는 input_ids, attention_mask 등을 키로 가진 딕셔너리다. input_ids 텐서는 모델이 이해하는 토큰 시퀀스이며, attention_mask는 패딩 등 무시할 부분을 나타낸다.</p>
+<p>The tokenizer splits the sentence “The movie was really fun!” into subword units and encodes each with IDs. Giving the return_tensors=’pt’ option returns it in PyTorch tensor form, and the output inputs is a dictionary with keys like input_ids, attention_mask, etc. The input_ids tensor is the token sequence that the model understands, and attention_mask indicates parts to ignore like padding.</p>
 </section>
-<section id="id3">
-<h3>3.3 분류 파이프라인으로 예측하기<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
-<p>Hugging Face의 <strong>파이프라인 API</strong>를 이용하면 토크나이저와 모델을 결합한 추론 과정을 한 번에 수행할 수 있다. 분류의 경우 “sentiment-analysis” 파이프라인을 활용하면 편리하다:</p>
+<section id="prediction-using-classification-pipeline">
+<h3>3.3 Prediction Using Classification Pipeline<a class="headerlink" href="#prediction-using-classification-pipeline" title="Link to this heading">#</a></h3>
+<p>Using Hugging Face’s <strong>pipeline API</strong>, you can perform the entire inference process combining tokenizer and model at once. For classification, it’s convenient to use the “sentiment-analysis” pipeline:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
 
 <span class="n">classifier</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;sentiment-analysis&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">)</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;이 영화는 정말 최고의 작품입니다.&quot;</span><span class="p">)</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="s2">&quot;This movie is really the best work.&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 코드에서는 classifier 파이프라인이 문자열을 입력 받아 바로 감정 분석 결과를 출력한다. 예를 들어 문장이 긍정적인 내용이라면 결과로 {‘label’: ‘POSITIVE’, ‘score’: 0.98}와 같은 딕셔너리를 얻을 수 있다. 내부적으로 pipeline은 입력 문장을 토크나이저로 input_ids로 바꾸고, 모델의 예측 결과 로짓(logits)에 Softmax를 적용하여 가장 높은 확률의 레이블을 선택해주는 일련의 과정을 수행한다.</p>
-<p>만약 여러 문장에 대해 일괄 예측하고 싶다면 리스트를 입력으로 주면 된다. 또한 한국어 NSMC 데이터셋의 예를 확장하여 <strong>KorNLI</strong>(한국어 자연어 추론) 등의 다른 데이터셋에도 동일한 패턴으로 응용할 수 있다. Hugging Face datasets 라이브러리를 활용하면:</p>
+<p>In the above code, the classifier pipeline takes a string as input and immediately outputs sentiment analysis results. For example, if the sentence has positive content, you can get a dictionary like {‘label’: ‘POSITIVE’, ‘score’: 0.98} as a result. Internally, the pipeline performs a series of processes: converting input sentences to input_ids with the tokenizer, applying Softmax to the model’s prediction results (logits), and selecting the label with the highest probability.</p>
+<p>If you want to perform batch prediction on multiple sentences, you can give a list as input. Also, you can apply the same pattern to other datasets like <strong>KorNLI</strong> (Korean Natural Language Inference) by extending the example of Korean NSMC dataset. Using Hugging Face datasets library:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
 <span class="n">nsmc</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;nsmc&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">nsmc</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">])</span>
 </pre></div>
 </div>
-<p>위와 같이 <strong>NSMC 데이터셋</strong>을 불러와 살펴볼 수도 있다 (영화 리뷰와 라벨 0/1로 구성). 이렇게 준비된 데이터셋을 토크나이저로 일괄 변환한 뒤 Trainer API 등을 사용하면 모델을 fine-tuning하는 것도 가능하다. 본 강의의 범위를 넘어가는 fine-tuning 세부 방법은 후일 다루겠지만, <strong>사전학습 모델 + 토크나이저 + pipeline</strong> 조합만으로도 간단한 <strong>추론 실습</strong>을 손쉽게 해볼 수 있다는 것이 Hugging Face 생태계의 큰 장점이다.</p>
+<p>You can also load and examine the <strong>NSMC dataset</strong> like above (consisting of movie reviews and labels 0/1). With prepared datasets like this, you can batch convert them with tokenizers and then use Trainer API, etc., to fine-tune models. Detailed fine-tuning methods beyond this course’s scope will be covered later, but the fact that you can easily try simple <strong>inference practice</strong> with just the combination of <strong>pre-trained model + tokenizer + pipeline</strong> is a major advantage of the Hugging Face ecosystem.</p>
 </section>
 </section>
-<section id="nlp">
-<h2>4. 최신 NLP 프레임워크 소개<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h2>
-<p>최근에는 대규모 언어모델(LLM) 활용과 특화된 응용을 돕는 새로운 <strong>NLP 프레임워크</strong>들이 속속 등장하고 있다. 이번 절에서는 그 중 떠오르는 몇 가지 툴을 살펴본다: <strong>DSPy</strong>, <strong>Haystack</strong>, <strong>CrewAI</strong>. 각각 목적과 기능이 다르지만, 공통적으로 개발자들이 <strong>적은 노력으로 강력한 NLP 파이프라인이나 에이전트 시스템</strong>을 구축할 수 있도록 돕는 도구들이다.</p>
+<section id="introduction-to-latest-nlp-frameworks">
+<h2>4. Introduction to Latest NLP Frameworks<a class="headerlink" href="#introduction-to-latest-nlp-frameworks" title="Link to this heading">#</a></h2>
+<p>Recently, new <strong>NLP frameworks</strong> that help with large language model (LLM) utilization and specialized applications are emerging one after another. In this section, we examine several rising tools among them: <strong>DSPy</strong>, <strong>Haystack</strong>, <strong>CrewAI</strong>. Each has different purposes and functions, but they are all tools that help developers build <strong>powerful NLP pipelines or agent systems with minimal effort</strong>.</p>
 <section id="dspy-declarative-prompt-programming">
 <h3>4.1 DSPy: Declarative Prompt Programming<a class="headerlink" href="#dspy-declarative-prompt-programming" title="Link to this heading">#</a></h3>
-<p>DSPy는 <strong>Declarative Self-Improving Python</strong>의 약자로, Databricks에서 출시한 <strong>선언형 프롬프트 프로그래밍</strong> 프레임워크다. LLM을 직접 다루면서 발생하는 <strong>긴 프롬프트 문자열</strong> 관리의 복잡함을 줄이고, 마치 <strong>코드를 작성하듯</strong> 모듈화된 구성으로 AI 프로그램을 만들 수 있게 해준다. 한마디로 “프롬프트를 하드코딩하지 말고, <strong>프로그래밍처럼</strong> 작성하라”는 철학으로 설계되었다.</p>
-<p>DSPy의 핵심 개념은 <strong>LM, Signature, Module</strong> 세 가지로 나뉜다:</p>
+<p>DSPy stands for <strong>Declarative Self-Improving Python</strong> and is a <strong>declarative prompt programming</strong> framework released by Databricks. It reduces the complexity of managing <strong>long prompt strings</strong> that arise when directly handling LLMs, and allows you to create AI programs with modular composition as if <strong>writing code</strong>. In short, it’s designed with the philosophy of “don’t hardcode prompts, write them <strong>like programming</strong>.”</p>
+<p>DSPy’s core concepts are divided into three: <strong>LM, Signature, Module</strong>:</p>
 <ul class="simple">
-<li><p><strong>LM</strong>: 사용할 언어모델을 지정한다. 예를 들어 OpenAI API의 GPT-4, HuggingFace의 Llama2 등 원하는 모델을 dspy.LM(…)으로 설정하고 dspy.configure(lm=…) 하면, 이후 모든 모듈이 이 LM을 통해 결과를 생성한다.</p></li>
-<li><p><strong>Signature</strong>: 함수의 입력과 출력 타입을 지정하듯, 프롬프트 프로그램의 <strong>입력과 출력 형식</strong>을 선언한다. 예를 들어 “question -&gt; answer: int”처럼 signature를 정의하면, DSPy는 question(str)을 받아 answer(int)를 내는 구조로 프롬프트를 자동 생성한다. 시그니처는 모델에게 주어질 프롬프트의 구조와 기대 출력 형태(예: JSON 형태 등)를 기술하는 역할을 한다.</p></li>
-<li><p><strong>Module</strong>: 문제를 풀기 위한 <strong>프롬프트 기법</strong> 자체를 모듈로 캡슐화한다. 예를 들어 단순 질의응답은 dspy.Predict, 복잡한 사고가 필요한 경우 dspy.ChainOfThought(연쇄적 사고), 툴 사용 에이전트는 dspy.ReAct 모듈로 표현할 수 있다. 모듈들은 내부적으로 해당 기법에 맞게 프롬프트를 어떻게 구성할지 로직이 구현되어 있다.</p></li>
+<li><p><strong>LM</strong>: Specifies the language model to use. For example, if you set desired models like OpenAI API’s GPT-4, HuggingFace’s Llama2, etc. with dspy.LM(…) and dspy.configure(lm=…), then all subsequent modules generate results through this LM.</p></li>
+<li><p><strong>Signature</strong>: Like specifying input and output types of functions, it declares the <strong>input and output format</strong> of prompt programs. For example, if you define signature like “question -&gt; answer: int”, DSPy automatically generates prompts in a structure that takes question(str) and outputs answer(int). Signatures describe the structure of prompts given to models and expected output forms (e.g., JSON format, etc.).</p></li>
+<li><p><strong>Module</strong>: Encapsulates <strong>prompt techniques</strong> themselves for solving problems as modules. For example, simple Q&amp;A can be expressed as dspy.Predict, complex thinking cases as dspy.ChainOfThought (chain of thought), tool-using agents as dspy.ReAct modules. Modules have logic implemented internally for how to compose prompts according to the corresponding techniques.</p></li>
 </ul>
-<p>사용자는 이 세 가지를 조합하여 <strong>AI 프로그램</strong>을 만든 뒤, DSPy에 내장된 <strong>Optimizer</strong>를 통해 모듈의 프롬프트를 자동으로 개선하거나 few-shot 예시를 추가하는 등의 최적화를 할 수 있다. 예를 들어, 아래처럼 간단한 조합을 만들어볼 수 있다:</p>
+<p>Users combine these three to create <strong>AI programs</strong>, then can optimize by automatically improving module prompts or adding few-shot examples through <strong>Optimizer</strong> built into DSPy. For example, you can make simple combinations like below:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dspy</span>
-<span class="c1"># 1) LM 설정 (로컬 Llama2 모델 예시)</span>
+<span class="c1"># 1) LM setup (local Llama2 model example)</span>
 <span class="n">llm</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">LM</span><span class="p">(</span><span class="s1">&#39;ollama/llama2&#39;</span><span class="p">,</span> <span class="n">api_base</span><span class="o">=</span><span class="s1">&#39;http://localhost:11434&#39;</span><span class="p">)</span>
 <span class="n">dspy</span><span class="o">.</span><span class="n">configure</span><span class="p">(</span><span class="n">lm</span><span class="o">=</span><span class="n">llm</span><span class="p">)</span>
-<span class="c1"># 2) Signature 선언: 질문 -&gt; 답(int)</span>
+<span class="c1"># 2) Signature declaration: question -&gt; answer(int)</span>
 <span class="n">simple_sig</span> <span class="o">=</span> <span class="s2">&quot;question -&gt; answer: int&quot;</span>
-<span class="c1"># 3) Module 선택: Predict (기본적인 질의응답)</span>
+<span class="c1"># 3) Module selection: Predict (basic Q&amp;A)</span>
 <span class="n">simple_model</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">simple_sig</span><span class="p">)</span>
-<span class="c1"># 4) 실행</span>
-<span class="n">result</span> <span class="o">=</span> <span class="n">simple_model</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s2">&quot;서울에서 부산까지 KTX로 몇 시간 걸리나요?&quot;</span><span class="p">)</span>
+<span class="c1"># 4) Execute</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">simple_model</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s2">&quot;How many hours does it take from Seoul to Busan by KTX?&quot;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 코드는 simple_model이라는 모듈을 만들어 “질문을 받으면 정수 답변을 출력”하는 작업을 정의한다. 내부적으로 DSPy는 이 요구에 맞는 최적의 프롬프트를 생성하여 LM에 전달한다. 초기에 얻은 답이 부정확하다면, <strong>BootstrapFewShot</strong>과 같은 Optimizer를 적용해 few-shot 예시를 자동으로 첨가하거나, <strong>Refine</strong> 모듈로 답변을 지속 개선하도록 지시할 수도 있다. 이런 방식으로 DSPy는 복잡한 LLM 파이프라인 (예: <strong>RAG</strong> 시스템, 다단계 체인, 에이전트 루프 등)도 모듈 단위로 구성하고 최적화할 수 있게 해준다.</p>
-<p>DSPy의 장점은 <strong>프롬프트 엔지니어링의 생산성 향상</strong>이다. 코드처럼 구조화된 틀 안에서 LLM 호출을 설계하므로, 사람이 긴 프롬프트 문장을 일일이 작성하며 시행착오를 겪는 시간을 줄여준다. 또한 여러 <strong>모델/기법을 교체</strong>하면서도 동일한 모듈 인터페이스를 유지할 수 있어, 예컨대 동일한 Chain-of-Thought 모듈을 GPT-4와 Llama2에 모두 실험해보며 성능을 비교하는 등 <strong>유연한 실험</strong>이 가능하다. Declarative한 접근 덕분에 <strong>프로그램의 일부만 변경</strong>하여도 전체 LLM 파이프라인에 쉽게 반영되므로, 유지보수도 용이하다. 아직 초기 단계의 프레임워크이지만, **”프로그래밍하듯 LLM을 다룬다”**는 패러다임을 제시했다는 점에서 주목받고 있다.</p>
+<p>The above code creates a module called simple_model that defines the task of “output integer answers when receiving questions”. Internally, DSPy generates optimal prompts matching these requirements and passes them to the LM. If the initially obtained answer is inaccurate, you can apply Optimizers like <strong>BootstrapFewShot</strong> to automatically add few-shot examples, or instruct continuous answer improvement with <strong>Refine</strong> modules. In this way, DSPy enables composition and optimization of complex LLM pipelines (e.g., <strong>RAG</strong> systems, multi-stage chains, agent loops, etc.) in module units.</p>
+<p>DSPy’s advantage is <strong>improved productivity in prompt engineering</strong>. Since LLM calls are designed within structured frameworks like code, it reduces the time people spend writing long prompt sentences manually and going through trial and error. Also, you can maintain the same module interface while switching various <strong>models/techniques</strong>, enabling <strong>flexible experiments</strong> like testing the same Chain-of-Thought module on both GPT-4 and Llama2 to compare performance. Thanks to the declarative approach, even <strong>changing only part of the program</strong> easily reflects in the entire LLM pipeline, making maintenance easy. Although it’s still an early-stage framework, it’s gaining attention for presenting the paradigm of <strong>“handling LLMs like programming”</strong>.</p>
 </section>
-<section id="haystack">
-<h3>4.2 Haystack: 문서 기반 검색과 추론<a class="headerlink" href="#haystack" title="Link to this heading">#</a></h3>
-<p><strong>Haystack</strong>은 독일의 Deepset에서 개발한 <strong>오픈소스 NLP 프레임워크</strong>로, 주로 <strong>지식 기반 질의응답</strong>(Question Answering) 시스템 구축에 사용된다. Haystack의 강점은 <strong>유연한 파이프라인 구성</strong>에 있다. 사용자는 데이터베이스(문서 저장소)부터 검색기, 리더(Reader)나 생성기(Generator) 모델까지 일련의 단계를 하나의 Pipeline으로 엮어, 질문을 넣으면 답변을 반환하는 <strong>엔드투엔드 NLP 시스템</strong>을 쉽게 만들 수 있다. 예를 들어 “주어진 문서 집합에서 질문의 답을 찾아라”와 같은 <strong>Retrieval QA</strong>나, 위키피디아 기반 챗봇 등을 Haystack으로 구현할 수 있다.</p>
-<p>Haystack의 주요 컴포넌트는 아래와 같다:</p>
+<section id="haystack-document-based-search-and-reasoning">
+<h3>4.2 Haystack: Document-based Search and Reasoning<a class="headerlink" href="#haystack-document-based-search-and-reasoning" title="Link to this heading">#</a></h3>
+<p><strong>Haystack</strong> is an <strong>open-source NLP framework</strong> developed by Deepset in Germany, mainly used for building <strong>knowledge-based question answering</strong> systems. Haystack’s strength lies in <strong>flexible pipeline composition</strong>. Users can easily create <strong>end-to-end NLP systems</strong> that return answers when questions are input by linking a series of stages from databases (document stores) to search engines, reader (Reader) or generator (Generator) models into one Pipeline. For example, <strong>Retrieval QA</strong> like “find answers to questions from given document sets” or Wikipedia-based chatbots can be implemented with Haystack.</p>
+<p>Haystack’s main components are as follows:</p>
 <ul class="simple">
-<li><p><strong>DocumentStore</strong>: 말 그대로 문서를 저장하는 DB다. In-Memory 형태나 Elasticsearch, FAISS 등의 백엔드를 지원하며, 문서의 텍스트와 메타데이터, 임베딩 등을 보관한다.</p></li>
-<li><p><strong>Retriever</strong>: 사용자의 질문(Query)에 대해 관련 문서를 <strong>검색</strong>하는 역할을 한다. BM25 같은 전통적 키워드 기반부터 SBERT, DPR 등 <strong>Dense Passage Retrieval</strong> 모델까지 다양하게 구현되어 있다. Retriever는 DocumentStore에서 <strong>상위 k개</strong>의 관련 문서를 찾아낸다.</p></li>
-<li><p><strong>Reader</strong> or <strong>Generator</strong>: 검색된 문서들을 입력으로 받아 최종 <strong>답을 생성</strong>한다. <strong>Reader</strong>는 보통 Extractive QA모델(BERT 기반 등)을 사용하여 해당 문서 내에서 정답 스팬을 뽑아주고, <strong>Generator</strong>는 GPT-같은 생성형 모델을 이용해 답을 생성할 수도 있다. 둘 다 Haystack에서 노드(Node)로써 플러그인 가능하다.</p></li>
-<li><p><strong>Pipeline</strong>: 상기 요소들을 조합하여 <strong>질의-&gt;응답 플로우</strong>를 정의하는 구조다. 간단히는 Retriever 결과를 Reader에 넣는 ExtractiveQAPipeline이 있고, 생성형으로 답을 만드는 GenerativeQAPipeline도 있다. 또 Retrieval-Augmented Generation처럼 <strong>Retriever + Large LM</strong>을 연결하거나, 여러 단계의 Conditional한 흐름을 구현할 수도 있다.</p></li>
+<li><p><strong>DocumentStore</strong>: Literally a database for storing documents. It supports backends like In-Memory, Elasticsearch, FAISS, etc., and stores document text, metadata, embeddings, etc.</p></li>
+<li><p><strong>Retriever</strong>: Plays the role of <strong>searching</strong> for relevant documents regarding user questions (Query). It’s diversely implemented from traditional keyword-based methods like BM25 to <strong>Dense Passage Retrieval</strong> models like SBERT, DPR, etc. Retriever finds <strong>top k</strong> relevant documents from DocumentStore.</p></li>
+<li><p><strong>Reader</strong> or <strong>Generator</strong>: Takes searched documents as input to generate final <strong>answers</strong>. <strong>Reader</strong> usually uses Extractive QA models (BERT-based, etc.) to extract correct answer spans from the documents, and <strong>Generator</strong> can generate answers using generative models like GPT. Both can be plugged in as nodes (Node) in Haystack.</p></li>
+<li><p><strong>Pipeline</strong>: Structure that defines <strong>query-&gt;response flow</strong> by combining the above elements. There are simple ExtractiveQAPipeline that puts Retriever results into Reader, and GenerativeQAPipeline that creates answers generatively. You can also connect <strong>Retriever + Large LM</strong> like Retrieval-Augmented Generation, or implement multi-stage conditional flows.</p></li>
 </ul>
-<p>Haystack을 이용한 <strong>간단 실습 예시</strong>를 들어보자. 예를 들어 FAQ 문서 모음을 이용해 질문에 답변하는 QA 시스템을 만든다고 하면:</p>
+<p>Let’s look at a <strong>simple practice example</strong> using Haystack. For example, if you want to create a QA system that answers questions using FAQ document collections:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">haystack.document_stores</span><span class="w"> </span><span class="kn">import</span> <span class="n">InMemoryDocumentStore</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">haystack.nodes</span><span class="w"> </span><span class="kn">import</span> <span class="n">BM25Retriever</span><span class="p">,</span> <span class="n">FARMReader</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">haystack</span><span class="w"> </span><span class="kn">import</span> <span class="n">Pipeline</span>
 
-<span class="c1"># 1) 문서 저장소 생성 및 문서 Write</span>
+<span class="c1"># 1) Create document store and write documents</span>
 <span class="n">document_store</span> <span class="o">=</span> <span class="n">InMemoryDocumentStore</span><span class="p">()</span>
-<span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;드라마 **오징어 게임**은 한국의 서바이벌 드라마...&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;위키피디아&quot;</span><span class="p">}}]</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="p">[{</span><span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="s2">&quot;Drama **Squid Game** is a Korean survival drama...&quot;</span><span class="p">,</span> <span class="s2">&quot;meta&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;source&quot;</span><span class="p">:</span> <span class="s2">&quot;Wikipedia&quot;</span><span class="p">}}]</span>
 <span class="n">document_store</span><span class="o">.</span><span class="n">write_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
 
-<span class="c1"># 2) Retriever와 Reader 구성</span>
+<span class="c1"># 2) Configure Retriever and Reader</span>
 <span class="n">retriever</span> <span class="o">=</span> <span class="n">BM25Retriever</span><span class="p">(</span><span class="n">document_store</span><span class="o">=</span><span class="n">document_store</span><span class="p">)</span>
 <span class="n">reader</span> <span class="o">=</span> <span class="n">FARMReader</span><span class="p">(</span><span class="n">model_name_or_path</span><span class="o">=</span><span class="s2">&quot;monologg/koelectra-base-v3-finetuned-korquad&quot;</span><span class="p">,</span> <span class="n">use_gpu</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 
-<span class="c1"># 3) 파이프라인 구축</span>
+<span class="c1"># 3) Build pipeline</span>
 <span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
 <span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Retriever&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Query&quot;</span><span class="p">])</span>
 <span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reader&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retriever&quot;</span><span class="p">])</span>
 
-<span class="c1"># 4) QA 실행</span>
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;오징어 게임 감독이 누구야?&quot;</span>
+<span class="c1"># 4) Execute QA</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Who is the director of Squid Game?&quot;</span>
 <span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Retriever&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;Reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;answers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 코드에서는 간단히 인메모리 문서저장소에 하나의 문서를 넣고, BM25 기반 Retriever와 한국어 KorQuAD 데이터로 학습된 Electra Reader를 조합한 파이프라인을 구축했다. pipeline.run()에 질의를 넣으면 Retriever가 상위 5개 문서를 찾고, Reader가 그 중에서 답을 추출하여 반환한다. 결과로 예를 들어 “황동혁”이라는 답변을 얻을 수 있을 것이다.</p>
-<p>Haystack의 강력한 점은 이처럼 <strong>구성 요소를 교체하거나 확장하기 용이</strong>하다는 점이다. Dense Retriever로 바꾸거나, Reader 대신 GPT-3같은 생성 모델을 Generator로 붙이는 것도 가능하다. 또 멀티홉 QA처럼 중간에 여러 노드를 순차/병렬 구성하여 복잡한 추론 시나리오를 지원한다.</p>
-<p>산업 현장에서는 Haystack을 활용해 <strong>도메인 문서 검색</strong> + <strong>QA</strong> 서비스나, <strong>챗봇</strong>에 외부 지식을 주입하는 RAG 파이프라인을 구성하는 사례가 많다. 요약하면, Haystack은 <strong>검색 엔진과 NLP모델을 하나로 엮는 프레임워크</strong>로, 비교적 적은 코드로 강력한 문서 기반 QA 시스템을 구축할 수 있게 해주는 도구다.</p>
+<p>In the above code, we simply put one document in an in-memory document store and built a pipeline combining BM25-based Retriever and Electra Reader trained on Korean KorQuAD data. When you put a query in pipeline.run(), Retriever finds the top 5 documents, and Reader extracts and returns the answer from among them. As a result, you can get an answer like “Hwang Dong-hyuk”.</p>
+<p>Haystack’s powerful point is that <strong>components can be easily replaced or extended</strong> like this. You can switch to Dense Retriever, or attach generative models like GPT-3 as Generator instead of Reader. It also supports complex reasoning scenarios by sequentially/parallelly configuring multiple nodes in the middle like multi-hop QA.</p>
+<p>In industrial settings, there are many cases of using Haystack to configure <strong>domain document search</strong> + <strong>QA</strong> services or RAG pipelines that inject external knowledge into <strong>chatbots</strong>. In summary, Haystack is a <strong>framework that ties search engines and NLP models together</strong>, a tool that enables building powerful document-based QA systems with relatively little code.</p>
 </section>
-<section id="crewai">
-<h3>4.3 CrewAI: 역할 기반 멀티 에이전트 프레임워크<a class="headerlink" href="#crewai" title="Link to this heading">#</a></h3>
-<p><strong>CrewAI</strong>는 최근 각광받는 <strong>AI 에이전트</strong> 프레임워크 중 하나로, 여러 개의 LLM 에이전트를 <strong>팀(crew)</strong> 형태로 구성하여 <strong>협업적으로 작업</strong>을 수행하도록 하는 플랫폼이다. 기존의 LangChain 등이 단일 에이전트 또는 체인 중심이었다면, CrewAI는 <strong>역할 기반 멀티에이전트</strong>에 특화되어 있다. 예를 들어 하나의 문제를 해결하기 위해 <strong>Researcher, Analyst, Writer</strong> 등 역할을 나누고, 각 에이전트가 자신만의 도구(tool)와 목표(goal)를 가지고 자율적으로 행동하면서 전체적으로는 협력해 최종 결과를 산출하도록 구성할 수 있다.</p>
-<p>CrewAI의 개념을 주요 구성 요소별로 정리하면 다음과 같다:</p>
+<section id="crewai-role-based-multi-agent-framework">
+<h3>4.3 CrewAI: Role-based Multi-Agent Framework<a class="headerlink" href="#crewai-role-based-multi-agent-framework" title="Link to this heading">#</a></h3>
+<p><strong>CrewAI</strong> is one of the recently spotlighted <strong>AI agent</strong> frameworks, a platform that organizes multiple LLM agents in <strong>team (crew)</strong> form to perform <strong>collaborative work</strong>. While existing frameworks like LangChain were centered on single agents or chains, CrewAI specializes in <strong>role-based multi-agents</strong>. For example, to solve one problem, you can divide roles like <strong>Researcher, Analyst, Writer</strong>, etc., and configure each agent to act autonomously with their own tools and goals while collaborating overall to produce final results.</p>
+<p>CrewAI’s concepts can be organized by main components as follows:</p>
 <ul class="simple">
-<li><p><strong>Crew (승무원 팀)</strong>: 전체 에이전트들의 조직 혹은 환경이다. Crew 객체가 여러 에이전트를 포함하며, 이들의 <strong>협업 프로세스</strong>를 총괄한다. 하나의 Crew는 특정 목표를 달성하기 위한 에이전트 팀 한 개에 대응한다.</p></li>
-<li><p><strong>Agent (에이전트)</strong>: 독립적인 <strong>자율 AI</strong>로, 각각 정해진 **역할(role)**과 <strong>도구</strong> 및 <strong>목표</strong>를 가진다. 예를 들어 “문헌 조사원” 에이전트는 웹 검색 도구를 사용해 정보를 수집하고, “보고서 작성자” 에이전트는 글쓰기 도구와 문체에 맞춰 최종 보고서를 작성하는 식이다. 에이전트는 필요 시 다른 에이전트에게 작업을 위임하거나 결과를 요청할 수도 있다 (마치 사람이 팀 협업하듯).</p></li>
-<li><p><strong>Process (프로세스)</strong>: Crew 내에서 에이전트들의 <strong>상호작용 규칙</strong>이나 <strong>워크플로우</strong>를 정의한 것이다. 예를 들어 “1단계: Researcher가 자료 수집 -&gt; 2단계: Analyst가 요약 -&gt; 3단계: Writer가 정리” 와 같은 흐름을 프로세스로 설정할 수 있다. CrewAI에서는 이러한 프로세스를 **플로우(Flow)**라는 개념으로도 확장하며, 이벤트나 조건에 따라 에이전트 실행을 제어할 수도 있다.</p></li>
+<li><p><strong>Crew (Team)</strong>: Organization or environment of all agents. Crew objects contain multiple agents and oversee their <strong>collaboration process</strong>. One Crew corresponds to one agent team for achieving specific goals.</p></li>
+<li><p><strong>Agent</strong>: Independent <strong>autonomous AI</strong>, each with defined <strong>role</strong>, <strong>tools</strong>, and <strong>goals</strong>. For example, a “literature researcher” agent uses web search tools to collect information, and a “report writer” agent writes final reports with writing tools and appropriate style. Agents can delegate work to other agents or request results when needed (like people collaborating in teams).</p></li>
+<li><p><strong>Process</strong>: Defines <strong>interaction rules</strong> or <strong>workflows</strong> of agents within Crew. For example, you can set up flows like “Step 1: Researcher collects materials -&gt; Step 2: Analyst summarizes -&gt; Step 3: Writer organizes” as processes. In CrewAI, such processes are also extended with the concept of <strong>Flow</strong>, and agent execution can be controlled according to events or conditions.</p></li>
 </ul>
-<p>CrewAI를 사용하면 개발자는 각 에이전트의 역할과 사용 도구를 정의하고, Crew를 생성해 실행함으로써 <strong>복잡한 작업을 자동화</strong>할 수 있다. 간단한 사용 예를 들어보자. 가령 주어진 주제에 대해 자료를 찾아 요약한 보고서를 작성하는 에이전트 팀:</p>
+<p>Using CrewAI, developers can define each agent’s role and tools, create and execute Crews to <strong>automate complex tasks</strong>. Let’s look at a simple usage example. For instance, an agent team that finds materials and writes summary reports on given topics:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crewai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Crew</span><span class="p">,</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">tool</span>
 
-<span class="c1"># 에이전트 정의: 검색 담당자와 작성 담당자</span>
-<span class="n">searcher</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Researcher&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;정보 수집&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">tool</span><span class="p">(</span><span class="s2">&quot;wiki_browser&quot;</span><span class="p">)])</span>
-<span class="n">writer</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Writer&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;보고서 작성&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">tool</span><span class="p">(</span><span class="s2">&quot;text_editor&quot;</span><span class="p">)])</span>
+<span class="c1"># Agent definition: searcher and writer</span>
+<span class="n">searcher</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Researcher&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;Information Collection&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">tool</span><span class="p">(</span><span class="s2">&quot;wiki_browser&quot;</span><span class="p">)])</span>
+<span class="n">writer</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;Writer&quot;</span><span class="p">,</span> <span class="n">role</span><span class="o">=</span><span class="s2">&quot;Report Writing&quot;</span><span class="p">,</span> <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">tool</span><span class="p">(</span><span class="s2">&quot;text_editor&quot;</span><span class="p">)])</span>
 
-<span class="c1"># Crew 생성 및 에이전트 추가</span>
-<span class="n">crew</span> <span class="o">=</span> <span class="n">Crew</span><span class="p">(</span><span class="n">agents</span><span class="o">=</span><span class="p">[</span><span class="n">searcher</span><span class="p">,</span> <span class="n">writer</span><span class="p">],</span> <span class="n">goal</span><span class="o">=</span><span class="s2">&quot;주어진 주제에 대한 1페이지 요약 보고서 작성&quot;</span><span class="p">)</span>
-<span class="n">crew</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="s2">&quot;한국의 전통 음식에 대해 조사하고 요약하라.&quot;</span><span class="p">)</span>
+<span class="c1"># Create Crew and add agents</span>
+<span class="n">crew</span> <span class="o">=</span> <span class="n">Crew</span><span class="p">(</span><span class="n">agents</span><span class="o">=</span><span class="p">[</span><span class="n">searcher</span><span class="p">,</span> <span class="n">writer</span><span class="p">],</span> <span class="n">goal</span><span class="o">=</span><span class="s2">&quot;Write a 1-page summary report on the given topic&quot;</span><span class="p">)</span>
+<span class="n">crew</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">task</span><span class="o">=</span><span class="s2">&quot;Investigate and summarize traditional Korean food.&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위 예시는 가상의 코드이지만, Agent에 역할과 사용할 툴(예: 위키 브라우저, 텍스트 에디터 기능)을 부여하고 Crew에 등록한 후 실행하는 흐름을 묘사한다. 실행 시 Researcher 에이전트는 먼저 위키피디아를 검색해 정보를 모으고, 그 결과를 Writer 에이전트에게 전달한다. Writer는 받은 정보를 정리하여 요약 보고서를 작성한 뒤 최종 답을 산출한다. 이 모든 과정이 사람 개입 없이 자동으로 이루어지며, CrewAI 프레임워크가 <strong>각 단계의 수행과 에이전트 간 메시지 교환</strong>을 관리한다.</p>
-<p>CrewAI의 특징은 <strong>높은 유연성과 통제력</strong>이다. 단순히 여러 에이전트를 독립적으로 돌리는 것이 아니라, 개발자가 원하는 대로 <strong>협업 패턴</strong>을 디자인할 수 있다. 또한 개별 에이전트에 대해 프롬프트 규칙, 응답 형식 등을 세밀히 설정 가능하여, 팀 내 <strong>전문 AI</strong>들을 구축할 수 있다. 실제로 <strong>자동화된 고객지원</strong>(예: 한 에이전트가 유저 의도를 파악, 다른 에이전트가 FAQ 검색, 또 다른 에이전트가 답변 생성)이나 <strong>연구 어시스턴트</strong>(역할 분담하여 문헌 정리) 등에 응용될 수 있다.</p>
-<p>CrewAI는 완전히 새로운 프레임워크라기보다 <strong>LangChain 등과 호환</strong>되도록 설계되어, 기존 도구 체인들도 재사용할 수 있다는 장점이 있다. 다만 멀티에이전트 시스템 특성상 예상치 못한 상호작용이나 무한 루프 등을 방지하기 위한 <strong>안전장치 설계</strong>도 중요하다. CrewAI 측에서는 역할별 <strong>제한과 정책</strong>을 두어 에이전트들이 정해진 범위 내에서만 활동하도록 권고하고 있다.</p>
-<p>요약하면, CrewAI는 <strong>역할 기반 자율 에이전트들의 협업을 체계화</strong>한 프레임워크로서, 하나의 거대 LLM이 모든 걸 하는 대신 여러 전문 LLM이 <strong>분업과 협력을 통해 더 복잡한 작업을 수행</strong>하도록 돕는다. 이를 통해 멀티에이전트 AI 시스템 개발을 쉽고 표준화된 방식으로 접근할 수 있게 해준다.</p>
+<p>The above example is conceptual code, but it describes the flow of assigning roles and tools (e.g., wiki browser, text editor functions) to Agents, registering them in Crew, and then executing. During execution, the Researcher agent first searches Wikipedia to gather information, then passes the results to the Writer agent. The Writer organizes the received information and writes a summary report to produce the final answer. All these processes occur automatically without human intervention, and the CrewAI framework manages <strong>execution of each step and message exchange between agents</strong>.</p>
+<p>CrewAI’s characteristics are <strong>high flexibility and control</strong>. Rather than simply running multiple agents independently, developers can design <strong>collaboration patterns</strong> as desired. Additionally, by finely configuring prompt rules, response formats, etc. for individual agents, <strong>specialized AIs</strong> can be built within teams. In practice, it can be applied to <strong>automated customer support</strong> (e.g., one agent understanding user intent, another agent searching FAQs, another agent generating responses) or <strong>research assistants</strong> (dividing roles to organize literature).</p>
+<p>CrewAI is designed to be <strong>compatible with LangChain and others</strong> rather than being a completely new framework, allowing reuse of existing tool chains. However, due to the nature of multi-agent systems, <strong>safety mechanism design</strong> to prevent unexpected interactions or infinite loops is also important. CrewAI recommends setting <strong>restrictions and policies</strong> by role so agents only act within defined boundaries.</p>
+<p>In summary, CrewAI is a framework that <strong>systematizes collaboration of role-based autonomous agents</strong>, helping multiple specialized LLMs perform more complex tasks through <strong>division of labor and cooperation</strong> instead of one giant LLM doing everything. This enables approaching multi-agent AI system development in an easy and standardized way.</p>
 </section>
 </section>
-<section id="bert-vs-mamba">
-<h2>5. 실습: BERT vs Mamba 모델 비교 실험<a class="headerlink" href="#bert-vs-mamba" title="Link to this heading">#</a></h2>
-<p>이제까지 Transformer 기반 모델과 최신 SSM(State Space Model) 아키텍처인 Mamba에 대해 이론과 도구를 공부했으니, <strong>직접 두 모델을 비교하는 작은 실험</strong>을 수행해본다. 과제는 다음과 같다:</p>
+<section id="practice-bert-vs-mamba-model-comparison-experiment">
+<h2>5. Practice: BERT vs Mamba Model Comparison Experiment<a class="headerlink" href="#practice-bert-vs-mamba-model-comparison-experiment" title="Link to this heading">#</a></h2>
+<p>Having studied the theory and tools of Transformer-based models and the latest SSM (State Space Model) architecture Mamba, let’s perform a <strong>small experiment comparing the two models directly</strong>. The task is as follows:</p>
 <ul class="simple">
-<li><p><strong>태스크</strong>: 한국어 문장 <strong>감성 분석</strong> (긍정/부정 분류). 예를 들어 NSMC 영화리뷰 데이터셋의 문장들을 분류해보기로 한다.</p></li>
-<li><p><strong>모델</strong>: ① Transformer 기반 <strong>BERT</strong> (multilingual BERT 또는 KoBERT 등), ② SSM 기반 <strong>Mamba</strong> (예: Mamba-130M 수준 모델).</p></li>
-<li><p><strong>비교 항목</strong>: 둘 모델의 <strong>분류 정확도</strong>, <strong>추론 속도</strong>, <strong>GPU 메모리 사용량</strong>을 측정 및 비교한다.</p></li>
-<li><p><strong>환경</strong>: 동일한 실험 조건에서 진행. (예: 단일 RTX 3090 GPU, 배치 크기 32, 시퀀스 길이 128 등)</p></li>
+<li><p><strong>Task</strong>: Korean sentence <strong>sentiment analysis</strong> (positive/negative classification). For example, we’ll classify sentences from the NSMC movie review dataset.</p></li>
+<li><p><strong>Models</strong>: ① Transformer-based <strong>BERT</strong> (multilingual BERT or KoBERT, etc.), ② SSM-based <strong>Mamba</strong> (e.g., Mamba-130M level model).</p></li>
+<li><p><strong>Comparison Items</strong>: Measure and compare <strong>classification accuracy</strong>, <strong>inference speed</strong>, and <strong>GPU memory usage</strong> of both models.</p></li>
+<li><p><strong>Environment</strong>: Conduct under identical experimental conditions. (e.g., single RTX 3090 GPU, batch size 32, sequence length 128, etc.)</p></li>
 </ul>
-<p>실험은 크게 <strong>모델 준비</strong>, <strong>추론 및 메트릭 측정</strong>, <strong>결과 분석</strong> 단계로 이루어진다.</p>
-<section id="id4">
-<h3>5.1 모델 준비 및 추론 코드<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
-<p>우선 Hugging Face를 통해 미리 NSMC 데이터로 fine-tuning된 BERT 모델과, 동일 데이터로 fine-tuning된 Mamba 모델을 불러온다고 가정한다. (현재 Mamba는 Transformer처럼 광범위하게 fine-tuning 예제가 많지 않지만, 실험 가정상 준비되었다고 가정한다.)</p>
+<p>The experiment consists of <strong>model preparation</strong>, <strong>inference and metric measurement</strong>, and <strong>result analysis</strong> stages.</p>
+<section id="model-preparation-and-inference-code">
+<h3>5.1 Model Preparation and Inference Code<a class="headerlink" href="#model-preparation-and-inference-code" title="Link to this heading">#</a></h3>
+<p>First, we assume loading BERT and Mamba models fine-tuned on NSMC data through Hugging Face. (Currently, Mamba doesn’t have as many fine-tuning examples as Transformers, but we assume they’re prepared for this experiment.)</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForSequenceClassification</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="c1"># BERT 모델 로드 (예시: koBERT NSMC 파인튜닝 모델)</span>
+<span class="c1"># Load BERT model (example: koBERT NSMC fine-tuned model)</span>
 <span class="n">bert_name</span> <span class="o">=</span> <span class="s2">&quot;skt/kobert-base-v1-nsmc&quot;</span>
 <span class="n">tokenizer_bert</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">bert_name</span><span class="p">)</span>
 <span class="n">model_bert</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">bert_name</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 
-<span class="c1"># Mamba 모델 로드 (예시: Mamba 130M NSMC 파인튜닝 모델)</span>
-<span class="n">mamba_name</span> <span class="o">=</span> <span class="s2">&quot;kuotient/mamba-ko-130m-nsmc&quot;</span>  <span class="c1"># 가정된 경로</span>
+<span class="c1"># Load Mamba model (example: Mamba 130M NSMC fine-tuned model)</span>
+<span class="n">mamba_name</span> <span class="o">=</span> <span class="s2">&quot;kuotient/mamba-ko-130m-nsmc&quot;</span>  <span class="c1"># assumed path</span>
 <span class="n">tokenizer_mamba</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">mamba_name</span><span class="p">)</span>
 <span class="n">model_mamba</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">mamba_name</span><span class="p">)</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
 </pre></div>
 </div>
-<p>위 코드에서 두 모델을 GPU 메모리에 올렸다. 그 다음, 예측 함수를 작성한다. 한 번에 테스트셋 배치들을 모델에 넣어 <strong>추론 속도</strong>와 <strong>메모리 사용</strong>을 측정해본다:</p>
+<p>In the above code, we loaded both models into GPU memory. Next, we write a prediction function. We measure <strong>inference speed</strong> and <strong>memory usage</strong> by inputting test set batches into the model at once:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">texts</span><span class="p">):</span>
-    <span class="c1"># 인코딩</span>
+    <span class="c1"># Encoding</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s1">&#39;pt&#39;</span><span class="p">)</span>
     <span class="n">inputs</span> <span class="o">=</span> <span class="p">{</span><span class="n">k</span><span class="p">:</span><span class="n">v</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span> <span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">inputs</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
     <span class="n">start</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="c1"># 추론</span>
+    <span class="c1"># Inference</span>
     <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
         <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
     <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">synchronize</span><span class="p">()</span>
     <span class="n">end</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
-    <span class="c1"># 결과 및 걸린 시간</span>
+    <span class="c1"># Results and elapsed time</span>
     <span class="n">probs</span> <span class="o">=</span> <span class="n">outputs</span><span class="o">.</span><span class="n">logits</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
     <span class="n">preds</span> <span class="o">=</span> <span class="n">probs</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
     <span class="n">elapsed</span> <span class="o">=</span> <span class="n">end</span> <span class="o">-</span> <span class="n">start</span>
     <span class="k">return</span> <span class="n">preds</span><span class="p">,</span> <span class="n">elapsed</span>
 
-<span class="c1"># 예시 데이터 (간단히 64개 문장으로 구성된 배치)</span>
-<span class="n">batch_texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;이 영화 정말 최고였습니다.&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">64</span>  <span class="c1"># 64개의 예시 문장 (실제로는 다양하게)</span>
+<span class="c1"># Example data (batch of 64 sentences)</span>
+<span class="n">batch_texts</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;This movie was really the best.&quot;</span><span class="p">]</span> <span class="o">*</span> <span class="mi">64</span>  <span class="c1"># 64 example sentences (should be diverse in practice)</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">time_bert</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">model_bert</span><span class="p">,</span> <span class="n">tokenizer_bert</span><span class="p">,</span> <span class="n">batch_texts</span><span class="p">)</span>
 <span class="n">_</span><span class="p">,</span> <span class="n">time_mamba</span> <span class="o">=</span> <span class="n">evaluate_model</span><span class="p">(</span><span class="n">model_mamba</span><span class="p">,</span> <span class="n">tokenizer_mamba</span><span class="p">,</span> <span class="n">batch_texts</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BERT 처리 시간: </span><span class="si">{</span><span class="n">time_bert</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">초, Mamba 처리 시간: </span><span class="si">{</span><span class="n">time_mamba</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">초&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;BERT processing time: </span><span class="si">{</span><span class="n">time_bert</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s, Mamba processing time: </span><span class="si">{</span><span class="n">time_mamba</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>위에서 evaluate_model 함수는 64개 문장의 배치를 받아 토큰화하고 모델 출력까지 수행한 뒤, 걸린 시간을 측정한다. 이때 torch.cuda.synchronize()를 사용해 GPU 연산 종료 시점을 정확히 잰다. 출력으로 BERT와 Mamba 각각의 <strong>배치 추론 시간</strong>이 나오게 된다.</p>
-<p>정확도(Accuracy)는 미리 준비된 <strong>검증 데이터셋</strong>을 통해 측정한다. NSMC 검증 세트(약 50,000 문장)에 대해 모델의 예측을 구한 뒤 정답과 비교하여 정확도를 계산했다. 또한 GPU <strong>메모리 사용량</strong>은 파이토치의 torch.cuda.max_memory_allocated() 등을 이용해 피크 사용치를 확인했다.</p>
+<p>The evaluate_model function above takes a batch of 64 sentences, tokenizes them, performs model inference, and measures the elapsed time. Here, torch.cuda.synchronize() is used to accurately measure the end time of GPU operations. The output shows <strong>batch inference time</strong> for BERT and Mamba respectively.</p>
+<p>Accuracy is measured through a pre-prepared <strong>validation dataset</strong>. We calculated accuracy by obtaining model predictions on the NSMC validation set (about 50,000 sentences) and comparing with correct answers. Additionally, GPU <strong>memory usage</strong> was checked using PyTorch’s torch.cuda.max_memory_allocated() to see peak usage.</p>
 </section>
-<section id="id5">
-<h3>5.2 결과 비교: 정확도, 속도, 메모리<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
-<p>실험의 측정 결과를 정리하면 아래와 같다 (가상의 수치 예시):</p>
+<section id="result-comparison-accuracy-speed-memory">
+<h3>5.2 Result Comparison: Accuracy, Speed, Memory<a class="headerlink" href="#result-comparison-accuracy-speed-memory" title="Link to this heading">#</a></h3>
+<p>The measurement results of the experiment are summarized below (hypothetical numerical examples):</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-left"><p>모델</p></th>
-<th class="head text-left"><p>검증 Accuracy</p></th>
-<th class="head text-left"><p>추론 속도<sup>*1</sup></p></th>
-<th class="head text-left"><p>GPU 메모리 사용<sup>*2</sup></p></th>
+<tr class="row-odd"><th class="head text-left"><p>Model</p></th>
+<th class="head text-left"><p>Validation Accuracy</p></th>
+<th class="head text-left"><p>Inference Speed<sup>*1</sup></p></th>
+<th class="head text-left"><p>GPU Memory Usage<sup>*2</sup></p></th>
 </tr>
 </thead>
 <tbody>
@@ -726,35 +726,35 @@ document.write(`
 </tbody>
 </table>
 </div>
-<p><small><sup>*1</sup>추론 속도는 초당 처리 샘플 수 (batch size=64, seq length=128 기준)</small><br />
-<small><sup>*2</sup>GPU 메모리 사용은 추론 시 모델+활용 메모리의 대략적인 피크 값</small></p>
-<p>그래프로도 세 지표를 비교하면 다음과 같다:</p>
-<p><em>그림 3: BERT와 Mamba 모델의 성능 비교. BERT가 감성 분류 정확도에서 약간 앞서고 추론 속도도 다소 높지만, Mamba는 GPU 메모리 효율이 우수하다 (짙은 파란색: BERT, 주황색: Mamba).</em></p>
-<p>표와 그림에서 알 수 있듯이, <strong>분류 정확도</strong>의 경우 BERT-base는 약 88% 정도의 정확도를 보인 반면 Mamba(비슷한 규모 모델)는 약 85% 수준을 기록하여 <strong>약간 뒤처졌다</strong>. 이는 Mamba 아키텍처가 아직 Transformer만큼 한국어 데이터에 특화되지 않았거나, 사전학습이 충분하지 않았기 때문일 수 있다. 반면 <strong>추론 속도</strong>는 본 실험 조건에서는 BERT가 약간 더 빠른 결과를 보였다. 시퀀스 길이 128 정도까지는 Mamba의 선형 시간 이점이 두드러지지 않기 때문에, 오히려 파라미터 수가 적고 최적화가 성숙한 BERT 쪽이 근소하게 높은 <strong>throughput</strong>을 보여준 것으로 분석된다.</p>
-<p><strong>GPU 메모리 사용량</strong>은 Mamba 모델이 더 낮게 나타났다. 동일 batch와 sequence length에서 BERT는 어텐션 행렬 등의 중간 산출물로 메모리 점유가 커지는 반면, Mamba는 <strong>상태공간 모델 특성상 시퀀스 길이에 선형 증가</strong>하므로 메모리 요구가 비교적 완만하다. 위 실험에서는 BERT가 약 0.8GB, Mamba는 0.6GB 가량의 GPU 메모리를 사용한 것으로 측정되었다. 시퀀스 길이나 batch size를 크게 늘리면 이 차이는 더욱 벌어질 수 있다 (BERT는 메모리 사용이 O(n²)로 증가하여 대용량 입력에서 메모리 한계에 빨리 도달하는 반면, Mamba는 O(n) 증가로 훨씬 <strong>메모리 효율적</strong>이다).</p>
-<p>또 한 가지 큰 차이로, <strong>처리 가능한 최대 문맥 길이</strong>를 들 수 있다. BERT 계열은 일반적으로 <strong>입력 길이 512 토큰</strong>으로 제한되지만, Mamba 모델은 설계상 <strong>수천~수만 토큰</strong> 길이도 처리 가능하다. 실제 Mamba-2.8B 모델의 경우 최대 8,000 토큰까지 대응하며, 연구 버전은 100만 토큰 이상도 목표로 하고 있다. 따라서 긴 문서를 분석해야 하는 작업에서는 Mamba 같은 SSM 모델이 큰 이점을 가진다.</p>
+<p><small><sup>*1</sup>Inference speed is samples processed per second (based on batch size=64, seq length=128)</small><br />
+<small><sup>*2</sup>GPU memory usage is approximate peak value of model+utilization memory during inference</small></p>
+<p>Comparing the three metrics in a graph:</p>
+<p><em>Figure 3: Performance comparison of BERT and Mamba models. BERT slightly leads in sentiment classification accuracy and inference speed, but Mamba has superior GPU memory efficiency (dark blue: BERT, orange: Mamba).</em></p>
+<p>As can be seen from the table and figure, in terms of <strong>classification accuracy</strong>, BERT-base shows about 88% accuracy while Mamba (similar scale model) records about 85%, <strong>slightly behind</strong>. This may be because the Mamba architecture is not yet as specialized for Korean data as Transformers, or pre-training is insufficient. On the other hand, <strong>inference speed</strong> shows BERT being slightly faster under these experimental conditions. Since Mamba’s linear time advantage is not prominent up to sequence length 128, the analysis shows that BERT, with fewer parameters and mature optimization, shows slightly higher <strong>throughput</strong>.</p>
+<p><strong>GPU memory usage</strong> is lower for the Mamba model. With the same batch and sequence length, BERT’s memory occupancy increases due to intermediate outputs like attention matrices, while Mamba’s memory requirements are relatively gentle due to <strong>linear increase with sequence length characteristic of state space models</strong>. In the above experiment, BERT used about 0.8GB and Mamba about 0.6GB of GPU memory. If sequence length or batch size is greatly increased, this difference can widen further (BERT’s memory usage increases as O(n²), quickly reaching memory limits with large inputs, while Mamba increases as O(n), making it much more <strong>memory efficient</strong>).</p>
+<p>Another major difference is <strong>maximum processable context length</strong>. BERT series are generally limited to <strong>512 token input length</strong>, but Mamba models can process <strong>thousands to tens of thousands of tokens</strong> by design. The actual Mamba-2.8B model supports up to 8,000 tokens, and research versions aim for over 1 million tokens. Therefore, SSM models like Mamba have great advantages in tasks requiring long document analysis.</p>
 </section>
 </section>
-<section id="id6">
-<h2>6. 실험 정리 및 시사점<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
-<p><strong>BERT vs Mamba 비교 실험</strong>을 통해 두 모델의 특성과 장단점을 살펴보았다. 요약하면, <strong>기존 BERT(Transformer)</strong> 모델은 여전히 중단길이 입력에 대해 높은 정확도와 안정적인 속도를 보여주며, <strong>짧은 입력 환경에서는 여전히 효율적</strong>이다. 반면 <strong>Mamba(SSM)</strong> 모델은 초장문맥 처리에 뛰어나고 입력 길이가 길어질수록 <strong>성능 저하 없이 효율적</strong>이라는 가능성을 보여주었다. 하지만 현 시점에서는 모델의 완성도나 최적화 측면에서 Transformer 계열이 검증되어 있고, Mamba는 연구 단계라 <strong>일반적인 과제에서는 Transformer가 다소 우위</strong>를 점하는 모습이다 (예: 본 실험의 정확도 비교).</p>
-<p><strong>어떤 모델이 어떤 상황에 적합한가?</strong> 우선 <strong>입력 시퀀스 길이</strong>가 결정 요인이다. <strong>짧은 문장 단위 작업</strong>(예: 단문 분류, 단답 QA 등)에서는 BERT와 같은 Transformer를 사용하는 것이 구현 용이성과 성능 면에서 유리하다. 풍부한 사전학습과 튜닝 기법이 축적되어 있어 높은 정확도를 달성하기 쉽고, 추론 지연시간도 짧다. <strong>긴 문맥 또는 문서 단위 작업</strong>(예: 수천 단어의 문서 요약, 장편 글 감정분석 등)에서는 Mamba와 같은 선형 아키텍처가 유리할 수 있다. Transformer로는 불가능하거나 많은 리소스를 소모해야 할 입력 길이를 Mamba는 효율적으로 처리할 수 있기 때문이다. 실제로 Mamba는 <strong>100만 토큰</strong>까지도 처리 가능함을 보여주어 초장문맥 LLM 시대를 열 가능성을 시사한다.</p>
-<p><strong>추론 속도</strong> 관점에서도 맥락 길이에 따라 판단해야 한다. 짧은 입력에서는 두 모델 속도가 비슷하거나 Transformer가 빠를 수 있지만, 입력 길이가 증가하면 Transformer는 O(n²)로 <strong>급격히 느려지므로</strong>, 충분히 긴 문맥에서는 Mamba가 <strong>최대 5배 이상 빠른 추론</strong>을 보여줄 것이라고 보고되고 있다. 또한 Mamba는 상태공간 모델의 특성상 시계열 데이터, 연속적 스트림 처리 등에도 강점이 있어 <strong>언어 이외에도 음성, 시퀀스 데이터 처리</strong> 등에 두루 활용될 수 있는 일반성도 겸비하고 있다.</p>
-<p><strong>서비스/프로덕션 적용 시사점:</strong> 현재 생산 환경에서는 Transformer 계열 (예: BERT, GPT) 모델이 성능이나 툴링 면에서 성숙해 널리 쓰이고 있다. Mamba는 매우 유망한 기술이지만 아직 <strong>라이브러리 지원, 커뮤니티, 사전학습 모델 풀</strong>이 Transformer만큼 풍부하지 않다. 따라서 현업에서 바로 Mamba를 대체로 도입하기엔 안정성 검증이 더 필요할 수 있다. 다만, <strong>메모리 용량 한계나 지연 시간 문제로 초장문맥 처리가 어려웠던 서비스</strong>라면, 향후 Mamba 같은 모델을 도입해 돌파구를 마련할 수 있을 것이다. 예컨대 <strong>긴 법률 문서 분석 서비스</strong>나 <strong>장기간 대화 히스토리를 유지해야 하는 챗봇</strong> 등에서는, Mamba 아키텍처가 게임 체인저가 될 가능성이 있다.</p>
-<p>또한 추후 등장하는 하이브리드 모델 (예: <strong>Jamba: Transformer+Mamba 혼합 전문가</strong>)이나 다른 선형 시퀀스 모델들과의 경쟁도 주목할 필요가 있다. 현재로선 <strong>Transformer의 범용성 vs. Mamba의 특수성</strong> 구도로 볼 수 있으며, 실제 프로덕션에서는 두 접근을 <strong>상호보완적으로 활용</strong>하는 방안도 고려된다. 예를 들어, 일반 대화는 Transformer로 처리하다가, 특정 요청에서 초장문맥 처리가 필요하면 Mamba 모드로 전환하는 식의 시스템도 가능할 것이다.</p>
-<p>정리하면, <strong>BERT</strong>와 <strong>Mamba</strong>는 각자 강점을 가지며 사용 용도가 갈린다. <strong>짧은 입력/기존 작업</strong>에는 숙성된 BERT 계열이 적합하고, <strong>긴 입력/새로운 확장 작업</strong>에는 Mamba가 잠재력을 보인다. 연구와 기술 발전이 지속된다면 Mamba 같은 SSM이 Transformer의 한계를 보완하거나 대체하는 사례가 점차 늘어날 것으로 기대된다. 실제 서비스에 적용할 때는 현재 모델의 안정성, 지원 도구, 라이선스 등을 종합 고려해야 하지만, <strong>미래 지향적으로는 초장문맥과 고효율 추론을 위한 아키텍처 혁신이 현실화되고 있다</strong>는 점에서 이 두 모델의 비교 실험은 의미 있는 통찰을 제공한다.</p>
+<section id="experiment-summary-and-implications">
+<h2>6. Experiment Summary and Implications<a class="headerlink" href="#experiment-summary-and-implications" title="Link to this heading">#</a></h2>
+<p>Through the <strong>BERT vs Mamba comparison experiment</strong>, we examined the characteristics and pros/cons of both models. In summary, <strong>existing BERT (Transformer)</strong> models still show high accuracy and stable speed for medium-length inputs and are <strong>still efficient in short input environments</strong>. On the other hand, <strong>Mamba (SSM)</strong> models show potential for ultra-long context processing and <strong>efficiency without performance degradation</strong> as input length increases. However, at the current point, Transformer series are validated in terms of model completeness and optimization, while Mamba is in the research stage, so <strong>Transformers have some advantage in general tasks</strong> (e.g., accuracy comparison in this experiment).</p>
+<p><strong>Which model is suitable for which situation?</strong> First, <strong>input sequence length</strong> is the determining factor. For <strong>short sentence-level tasks</strong> (e.g., sentence classification, short-answer QA, etc.), using Transformers like BERT is advantageous in terms of implementation ease and performance. Rich pre-training and tuning techniques are accumulated, making it easy to achieve high accuracy with short inference latency. For <strong>long context or document-level tasks</strong> (e.g., summarizing documents of thousands of words, sentiment analysis of long texts, etc.), linear architectures like Mamba may be advantageous. This is because Mamba can efficiently process input lengths that are impossible or would consume many resources with Transformers. In fact, Mamba shows the ability to process up to <strong>1 million tokens</strong>, suggesting the possibility of opening the era of ultra-long context LLMs.</p>
+<p>From an <strong>inference speed</strong> perspective, judgment should also be based on context length. With short inputs, the two models may have similar speeds or Transformers may be faster, but as input length increases, Transformers <strong>slow down dramatically</strong> as O(n²), so reports suggest that Mamba will show <strong>up to 5x faster inference</strong> in sufficiently long contexts. Additionally, Mamba has strengths in time series data and continuous stream processing due to the nature of state space models, and also has generality that can be widely applied to <strong>speech and sequence data processing beyond language</strong>.</p>
+<p><strong>Service/Production Application Implications:</strong> Currently in production environments, Transformer series (e.g., BERT, GPT) models are mature and widely used in terms of performance and tooling. Mamba is a very promising technology but <strong>library support, community, and pre-trained model pools</strong> are not as rich as Transformers yet. Therefore, more stability validation may be needed to immediately introduce Mamba as a replacement in industry. However, for services that have had difficulty with ultra-long context processing due to <strong>memory capacity limits or latency issues</strong>, introducing models like Mamba in the future could provide a breakthrough. For example, in <strong>long legal document analysis services</strong> or <strong>chatbots that need to maintain long-term conversation history</strong>, Mamba architecture has the potential to be a game changer.</p>
+<p>Additionally, attention should be paid to future hybrid models (e.g., <strong>Jamba: Transformer+Mamba mixed experts</strong>) and competition with other linear sequence models. Currently, it can be viewed as <strong>Transformer’s universality vs. Mamba’s specificity</strong>, and in actual production, approaches to <strong>mutually complementary utilization</strong> of both methods are also considered. For example, a system that processes general conversations with Transformers and switches to Mamba mode when ultra-long context processing is needed for specific requests would be possible.</p>
+<p>In summary, <strong>BERT</strong> and <strong>Mamba</strong> each have their strengths and different use cases. <strong>Mature BERT series</strong> are suitable for <strong>short inputs/existing tasks</strong>, while <strong>Mamba</strong> shows potential for <strong>long inputs/new expansion tasks</strong>. If research and technological development continue, it is expected that cases where SSMs like Mamba complement or replace Transformer limitations will gradually increase. When applying to actual services, current model stability, support tools, licenses, etc. should be comprehensively considered, but from a <strong>future-oriented perspective, architectural innovation for ultra-long context and high-efficiency inference is being realized</strong>, and this comparison experiment of the two models provides meaningful insights.</p>
 </section>
 <hr class="docutils" />
-<section id="id7">
-<h2>참고자료<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>PyTorch Autograd 공식 문서 – <em>“Autograd: Automatic Differentiation”</em></p></li>
-<li><p>Tri Dao 블로그 – <em>“FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision”</em></p></li>
+<li><p>PyTorch Autograd Official Documentation – <em>“Autograd: Automatic Differentiation”</em></p></li>
+<li><p>Tri Dao Blog – <em>“FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision”</em></p></li>
 <li><p>Hugging Face Transformers Documentation &amp; Tutorials</p></li>
-<li><p>Databricks DSPy 소개 – <em>Programming, not prompting</em></p></li>
-<li><p>Deepset Haystack 문서 – <em>Flexible Open Source QA Framework</em></p></li>
+<li><p>Databricks DSPy Introduction – <em>Programming, not prompting</em></p></li>
+<li><p>Deepset Haystack Documentation – <em>Flexible Open Source QA Framework</em></p></li>
 <li><p>CrewAI Docs – <em>Role-based Autonomous Agent Teams</em></p></li>
-<li><p>Mamba 아키텍처 논문 – <em>Mamba: A Linear-Time State Space Model for Long-Range Sequences</em></p></li>
+<li><p>Mamba Architecture Paper – <em>Mamba: A Linear-Time State Space Model for Long-Range Sequences</em></p></li>
 <li><p><em>“Mamba Explained”</em> - The Gradient</p></li>
 <li><p><em>“Improving VTE Identification through Language Models from Radiology Reports: A Comparative Study of Mamba, Phi-3 Mini, and BERT”</em></p></li>
 <li><p><em>“FlashAttention-3: Fast and Accurate Attention with Asynchrony and Low-precision”</em> - arXiv</p></li>
@@ -807,7 +807,7 @@ document.write(`
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</p>
+        <p class="prev-next-title">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</p>
       </div>
     </a>
     <a class="right-next"
@@ -835,27 +835,27 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-autograd">1. PyTorch 기초: 텐서와 Autograd</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-3-attention">2. FlashAttention-3: 빠른 Attention 구현</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers">3. Hugging Face Transformers 실습</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">3.1 사전학습 모델과 토크나이저 불러오기</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">3.2 토크나이저를 활용한 입력 인코딩</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">3.3 분류 파이프라인으로 예측하기</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pytorch-basics-tensors-and-autograd">1. PyTorch Basics: Tensors and Autograd</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-3-fast-attention-implementation">2. FlashAttention-3: Fast Attention Implementation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers-practice">3. Hugging Face Transformers Practice</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#loading-pre-trained-models-and-tokenizers">3.1 Loading Pre-trained Models and Tokenizers</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#input-encoding-using-tokenizer">3.2 Input Encoding Using Tokenizer</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prediction-using-classification-pipeline">3.3 Prediction Using Classification Pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">4. 최신 NLP 프레임워크 소개</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-to-latest-nlp-frameworks">4. Introduction to Latest NLP Frameworks</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-declarative-prompt-programming">4.1 DSPy: Declarative Prompt Programming</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack">4.2 Haystack: 문서 기반 검색과 추론</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai">4.3 CrewAI: 역할 기반 멀티 에이전트 프레임워크</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-document-based-search-and-reasoning">4.2 Haystack: Document-based Search and Reasoning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai-role-based-multi-agent-framework">4.3 CrewAI: Role-based Multi-Agent Framework</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bert-vs-mamba">5. 실습: BERT vs Mamba 모델 비교 실험</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">5.1 모델 준비 및 추론 코드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5.2 결과 비교: 정확도, 속도, 메모리</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-bert-vs-mamba-model-comparison-experiment">5. Practice: BERT vs Mamba Model Comparison Experiment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-preparation-and-inference-code">5.1 Model Preparation and Inference Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#result-comparison-accuracy-speed-memory">5.2 Result Comparison: Accuracy, Speed, Memory</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">6. 실험 정리 및 시사점</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">참고자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-summary-and-implications">6. Experiment Summary and Implications</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
 </ul>
   </nav></div>
 
