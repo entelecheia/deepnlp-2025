@@ -1,54 +1,54 @@
-# 딥러닝자연어처리 (131307379A)
+# Deep Learning for Natural Language Processing (131307379A)
 
-## 개요
+## Overview
 
-최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)은 텍스트를 생성하고 이해하는 능력을 극적으로 향상시키며 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4o와 Gemini 1.5 Pro처럼 텍스트·이미지·음성까지 처리하는 멀티모달 모델이 등장하여 LLM의 활용 범위를 크게 확장했다. 특히 **Transformer를 넘어서는 새로운 아키텍처**의 등장이 주목된다. 예를 들어 **Mamba**와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 100만 토큰까지 처리할 수 있으며 Transformer보다 5배 빠른 추론 속도를 제공한다.
+In recent years, natural language processing (NLP) research has undergone a massive transformation. Large language models (LLMs) have dramatically improved the ability to generate and understand text, revolutionizing various application domains such as translation, question answering, and summarization. In 2024-2025, multimodal models like GPT-4o and Gemini 1.5 Pro that can process text, images, and audio have emerged, greatly expanding the scope of LLM applications. Particularly noteworthy is the emergence of **new architectures beyond Transformer**. For example, **Mamba**, a state space model (SSM), can process up to 1 million tokens with linear O(n) complexity and provides 5x faster inference speed than Transformer.
 
-이 강의는 이러한 최신 발전을 반영하여 **실습 중심의 심층 학습과 NLP 기법**을 배운다. 학생들은 초반에 PyTorch와 Hugging Face 도구 사용법을 익히고, 이후 Transformer 기반 모델 및 **최신 SSM 아키텍처**의 미세조정(fine-tuning), 프롬프트 엔지니어링(prompt engineering), 검색 증강 생성(RAG), 인간 피드백 강화 학습(RLHF), 에이전트 프레임워크 구현 등을 직접 경험한다. 아울러 **최신 파라미터 효율적 미세조정 기법**(WaveFT, DoRA, VB-LoRA)과 **고급 RAG 아키텍처**(HippoRAG, GraphRAG)를 다루며, 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 모델을 완성한다.
+This course reflects these latest developments to learn **hands-on deep learning and NLP techniques**. Students first learn to use PyTorch and Hugging Face tools, then directly experience fine-tuning of Transformer-based models and **latest SSM architectures**, prompt engineering, retrieval-augmented generation (RAG), reinforcement learning from human feedback (RLHF), and agent framework implementation. Additionally, we cover **latest parameter-efficient fine-tuning techniques** (WaveFT, DoRA, VB-LoRA) and **advanced RAG architectures** (HippoRAG, GraphRAG), and finally complete a model that solves real problems by integrating learned content through team projects.
 
-본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 _언어모형과 자연어처리 (131107967A)_ 이수를 전제로 한다. 팀 프로젝트를 통해 **한국어 코퍼스**를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 **산학 협력**을 고려하여 실제 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.
+This course is designed for third-year undergraduate level and assumes completion of prerequisite course _Language Models and Natural Language Processing (131107967A)_. Through team projects, students challenge real problem-solving using **Korean corpora**, and in the final project phase, we provide opportunities to work with actual industry datasets and receive feedback from industry experts, considering **industry-academia collaboration**.
 
-### 교육 목표
+### Learning Objectives
 
-- 현대 NLP에서 대규모 언어 모델의 역할과 한계를 이해하고 관련 도구(PyTorch, Hugging Face 등)를 활용한다.
+- Understand the role and limitations of large language models in modern NLP and utilize related tools (PyTorch, Hugging Face, etc.).
 
-- Transformer와 더불어 **State Space Model**(예: Mamba, RWKV) 등 최신 아키텍처의 원리와 장단점을 이해한다.
+- Understand the principles and trade-offs of **State Space Models** (e.g., Mamba, RWKV) along with Transformer and other latest architectures.
 
-- 사전학습 모델을 fine-tuning하거나 **WaveFT, DoRA, VB-LoRA** 같은 최신 **매개변수 효율적 미세조정** 방법을 적용할 수 있다.
+- Apply fine-tuning to pre-trained models or latest **parameter-efficient fine-tuning** methods like **WaveFT, DoRA, VB-LoRA**.
 
-- **프롬프트 엔지니어링 기법**과 **DSPy 프레임워크**를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.
+- Learn methods to systematically optimize prompts using **prompt engineering techniques** and **DSPy framework**.
 
-- 평가 지표의 발전(G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, **DPO(Direct Preference Optimization)** 등 RLHF의 최신 대안을 학습한다.
+- Understand the evolution of evaluation metrics (G-Eval, LiveCodeBench, etc.) and the importance of human evaluation, and learn latest alternatives to RLHF such as **DPO (Direct Preference Optimization)**.
 
-- **HippoRAG, GraphRAG** 등 고급 RAG(Build Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계하고 구현한다.
+- Design and implement **advanced RAG (Retrieval-Augmented Generation)** architectures like **HippoRAG, GraphRAG** and hybrid search strategies.
 
-- **EU AI Act** 등 AI 규제 프레임워크를 이해하고, 책임감 있는 AI 시스템 구현 방법론을 습득한다.
+- Understand AI regulatory frameworks like **EU AI Act** and acquire methodologies for implementing responsible AI systems.
 
-- 최신 연구 동향을 추적하여 멀티모달 LLM, 소형 언어 모델(SLM), 상태공간 모델(SSM), 혼합 전문가(MoE) 등 **최신 기술의 장단점**을 토의한다.
+- Track latest research trends to discuss **advantages and disadvantages of latest technologies** such as multimodal LLMs, small language models (SLM), state space models (SSM), and mixture of experts (MoE).
 
-- **한국어 말뭉치**를 활용한 실습을 통해 한국어 NLP의 특성과 과제를 이해하고 적용 능력을 기른다.
+- Understand the characteristics and challenges of Korean NLP and develop application capabilities through hands-on practice using **Korean corpora**.
 
-- 팀 프로젝트를 통해 협업 및 실전 문제 해결 역량을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.
+- Strengthen collaboration and practical problem-solving capabilities through team projects and gain project experience connected to industry.
 
-## 강의 계획
+## Course Schedule
 
-| 주차 | 주요 주제 및 키워드                                                                                                                 | 핵심 실습/과제                                                                           |
+| Week | Main Topics and Keywords                                                                                                                 | Key Hands-on/Assignments                                                                           |
 | :--: | :---------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-|  1   | Generative AI 소개, LLM의 발전, 최신 모델 (GPT-4o, Gemini 1.5 Pro, Claude 3 Opus)<br/>**Transformer의 한계와 새로운 아키텍처 소개** | PyTorch/Conda 환경 설정<br/>Hugging Face 파이프라인을 활용한 질의응답 데모               |
-|  2   | PyTorch 기초, Hugging Face Transformers 사용법<br/>**Mamba 및 RWKV 아키텍처 소개**                                                  | 사전학습 모델(BERT) 로드 및 **한국어 데이터셋으로** 간단한 분류 실습<br/>Mamba 모델 데모 |
-|  3   | 사전학습 모델 미세조정: fine-tuning vs. full-training<br/>**최신 State Space Model 실습**                                           | 프로그래밍 과제 1: Transformer와 SSM **성능 비교 실험 (한국어 분류 태스크)**             |
-|  4   | **과학적 프롬프트 엔지니어링** – 다양한 기법, DSPy 프레임워크, 자동 프롬프트 최적화                                                 | DSPy를 활용한 프롬프트 자동 최적화 실습                                                  |
-|  5   | **최신 평가 체계** – G-Eval, LiveCodeBench, MMLU-Pro 등 도메인별 벤치마크                                                           | LLM 기반 자동 평가 시스템 구축 실습                                                      |
-|  6   | Seq2Seq 응용 및 **멀티모달 통합** – SmolVLM2, Qwen 2.5 Omni, 음성-텍스트 모델                                                       | 멀티모달 애플리케이션 개발 과제 2                                                        |
-|  7   | 대규모 모델과 Few-shot 학습<br/>**초장문맥 처리 기술** (100만+ 토큰)                                                                | 장문맥 처리 전략 비교 실습                                                               |
-|  8   | **차세대 PEFT** – WaveFT, DoRA, VB-LoRA, QLoRA 등 최신 기법                                                                         | 다양한 PEFT 기법 성능 비교 실험                                                          |
-|  9   | **고급 RAG 시스템** – HippoRAG, GraphRAG, 하이브리드 검색 전략                                                                      | 과제 3: GraphRAG 기반 **한국어 엔터프라이즈 검색 시스템** 구축                           |
-|  10  | **정렬 기법의 혁신** – DPO, Constitutional AI, Process Reward Models                                                                | DPO와 기존 RLHF 기법 비교 실습                                                           |
-|  11  | **프로덕션 에이전트 시스템** – CrewAI, Mirascope, 타입-세이프티 개발                                                                | 멀티에이전트 오케스트레이션 구현                                                         |
-|  12  | **AI 규제와 책임 있는 AI** – EU AI Act, 차등 프라이버시, 연합 학습                                                                  | 규제 준수 AI 시스템 설계 과제                                                            |
-|  13  | **최신 연구 동향** – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)                                               | 학생별 최신 논문 발표 및 종합 토론                                                       |
-|  14  | 최종 프로젝트 개발 및 MLOps                                                                                                         | 팀별 프로토타입 구현 및 피드백 세션 **(산업 멘토 참여)**                                 |
-|  15  | 프로젝트 최종 발표 및 종합 평가                                                                                                     | 팀별 발표, 강의 내용 총정리 및 미래 전망 토론                                            |
+|  1   | Introduction to Generative AI, LLM Development, Latest Models (GPT-4o, Gemini 1.5 Pro, Claude 3 Opus)<br/>**Limitations of Transformer and Introduction to New Architectures** | PyTorch/Conda Environment Setup<br/>Question-Answering Demo using Hugging Face Pipeline               |
+|  2   | PyTorch Basics, Hugging Face Transformers Usage<br/>**Introduction to Mamba and RWKV Architectures**                                                  | Loading Pre-trained Models (BERT) and Simple Classification Practice with **Korean Datasets**<br/>Mamba Model Demo |
+|  3   | Fine-tuning Pre-trained Models: fine-tuning vs. full-training<br/>**Latest State Space Model Practice**                                           | Programming Assignment 1: **Performance Comparison Experiment between Transformer and SSM (Korean Classification Task)**             |
+|  4   | **Scientific Prompt Engineering** – Various Techniques, DSPy Framework, Automatic Prompt Optimization                                                 | Hands-on Practice for Automatic Prompt Optimization using DSPy                                                  |
+|  5   | **Latest Evaluation Systems** – G-Eval, LiveCodeBench, MMLU-Pro, etc. Domain-specific Benchmarks                                                           | Building LLM-based Automatic Evaluation System Practice                                                      |
+|  6   | Seq2Seq Applications and **Multimodal Integration** – SmolVLM2, Qwen 2.5 Omni, Speech-Text Models                                                       | Multimodal Application Development Assignment 2                                                        |
+|  7   | Large-scale Models and Few-shot Learning<br/>**Ultra-long Context Processing Technology** (1M+ tokens)                                                                | Long Context Processing Strategy Comparison Practice                                                               |
+|  8   | **Next-generation PEFT** – WaveFT, DoRA, VB-LoRA, QLoRA, etc. Latest Techniques                                                                         | Performance Comparison Experiments of Various PEFT Techniques                                                          |
+|  9   | **Advanced RAG Systems** – HippoRAG, GraphRAG, Hybrid Search Strategies                                                                      | Assignment 3: Building **Korean Enterprise Search System** based on GraphRAG                           |
+|  10  | **Innovation in Alignment Techniques** – DPO, Constitutional AI, Process Reward Models                                                                | Comparison Practice between DPO and Existing RLHF Techniques                                                           |
+|  11  | **Production Agent Systems** – CrewAI, Mirascope, Type-Safety Development                                                                | Multi-agent Orchestration Implementation                                                         |
+|  12  | **AI Regulation and Responsible AI** – EU AI Act, Differential Privacy, Federated Learning                                                                  | Assignment for Designing Regulation-Compliant AI Systems                                                            |
+|  13  | **Latest Research Trends** – Small Language Models (Gemma 3, Mistral NeMo), Enhanced Reasoning (Long CoT, PAL)                                               | Student Presentations of Latest Papers and Comprehensive Discussion                                                       |
+|  14  | Final Project Development and MLOps                                                                                                         | Team Prototype Implementation and Feedback Sessions **(Industry Mentor Participation)**                                 |
+|  15  | Final Project Presentations and Comprehensive Evaluation                                                                                                     | Team Presentations, Course Content Summary and Future Prospects Discussion                                            |
 
 ## Table of Contents
 
