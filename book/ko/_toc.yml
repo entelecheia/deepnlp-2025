@@ -10,6 +10,7 @@ parts:
         sections:
           - file: week01/qna
       - file: week02/index
+      - file: week03/index
   - caption: About
     chapters:
       - file: syllabus/index
