@@ -1,0 +1,1725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝 &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/index';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="강의계획서" href="../syllabus/index.html" />
+    <link rel="prev" title="Week2 - 도구 학습: PyTorch와 최신 프레임워크" href="../week02/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    딥러닝자연어처리 (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer 및 차세대 아키텍처</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week2 - 도구 학습: PyTorch와 최신 프레임워크</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">강의계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/ko/week03/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek03/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week03/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">서론: 왜 파라미터 효율적 파인튜닝인가?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft">PEFT의 주요 장점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">현대적 PEFT 기법의 개념적 개요</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-adaptation-lora"><strong>1. 복습: 저차원 적응(Low-Rank Adaptation, LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">수학적 예시</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">한계</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-fine-tuning-waveft"><strong>2. 웨이블릿 파인튜닝(Wavelet Fine-Tuning, WaveFT)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">웨이블릿이 효과적인 이유</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">성능 결과</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-decomposed-low-rank-adaptation-dora"><strong>3. 가중치 분해 저차원 적응(Weight-Decomposed Low-Rank Adaptation, DoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">작동 원리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">구현 고려사항</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vb-lora-lora"><strong>4. VB-LoRA (벡터 뱅크 LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">구현 세부사항</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">사용 사례</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-adaptor"><strong>5. QR-Adaptor (적응적 랭크 및 양자화)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">최적화 전략</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">예시 구성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">구현 고려사항</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">사용 시기</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-4-nf4"><strong>6. QLoRA와 4비트 NF4 양자화</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nf4">NF4 양자화: 핵심 혁신</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">기술적 혁신</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">실제 구현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora">QLoRA 사용 시기</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">한계</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">체크포인트 질문</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">실제 응용: PEFT 방법 구현 및 비교</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora"><strong>1. 기본 LoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44"><strong>2. QLoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora"><strong>3. DoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45"><strong>4. 비교 프레임워크</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46"><strong>5. 모범 사례 및 팁</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">체크포인트 질문</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">요약 및 미래 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49"><strong>방법 비교 요약</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50"><strong>핵심 통찰</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51"><strong>올바른 방법 선택</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52"><strong>미래 방향</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53"><strong>실용적 권장사항</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54"><strong>최종 생각</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">참고자료</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-peft">
+<h1>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝<a class="headerlink" href="#week-3-peft" title="Link to this heading">#</a></h1>
+<section id="id1">
+<h2>서론: 왜 파라미터 효율적 파인튜닝인가?<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<p>지난 주차들에서 PyTorch와 Hugging Face를 사용하여 사전학습된 모델을 로드하고 NLP 작업에 대한 기본적인 파인튜닝을 수행하는 방법을 배웠다. 하지만 GPT, BERT, LLaMA와 같은 대형 언어모델(LLM)을 완전 파인튜닝하는 것은 다음과 같은 중요한 도전과제들을 제시한다:</p>
+<ul class="simple">
+<li><p><strong>메모리 요구사항</strong>: 7B 파라미터 모델을 파인튜닝하려면 모델 가중치만으로도 ~28GB의 GPU 메모리가 필요하며, 그래디언트와 옵티마이저 상태를 위한 추가 메모리도 필요하다</p></li>
+<li><p><strong>계산 비용</strong>: 수십억 개의 파라미터를 업데이트하는 것은 계산적으로 비용이 많이 들고 시간이 오래 걸린다</p></li>
+<li><p><strong>과적합 위험</strong>: 제한된 훈련 데이터로 완전 파인튜닝을 수행하면 사전학습된 지식의 파괴적 망각(catastrophic forgetting)이 발생할 수 있다</p></li>
+<li><p><strong>저장 오버헤드</strong>: 각 파인튜닝된 모델은 모든 파라미터를 저장해야 하므로, 여러 작업별 모델을 유지하는 것이 비현실적이다</p></li>
+</ul>
+<p>**파라미터 효율적 파인튜닝(Parameter-Efficient Fine-Tuning, PEFT)**은 나머지 부분을 고정된 상태로 유지하면서 모델 파라미터의 작은 부분만 훈련함으로써 이러한 도전과제들을 해결한다. 이 접근법은 메모리 사용량을 90% 이상 줄이고 훈련 시간을 10배 단축할 수 있으며, 종종 완전 파인튜닝과 비교할 만하거나 더 우수한 성능을 달성한다.</p>
+<section id="peft">
+<h3>PEFT의 주요 장점<a class="headerlink" href="#peft" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>메모리 효율성</strong>: 단일 48GB GPU에서 65B 파라미터 모델을 훈련할 수 있다 (완전 파인튜닝으로는 불가능)</p></li>
+<li><p><strong>빠른 훈련</strong>: 적은 파라미터는 더 빠른 그래디언트 계산과 수렴을 의미한다</p></li>
+<li><p><strong>더 나은 일반화</strong>: 제한된 파라미터 업데이트는 작은 데이터셋에서의 과적합을 줄인다</p></li>
+<li><p><strong>모듈성</strong>: 작은 어댑터 모듈을 쉽게 저장, 공유, 교체할 수 있다</p></li>
+<li><p><strong>추론 오버헤드 없음</strong>: 어댑터를 배포를 위해 기본 가중치로 다시 병합할 수 있다</p></li>
+</ul>
+<p>이번 강의에서는 효율성을 더욱 끌어올리는 최첨단 PEFT 기법들을 탐구할 것이다: <strong>WaveFT</strong>, <strong>DoRA</strong>, <strong>VB-LoRA</strong>, <strong>QR-Adaptor</strong>, <strong>QLoRA</strong>. 이러한 방법들은 효율적 파인튜닝의 최신 기술을 나타내며, 연구자와 실무자들이 최소한의 계산 자원으로 대형 모델을 적응시킬 수 있게 해준다.</p>
+</section>
+</section>
+<section id="id2">
+<h2>현대적 PEFT 기법의 개념적 개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="low-rank-adaptation-lora">
+<h3><strong>1. 복습: 저차원 적응(Low-Rank Adaptation, LoRA)</strong><a class="headerlink" href="#low-rank-adaptation-lora" title="Link to this heading">#</a></h3>
+<p>고급 PEFT 방법들을 탐구하기 전에, 많은 현대적 기법들의 기초가 되는 LoRA(저차원 적응)를 복습해보자.</p>
+<section id="id3">
+<h4>핵심 개념<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<p>LoRA는 <strong>파인튜닝 중 가중치 업데이트가 저차원 부분공간에 놓여있다</strong>는 핵심 통찰에 기반한다. 전체 가중치 행렬 <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>를 업데이트하는 대신, LoRA는 업데이트를 다음과 같이 분해한다:</p>
+<div class="math notranslate nohighlight">
+\[\Delta W = A \times B\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{d \times r}\)</span>와 <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{r \times k}\)</span>는 저차원 행렬이다</p></li>
+<li><p><span class="math notranslate nohighlight">\(r \ll \min(d, k)\)</span>는 랭크이다 (일반적으로 4, 8, 또는 16)</p></li>
+<li><p><span class="math notranslate nohighlight">\(A\)</span>와 <span class="math notranslate nohighlight">\(B\)</span>만 훈련 가능한 파라미터이다</p></li>
+</ul>
+<p>최종 가중치는 다음과 같다: <span class="math notranslate nohighlight">\(W = W_0 + \Delta W = W_0 + AB\)</span></p>
+</section>
+<section id="id4">
+<h4>주요 장점<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>파라미터 효율성</strong>: <span class="math notranslate nohighlight">\(d \times k\)</span> 가중치 행렬에 대해 LoRA는 <span class="math notranslate nohighlight">\(dk\)</span> 대신 <span class="math notranslate nohighlight">\(r(d + k)\)</span> 파라미터만 사용한다</p></li>
+<li><p><strong>메모리 감소</strong>: 일반적으로 원본 파라미터의 0.1%-0.5%</p></li>
+<li><p><strong>추론 오버헤드 없음</strong>: 훈련 후 <span class="math notranslate nohighlight">\(\Delta W\)</span>를 <span class="math notranslate nohighlight">\(W_0\)</span>에 병합할 수 있다</p></li>
+<li><p><strong>모듈성</strong>: 어댑터를 다른 작업에 맞게 교체할 수 있다</p></li>
+</ul>
+</section>
+<section id="id5">
+<h4>수학적 예시<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>랭크 <span class="math notranslate nohighlight">\(r=8\)</span>인 768×768 어텐션 가중치 행렬의 경우:</p>
+<ul class="simple">
+<li><p>완전 파인튜닝: 768² = 589,824 파라미터</p></li>
+<li><p>LoRA: 8×(768+768) = 12,288 파라미터 (98% 감소!)</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>한계<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>LoRA의 주요 한계는 **”저차원 병목”**이다 - 랭크-<span class="math notranslate nohighlight">\(r\)</span> 행렬로 업데이트를 제한하는 것은 매우 적은 파라미터가 사용 가능할 때 표현력을 제한할 수 있다. 이는 우리가 다음에 탐구할 고급 방법들의 동기가 된다.</p>
+</section>
+</section>
+<section id="id7">
+<h3>체크포인트 질문<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>LoRA가 가중치 업데이트가 저차원 부분공간에 놓여있다고 가정하는 이유는 무엇인가?</p></li>
+<li><p>LoRA 랭크 <span class="math notranslate nohighlight">\(r=16\)</span>으로 1024×1024 가중치 행렬의 파라미터 감소를 계산하라</p></li>
+<li><p>LoRA 어댑터를 사용할 때 추론 속도에 어떤 일이 일어나는가?</p></li>
+</ul>
+</section>
+<section id="wavelet-fine-tuning-waveft">
+<h3><strong>2. 웨이블릿 파인튜닝(Wavelet Fine-Tuning, WaveFT)</strong><a class="headerlink" href="#wavelet-fine-tuning-waveft" title="Link to this heading">#</a></h3>
+<p>WaveFT(2025)는 표준 파라미터 공간이 아닌 <strong>웨이블릿 도메인</strong>에서 모델을 파인튜닝함으로써 패러다임 전환을 나타낸다. 이 접근법은 웨이블릿의 다중 스케일 표현 능력을 활용하여 극도의 파라미터 효율성을 달성한다.</p>
+<section id="id8">
+<h4>핵심 개념<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<p>가중치 행렬을 직접 업데이트하는 대신, WaveFT는 다음과 같이 동작한다:</p>
+<ol class="arabic simple">
+<li><p><strong>변환</strong>: 2D 웨이블릿 변환을 사용하여 가중치 행렬 <span class="math notranslate nohighlight">\(W_0\)</span>를 웨이블릿 계수로 변환한다</p></li>
+<li><p><strong>선택</strong>: 훈련 가능한 계수의 희소 부분집합을 선택한다 (예: 모든 계수의 0.01%)</p></li>
+<li><p><strong>훈련</strong>: 다른 계수들을 0으로 유지하면서 선택된 계수만 훈련한다</p></li>
+<li><p><strong>재구성</strong>: 역 웨이블릿 변환을 통해 가중치 업데이트 <span class="math notranslate nohighlight">\(\Delta W\)</span>를 재구성한다</p></li>
+<li><p><strong>적용</strong>: 업데이트를 적용한다: <span class="math notranslate nohighlight">\(W = W_0 + \Delta W\)</span></p></li>
+</ol>
+</section>
+<section id="id9">
+<h4>수학적 공식화<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>가중치 행렬 <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>에 대해:</p>
+<ol class="arabic simple">
+<li><p><strong>순방향 변환</strong>: <span class="math notranslate nohighlight">\(C = \text{DWT}(W_0)\)</span> (여기서 DWT는 2D 이산 웨이블릿 변환)</p></li>
+<li><p><strong>희소 선택</strong>: 계수의 부분집합 <span class="math notranslate nohighlight">\(S\)</span>를 선택하고 나머지는 마스킹: <span class="math notranslate nohighlight">\(C_{\text{train}} = C \odot M\)</span></p></li>
+<li><p><strong>훈련</strong>: 그래디언트 하강을 통해 <span class="math notranslate nohighlight">\(C_{\text{train}}\)</span>만 업데이트</p></li>
+<li><p><strong>역변환</strong>: <span class="math notranslate nohighlight">\(\Delta W = \text{IDWT}(C_{\text{train}})\)</span></p></li>
+</ol>
+</section>
+<section id="id10">
+<h4>주요 장점<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>극도의 희소성</strong>: 가중치 계수의 0.01%만 훈련할 수 있다</p></li>
+<li><p><strong>고차원 업데이트</strong>: LoRA의 저차원 제약과 달리 WaveFT는 전체 랭크 업데이트를 생성할 수 있다</p></li>
+<li><p><strong>다중 스케일 학습</strong>: 웨이블릿은 거친 패턴과 세밀한 패턴을 모두 포착한다</p></li>
+<li><p><strong>추론 오버헤드 없음</strong>: 훈련 후 <span class="math notranslate nohighlight">\(\Delta W\)</span>가 <span class="math notranslate nohighlight">\(W_0\)</span>에 병합된다</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>웨이블릿이 효과적인 이유<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<p>웨이블릿은 JPEG 압축이 작동하는 방식과 유사하게 신호를 여러 주파수 성분으로 분해한다. 이 다중 스케일 표현은 모델이 다음을 가능하게 한다:</p>
+<ul class="simple">
+<li><p>넓은 저주파 패턴 조정 (전역적 변화)</p></li>
+<li><p>고주파 세부사항 미세 조정 (국소적 조정)</p></li>
+<li><p>가중치 공간에서의 계층적 의존성 포착</p></li>
+</ul>
+</section>
+<section id="id12">
+<h4>성능 결과<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>WaveFT는 극도의 저파라미터 영역에서 놀라운 결과를 보여주었다:</p>
+<ul class="simple">
+<li><p><strong>Stable Diffusion</strong>: LoRA보다 10배 적은 파라미터로 더 나은 주제 충실도와 이미지 다양성</p></li>
+<li><p><strong>언어 모델</strong>: LoRA 파라미터 수의 0.1%로 경쟁력 있는 성능</p></li>
+<li><p><strong>메모리 효율성</strong>: 수백만 개 대신 수천 개의 파라미터만으로 모델을 훈련할 수 있다</p></li>
+</ul>
+</section>
+</section>
+<section id="id13">
+<h3>체크포인트 질문<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>가중치 업데이트의 수학적 구조 측면에서 WaveFT는 LoRA와 어떻게 다른가?</p></li>
+<li><p>특정 유형의 가중치 패턴에 대해 웨이블릿 변환이 저차원 분해보다 더 효과적일 수 있는 이유는 무엇인가?</p></li>
+<li><p>WaveFT의 극도 희소성과 LoRA의 저차원 접근법 사이의 트레이드오프는 무엇인가?</p></li>
+</ul>
+</section>
+<section id="weight-decomposed-low-rank-adaptation-dora">
+<h3><strong>3. 가중치 분해 저차원 적응(Weight-Decomposed Low-Rank Adaptation, DoRA)</strong><a class="headerlink" href="#weight-decomposed-low-rank-adaptation-dora" title="Link to this heading">#</a></h3>
+<p>DoRA(NVIDIA, 2024)는 가중치 업데이트의 **크기(magnitude)**와 <strong>방향(direction)</strong> 성분을 명시적으로 분리함으로써 LoRA의 주요 한계를 해결한다. 이 분해는 더 큰 유연성을 제공하며 종종 표준 LoRA보다 우수한 성능을 달성한다.</p>
+<section id="id14">
+<h4>핵심 개념<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<p>DoRA는 각 가중치 행렬 <span class="math notranslate nohighlight">\(W_0\)</span>를 두 성분으로 분해한다:</p>
+<ol class="arabic simple">
+<li><p><strong>방향</strong>: <span class="math notranslate nohighlight">\(V = \frac{W_0}{||W_0||}\)</span> (정규화된 가중치 행렬)</p></li>
+<li><p><strong>크기</strong>: <span class="math notranslate nohighlight">\(m = ||W_0||\)</span> (스칼라 또는 노름 벡터)</p></li>
+</ol>
+<p>핵심 통찰은 이러한 성분들이 파인튜닝 중에 <strong>독립적으로</strong> 업데이트될 수 있다는 것이다.</p>
+</section>
+<section id="id15">
+<h4>수학적 공식화<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p>가중치 행렬 <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>에 대해:</p>
+<ol class="arabic simple">
+<li><p><strong>분해</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V = \frac{W_0}{||W_0||_F}\)</span> (프로베니우스 노름 정규화)</p></li>
+<li><p><span class="math notranslate nohighlight">\(m = ||W_0||_F\)</span> (크기 스칼라)</p></li>
+</ul>
+</li>
+<li><p><strong>방향 업데이트</strong>: 방향에 LoRA 적용</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Delta V = AB\)</span> (여기서 <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{d \times r}\)</span>, <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{r \times k}\)</span>)</p></li>
+<li><p><span class="math notranslate nohighlight">\(V' = V + \Delta V\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>크기 업데이트</strong>: 스케일링 인수 학습</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m' = m + \Delta m\)</span> (여기서 <span class="math notranslate nohighlight">\(\Delta m\)</span>은 학습 가능한 스칼라)</p></li>
+</ul>
+</li>
+<li><p><strong>재구성</strong>: <span class="math notranslate nohighlight">\(W' = m' \times \frac{V'}{||V'||_F}\)</span></p></li>
+</ol>
+<p><img alt="DoRA Architecture" src="../_images/image1.jpeg" />
+<em>DoRA의 설명: 사전학습된 가중치 <span class="math notranslate nohighlight">\(W_0\)</span>는 고정된 방향 <span class="math notranslate nohighlight">\(V\)</span>와 학습 가능한 크기 <span class="math notranslate nohighlight">\(m\)</span>으로 분해된다. DoRA는 방향을 조정하기 위해 LoRA 스타일의 저차원 업데이트(랭크 <span class="math notranslate nohighlight">\(r\)</span>의 행렬 <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span>)를 적용하고(<span class="math notranslate nohighlight">\(V + \Delta V\)</span> 생성) 크기 <span class="math notranslate nohighlight">\(m\)</span>도 조정한다. 훈련 후, 크기와 새로운 방향이 곱해져 병합된 가중치 <span class="math notranslate nohighlight">\(W'\)</span>를 형성한다. 파란색 성분은 고정되고, 녹색은 훈련 가능하다 (DoRA 논문에서 적응).</em></p>
+</section>
+<section id="id16">
+<h4>주요 장점<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>분리된 업데이트</strong>: 크기와 방향이 독립적으로 변경될 수 있다</p></li>
+<li><p><strong>더 나은 표현력</strong>: 스케일링과 방향적 변화를 모두 포착한다</p></li>
+<li><p><strong>최소 오버헤드</strong>: 레이어당 몇 개의 크기 파라미터만 추가한다</p></li>
+<li><p><strong>드롭인 대체</strong>: LoRA가 적용되는 모든 곳에서 사용할 수 있다</p></li>
+</ul>
+</section>
+<section id="id17">
+<h4>작동 원리<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<p>전통적인 LoRA 업데이트는 저차원 구조에 의해 제약받아, 모델이 특정 유형의 가중치 조정을 수행하는 능력을 제한할 수 있다. DoRA는 다음을 통해 이를 해결한다:</p>
+<ul class="simple">
+<li><p><strong>크기 제어</strong>: 모델이 가중치를 전역적으로 확대하거나 축소할 수 있게 한다</p></li>
+<li><p><strong>방향 유연성</strong>: LoRA를 통한 세밀한 방향적 조정을 가능하게 한다</p></li>
+<li><p><strong>독립적 학습</strong>: 크기와 방향 업데이트가 서로 간섭하지 않는다</p></li>
+</ul>
+</section>
+<section id="id18">
+<h4>성능 결과<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<p>DoRA는 다양한 벤치마크에서 LoRA를 지속적으로 능가한다:</p>
+<ul class="simple">
+<li><p><strong>LLaMA-7B</strong>: 상식 추론 작업에서 평균 3.7% 개선</p></li>
+<li><p><strong>파라미터 효율성</strong>: 25% 적은 훈련 가능한 파라미터로 더 나은 결과 달성</p></li>
+<li><p><strong>저차원 설정</strong>: LoRA 랭크가 제약될 때 특히 효과적</p></li>
+<li><p><strong>훈련 역학</strong>: 가중치 업데이트 패턴이 완전 파인튜닝과 더 유사하다</p></li>
+</ul>
+</section>
+<section id="id19">
+<h4>구현 고려사항<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<p>DoRA는 최소한의 계산 오버헤드를 추가한다:</p>
+<ul class="simple">
+<li><p><strong>메모리</strong>: 적응된 레이어당 몇 개의 추가 스칼라만</p></li>
+<li><p><strong>훈련</strong>: 약간 더 복잡한 그래디언트 계산</p></li>
+<li><p><strong>추론</strong>: 병합 후 오버헤드 없음 (LoRA와 동일)</p></li>
+</ul>
+</section>
+</section>
+<section id="id20">
+<h3>체크포인트 질문<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>DoRA의 가중치 분해는 LoRA의 저차원 근사와 어떻게 다른가?</p></li>
+<li><p>크기와 방향 업데이트를 분리하는 것이 더 나은 성능으로 이어질 수 있는 이유는 무엇인가?</p></li>
+<li><p>LoRA 대신 DoRA를 사용할 때의 계산적 트레이드오프는 무엇인가?</p></li>
+</ul>
+</section>
+<section id="vb-lora-lora">
+<h3><strong>4. VB-LoRA (벡터 뱅크 LoRA)</strong><a class="headerlink" href="#vb-lora-lora" title="Link to this heading">#</a></h3>
+<p>VB-LoRA(2023)는 모든 레이어에 걸친 <strong>전역 파라미터 공유</strong>를 도입하여 파라미터 효율성을 극한까지 끌어올린다. 각 레이어에 대해 별도의 LoRA 행렬을 학습하는 대신, VB-LoRA는 모든 레이어가 접근할 수 있는 공유 “벡터 뱅크”를 유지한다.</p>
+<section id="id21">
+<h4>핵심 개념<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p>VB-LoRA는 서로 다른 레이어들이 종종 <strong>유사한 유형의 업데이트</strong>가 필요하다는 원리에 따라 동작한다. 각 레이어에 대해 독립적인 <span class="math notranslate nohighlight">\(A\)</span>와 <span class="math notranslate nohighlight">\(B\)</span> 행렬을 학습하는 대신, 다음과 같이 동작한다:</p>
+<ol class="arabic simple">
+<li><p><strong>유지</strong>: 재사용 가능한 벡터들의 전역 벡터 뱅크 <span class="math notranslate nohighlight">\(\mathcal{B} = \{v_1, v_2, ..., v_N\}\)</span>를 유지한다</p></li>
+<li><p><strong>구성</strong>: 이 뱅크에서 선택된 벡터들로 각 레이어의 LoRA 행렬을 구성한다</p></li>
+<li><p><strong>학습</strong>: 각 레이어에 대한 선택 가중치와 혼합 계수를 학습한다</p></li>
+</ol>
+</section>
+<section id="id22">
+<h4>수학적 공식화<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<p>LoRA 행렬 <span class="math notranslate nohighlight">\(A_l\)</span>과 <span class="math notranslate nohighlight">\(B_l\)</span>을 가진 레이어 <span class="math notranslate nohighlight">\(l\)</span>에 대해:</p>
+<ol class="arabic simple">
+<li><p><strong>벡터 선택</strong>: 뱅크 <span class="math notranslate nohighlight">\(\mathcal{B}\)</span>에서 상위 <span class="math notranslate nohighlight">\(k\)</span>개 벡터 선택</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_l = \text{TopK}(\text{similarity}(A_l, \mathcal{B}), k)\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>행렬 구성</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_l = \sum_{i \in S_l} w_{l,i} \cdot v_i \cdot U_{l,i}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B_l = \sum_{i \in S_l} w'_{l,i} \cdot v_i \cdot V_{l,i}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>파라미터 공유</strong>: <span class="math notranslate nohighlight">\(w_{l,i}\)</span>, <span class="math notranslate nohighlight">\(w'_{l,i}\)</span>, <span class="math notranslate nohighlight">\(U_{l,i}\)</span>, <span class="math notranslate nohighlight">\(V_{l,i}\)</span>만 레이어별로 특화된다</p></li>
+</ol>
+</section>
+<section id="id23">
+<h4>주요 장점<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>극도의 압축</strong>: 표준 LoRA 대비 어댑터 크기를 100배까지 줄일 수 있다</p></li>
+<li><p><strong>전역 협력</strong>: 레이어들이 학습된 패턴과 표현을 공유할 수 있다</p></li>
+<li><p><strong>확장성</strong>: 파라미터 수가 모델 깊이에 선형적으로 증가하지 않는다</p></li>
+<li><p><strong>저장 효율성</strong>: 여러 작업별 어댑터 배포에 이상적이다</p></li>
+</ul>
+</section>
+<section id="id24">
+<h4>성능 결과<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<p>VB-LoRA는 성능 손실 없이 놀라운 압축을 달성한다:</p>
+<ul class="simple">
+<li><p><strong>LLaMA2-13B</strong>: 표준 LoRA 파라미터의 0.4%, 더 나은 성능</p></li>
+<li><p><strong>저장</strong>: 300MB → 2.5MB 어댑터 파일 (120배 압축)</p></li>
+<li><p><strong>다중 작업</strong>: 하나의 표준 LoRA 공간에 100개 이상의 어댑터 저장 가능</p></li>
+<li><p><strong>엣지 배포</strong>: 자원 제약이 있는 기기에서 파인튜닝된 모델 실행 가능</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>구현 세부사항<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<p>벡터 뱅크 접근법은 다음을 통해 작동한다:</p>
+<ul class="simple">
+<li><p><strong>미분 가능한 선택</strong>: 상위 <span class="math notranslate nohighlight">\(k\)</span> 선택이 종단간 훈련을 위해 미분 가능하게 만들어진다</p></li>
+<li><p><strong>적응적 혼합</strong>: 각 레이어가 선택된 벡터를 최적으로 결합하는 방법을 학습한다</p></li>
+<li><p><strong>계층적 공유</strong>: 서로 다른 레이어가 뱅크의 서로 다른 부분집합에 접근할 수 있다</p></li>
+</ul>
+</section>
+<section id="id26">
+<h4>사용 사례<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<p>VB-LoRA는 다음에 특히 가치가 있다:</p>
+<ul class="simple">
+<li><p><strong>다중 작업 학습</strong>: 많은 서로 다른 작업에 대한 모델 훈련</p></li>
+<li><p><strong>엣지 배포</strong>: 모바일/임베디드 기기에서 파인튜닝된 모델 실행</p></li>
+<li><p><strong>모델 공유</strong>: 작업별 어댑터를 효율적으로 배포</p></li>
+<li><p><strong>자원 제약 환경</strong>: 저장 공간과 메모리가 제한된 곳</p></li>
+</ul>
+</section>
+</section>
+<section id="id27">
+<h3>체크포인트 질문<a class="headerlink" href="#id27" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>VB-LoRA의 파라미터 공유는 표준 LoRA의 레이어별 접근법과 어떻게 다른가?</p></li>
+<li><p>전역 파라미터 공유와 레이어별 적응 사이의 트레이드오프는 무엇인가?</p></li>
+<li><p>VB-LoRA가 다중 작업 학습 시나리오에 특히 유용할 수 있는 이유는 무엇인가?</p></li>
+</ul>
+</section>
+<section id="qr-adaptor">
+<h3><strong>5. QR-Adaptor (적응적 랭크 및 양자화)</strong><a class="headerlink" href="#qr-adaptor" title="Link to this heading">#</a></h3>
+<p>QR-Adaptor(2025)는 각 레이어에 대해 <strong>양자화 정밀도와 어댑터 랭크를 공동으로 최적화</strong>함으로써 패러다임 전환을 나타낸다. 양자화와 적응을 별도로 처리하는 이전 방법들과 달리, QR-Adaptor는 메모리 제약 하에서 성능을 최대화하기 위해 비트 폭과 LoRA 랭크의 최적 조합을 찾는다.</p>
+<section id="id28">
+<h4>핵심 개념<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor는 <strong>서로 다른 레이어가 양자화와 적응에 대해 서로 다른 민감도</strong>를 가진다는 핵심 통찰을 다룬다:</p>
+<ul class="simple">
+<li><p><strong>중요한 레이어</strong> (예: 어텐션 메커니즘)는 더 높은 정밀도와 더 큰 어댑터가 필요할 수 있다</p></li>
+<li><p><strong>덜 민감한 레이어</strong> (예: 일부 피드포워드 구성요소)는 최소한의 어댑터로 강하게 양자화될 수 있다</p></li>
+<li><p><strong>메모리 예산의 최적 할당</strong>이 균일한 접근법을 능가할 수 있다</p></li>
+</ul>
+</section>
+<section id="id29">
+<h4>수학적 공식화<a class="headerlink" href="#id29" title="Link to this heading">#</a></h4>
+<p>각 레이어 <span class="math notranslate nohighlight">\(l\)</span>에 대해 QR-Adaptor는 다음을 최적화한다:</p>
+<div class="math notranslate nohighlight">
+\[\min_{\{b_l, r_l\}} \mathcal{L}_{\text{task}}(f(\{b_l, r_l\})) \quad \text{s.t.} \quad \sum_l \text{Memory}(b_l, r_l) \leq B\]</div>
+<p>여기서:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_l \in \{4, 8, 16\}\)</span>는 레이어 <span class="math notranslate nohighlight">\(l\)</span>의 비트 폭이다</p></li>
+<li><p><span class="math notranslate nohighlight">\(r_l \in \{0, 2, 4, 8, 16\}\)</span>는 레이어 <span class="math notranslate nohighlight">\(l\)</span>의 LoRA 랭크이다</p></li>
+<li><p><span class="math notranslate nohighlight">\(B\)</span>는 총 메모리 예산이다</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{\text{task}}\)</span>는 작업별 손실이다</p></li>
+</ul>
+</section>
+<section id="id30">
+<h4>최적화 전략<a class="headerlink" href="#id30" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor는 <strong>그래디언트 없는 검색</strong> 접근법을 사용한다:</p>
+<ol class="arabic simple">
+<li><p><strong>보정</strong>: 작은 검증 세트에서 서로 다른 구성을 평가한다</p></li>
+<li><p><strong>검색</strong>: 진화 알고리즘이나 베이지안 최적화를 사용하여 최적 할당을 찾는다</p></li>
+<li><p><strong>검증</strong>: 전체 훈련 세트에서 최고 구성을 테스트한다</p></li>
+</ol>
+</section>
+<section id="id31">
+<h4>주요 장점<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>레이어별 적응성</strong>: 각 레이어가 최적의 정밀도와 랭크 할당을 받는다</p></li>
+<li><p><strong>성능 우선</strong>: 양자화 오차뿐만 아니라 작업 성능을 직접 최적화한다</p></li>
+<li><p><strong>메모리 효율성</strong>: 동일한 메모리 예산으로 더 나은 결과를 달성한다</p></li>
+<li><p><strong>자동화</strong>: 레이어별 양자화/랭크의 수동 튜닝이 필요 없다</p></li>
+</ul>
+</section>
+<section id="id32">
+<h4>성능 결과<a class="headerlink" href="#id32" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor는 놀라운 개선을 달성한다:</p>
+<ul class="simple">
+<li><p><strong>GSM8K</strong>: 고정 정밀도 접근법 대비 4.9% 정확도 개선</p></li>
+<li><p><strong>메모리 효율성</strong>: 16비트 완전 파인튜닝을 능가하는 4비트 모델</p></li>
+<li><p><strong>레이어 할당</strong>: 중요한 레이어는 8비트 정밀도, 나머지는 4비트 사용</p></li>
+<li><p><strong>랭크 최적화</strong>: 어텐션 레이어는 랭크-16, 나머지는 랭크-4 또는 어댑터 없음</p></li>
+</ul>
+</section>
+<section id="id33">
+<h4>예시 구성<a class="headerlink" href="#id33" title="Link to this heading">#</a></h4>
+<p>일반적인 QR-Adaptor 구성은 다음과 같을 수 있다:</p>
+<ul class="simple">
+<li><p><strong>레이어 1-6</strong> (임베딩): 4비트, LoRA 없음</p></li>
+<li><p><strong>레이어 7-12</strong> (어텐션): 8비트, 랭크-16 LoRA</p></li>
+<li><p><strong>레이어 13-18</strong> (피드포워드): 4비트, 랭크-4 LoRA</p></li>
+<li><p><strong>레이어 19-24</strong> (출력): 8비트, 랭크-8 LoRA</p></li>
+</ul>
+</section>
+<section id="id34">
+<h4>구현 고려사항<a class="headerlink" href="#id34" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor는 다음을 요구한다:</p>
+<ul class="simple">
+<li><p><strong>검색 시간</strong>: 초기 구성 검색에 추가 시간이 필요하다</p></li>
+<li><p><strong>보정 데이터</strong>: 구성 평가를 위한 대표적인 데이터가 필요하다</p></li>
+<li><p><strong>하드웨어 지원</strong>: 혼합 정밀도 훈련 기능이 필요하다</p></li>
+</ul>
+</section>
+<section id="id35">
+<h4>사용 시기<a class="headerlink" href="#id35" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor는 다음에 이상적이다:</p>
+<ul class="simple">
+<li><p><strong>메모리 제약 배포</strong>: 성능의 모든 비트가 중요할 때</p></li>
+<li><p><strong>프로덕션 시스템</strong>: 최적의 자원 할당이 중요한 곳</p></li>
+<li><p><strong>연구</strong>: 양자화에 대한 레이어별 민감도 이해</p></li>
+<li><p><strong>자동화된 최적화</strong>: 수동 튜닝이 비현실적일 때</p></li>
+</ul>
+</section>
+</section>
+<section id="id36">
+<h3>체크포인트 질문<a class="headerlink" href="#id36" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>QR-Adaptor의 레이어별 최적화는 균일한 양자화 접근법과 어떻게 다른가?</p></li>
+<li><p>서로 다른 레이어가 서로 다른 정밀도와 랭크 할당을 요구할 수 있는 이유는 무엇인가?</p></li>
+<li><p>QR-Adaptor의 검색 복잡성과 성능 향상 사이의 트레이드오프는 무엇인가?</p></li>
+</ul>
+</section>
+<section id="qlora-4-nf4">
+<h3><strong>6. QLoRA와 4비트 NF4 양자화</strong><a class="headerlink" href="#qlora-4-nf4" title="Link to this heading">#</a></h3>
+<p>QLoRA(Quantized LoRA)는 효율적 파인튜닝의 돌파구를 나타내며, 단일 48GB GPU에서 65B 파라미터 모델의 훈련을 가능하게 한다. 핵심 혁신은 성능을 유지하면서 4비트 양자화와 LoRA 어댑터를 결합하는 데 있다.</p>
+<section id="id37">
+<h4>핵심 개념<a class="headerlink" href="#id37" title="Link to this heading">#</a></h4>
+<p>QLoRA는 3단계 접근법을 따른다:</p>
+<ol class="arabic simple">
+<li><p><strong>양자화</strong>: 사전학습된 모델 가중치를 4비트 정밀도로 양자화한다</p></li>
+<li><p><strong>고정</strong>: 양자화된 가중치를 고정한다 (그래디언트 업데이트 없음)</p></li>
+<li><p><strong>훈련</strong>: 양자화된 가중치를 통한 완전한 역전파로 16비트 정밀도에서 LoRA 어댑터를 훈련한다</p></li>
+</ol>
+<p>이 조합은 모델 성능을 보존하면서 메모리 사용량을 ~75% 줄인다.</p>
+</section>
+<section id="nf4">
+<h4>NF4 양자화: 핵심 혁신<a class="headerlink" href="#nf4" title="Link to this heading">#</a></h4>
+<p>QLoRA의 성공은 신경망 가중치에 최적화된 사용자 정의 4비트 데이터 타입인 **NF4(NormalFloat-4)**에 달려있다:</p>
+<ul class="simple">
+<li><p><strong>정보 이론적으로 최적</strong>: NF4는 신경 가중치의 정규 분포와 일치하는 로그 분포를 사용한다</p></li>
+<li><p><strong>우수한 성능</strong>: 표준 4비트 양자화 대비 27.4 vs 31.1 perplexity를 달성한다</p></li>
+<li><p><strong>효율적인 표현</strong>: 가중치 분포에 걸쳐 16개의 가능한 4비트 값을 최적으로 사용한다</p></li>
+</ul>
+</section>
+<section id="id38">
+<h4>기술적 혁신<a class="headerlink" href="#id38" title="Link to this heading">#</a></h4>
+<p><strong>이중 양자화:</strong></p>
+<ul class="simple">
+<li><p>모델 가중치(4비트)와 스케일링 인수(8비트) 모두를 양자화한다</p></li>
+<li><p>성능 손실 없이 메모리 오버헤드를 더욱 줄인다</p></li>
+<li><p>bitsandbytes 라이브러리에서 효율적으로 구현된다</p></li>
+</ul>
+<p><strong>페이징된 옵티마이저:</strong></p>
+<ul class="simple">
+<li><p>피크 시 그래디언트와 모멘텀을 CPU 메모리로 스왑한다</p></li>
+<li><p>대형 모델에서 메모리 부족 오류를 방지한다</p></li>
+<li><p>그렇지 않으면 맞지 않을 모델의 훈련을 가능하게 한다</p></li>
+</ul>
+</section>
+<section id="id39">
+<h4>성능 결과<a class="headerlink" href="#id39" title="Link to this heading">#</a></h4>
+<p>QLoRA는 놀라운 결과를 달성한다:</p>
+<ul class="simple">
+<li><p><strong>메모리 효율성</strong>: 메모리 사용량 75% 감소</p></li>
+<li><p><strong>성능 동등성</strong>: GLUE와 지시 따르기 작업에서 완전 16비트 파인튜닝과 일치</p></li>
+<li><p><strong>확장성</strong>: 단일 GPU에서 30B-65B 모델의 파인튜닝 가능</p></li>
+<li><p><strong>속도</strong>: 현대 하드웨어에서 4비트 연산이 종종 16비트보다 빠르다</p></li>
+</ul>
+<p><img alt="QLoRA Comparison" src="../_images/image3.jpeg" />
+<em>완전 파인튜닝 vs LoRA vs QLoRA 비교 (개념적). 왼쪽: 완전 파인튜닝은 모든 모델 가중치를 업데이트(16비트 정밀도)하고 큰 옵티마이저 상태(가중치당 32비트)를 저장해야 한다. 가운데: LoRA 파인튜닝은 기본 가중치를 16비트로 유지하고 고정하며, 작은 16비트 어댑터 행렬을 훈련한다(업데이트할 것이 훨씬 적음; 옵티마이저는 그것들만). 오른쪽: QLoRA는 동일한 저차원 적응을 수행하지만 4비트 양자화된 기본 모델에서; 그래디언트(녹색 화살표)가 4비트 모델을 통해 LoRA 어댑터로 흐른다. 자홍색 화살표는 QLoRA의 페이징된 옵티마이저가 상태를 CPU로 오프로드함을 나타낸다. 이 접근법은 성능을 보존하면서 메모리를 ~75% 절약한다.</em></p>
+</section>
+<section id="id40">
+<h4>실제 구현<a class="headerlink" href="#id40" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitsAndBytesConfig</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+
+<span class="c1"># 4비트 양자화 구성</span>
+<span class="n">quantization_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s2">&quot;nf4&quot;</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># 양자화로 모델 로드</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;meta-llama/Llama-2-7b-hf&quot;</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># LoRA 적용</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="qlora">
+<h4>QLoRA 사용 시기<a class="headerlink" href="#qlora" title="Link to this heading">#</a></h4>
+<p>QLoRA는 다음에 이상적이다:</p>
+<ul class="simple">
+<li><p><strong>대형 모델</strong>: 메모리가 제약인 7B+ 파라미터 모델</p></li>
+<li><p><strong>자원 제한 환경</strong>: 제한된 메모리를 가진 단일 GPU 설정</p></li>
+<li><p><strong>연구</strong>: 대형 모델로 실험해야 할 때</p></li>
+<li><p><strong>프로덕션</strong>: 메모리 효율성이 중요할 때</p></li>
+</ul>
+</section>
+<section id="id41">
+<h4>한계<a class="headerlink" href="#id41" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>하드웨어 요구사항</strong>: 4비트 지원 GPU가 필요하다</p></li>
+<li><p><strong>설정 복잡성</strong>: 표준 파인튜닝보다 더 복잡하다</p></li>
+<li><p><strong>라이브러리 의존성</strong>: bitsandbytes와 호환 가능한 transformers가 필요하다</p></li>
+</ul>
+</section>
+</section>
+<section id="id42">
+<h3>체크포인트 질문<a class="headerlink" href="#id42" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>NF4 양자화는 표준 4비트 양자화 접근법과 어떻게 다른가?</p></li>
+<li><p>QLoRA가 효과적으로 작동하게 하는 핵심 기술적 혁신은 무엇인가?</p></li>
+<li><p>표준 LoRA나 완전 파인튜닝 대신 QLoRA를 선택할 때는 언제인가?</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id43">
+<h2>실제 응용: PEFT 방법 구현 및 비교<a class="headerlink" href="#id43" title="Link to this heading">#</a></h2>
+<p>이제 이론적 기초를 이해했으니, 이러한 기법들을 실제로 어떻게 구현하는지 탐구해보자. PyTorch와 Hugging Face 라이브러리를 사용한 실습 예제에 집중할 것이다.</p>
+<section id="lora">
+<h3><strong>1. 기본 LoRA 구현</strong><a class="headerlink" href="#lora" title="Link to this heading">#</a></h3>
+<p>한국어 감성 분석을 위한 완전한 LoRA 구현으로 시작해보자:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span> 
+    <span class="n">AutoTokenizer</span><span class="p">,</span> 
+    <span class="n">TrainingArguments</span><span class="p">,</span> 
+    <span class="n">Trainer</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># 한국어 BERT 모델 로드</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;klue/bert-base&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span> 
+    <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
+<span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="c1"># LoRA 구성</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>                    <span class="c1"># LoRA 랭크</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>          <span class="c1"># 스케일링 인수</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>  <span class="c1"># 대상 어텐션 및 FFN 레이어</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># 모델에 LoRA 적용</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trainable parameters: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># 한국어 감성 데이터 준비 (예시)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_dataset</span><span class="p">():</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;이 영화 정말 재밌어요!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;너무 지루하고 별로예요.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;배우들의 연기가 훌륭해요.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;스토리가 너무 복잡해요.&quot;</span>
+    <span class="p">]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 1: 긍정, 0: 부정</span>
+    
+    <span class="c1"># 토큰화</span>
+    <span class="n">encodings</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">texts</span><span class="p">,</span> 
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
+        <span class="s2">&quot;input_ids&quot;</span><span class="p">:</span> <span class="n">encodings</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attention_mask&quot;</span><span class="p">:</span> <span class="n">encodings</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="c1"># 훈련 설정</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./lora_sentiment&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-4</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span><span class="o">=</span><span class="s2">&quot;steps&quot;</span><span class="p">,</span>
+    <span class="n">eval_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">prepare_dataset</span><span class="p">(),</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 모델 훈련</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+<span class="c1"># LoRA 어댑터 저장</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./lora_adapter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id44">
+<h3><strong>2. QLoRA 구현</strong><a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<p>더 큰 모델에 대한 QLoRA 구현 방법은 다음과 같다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitsAndBytesConfig</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># 4비트 양자화 구성</span>
+<span class="n">quantization_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s2">&quot;nf4&quot;</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 양자화로 모델 로드</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;beomi/KoAlpaca-7B&quot;</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
+<span class="p">)</span>
+
+<span class="c1"># QLoRA를 위한 LoRA 구성</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;gate_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;up_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;down_proj&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="s2">&quot;CAUSAL_LM&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># LoRA 적용</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+
+<span class="c1"># QLoRA로 훈련</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./qlorafinetuned&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># 메모리 제약으로 인한 더 작은 배치 크기</span>
+    <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-4</span><span class="p">,</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">remove_unused_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># QLoRA로 Trainer 사용</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">data_collator</span><span class="o">=</span><span class="n">data_collator</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="dora">
+<h3><strong>3. DoRA 구현</strong><a class="headerlink" href="#dora" title="Link to this heading">#</a></h3>
+<p>DoRA가 아직 메인 PEFT 라이브러리에 포함되지 않았지만, 개념적 구현은 다음과 같다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DoRALayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_layer</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span> <span class="o">=</span> <span class="n">base_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        
+        <span class="c1"># LoRA 행렬</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># 크기 파라미터</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">))</span>
+        
+        <span class="c1"># 초기화</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_uniform_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># 기본 출력 얻기</span>
+        <span class="n">base_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># LoRA 업데이트</span>
+        <span class="n">lora_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+        
+        <span class="c1"># 크기 스케일링 적용</span>
+        <span class="n">scaled_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_output</span> <span class="o">+</span> <span class="n">lora_output</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span>
+        
+        <span class="k">return</span> <span class="n">scaled_output</span>
+
+<span class="c1"># 사용 예시</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">target_modules</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">target</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">target_modules</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+                <span class="c1"># DoRA 레이어로 교체</span>
+                <span class="n">dora_layer</span> <span class="o">=</span> <span class="n">DoRALayer</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+                <span class="c1"># 모델 구조 업데이트</span>
+                <span class="n">parent_name</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">child_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">parent_module</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_submodule</span><span class="p">(</span><span class="n">parent_name</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">parent_module</span><span class="p">,</span> <span class="n">child_name</span><span class="p">,</span> <span class="n">dora_layer</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</section>
+<section id="id45">
+<h3><strong>4. 비교 프레임워크</strong><a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<p>서로 다른 PEFT 방법들을 비교하기 위한 프레임워크는 다음과 같다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PEFTComparison</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;PEFT 방법을 평가하고 메트릭을 기록한다&quot;&quot;&quot;</span>
+        
+        <span class="c1"># 모델 로드</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># PEFT 방법 적용</span>
+        <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">:</span>
+            <span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">peft_config</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;DoRA&quot;</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
+        <span class="c1"># 다른 방법들 추가...</span>
+        
+        <span class="c1"># 메트릭 기록</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">start_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+        
+        <span class="c1"># 훈련 (간소화)</span>
+        <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">train_dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">TrainingArguments</span><span class="p">(</span>
+                <span class="n">output_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;./results/</span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        
+        <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">end_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+        
+        <span class="c1"># 결과 기록</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;trainable_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="s2">&quot;total_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span>
+            <span class="s2">&quot;training_time&quot;</span><span class="p">:</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span>
+            <span class="s2">&quot;memory_usage&quot;</span><span class="p">:</span> <span class="n">end_memory</span> <span class="o">-</span> <span class="n">start_memory</span><span class="p">,</span>
+            <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">compare_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;모든 방법을 비교하고 결과를 출력한다&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT 방법 비교&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  훈련 가능한 파라미터: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  파라미터 비율: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  훈련 시간: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">초&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  메모리 사용량: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;memory_usage&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB&quot;</span><span class="p">)</span>
+
+<span class="c1"># 사용법</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">PEFTComparison</span><span class="p">(</span><span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span> <span class="n">train_dataset</span><span class="p">)</span>
+
+<span class="c1"># 서로 다른 방법들 비교</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">evaluate_method</span><span class="p">(</span><span class="s2">&quot;LoRA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">})</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">evaluate_method</span><span class="p">(</span><span class="s2">&quot;DoRA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;target_modules&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="c1"># 더 많은 방법들 추가...</span>
+
+<span class="n">comparison</span><span class="o">.</span><span class="n">compare_methods</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id46">
+<h3><strong>5. 모범 사례 및 팁</strong><a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<p><strong>올바른 방법 선택:</strong></p>
+<ul class="simple">
+<li><p><strong>작은 데이터셋 (&lt; 1K 예시)</strong>: 극도의 효율성을 위해 WaveFT 또는 VB-LoRA 사용</p></li>
+<li><p><strong>중간 데이터셋 (1K-10K 예시)</strong>: LoRA보다 더 나은 성능을 위해 DoRA 사용</p></li>
+<li><p><strong>큰 데이터셋 (&gt; 10K 예시)</strong>: 메모리 효율성을 위해 QLoRA 사용</p></li>
+<li><p><strong>다중 작업</strong>: 저장 효율성을 위해 VB-LoRA 사용</p></li>
+</ul>
+<p><strong>하이퍼파라미터 튜닝:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LoRA 하이퍼파라미터</span>
+<span class="n">lora_configs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span>   <span class="c1"># 최소 파라미터</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">},</span>   <span class="c1"># 균형</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>  <span class="c1"># 높은 용량</span>
+<span class="p">]</span>
+
+<span class="c1"># 대상 모듈 선택</span>
+<span class="n">target_modules_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">],</span>                    <span class="c1"># 어텐션만</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>             <span class="c1"># 전체 어텐션</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>    <span class="c1"># 어텐션 + FFN</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>메모리 최적화:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 그래디언트 체크포인팅 활성화</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">gradient_checkpointing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dataloader_pin_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">dataloader_num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># 혼합 정밀도 사용</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># 또는 더 새로운 GPU의 경우 bf16=True</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id47">
+<h3>체크포인트 질문<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>특정 작업에 대해 LoRA와 DoRA 중 어떻게 선택하겠는가?</p></li>
+<li><p>QLoRA를 구현할 때 주요 고려사항은 무엇인가?</p></li>
+<li><p>PEFT 방법들을 공정하게 비교하는 실험을 어떻게 설계하겠는가?</p></li>
+</ul>
+</section>
+</section>
+<section id="id48">
+<h2>요약 및 미래 방향<a class="headerlink" href="#id48" title="Link to this heading">#</a></h2>
+<p>이번 강의에서 우리는 파라미터 효율적 파인튜닝(PEFT) 기법의 최첨단 풍경을 탐구했다. 주요 내용을 요약하고 미래 발전을 살펴보자.</p>
+<section id="id49">
+<h3><strong>방법 비교 요약</strong><a class="headerlink" href="#id49" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>방법</p></th>
+<th class="head"><p>파라미터 효율성</p></th>
+<th class="head"><p>성능</p></th>
+<th class="head"><p>사용 사례</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>LoRA</strong></p></td>
+<td><p>모델의 0.1-0.5%</p></td>
+<td><p>기준선</p></td>
+<td><p>일반 목적</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>DoRA</strong></p></td>
+<td><p>모델의 0.1-0.5%</p></td>
+<td><p>LoRA 대비 +3.7%</p></td>
+<td><p>더 나은 성능 필요</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>WaveFT</strong></p></td>
+<td><p>모델의 0.01-0.1%</p></td>
+<td><p>경쟁력 있음</p></td>
+<td><p>극도의 효율성</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VB-LoRA</strong></p></td>
+<td><p>LoRA의 0.01%</p></td>
+<td><p>LoRA보다 나음</p></td>
+<td><p>다중 작업 시나리오</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>QR-Adaptor</strong></p></td>
+<td><p>가변</p></td>
+<td><p>고정 대비 +4.9%</p></td>
+<td><p>메모리 제약</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>QLoRA</strong></p></td>
+<td><p>75% 메모리 감소</p></td>
+<td><p>완전 FT와 일치</p></td>
+<td><p>대형 모델</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id50">
+<h3><strong>핵심 통찰</strong><a class="headerlink" href="#id50" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>파라미터 효율성 vs 성능 트레이드오프</strong>: 극도의 효율성(WaveFT)에서 더 나은 성능(DoRA)까지 명확한 스펙트럼이 있어, 실무자들이 제약에 따라 선택할 수 있다.</p></li>
+<li><p><strong>레이어별 최적화</strong>: QR-Adaptor와 같은 방법들은 서로 다른 레이어가 양자화와 적응에 대해 서로 다른 민감도를 가진다는 것을 보여주며, 새로운 최적화 기회를 열어준다.</p></li>
+<li><p><strong>전역 파라미터 공유</strong>: VB-LoRA는 레이어 간 파라미터 공유가 성능을 유지하면서 저장 공간을 극적으로 줄일 수 있음을 보여준다.</p></li>
+<li><p><strong>양자화 통합</strong>: QLoRA는 4비트 양자화가 성능 손실 없이 PEFT와 결합될 수 있음을 증명하며, 훨씬 더 큰 모델의 훈련을 가능하게 한다.</p></li>
+</ol>
+</section>
+<section id="id51">
+<h3><strong>올바른 방법 선택</strong><a class="headerlink" href="#id51" title="Link to this heading">#</a></h3>
+<p><strong>연구 및 실험을 위해:</strong></p>
+<ul class="simple">
+<li><p>기준 성능을 위해 LoRA로 시작</p></li>
+<li><p>더 나은 결과가 필요할 때 DoRA 사용</p></li>
+<li><p>극도의 파라미터 제약을 위해 WaveFT 시도</p></li>
+</ul>
+<p><strong>프로덕션 배포를 위해:</strong></p>
+<ul class="simple">
+<li><p>대형 모델(7B+ 파라미터)에 QLoRA 사용</p></li>
+<li><p>메모리 제약 환경에 QR-Adaptor 고려</p></li>
+<li><p>다중 작업 시나리오에 VB-LoRA 사용</p></li>
+</ul>
+<p><strong>자원 제한 환경을 위해:</strong></p>
+<ul class="simple">
+<li><p>최소 파라미터 예산에 WaveFT</p></li>
+<li><p>메모리 제약에 QLoRA</p></li>
+<li><p>저장 제한에 VB-LoRA</p></li>
+</ul>
+</section>
+<section id="id52">
+<h3><strong>미래 방향</strong><a class="headerlink" href="#id52" title="Link to this heading">#</a></h3>
+<p>PEFT 분야는 빠르게 진화하고 있다. 미래 발전의 주요 영역은 다음과 같다:</p>
+<ol class="arabic simple">
+<li><p><strong>자동화된 PEFT 선택</strong>: 주어진 작업과 제약에 대해 최고의 PEFT 기법을 자동으로 선택하는 AI 기반 방법.</p></li>
+<li><p><strong>동적 적응</strong>: 작업 복잡성에 따라 훈련 중 파라미터 효율성을 조정할 수 있는 방법.</p></li>
+<li><p><strong>크로스 모달 PEFT</strong>: PEFT 기법을 멀티모달 모델(비전-언어, 오디오-텍스트)로 확장.</p></li>
+<li><p><strong>하드웨어 인식 PEFT</strong>: 서로 다른 하드웨어 구성(모바일, 엣지, 클라우드)에 특별히 최적화된 기법.</p></li>
+<li><p><strong>연합 PEFT</strong>: 서로 다른 클라이언트가 로컬 제약에 따라 서로 다른 PEFT 방법을 사용하는 분산 파인튜닝.</p></li>
+</ol>
+</section>
+<section id="id53">
+<h3><strong>실용적 권장사항</strong><a class="headerlink" href="#id53" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>간단하게 시작</strong>: 대부분의 작업에 대해 LoRA로 시작한 다음, 필요에 따라 더 고급 방법을 탐구한다.</p></li>
+<li><p><strong>제약 프로파일링</strong>: 방법을 선택하기 전에 메모리, 계산, 저장 제한을 이해한다.</p></li>
+<li><p><strong>체계적으로 실험</strong>: 제공된 비교 프레임워크를 사용하여 특정 작업에서 서로 다른 방법을 평가한다.</p></li>
+<li><p><strong>최신 상태 유지</strong>: PEFT 분야는 빠르게 진화하고 있으며, 새로운 방법이 정기적으로 발표된다.</p></li>
+<li><p><strong>전체 파이프라인 고려</strong>: 훈련 효율성뿐만 아니라 배포, 저장, 추론 고려사항도 고려한다.</p></li>
+</ol>
+</section>
+<section id="id54">
+<h3><strong>최종 생각</strong><a class="headerlink" href="#id54" title="Link to this heading">#</a></h3>
+<p>PEFT 기법은 대형 언어모델 파인튜닝에 대한 접근을 민주화하여, 연구자와 실무자가 최소한의 계산 자원으로 강력한 모델을 적응시킬 수 있게 했다. 우리가 탐구한 방법들은 현재의 최신 기술을 나타내지만, 이 분야는 계속해서 빠르게 진화하고 있다.</p>
+<p>PEFT에서 성공의 열쇠는 파라미터 효율성, 성능, 계산 요구사항 사이의 트레이드오프를 이해하는 것이다. 특정 사용 사례와 제약에 맞는 올바른 방법을 선택함으로써, 최소한의 자원으로 놀라운 결과를 달성할 수 있다.</p>
+<p>앞으로 나아가면서, 성능을 유지하거나 개선하면서 효율성의 경계를 밀어붙이는 더욱 정교한 PEFT 기법을 볼 수 있을 것이다. 효율적 파인튜닝의 미래는 밝으며, 이러한 기법들은 대형 언어모델을 모든 사람에게 접근 가능하게 만드는 데 계속해서 중요한 역할을 할 것이다.</p>
+</section>
+</section>
+<section id="id55">
+<h2>참고자료<a class="headerlink" href="#id55" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>PEFT: LLM을 위한 파라미터 효율적 파인튜닝 방법</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/blog/samuellimabraz/peft-methods">Hugging Face 블로그</a></p></li>
+</ul>
+</li>
+<li><p><strong>웨이블릿을 사용한 파라미터 효율적 파인튜닝의 희소성 탐구</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.themoonlight.io/en/review/exploring-sparsity-for-parameter-efficient-fine-tuning-using-wavelets">문헌 리뷰</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2505.12532">arXiv:2505.12532</a></p></li>
+</ul>
+</li>
+<li><p><strong>DoRA: 가중치 분해 저차원 적응</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/2402.09353">arXiv:2402.09353</a></p></li>
+<li><p><a class="reference external" href="https://developer.nvidia.com/blog/introducing-dora-a-high-performing-alternative-to-lora-for-fine-tuning/">NVIDIA 기술 블로그</a></p></li>
+</ul>
+</li>
+<li><p><strong>VB-LoRA: 벡터 뱅크를 사용한 극도의 파라미터 효율적 파인튜닝</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/docs/peft/en/package_reference/vblora">Hugging Face 문서</a></p></li>
+</ul>
+</li>
+<li><p><strong>적응적 랭크와 비트폭을 통한 양자화된 모델의 효율적 파인튜닝</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/2505.03802">arXiv:2505.03802</a></p></li>
+</ul>
+</li>
+<li><p><strong>bitsandbytes, 4비트 양자화 및 QLoRA로 LLM을 더욱 접근 가능하게 만들기</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face 블로그</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week02/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week2 - 도구 학습: PyTorch와 최신 프레임워크</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../syllabus/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">강의계획서</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">서론: 왜 파라미터 효율적 파인튜닝인가?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft">PEFT의 주요 장점</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">현대적 PEFT 기법의 개념적 개요</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#low-rank-adaptation-lora"><strong>1. 복습: 저차원 적응(Low-Rank Adaptation, LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">수학적 예시</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">한계</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-fine-tuning-waveft"><strong>2. 웨이블릿 파인튜닝(Wavelet Fine-Tuning, WaveFT)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">웨이블릿이 효과적인 이유</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">성능 결과</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-decomposed-low-rank-adaptation-dora"><strong>3. 가중치 분해 저차원 적응(Weight-Decomposed Low-Rank Adaptation, DoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">작동 원리</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">구현 고려사항</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vb-lora-lora"><strong>4. VB-LoRA (벡터 뱅크 LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">구현 세부사항</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">사용 사례</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-adaptor"><strong>5. QR-Adaptor (적응적 랭크 및 양자화)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">수학적 공식화</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">최적화 전략</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">주요 장점</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">예시 구성</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">구현 고려사항</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">사용 시기</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-4-nf4"><strong>6. QLoRA와 4비트 NF4 양자화</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">핵심 개념</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nf4">NF4 양자화: 핵심 혁신</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">기술적 혁신</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">성능 결과</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">실제 구현</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora">QLoRA 사용 시기</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">한계</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">체크포인트 질문</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">실제 응용: PEFT 방법 구현 및 비교</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora"><strong>1. 기본 LoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44"><strong>2. QLoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora"><strong>3. DoRA 구현</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45"><strong>4. 비교 프레임워크</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46"><strong>5. 모범 사례 및 팁</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">체크포인트 질문</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">요약 및 미래 방향</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id49"><strong>방법 비교 요약</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id50"><strong>핵심 통찰</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id51"><strong>올바른 방법 선택</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id52"><strong>미래 방향</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id53"><strong>실용적 권장사항</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id54"><strong>최종 생각</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id55">참고자료</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

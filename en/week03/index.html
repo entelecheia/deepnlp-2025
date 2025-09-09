@@ -1,0 +1,1725 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week03/index';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Syllabus" href="../syllabus/index.html" />
+    <link rel="prev" title="Week 2 - Tool Learning: PyTorch and Latest Frameworks" href="../week02/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2 - Tool Learning: PyTorch and Latest Frameworks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week03/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek03/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week03/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-why-parameter-efficient-fine-tuning">Introduction: Why Parameter-Efficient Fine-Tuning?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits-of-peft">Key Benefits of PEFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptual-overview-of-modern-peft-techniques">Conceptual Overview of Modern PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-low-rank-adaptation-lora"><strong>1. Recap: Low-Rank Adaptation (LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concept">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-advantages">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-example">Mathematical Example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-fine-tuning-waveft"><strong>2. Wavelet Fine-Tuning (WaveFT)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-wavelets-work">Why Wavelets Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-results">Performance Results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-decomposed-low-rank-adaptation-dora"><strong>3. Weight-Decomposed Low-Rank Adaptation (DoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-works">Why This Works</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vb-lora-vector-bank-lora"><strong>4. VB-LoRA (Vector Bank LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation Details</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-adaptor-adaptive-rank-and-quantization"><strong>5. QR-Adaptor (Adaptive Rank and Quantization)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-strategy">Optimization Strategy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-configuration">Example Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Implementation Considerations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use">When to Use</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-and-4-bit-nf4-quantization"><strong>6. QLoRA and 4-bit NF4 Quantization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nf4-quantization-the-key-innovation">NF4 Quantization: The Key Innovation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-innovations">Technical Innovations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-qlora">When to Use QLoRA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-implementing-and-comparing-peft-methods">Practical Application: Implementing and Comparing PEFT Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-lora-implementation"><strong>1. Basic LoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-implementation"><strong>2. QLoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora-implementation"><strong>3. DoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-framework"><strong>4. Comparison Framework</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-tips"><strong>5. Best Practices and Tips</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-future-directions">Summary and Future Directions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-comparison-summary"><strong>Method Comparison Summary</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights"><strong>Key Insights</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-method"><strong>Choosing the Right Method</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions"><strong>Future Directions</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-recommendations"><strong>Practical Recommendations</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts"><strong>Final Thoughts</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-3-efficient-fine-tuning-with-modern-peft-techniques">
+<h1>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques<a class="headerlink" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques" title="Link to this heading">#</a></h1>
+<section id="introduction-why-parameter-efficient-fine-tuning">
+<h2>Introduction: Why Parameter-Efficient Fine-Tuning?<a class="headerlink" href="#introduction-why-parameter-efficient-fine-tuning" title="Link to this heading">#</a></h2>
+<p>In the previous weeks, we learned how to use PyTorch and Hugging Face to load pre-trained models and perform basic fine-tuning on NLP tasks. However, fully fine-tuning large language models (LLMs) like GPT, BERT, or LLaMA presents significant challenges:</p>
+<ul class="simple">
+<li><p><strong>Memory Requirements</strong>: Fine-tuning a 7B parameter model requires ~28GB of GPU memory just for the model weights, plus additional memory for gradients and optimizer states</p></li>
+<li><p><strong>Computational Cost</strong>: Updating billions of parameters is computationally expensive and time-consuming</p></li>
+<li><p><strong>Overfitting Risk</strong>: With limited training data, full fine-tuning can lead to catastrophic forgetting of pre-trained knowledge</p></li>
+<li><p><strong>Storage Overhead</strong>: Each fine-tuned model requires storing all parameters, making it impractical to maintain multiple task-specific models</p></li>
+</ul>
+<p><strong>Parameter-Efficient Fine-Tuning (PEFT)</strong> addresses these challenges by training only a small fraction of the model’s parameters while keeping the rest frozen. This approach can reduce memory usage by 90%+ and training time by 10x while often achieving comparable or even superior performance to full fine-tuning.</p>
+<section id="key-benefits-of-peft">
+<h3>Key Benefits of PEFT<a class="headerlink" href="#key-benefits-of-peft" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Memory Efficiency</strong>: Train 65B parameter models on a single 48GB GPU (impossible with full fine-tuning)</p></li>
+<li><p><strong>Faster Training</strong>: Fewer parameters mean faster gradient computations and convergence</p></li>
+<li><p><strong>Better Generalization</strong>: Constrained parameter updates reduce overfitting on small datasets</p></li>
+<li><p><strong>Modularity</strong>: Small adapter modules can be easily stored, shared, and swapped between tasks</p></li>
+<li><p><strong>No Inference Overhead</strong>: Adapters can be merged back into base weights for deployment</p></li>
+</ul>
+<p>In this lecture, we’ll explore cutting-edge PEFT techniques that push efficiency even further: <strong>WaveFT</strong>, <strong>DoRA</strong>, <strong>VB-LoRA</strong>, <strong>QR-Adaptor</strong>, and <strong>QLoRA</strong>. These methods represent the state-of-the-art in efficient fine-tuning, enabling researchers and practitioners to adapt large models with minimal computational resources.</p>
+</section>
+</section>
+<section id="conceptual-overview-of-modern-peft-techniques">
+<h2>Conceptual Overview of Modern PEFT Techniques<a class="headerlink" href="#conceptual-overview-of-modern-peft-techniques" title="Link to this heading">#</a></h2>
+<section id="recap-low-rank-adaptation-lora">
+<h3><strong>1. Recap: Low-Rank Adaptation (LoRA)</strong><a class="headerlink" href="#recap-low-rank-adaptation-lora" title="Link to this heading">#</a></h3>
+<p>Before exploring advanced PEFT methods, let’s review LoRA (Low-Rank Adaptation), which forms the foundation for many modern techniques.</p>
+<section id="core-concept">
+<h4>Core Concept<a class="headerlink" href="#core-concept" title="Link to this heading">#</a></h4>
+<p>LoRA is based on the key insight that <strong>weight updates during fine-tuning lie in a low-dimensional subspace</strong>. Instead of updating the full weight matrix <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>, LoRA decomposes the update as:</p>
+<div class="math notranslate nohighlight">
+\[\Delta W = A \times B\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A \in \mathbb{R}^{d \times r}\)</span> and <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{r \times k}\)</span> are low-rank matrices</p></li>
+<li><p><span class="math notranslate nohighlight">\(r \ll \min(d, k)\)</span> is the rank (typically 4, 8, or 16)</p></li>
+<li><p>Only <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> are trainable parameters</p></li>
+</ul>
+<p>The final weight becomes: <span class="math notranslate nohighlight">\(W = W_0 + \Delta W = W_0 + AB\)</span></p>
+</section>
+<section id="key-advantages">
+<h4>Key Advantages<a class="headerlink" href="#key-advantages" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Parameter Efficiency</strong>: For a <span class="math notranslate nohighlight">\(d \times k\)</span> weight matrix, LoRA uses only <span class="math notranslate nohighlight">\(r(d + k)\)</span> parameters instead of <span class="math notranslate nohighlight">\(dk\)</span></p></li>
+<li><p><strong>Memory Reduction</strong>: Typically 0.1%-0.5% of original parameters</p></li>
+<li><p><strong>No Inference Overhead</strong>: After training, <span class="math notranslate nohighlight">\(\Delta W\)</span> can be merged into <span class="math notranslate nohighlight">\(W_0\)</span></p></li>
+<li><p><strong>Modularity</strong>: Adapters can be swapped for different tasks</p></li>
+</ul>
+</section>
+<section id="mathematical-example">
+<h4>Mathematical Example<a class="headerlink" href="#mathematical-example" title="Link to this heading">#</a></h4>
+<p>For a 768×768 attention weight matrix with rank <span class="math notranslate nohighlight">\(r=8\)</span>:</p>
+<ul class="simple">
+<li><p>Full fine-tuning: 768² = 589,824 parameters</p></li>
+<li><p>LoRA: 8×(768+768) = 12,288 parameters (98% reduction!)</p></li>
+</ul>
+</section>
+<section id="limitations">
+<h4>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">#</a></h4>
+<p>LoRA’s main limitation is the <strong>“low-rank bottleneck”</strong> - constraining updates to rank-<span class="math notranslate nohighlight">\(r\)</span> matrices may limit expressiveness when very few parameters are available. This motivates the advanced methods we’ll explore next.</p>
+</section>
+</section>
+<section id="checkpoint-questions">
+<h3>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why does LoRA assume weight updates lie in a low-dimensional subspace?</p></li>
+<li><p>Calculate the parameter reduction for a 1024×1024 weight matrix with LoRA rank <span class="math notranslate nohighlight">\(r=16\)</span></p></li>
+<li><p>What happens to inference speed when using LoRA adapters?</p></li>
+</ul>
+</section>
+<section id="wavelet-fine-tuning-waveft">
+<h3><strong>2. Wavelet Fine-Tuning (WaveFT)</strong><a class="headerlink" href="#wavelet-fine-tuning-waveft" title="Link to this heading">#</a></h3>
+<p>WaveFT (2025) represents a paradigm shift by fine-tuning models in the <strong>wavelet domain</strong> rather than the standard parameter space. This approach leverages the multi-scale representation capabilities of wavelets to achieve extreme parameter efficiency.</p>
+<section id="id1">
+<h4>Core Concept<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<p>Instead of directly updating weight matrices, WaveFT:</p>
+<ol class="arabic simple">
+<li><p><strong>Transforms</strong> the weight matrix <span class="math notranslate nohighlight">\(W_0\)</span> into wavelet coefficients using a 2D wavelet transform</p></li>
+<li><p><strong>Selects</strong> a sparse subset of coefficients to make trainable (e.g., 0.01% of all coefficients)</p></li>
+<li><p><strong>Trains</strong> only these selected coefficients while keeping others at zero</p></li>
+<li><p><strong>Reconstructs</strong> the weight update <span class="math notranslate nohighlight">\(\Delta W\)</span> via inverse wavelet transform</p></li>
+<li><p><strong>Applies</strong> the update: <span class="math notranslate nohighlight">\(W = W_0 + \Delta W\)</span></p></li>
+</ol>
+</section>
+<section id="mathematical-formulation">
+<h4>Mathematical Formulation<a class="headerlink" href="#mathematical-formulation" title="Link to this heading">#</a></h4>
+<p>For a weight matrix <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Forward Transform</strong>: <span class="math notranslate nohighlight">\(C = \text{DWT}(W_0)\)</span> where DWT is 2D Discrete Wavelet Transform</p></li>
+<li><p><strong>Sparse Selection</strong>: Choose subset <span class="math notranslate nohighlight">\(S\)</span> of coefficients, mask others: <span class="math notranslate nohighlight">\(C_{\text{train}} = C \odot M\)</span></p></li>
+<li><p><strong>Training</strong>: Update only <span class="math notranslate nohighlight">\(C_{\text{train}}\)</span> via gradient descent</p></li>
+<li><p><strong>Inverse Transform</strong>: <span class="math notranslate nohighlight">\(\Delta W = \text{IDWT}(C_{\text{train}})\)</span></p></li>
+</ol>
+</section>
+<section id="id2">
+<h4>Key Advantages<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Extreme Sparsity</strong>: Can train as few as 0.01% of weight coefficients</p></li>
+<li><p><strong>High-Rank Updates</strong>: Unlike LoRA’s low-rank constraint, WaveFT can produce full-rank updates</p></li>
+<li><p><strong>Multi-Scale Learning</strong>: Wavelets capture both coarse and fine-grained patterns</p></li>
+<li><p><strong>No Inference Overhead</strong>: After training, <span class="math notranslate nohighlight">\(\Delta W\)</span> is merged into <span class="math notranslate nohighlight">\(W_0\)</span></p></li>
+</ul>
+</section>
+<section id="why-wavelets-work">
+<h4>Why Wavelets Work<a class="headerlink" href="#why-wavelets-work" title="Link to this heading">#</a></h4>
+<p>Wavelets decompose signals into multiple frequency components, similar to how JPEG compression works. This multi-scale representation allows the model to:</p>
+<ul class="simple">
+<li><p>Adjust broad, low-frequency patterns (global changes)</p></li>
+<li><p>Fine-tune high-frequency details (local adjustments)</p></li>
+<li><p>Capture hierarchical dependencies in the weight space</p></li>
+</ul>
+</section>
+<section id="performance-results">
+<h4>Performance Results<a class="headerlink" href="#performance-results" title="Link to this heading">#</a></h4>
+<p>WaveFT has shown remarkable results in extreme low-parameter regimes:</p>
+<ul class="simple">
+<li><p><strong>Stable Diffusion</strong>: Better subject fidelity and image diversity than LoRA with 10x fewer parameters</p></li>
+<li><p><strong>Language Models</strong>: Competitive performance with 0.1% of LoRA’s parameter count</p></li>
+<li><p><strong>Memory Efficiency</strong>: Can train models with only thousands of parameters instead of millions</p></li>
+</ul>
+</section>
+</section>
+<section id="id3">
+<h3>Checkpoint Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does WaveFT differ from LoRA in terms of the mathematical structure of weight updates?</p></li>
+<li><p>Why might wavelet transforms be more effective than low-rank decomposition for certain types of weight patterns?</p></li>
+<li><p>What are the trade-offs between WaveFT’s extreme sparsity and LoRA’s low-rank approach?</p></li>
+</ul>
+</section>
+<section id="weight-decomposed-low-rank-adaptation-dora">
+<h3><strong>3. Weight-Decomposed Low-Rank Adaptation (DoRA)</strong><a class="headerlink" href="#weight-decomposed-low-rank-adaptation-dora" title="Link to this heading">#</a></h3>
+<p>DoRA (NVIDIA, 2024) addresses a key limitation of LoRA by explicitly separating <strong>magnitude</strong> and <strong>direction</strong> components of weight updates. This decomposition provides greater flexibility and often achieves superior performance compared to standard LoRA.</p>
+<section id="id4">
+<h4>Core Concept<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<p>DoRA decomposes each weight matrix <span class="math notranslate nohighlight">\(W_0\)</span> into two components:</p>
+<ol class="arabic simple">
+<li><p><strong>Direction</strong>: <span class="math notranslate nohighlight">\(V = \frac{W_0}{||W_0||}\)</span> (normalized weight matrix)</p></li>
+<li><p><strong>Magnitude</strong>: <span class="math notranslate nohighlight">\(m = ||W_0||\)</span> (scalar or vector of norms)</p></li>
+</ol>
+<p>The key insight is that these components can be updated <strong>independently</strong> during fine-tuning.</p>
+</section>
+<section id="id5">
+<h4>Mathematical Formulation<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<p>For a weight matrix <span class="math notranslate nohighlight">\(W_0 \in \mathbb{R}^{d \times k}\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Decomposition</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(V = \frac{W_0}{||W_0||_F}\)</span> (Frobenius norm normalization)</p></li>
+<li><p><span class="math notranslate nohighlight">\(m = ||W_0||_F\)</span> (magnitude scalar)</p></li>
+</ul>
+</li>
+<li><p><strong>Direction Update</strong>: Apply LoRA to the direction</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(\Delta V = AB\)</span> where <span class="math notranslate nohighlight">\(A \in \mathbb{R}^{d \times r}\)</span>, <span class="math notranslate nohighlight">\(B \in \mathbb{R}^{r \times k}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(V' = V + \Delta V\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Magnitude Update</strong>: Learn a scaling factor</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(m' = m + \Delta m\)</span> where <span class="math notranslate nohighlight">\(\Delta m\)</span> is a learnable scalar</p></li>
+</ul>
+</li>
+<li><p><strong>Reconstruction</strong>: <span class="math notranslate nohighlight">\(W' = m' \times \frac{V'}{||V'||_F}\)</span></p></li>
+</ol>
+<p><img alt="DoRA Architecture" src="../_images/image1.jpeg" />
+<em>Illustration of DoRA: the pre-trained weight <span class="math notranslate nohighlight">\(W_0\)</span> is factored into a frozen direction <span class="math notranslate nohighlight">\(V\)</span> and a learnable magnitude <span class="math notranslate nohighlight">\(m\)</span>. DoRA applies a LoRA-style low-rank update (matrices <span class="math notranslate nohighlight">\(A\)</span>, <span class="math notranslate nohighlight">\(B\)</span> of rank <span class="math notranslate nohighlight">\(r\)</span>) to adjust the direction (yielding <span class="math notranslate nohighlight">\(V + \Delta V\)</span>) and also tunes the magnitude <span class="math notranslate nohighlight">\(m\)</span>. After training, the magnitude and new direction are multiplied to form the merged weight <span class="math notranslate nohighlight">\(W'\)</span>. Blue components are frozen, green are trainable (adapted from the DoRA paper).</em></p>
+</section>
+<section id="id6">
+<h4>Key Advantages<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Decoupled Updates</strong>: Magnitude and direction can change independently</p></li>
+<li><p><strong>Better Expressiveness</strong>: Captures both scaling and directional changes</p></li>
+<li><p><strong>Minimal Overhead</strong>: Adds only a few magnitude parameters per layer</p></li>
+<li><p><strong>Drop-in Replacement</strong>: Can be used wherever LoRA is applied</p></li>
+</ul>
+</section>
+<section id="why-this-works">
+<h4>Why This Works<a class="headerlink" href="#why-this-works" title="Link to this heading">#</a></h4>
+<p>Traditional LoRA updates are constrained by the low-rank structure, which can limit the model’s ability to make certain types of weight adjustments. DoRA addresses this by:</p>
+<ul class="simple">
+<li><p><strong>Magnitude Control</strong>: Allows the model to scale weights up or down globally</p></li>
+<li><p><strong>Direction Flexibility</strong>: Enables fine-grained directional adjustments via LoRA</p></li>
+<li><p><strong>Independent Learning</strong>: Magnitude and direction updates don’t interfere with each other</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>Performance Results<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<p>DoRA consistently outperforms LoRA across various benchmarks:</p>
+<ul class="simple">
+<li><p><strong>LLaMA-7B</strong>: 3.7% average improvement on commonsense reasoning tasks</p></li>
+<li><p><strong>Parameter Efficiency</strong>: Achieves better results with 25% fewer trainable parameters</p></li>
+<li><p><strong>Low-Rank Settings</strong>: Particularly effective when LoRA rank is constrained</p></li>
+<li><p><strong>Training Dynamics</strong>: Weight update patterns more closely resemble full fine-tuning</p></li>
+</ul>
+</section>
+<section id="implementation-considerations">
+<h4>Implementation Considerations<a class="headerlink" href="#implementation-considerations" title="Link to this heading">#</a></h4>
+<p>DoRA adds minimal computational overhead:</p>
+<ul class="simple">
+<li><p><strong>Memory</strong>: Only a few additional scalars per adapted layer</p></li>
+<li><p><strong>Training</strong>: Slightly more complex gradient computation</p></li>
+<li><p><strong>Inference</strong>: No overhead after merging (same as LoRA)</p></li>
+</ul>
+</section>
+</section>
+<section id="id8">
+<h3>Checkpoint Questions<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does DoRA’s weight decomposition differ from LoRA’s low-rank approximation?</p></li>
+<li><p>Why might separating magnitude and direction updates lead to better performance?</p></li>
+<li><p>What are the computational trade-offs of using DoRA instead of LoRA?</p></li>
+</ul>
+</section>
+<section id="vb-lora-vector-bank-lora">
+<h3><strong>4. VB-LoRA (Vector Bank LoRA)</strong><a class="headerlink" href="#vb-lora-vector-bank-lora" title="Link to this heading">#</a></h3>
+<p>VB-LoRA (2023) pushes parameter efficiency to the extreme by introducing <strong>global parameter sharing</strong> across all layers. Instead of learning separate LoRA matrices for each layer, VB-LoRA maintains a shared “vector bank” that all layers can access.</p>
+<section id="id9">
+<h4>Core Concept<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<p>VB-LoRA operates on the principle that different layers often need <strong>similar types of updates</strong>. Rather than learning independent <span class="math notranslate nohighlight">\(A\)</span> and <span class="math notranslate nohighlight">\(B\)</span> matrices for each layer, it:</p>
+<ol class="arabic simple">
+<li><p><strong>Maintains</strong> a global vector bank <span class="math notranslate nohighlight">\(\mathcal{B} = \{v_1, v_2, ..., v_N\}\)</span> of reusable vectors</p></li>
+<li><p><strong>Composes</strong> each layer’s LoRA matrices from vectors selected from this bank</p></li>
+<li><p><strong>Learns</strong> selection weights and mixing coefficients for each layer</p></li>
+</ol>
+</section>
+<section id="id10">
+<h4>Mathematical Formulation<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<p>For layer <span class="math notranslate nohighlight">\(l\)</span> with LoRA matrices <span class="math notranslate nohighlight">\(A_l\)</span> and <span class="math notranslate nohighlight">\(B_l\)</span>:</p>
+<ol class="arabic simple">
+<li><p><strong>Vector Selection</strong>: Choose top-<span class="math notranslate nohighlight">\(k\)</span> vectors from bank <span class="math notranslate nohighlight">\(\mathcal{B}\)</span></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(S_l = \text{TopK}(\text{similarity}(A_l, \mathcal{B}), k)\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Matrix Composition</strong>:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(A_l = \sum_{i \in S_l} w_{l,i} \cdot v_i \cdot U_{l,i}\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B_l = \sum_{i \in S_l} w'_{l,i} \cdot v_i \cdot V_{l,i}\)</span></p></li>
+</ul>
+</li>
+<li><p><strong>Parameter Sharing</strong>: Only <span class="math notranslate nohighlight">\(w_{l,i}\)</span>, <span class="math notranslate nohighlight">\(w'_{l,i}\)</span>, <span class="math notranslate nohighlight">\(U_{l,i}\)</span>, <span class="math notranslate nohighlight">\(V_{l,i}\)</span> are layer-specific</p></li>
+</ol>
+</section>
+<section id="id11">
+<h4>Key Advantages<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Extreme Compression</strong>: Can reduce adapter size by 100x compared to standard LoRA</p></li>
+<li><p><strong>Global Cooperation</strong>: Layers can share learned patterns and representations</p></li>
+<li><p><strong>Scalable</strong>: Parameter count doesn’t grow linearly with model depth</p></li>
+<li><p><strong>Storage Efficient</strong>: Ideal for deploying multiple task-specific adapters</p></li>
+</ul>
+</section>
+<section id="id12">
+<h4>Performance Results<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<p>VB-LoRA achieves remarkable compression without performance loss:</p>
+<ul class="simple">
+<li><p><strong>LLaMA2-13B</strong>: 0.4% of standard LoRA parameters, better performance</p></li>
+<li><p><strong>Storage</strong>: 300MB → 2.5MB adapter files (120x compression)</p></li>
+<li><p><strong>Multi-Task</strong>: Can store 100+ adapters in space of one standard LoRA</p></li>
+<li><p><strong>Edge Deployment</strong>: Enables fine-tuned models on resource-constrained devices</p></li>
+</ul>
+</section>
+<section id="implementation-details">
+<h4>Implementation Details<a class="headerlink" href="#implementation-details" title="Link to this heading">#</a></h4>
+<p>The vector bank approach works through:</p>
+<ul class="simple">
+<li><p><strong>Differentiable Selection</strong>: Top-<span class="math notranslate nohighlight">\(k\)</span> selection is made differentiable for end-to-end training</p></li>
+<li><p><strong>Adaptive Mixing</strong>: Each layer learns how to combine selected vectors optimally</p></li>
+<li><p><strong>Hierarchical Sharing</strong>: Different layers can access different subsets of the bank</p></li>
+</ul>
+</section>
+<section id="use-cases">
+<h4>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h4>
+<p>VB-LoRA is particularly valuable for:</p>
+<ul class="simple">
+<li><p><strong>Multi-Task Learning</strong>: Training models for many different tasks</p></li>
+<li><p><strong>Edge Deployment</strong>: Running fine-tuned models on mobile/embedded devices</p></li>
+<li><p><strong>Model Sharing</strong>: Distributing task-specific adapters efficiently</p></li>
+<li><p><strong>Resource-Constrained Environments</strong>: Where storage and memory are limited</p></li>
+</ul>
+</section>
+</section>
+<section id="id13">
+<h3>Checkpoint Questions<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does VB-LoRA’s parameter sharing differ from standard LoRA’s per-layer approach?</p></li>
+<li><p>What are the trade-offs between global parameter sharing and layer-specific adaptation?</p></li>
+<li><p>Why might VB-LoRA be particularly useful for multi-task learning scenarios?</p></li>
+</ul>
+</section>
+<section id="qr-adaptor-adaptive-rank-and-quantization">
+<h3><strong>5. QR-Adaptor (Adaptive Rank and Quantization)</strong><a class="headerlink" href="#qr-adaptor-adaptive-rank-and-quantization" title="Link to this heading">#</a></h3>
+<p>QR-Adaptor (2025) represents a paradigm shift by <strong>jointly optimizing quantization precision and adapter rank</strong> for each layer. Unlike previous methods that treat quantization and adaptation separately, QR-Adaptor finds the optimal combination of bit-widths and LoRA ranks to maximize performance under memory constraints.</p>
+<section id="id14">
+<h4>Core Concept<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor addresses the key insight that <strong>different layers have different sensitivity</strong> to quantization and adaptation:</p>
+<ul class="simple">
+<li><p><strong>Critical layers</strong> (e.g., attention mechanisms) may need higher precision and larger adapters</p></li>
+<li><p><strong>Less sensitive layers</strong> (e.g., some feed-forward components) can be heavily quantized with minimal adapters</p></li>
+<li><p><strong>Optimal allocation</strong> of the memory budget across layers can outperform uniform approaches</p></li>
+</ul>
+</section>
+<section id="id15">
+<h4>Mathematical Formulation<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<p>For each layer <span class="math notranslate nohighlight">\(l\)</span>, QR-Adaptor optimizes:</p>
+<div class="math notranslate nohighlight">
+\[\min_{\{b_l, r_l\}} \mathcal{L}_{\text{task}}(f(\{b_l, r_l\})) \quad \text{s.t.} \quad \sum_l \text{Memory}(b_l, r_l) \leq B\]</div>
+<p>where:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(b_l \in \{4, 8, 16\}\)</span> is the bit-width for layer <span class="math notranslate nohighlight">\(l\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(r_l \in \{0, 2, 4, 8, 16\}\)</span> is the LoRA rank for layer <span class="math notranslate nohighlight">\(l\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(B\)</span> is the total memory budget</p></li>
+<li><p><span class="math notranslate nohighlight">\(\mathcal{L}_{\text{task}}\)</span> is the task-specific loss</p></li>
+</ul>
+</section>
+<section id="optimization-strategy">
+<h4>Optimization Strategy<a class="headerlink" href="#optimization-strategy" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor uses a <strong>gradient-free search</strong> approach:</p>
+<ol class="arabic simple">
+<li><p><strong>Calibration</strong>: Evaluate different configurations on a small validation set</p></li>
+<li><p><strong>Search</strong>: Use evolutionary algorithms or Bayesian optimization to find optimal assignments</p></li>
+<li><p><strong>Validation</strong>: Test the best configuration on the full training set</p></li>
+</ol>
+</section>
+<section id="id16">
+<h4>Key Advantages<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Layer-Wise Adaptivity</strong>: Each layer gets optimal precision and rank allocation</p></li>
+<li><p><strong>Performance-First</strong>: Directly optimizes for task performance, not just quantization error</p></li>
+<li><p><strong>Memory Efficient</strong>: Achieves better results with the same memory budget</p></li>
+<li><p><strong>Automated</strong>: No manual tuning of quantization/rank per layer</p></li>
+</ul>
+</section>
+<section id="id17">
+<h4>Performance Results<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor achieves remarkable improvements:</p>
+<ul class="simple">
+<li><p><strong>GSM8K</strong>: 4.9% accuracy improvement over fixed-precision approaches</p></li>
+<li><p><strong>Memory Efficiency</strong>: 4-bit models that outperform 16-bit full fine-tuning</p></li>
+<li><p><strong>Layer Allocation</strong>: Critical layers get 8-bit precision, others use 4-bit</p></li>
+<li><p><strong>Rank Optimization</strong>: Attention layers get rank-16, others use rank-4 or no adapter</p></li>
+</ul>
+</section>
+<section id="example-configuration">
+<h4>Example Configuration<a class="headerlink" href="#example-configuration" title="Link to this heading">#</a></h4>
+<p>A typical QR-Adaptor configuration might look like:</p>
+<ul class="simple">
+<li><p><strong>Layer 1-6</strong> (Embedding): 4-bit, no LoRA</p></li>
+<li><p><strong>Layer 7-12</strong> (Attention): 8-bit, rank-16 LoRA</p></li>
+<li><p><strong>Layer 13-18</strong> (Feed-forward): 4-bit, rank-4 LoRA</p></li>
+<li><p><strong>Layer 19-24</strong> (Output): 8-bit, rank-8 LoRA</p></li>
+</ul>
+</section>
+<section id="id18">
+<h4>Implementation Considerations<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor requires:</p>
+<ul class="simple">
+<li><p><strong>Search Time</strong>: Initial configuration search takes additional time</p></li>
+<li><p><strong>Calibration Data</strong>: Needs representative data for configuration evaluation</p></li>
+<li><p><strong>Hardware Support</strong>: Requires mixed-precision training capabilities</p></li>
+</ul>
+</section>
+<section id="when-to-use">
+<h4>When to Use<a class="headerlink" href="#when-to-use" title="Link to this heading">#</a></h4>
+<p>QR-Adaptor is ideal for:</p>
+<ul class="simple">
+<li><p><strong>Memory-Constrained Deployment</strong>: When every bit of performance matters</p></li>
+<li><p><strong>Production Systems</strong>: Where optimal resource allocation is critical</p></li>
+<li><p><strong>Research</strong>: Understanding layer-wise sensitivity to quantization</p></li>
+<li><p><strong>Automated Optimization</strong>: When manual tuning is impractical</p></li>
+</ul>
+</section>
+</section>
+<section id="id19">
+<h3>Checkpoint Questions<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does QR-Adaptor’s layer-wise optimization differ from uniform quantization approaches?</p></li>
+<li><p>Why might different layers require different precision and rank allocations?</p></li>
+<li><p>What are the trade-offs between QR-Adaptor’s search complexity and performance gains?</p></li>
+</ul>
+</section>
+<section id="qlora-and-4-bit-nf4-quantization">
+<h3><strong>6. QLoRA and 4-bit NF4 Quantization</strong><a class="headerlink" href="#qlora-and-4-bit-nf4-quantization" title="Link to this heading">#</a></h3>
+<p>QLoRA (Quantized LoRA) represents a breakthrough in efficient fine-tuning, enabling the training of 65B parameter models on a single 48GB GPU. The key innovation lies in combining 4-bit quantization with LoRA adapters while maintaining performance.</p>
+<section id="id20">
+<h4>Core Concept<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<p>QLoRA follows a three-step approach:</p>
+<ol class="arabic simple">
+<li><p><strong>Quantize</strong> the pre-trained model weights to 4-bit precision</p></li>
+<li><p><strong>Freeze</strong> the quantized weights (no gradient updates)</p></li>
+<li><p><strong>Train</strong> LoRA adapters at 16-bit precision with full backpropagation through quantized weights</p></li>
+</ol>
+<p>This combination reduces memory usage by ~75% while preserving model performance.</p>
+</section>
+<section id="nf4-quantization-the-key-innovation">
+<h4>NF4 Quantization: The Key Innovation<a class="headerlink" href="#nf4-quantization-the-key-innovation" title="Link to this heading">#</a></h4>
+<p>The success of QLoRA hinges on <strong>NF4 (NormalFloat-4)</strong>, a custom 4-bit data type optimized for neural network weights:</p>
+<ul class="simple">
+<li><p><strong>Information-Theoretically Optimal</strong>: NF4 uses a logarithmic distribution that matches the normal distribution of neural weights</p></li>
+<li><p><strong>Superior Performance</strong>: Achieves 27.4 vs 31.1 perplexity compared to standard 4-bit quantization</p></li>
+<li><p><strong>Efficient Representation</strong>: Uses all 16 possible 4-bit values optimally across the weight distribution</p></li>
+</ul>
+</section>
+<section id="technical-innovations">
+<h4>Technical Innovations<a class="headerlink" href="#technical-innovations" title="Link to this heading">#</a></h4>
+<p><strong>Double Quantization:</strong></p>
+<ul class="simple">
+<li><p>Quantizes both model weights (4-bit) and scaling factors (8-bit)</p></li>
+<li><p>Further reduces memory overhead without performance loss</p></li>
+<li><p>Implemented efficiently in the bitsandbytes library</p></li>
+</ul>
+<p><strong>Paged Optimizers:</strong></p>
+<ul class="simple">
+<li><p>Swaps gradients and momentum to CPU memory during peaks</p></li>
+<li><p>Prevents out-of-memory errors on large models</p></li>
+<li><p>Enables training of models that wouldn’t fit otherwise</p></li>
+</ul>
+</section>
+<section id="id21">
+<h4>Performance Results<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<p>QLoRA achieves remarkable results:</p>
+<ul class="simple">
+<li><p><strong>Memory Efficiency</strong>: 75% reduction in memory usage</p></li>
+<li><p><strong>Performance Parity</strong>: Matches full 16-bit fine-tuning on GLUE and instruction-following tasks</p></li>
+<li><p><strong>Scalability</strong>: Enables fine-tuning of 30B-65B models on single GPUs</p></li>
+<li><p><strong>Speed</strong>: 4-bit operations are often faster than 16-bit on modern hardware</p></li>
+</ul>
+<p><img alt="QLoRA Comparison" src="../_images/image3.jpeg" />
+<em>Comparison of full fine-tuning vs LoRA vs QLoRA (conceptual). Left: Full fine-tuning updates all model weights (in 16-bit precision) and requires storing large optimizer states (32-bit per weight). Middle: LoRA fine-tuning keeps base weights 16-bit and frozen, and trains small 16-bit adapter matrices (much less to update; optimizer only for those). Right: QLoRA does the same low-rank adaptation but on a 4-bit quantized base model; gradients (green arrows) flow through the 4-bit model to the LoRA adapters. The magenta arrow indicates QLoRA’s paged optimizer offloading states to CPU. This approach cuts memory by ~75% while preserving performance.</em></p>
+</section>
+<section id="practical-implementation">
+<h4>Practical Implementation<a class="headerlink" href="#practical-implementation" title="Link to this heading">#</a></h4>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitsAndBytesConfig</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+
+<span class="c1"># Configure 4-bit quantization</span>
+<span class="n">quantization_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s2">&quot;nf4&quot;</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span>
+<span class="p">)</span>
+
+<span class="c1"># Load model with quantization</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;meta-llama/Llama-2-7b-hf&quot;</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply LoRA</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span>
+<span class="p">)</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="when-to-use-qlora">
+<h4>When to Use QLoRA<a class="headerlink" href="#when-to-use-qlora" title="Link to this heading">#</a></h4>
+<p>QLoRA is ideal for:</p>
+<ul class="simple">
+<li><p><strong>Large Models</strong>: 7B+ parameter models where memory is a constraint</p></li>
+<li><p><strong>Resource-Limited Environments</strong>: Single GPU setups with limited memory</p></li>
+<li><p><strong>Research</strong>: When you need to experiment with large models</p></li>
+<li><p><strong>Production</strong>: When memory efficiency is critical</p></li>
+</ul>
+</section>
+<section id="id22">
+<h4>Limitations<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Hardware Requirements</strong>: Requires GPUs with 4-bit support</p></li>
+<li><p><strong>Setup Complexity</strong>: More complex than standard fine-tuning</p></li>
+<li><p><strong>Library Dependencies</strong>: Requires bitsandbytes and compatible transformers</p></li>
+</ul>
+</section>
+</section>
+<section id="id23">
+<h3>Checkpoint Questions<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does NF4 quantization differ from standard 4-bit quantization approaches?</p></li>
+<li><p>What are the key technical innovations that make QLoRA work effectively?</p></li>
+<li><p>When would you choose QLoRA over standard LoRA or full fine-tuning?</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="practical-application-implementing-and-comparing-peft-methods">
+<h2>Practical Application: Implementing and Comparing PEFT Methods<a class="headerlink" href="#practical-application-implementing-and-comparing-peft-methods" title="Link to this heading">#</a></h2>
+<p>Now that we understand the theoretical foundations, let’s explore how to implement these techniques in practice. We’ll focus on hands-on examples using PyTorch and Hugging Face libraries.</p>
+<section id="basic-lora-implementation">
+<h3><strong>1. Basic LoRA Implementation</strong><a class="headerlink" href="#basic-lora-implementation" title="Link to this heading">#</a></h3>
+<p>Let’s start with a complete LoRA implementation for Korean sentiment analysis:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span>
+    <span class="n">AutoModelForSequenceClassification</span><span class="p">,</span> 
+    <span class="n">AutoTokenizer</span><span class="p">,</span> 
+    <span class="n">TrainingArguments</span><span class="p">,</span> 
+    <span class="n">Trainer</span>
+<span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Load Korean BERT model</span>
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;klue/bert-base&quot;</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="p">,</span> 
+    <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
+<span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+
+<span class="c1"># Configure LoRA</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>                    <span class="c1"># LoRA rank</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>          <span class="c1"># Scaling factor</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>  <span class="c1"># Target attention and FFN layers</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply LoRA to model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Trainable parameters: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Prepare Korean sentiment data (example)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_dataset</span><span class="p">():</span>
+    <span class="n">texts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s2">&quot;이 영화 정말 재밌어요!&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;너무 지루하고 별로예요.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;배우들의 연기가 훌륭해요.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;스토리가 너무 복잡해요.&quot;</span>
+    <span class="p">]</span>
+    <span class="n">labels</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span>  <span class="c1"># 1: positive, 0: negative</span>
+    
+    <span class="c1"># Tokenize</span>
+    <span class="n">encodings</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">texts</span><span class="p">,</span> 
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span>
+        <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span>
+    <span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">Dataset</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
+        <span class="s2">&quot;input_ids&quot;</span><span class="p">:</span> <span class="n">encodings</span><span class="p">[</span><span class="s2">&quot;input_ids&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;attention_mask&quot;</span><span class="p">:</span> <span class="n">encodings</span><span class="p">[</span><span class="s2">&quot;attention_mask&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;labels&quot;</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">labels</span><span class="p">)</span>
+    <span class="p">})</span>
+
+<span class="c1"># Training setup</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./lora_sentiment&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-4</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">evaluation_strategy</span><span class="o">=</span><span class="s2">&quot;steps&quot;</span><span class="p">,</span>
+    <span class="n">eval_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">prepare_dataset</span><span class="p">(),</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Train the model</span>
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+<span class="c1"># Save LoRA adapter</span>
+<span class="n">model</span><span class="o">.</span><span class="n">save_pretrained</span><span class="p">(</span><span class="s2">&quot;./lora_adapter&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="qlora-implementation">
+<h3><strong>2. QLoRA Implementation</strong><a class="headerlink" href="#qlora-implementation" title="Link to this heading">#</a></h3>
+<p>Here’s how to implement QLoRA for a larger model:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitsAndBytesConfig</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Configure 4-bit quantization</span>
+<span class="n">quantization_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s2">&quot;nf4&quot;</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Load model with quantization</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;beomi/KoAlpaca-7B&quot;</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
+<span class="p">)</span>
+
+<span class="c1"># Configure LoRA for QLoRA</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;q_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;v_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;k_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;o_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;gate_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;up_proj&quot;</span><span class="p">,</span> <span class="s2">&quot;down_proj&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span><span class="p">,</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="s2">&quot;CAUSAL_LM&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply LoRA</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+
+<span class="c1"># Training with QLoRA</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./qlorafinetuned&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>  <span class="c1"># Smaller batch size due to memory constraints</span>
+    <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">2e-4</span><span class="p">,</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">remove_unused_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Use Trainer with QLoRA</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">data_collator</span><span class="o">=</span><span class="n">data_collator</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="dora-implementation">
+<h3><strong>3. DoRA Implementation</strong><a class="headerlink" href="#dora-implementation" title="Link to this heading">#</a></h3>
+<p>While DoRA isn’t yet in the main PEFT library, here’s a conceptual implementation:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">DoRALayer</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">base_layer</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span> <span class="o">=</span> <span class="n">base_layer</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
+        
+        <span class="c1"># LoRA matrices</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        
+        <span class="c1"># Magnitude parameter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">))</span>
+        
+        <span class="c1"># Initialize</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_uniform_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># Get base output</span>
+        <span class="n">base_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        
+        <span class="c1"># LoRA update</span>
+        <span class="n">lora_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
+        
+        <span class="c1"># Apply magnitude scaling</span>
+        <span class="n">scaled_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_output</span> <span class="o">+</span> <span class="n">lora_output</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span>
+        
+        <span class="k">return</span> <span class="n">scaled_output</span>
+
+<span class="c1"># Usage example</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">target_modules</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">module</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">named_modules</span><span class="p">():</span>
+        <span class="k">if</span> <span class="nb">any</span><span class="p">(</span><span class="n">target</span> <span class="ow">in</span> <span class="n">name</span> <span class="k">for</span> <span class="n">target</span> <span class="ow">in</span> <span class="n">target_modules</span><span class="p">):</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">):</span>
+                <span class="c1"># Replace with DoRA layer</span>
+                <span class="n">dora_layer</span> <span class="o">=</span> <span class="n">DoRALayer</span><span class="p">(</span><span class="n">module</span><span class="p">,</span> <span class="n">rank</span><span class="o">=</span><span class="n">rank</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">)</span>
+                <span class="c1"># Update the model structure</span>
+                <span class="n">parent_name</span> <span class="o">=</span> <span class="s1">&#39;.&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">child_name</span> <span class="o">=</span> <span class="n">name</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="n">parent_module</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">get_submodule</span><span class="p">(</span><span class="n">parent_name</span><span class="p">)</span>
+                <span class="nb">setattr</span><span class="p">(</span><span class="n">parent_module</span><span class="p">,</span> <span class="n">child_name</span><span class="p">,</span> <span class="n">dora_layer</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">model</span>
+</pre></div>
+</div>
+</section>
+<section id="comparison-framework">
+<h3><strong>4. Comparison Framework</strong><a class="headerlink" href="#comparison-framework" title="Link to this heading">#</a></h3>
+<p>Here’s a framework to compare different PEFT methods:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">time</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">psutil</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PEFTComparison</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span> <span class="n">Dataset</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate a PEFT method and record metrics&quot;&quot;&quot;</span>
+        
+        <span class="c1"># Load model</span>
+        <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span>
+        <span class="p">)</span>
+        
+        <span class="c1"># Apply PEFT method</span>
+        <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">:</span>
+            <span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">peft_config</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;DoRA&quot;</span><span class="p">:</span>
+            <span class="n">model</span> <span class="o">=</span> <span class="n">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
+        <span class="c1"># Add other methods...</span>
+        
+        <span class="c1"># Record metrics</span>
+        <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">start_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+        
+        <span class="c1"># Training (simplified)</span>
+        <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
+            <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+            <span class="n">train_dataset</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset</span><span class="p">,</span>
+            <span class="n">args</span><span class="o">=</span><span class="n">TrainingArguments</span><span class="p">(</span>
+                <span class="n">output_dir</span><span class="o">=</span><span class="sa">f</span><span class="s2">&quot;./results/</span><span class="si">{</span><span class="n">method_name</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+                <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+        
+        <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+        
+        <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
+        <span class="n">end_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
+        
+        <span class="c1"># Record results</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s2">&quot;trainable_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">),</span>
+            <span class="s2">&quot;total_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()),</span>
+            <span class="s2">&quot;training_time&quot;</span><span class="p">:</span> <span class="n">end_time</span> <span class="o">-</span> <span class="n">start_time</span><span class="p">,</span>
+            <span class="s2">&quot;memory_usage&quot;</span><span class="p">:</span> <span class="n">end_memory</span> <span class="o">-</span> <span class="n">start_memory</span><span class="p">,</span>
+            <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span>
+        <span class="p">}</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">compare_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare all methods and print results&quot;&quot;&quot;</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT Methods Comparison&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Trainable Parameters: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Parameter Ratio: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="o">/</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;total_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Training Time: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;training_time&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">s&quot;</span><span class="p">)</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Memory Usage: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;memory_usage&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">MB&quot;</span><span class="p">)</span>
+
+<span class="c1"># Usage</span>
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">PEFTComparison</span><span class="p">(</span><span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span> <span class="n">train_dataset</span><span class="p">)</span>
+
+<span class="c1"># Compare different methods</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">evaluate_method</span><span class="p">(</span><span class="s2">&quot;LoRA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">})</span>
+<span class="n">comparison</span><span class="o">.</span><span class="n">evaluate_method</span><span class="p">(</span><span class="s2">&quot;DoRA&quot;</span><span class="p">,</span> <span class="p">{</span><span class="s2">&quot;target_modules&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">],</span> <span class="s2">&quot;rank&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">})</span>
+<span class="c1"># Add more methods...</span>
+
+<span class="n">comparison</span><span class="o">.</span><span class="n">compare_methods</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="best-practices-and-tips">
+<h3><strong>5. Best Practices and Tips</strong><a class="headerlink" href="#best-practices-and-tips" title="Link to this heading">#</a></h3>
+<p><strong>Choosing the Right Method:</strong></p>
+<ul class="simple">
+<li><p><strong>Small datasets (&lt; 1K examples)</strong>: Use WaveFT or VB-LoRA for extreme efficiency</p></li>
+<li><p><strong>Medium datasets (1K-10K examples)</strong>: Use DoRA for better performance than LoRA</p></li>
+<li><p><strong>Large datasets (&gt; 10K examples)</strong>: Use QLoRA for memory efficiency</p></li>
+<li><p><strong>Multiple tasks</strong>: Use VB-LoRA for storage efficiency</p></li>
+</ul>
+<p><strong>Hyperparameter Tuning:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># LoRA hyperparameters</span>
+<span class="n">lora_configs</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">},</span>   <span class="c1"># Minimal parameters</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">32</span><span class="p">},</span>   <span class="c1"># Balanced</span>
+    <span class="p">{</span><span class="s2">&quot;r&quot;</span><span class="p">:</span> <span class="mi">16</span><span class="p">,</span> <span class="s2">&quot;lora_alpha&quot;</span><span class="p">:</span> <span class="mi">64</span><span class="p">},</span>  <span class="c1"># High capacity</span>
+<span class="p">]</span>
+
+<span class="c1"># Target modules selection</span>
+<span class="n">target_modules_options</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">],</span>                    <span class="c1"># Attention only</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">],</span>             <span class="c1"># Full attention</span>
+    <span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>    <span class="c1"># Attention + FFN</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p><strong>Memory Optimization:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Enable gradient checkpointing</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">gradient_checkpointing</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dataloader_pin_memory</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+    <span class="n">dataloader_num_workers</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Use mixed precision</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>  <span class="c1"># or bf16=True for newer GPUs</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h3>Checkpoint Questions<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How would you choose between LoRA and DoRA for a specific task?</p></li>
+<li><p>What are the key considerations when implementing QLoRA?</p></li>
+<li><p>How would you design an experiment to compare PEFT methods fairly?</p></li>
+</ul>
+</section>
+</section>
+<section id="summary-and-future-directions">
+<h2>Summary and Future Directions<a class="headerlink" href="#summary-and-future-directions" title="Link to this heading">#</a></h2>
+<p>In this lecture, we’ve explored the cutting-edge landscape of Parameter-Efficient Fine-Tuning (PEFT) techniques. Let’s summarize the key takeaways and look toward future developments.</p>
+<section id="method-comparison-summary">
+<h3><strong>Method Comparison Summary</strong><a class="headerlink" href="#method-comparison-summary" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Method</p></th>
+<th class="head"><p>Parameter Efficiency</p></th>
+<th class="head"><p>Performance</p></th>
+<th class="head"><p>Use Case</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>LoRA</strong></p></td>
+<td><p>0.1-0.5% of model</p></td>
+<td><p>Baseline</p></td>
+<td><p>General purpose</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>DoRA</strong></p></td>
+<td><p>0.1-0.5% of model</p></td>
+<td><p>+3.7% over LoRA</p></td>
+<td><p>Better performance needed</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>WaveFT</strong></p></td>
+<td><p>0.01-0.1% of model</p></td>
+<td><p>Competitive</p></td>
+<td><p>Extreme efficiency</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>VB-LoRA</strong></p></td>
+<td><p>0.01% of LoRA</p></td>
+<td><p>Better than LoRA</p></td>
+<td><p>Multi-task scenarios</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>QR-Adaptor</strong></p></td>
+<td><p>Variable</p></td>
+<td><p>+4.9% over fixed</p></td>
+<td><p>Memory-constrained</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>QLoRA</strong></p></td>
+<td><p>75% memory reduction</p></td>
+<td><p>Matches full FT</p></td>
+<td><p>Large models</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="key-insights">
+<h3><strong>Key Insights</strong><a class="headerlink" href="#key-insights" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Parameter Efficiency vs Performance Trade-off</strong>: There’s a clear spectrum from extreme efficiency (WaveFT) to better performance (DoRA), allowing practitioners to choose based on their constraints.</p></li>
+<li><p><strong>Layer-Wise Optimization</strong>: Methods like QR-Adaptor show that different layers have different sensitivity to quantization and adaptation, opening new optimization opportunities.</p></li>
+<li><p><strong>Global Parameter Sharing</strong>: VB-LoRA demonstrates that sharing parameters across layers can dramatically reduce storage while maintaining performance.</p></li>
+<li><p><strong>Quantization Integration</strong>: QLoRA proves that 4-bit quantization can be combined with PEFT without performance loss, enabling training of much larger models.</p></li>
+</ol>
+</section>
+<section id="choosing-the-right-method">
+<h3><strong>Choosing the Right Method</strong><a class="headerlink" href="#choosing-the-right-method" title="Link to this heading">#</a></h3>
+<p><strong>For Research and Experimentation:</strong></p>
+<ul class="simple">
+<li><p>Start with LoRA for baseline performance</p></li>
+<li><p>Use DoRA when you need better results</p></li>
+<li><p>Try WaveFT for extreme parameter constraints</p></li>
+</ul>
+<p><strong>For Production Deployment:</strong></p>
+<ul class="simple">
+<li><p>Use QLoRA for large models (7B+ parameters)</p></li>
+<li><p>Consider QR-Adaptor for memory-constrained environments</p></li>
+<li><p>Use VB-LoRA for multi-task scenarios</p></li>
+</ul>
+<p><strong>For Resource-Limited Environments:</strong></p>
+<ul class="simple">
+<li><p>WaveFT for minimal parameter budgets</p></li>
+<li><p>QLoRA for memory constraints</p></li>
+<li><p>VB-LoRA for storage limitations</p></li>
+</ul>
+</section>
+<section id="future-directions">
+<h3><strong>Future Directions</strong><a class="headerlink" href="#future-directions" title="Link to this heading">#</a></h3>
+<p>The field of PEFT is rapidly evolving. Key areas of future development include:</p>
+<ol class="arabic simple">
+<li><p><strong>Automated PEFT Selection</strong>: AI-driven methods to automatically choose the best PEFT technique for a given task and constraints.</p></li>
+<li><p><strong>Dynamic Adaptation</strong>: Methods that can adjust their parameter efficiency during training based on task complexity.</p></li>
+<li><p><strong>Cross-Modal PEFT</strong>: Extending PEFT techniques to multimodal models (vision-language, audio-text).</p></li>
+<li><p><strong>Hardware-Aware PEFT</strong>: Techniques that are specifically optimized for different hardware configurations (mobile, edge, cloud).</p></li>
+<li><p><strong>Federated PEFT</strong>: Distributed fine-tuning where different clients use different PEFT methods based on their local constraints.</p></li>
+</ol>
+</section>
+<section id="practical-recommendations">
+<h3><strong>Practical Recommendations</strong><a class="headerlink" href="#practical-recommendations" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Start Simple</strong>: Begin with LoRA for most tasks, then explore more advanced methods as needed.</p></li>
+<li><p><strong>Profile Your Constraints</strong>: Understand your memory, compute, and storage limitations before choosing a method.</p></li>
+<li><p><strong>Experiment Systematically</strong>: Use the comparison framework provided to evaluate different methods on your specific task.</p></li>
+<li><p><strong>Stay Updated</strong>: The PEFT field is rapidly evolving, with new methods being published regularly.</p></li>
+<li><p><strong>Consider the Full Pipeline</strong>: Factor in not just training efficiency, but also deployment, storage, and inference considerations.</p></li>
+</ol>
+</section>
+<section id="final-thoughts">
+<h3><strong>Final Thoughts</strong><a class="headerlink" href="#final-thoughts" title="Link to this heading">#</a></h3>
+<p>PEFT techniques have democratized access to large language model fine-tuning, enabling researchers and practitioners to adapt powerful models with minimal computational resources. The methods we’ve explored represent the current state-of-the-art, but the field continues to evolve rapidly.</p>
+<p>The key to success with PEFT is understanding the trade-offs between parameter efficiency, performance, and computational requirements. By choosing the right method for your specific use case and constraints, you can achieve remarkable results with minimal resources.</p>
+<p>As we move forward, we can expect to see even more sophisticated PEFT techniques that push the boundaries of efficiency while maintaining or improving performance. The future of efficient fine-tuning is bright, and these techniques will continue to play a crucial role in making large language models accessible to everyone.</p>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>PEFT: Parameter-Efficient Fine-Tuning Methods for LLMs</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/blog/samuellimabraz/peft-methods">Hugging Face Blog</a></p></li>
+</ul>
+</li>
+<li><p><strong>Exploring Sparsity for Parameter Efficient Fine Tuning Using Wavelets</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.themoonlight.io/en/review/exploring-sparsity-for-parameter-efficient-fine-tuning-using-wavelets">Literature Review</a></p></li>
+<li><p><a class="reference external" href="https://arxiv.org/abs/2505.12532">arXiv:2505.12532</a></p></li>
+</ul>
+</li>
+<li><p><strong>DoRA: Weight-Decomposed Low-Rank Adaptation</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/2402.09353">arXiv:2402.09353</a></p></li>
+<li><p><a class="reference external" href="https://developer.nvidia.com/blog/introducing-dora-a-high-performing-alternative-to-lora-for-fine-tuning/">NVIDIA Technical Blog</a></p></li>
+</ul>
+</li>
+<li><p><strong>VB-LoRA: Extreme Parameter Efficient Fine-Tuning with Vector Banks</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/docs/peft/en/package_reference/vblora">Hugging Face Documentation</a></p></li>
+</ul>
+</li>
+<li><p><strong>Efficient Fine-Tuning of Quantized Models via Adaptive Rank and Bitwidth</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://arxiv.org/abs/2505.03802">arXiv:2505.03802</a></p></li>
+</ul>
+</li>
+<li><p><strong>Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA</strong></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://huggingface.co/blog/4bit-transformers-bitsandbytes">Hugging Face Blog</a></p></li>
+</ul>
+</li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week03"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week02/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 2 - Tool Learning: PyTorch and Latest Frameworks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../syllabus/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Syllabus</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-why-parameter-efficient-fine-tuning">Introduction: Why Parameter-Efficient Fine-Tuning?</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-benefits-of-peft">Key Benefits of PEFT</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conceptual-overview-of-modern-peft-techniques">Conceptual Overview of Modern PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recap-low-rank-adaptation-lora"><strong>1. Recap: Low-Rank Adaptation (LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#core-concept">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#key-advantages">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-example">Mathematical Example</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limitations">Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#wavelet-fine-tuning-waveft"><strong>2. Wavelet Fine-Tuning (WaveFT)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-formulation">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-wavelets-work">Why Wavelets Work</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-results">Performance Results</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#weight-decomposed-low-rank-adaptation-dora"><strong>3. Weight-Decomposed Low-Rank Adaptation (DoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-this-works">Why This Works</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-considerations">Implementation Considerations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vb-lora-vector-bank-lora"><strong>4. VB-LoRA (Vector Bank LoRA)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#implementation-details">Implementation Details</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qr-adaptor-adaptive-rank-and-quantization"><strong>5. QR-Adaptor (Adaptive Rank and Quantization)</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Mathematical Formulation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimization-strategy">Optimization Strategy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Key Advantages</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-configuration">Example Configuration</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Implementation Considerations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use">When to Use</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Checkpoint Questions</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-and-4-bit-nf4-quantization"><strong>6. QLoRA and 4-bit NF4 Quantization</strong></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Core Concept</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nf4-quantization-the-key-innovation">NF4 Quantization: The Key Innovation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-innovations">Technical Innovations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Performance Results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation">Practical Implementation</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-use-qlora">When to Use QLoRA</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Limitations</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-application-implementing-and-comparing-peft-methods">Practical Application: Implementing and Comparing PEFT Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-lora-implementation"><strong>1. Basic LoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qlora-implementation"><strong>2. QLoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora-implementation"><strong>3. DoRA Implementation</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-framework"><strong>4. Comparison Framework</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#best-practices-and-tips"><strong>5. Best Practices and Tips</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#summary-and-future-directions">Summary and Future Directions</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#method-comparison-summary"><strong>Method Comparison Summary</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-insights"><strong>Key Insights</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#choosing-the-right-method"><strong>Choosing the Right Method</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#future-directions"><strong>Future Directions</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-recommendations"><strong>Practical Recommendations</strong></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-thoughts"><strong>Final Thoughts</strong></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
