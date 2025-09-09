@@ -2,13 +2,13 @@
 
 ## 1. Basic Structure of Transformer Architecture
 
-Transformer is a model based on **Self-Attention** mechanism that processes input sentences through an encoder-decoder structure. The encoder encodes the input sequence to generate context, and the decoder generates the output sequence by referring to this context. Self-Attention is a method where one token calculates its relationship (similarity) with all other tokens in the sequence to adjust its own representation. This enables **parallel processing**, making learning faster than RNN-based models and effectively learning long dependency relationships. However, **computation is required for each token pair**, so the attention operation cost increases to $O(n^2)$, making it inefficient as sequence length increases. Especially during **inference**, new tokens must be generated one by one while calculating attention with all previous tokens, requiring operations proportional to approximately $L^2$ for sequence length *L*. This causes **speed to slow down** and **memory usage to increase linearly** during long context processing, becoming a major limitation.
+Transformer is a model based on **Self-Attention** mechanism that processes input sentences through an encoder-decoder structure. The encoder encodes the input sequence to generate context, and the decoder generates the output sequence by referring to this context. Self-Attention is a method where one token calculates its relationship (similarity) with all other tokens in the sequence to adjust its own representation. This enables **parallel processing**, making learning faster than RNN-based models and effectively learning long dependency relationships. However, **computation is required for each token pair**, so the attention operation cost increases to $O(n^2)$, making it inefficient as sequence length increases. Especially during **inference**, new tokens must be generated one by one while calculating attention with all previous tokens, requiring operations proportional to approximately $L^2$ for sequence length _L_. This causes **speed to slow down** and **memory usage to increase linearly** during long context processing, becoming a major limitation.
 
 _Complete Transformer structure._ The left side represents the encoder, and the right side represents the decoder. Each encoder block consists of **Multi-Head Self-Attention** and feedforward (FFN), while decoder blocks additionally include **masked Self-Attention** and **encoder-decoder attention** (cross-attention). The attention module references all previous tokens to form the **context** for the current token. Transformer has no recurrent structure, making it advantageous for parallelization, and **multi-head attention** learns patterns in various representation spaces. However, due to the **quadratic complexity** of attention operations, **memory and computation increase dramatically with sequence length**, which is a disadvantage.
 
 ### Self-Attention Operation Example Code
 
-The code below is an example implementing the core operations of Self-Attention using PyTorch (for single batch, sequence length _L_, dimension *d*). It calculates **attention weights** using query $Q$, key $K$, and value $V$ vectors for each token, then computes output values through weighted sum:
+The code below is an example implementing the core operations of Self-Attention using PyTorch (for single batch, sequence length _L_, dimension _d_). It calculates **attention weights** using query $Q$, key $K$, and value $V$ vectors for each token, then computes output values through weighted sum:
 
 ```python
 import torch, math
@@ -28,13 +28,13 @@ output = torch.matmul(attn_weights, V)                       # (1, L, d)
 print(output.shape)  # torch.Size([1, 5, 64])
 ```
 
-**Code Explanation:** In the above code, scores is the attention score matrix indicating how much attention each token *i* pays to other tokens *j*. Through softmax, attn_weights becomes a probability distribution with sum of 1 for each *i*. Finally, multiplying these weights with each *j*'s value vector $V_j$ and summing gives the Self-Attention output for each position *i*.
+**Code Explanation:** In the above code, scores is the attention score matrix indicating how much attention each token _i_ pays to other tokens _j_. Through softmax, attn*weights becomes a probability distribution with sum of 1 for each \_i*. Finally, multiplying these weights with each _j_'s value vector $V_j$ and summing gives the Self-Attention output for each position _i_.
 
 ### Checkpoint Questions
 
 - What are the main advantages of **Self-Attention** in Transformer? Also, where does the **inference bottleneck** occur?
 - Explain the difference between Transformer **encoder-decoder structure** and **decoder-only structure** like GPT.
-- How do Transformer's **time complexity** and **space complexity** scale with sequence length *L*?
+- How do Transformer's **time complexity** and **space complexity** scale with sequence length _L_?
 
 ## 2. Mamba Architecture – Selective State Space Model
 
@@ -89,7 +89,7 @@ In the above code, Mamba(...) creates **one Mamba block**. Parameters like d_mod
 
 ## 3. RWKV Architecture – Efficient Processing with RNN-like Structure
 
-**RWKV** is a **hybrid architecture** that combines the advantages of **RNN (Recurrent Neural Network)** and **Transformer**. The name *RWKV* derives from the four main parameters of the network: **Receptance (R)**, **Weight (W)**, **Key (K)**, **Value (V)**, which serve as **past information acceptance gate**, **exponential time weight**, **key**, and **value vector** respectively. RWKV internally has an RNN structure that alternately performs **time-axis processing** and **channel (feedforward) processing**, operating by **decaying past states with exponential weights** while accumulating Key/Value information at each step. This achieves **effects similar to attention** while maintaining linear processing cost per token.
+**RWKV** is a **hybrid architecture** that combines the advantages of **RNN (Recurrent Neural Network)** and **Transformer**. The name _RWKV_ derives from the four main parameters of the network: **Receptance (R)**, **Weight (W)**, **Key (K)**, **Value (V)**, which serve as **past information acceptance gate**, **exponential time weight**, **key**, and **value vector** respectively. RWKV internally has an RNN structure that alternately performs **time-axis processing** and **channel (feedforward) processing**, operating by **decaying past states with exponential weights** while accumulating Key/Value information at each step. This achieves **effects similar to attention** while maintaining linear processing cost per token.
 
 RWKV's **two major characteristics** are as follows:
 
@@ -136,7 +136,42 @@ The above code generates text starting with the prompt "Once upon a time, " usin
 
 ## 4. Jamba Architecture – MoE-based Transformer+Mamba Hybrid
 
-**Jamba** is short for **Joint Attention + Mamba**, a **hybrid architecture** that combines **Transformer** and **Mamba** and applies **MoE (Mixture-of-Experts)** technology. This model was announced by AI21 Labs in 2024 and is called the **world's first commercial-level hybrid SSM-Transformer model**. Jamba's goal is to combine **Transformer's advantages (high performance)** and **Mamba's advantages (efficiency, long context)** to **dramatically improve memory efficiency and inference speed** while maintaining **latest LLM-level output quality**.
+### Introduction
+
+![Jamba Introduction](figs/jamba-1.jpeg)
+
+**Jamba** is short for **Joint Attention + Mamba**, a **hybrid architecture** that combines **Transformer** and **Mamba** and applies **MoE (Mixture-of-Experts)** technology. This model was announced by AI21 Labs in 2024 and is called the **world's first commercial-level hybrid SSM-Transformer model**. Jamba is the first production-grade model based on Mamba, a new SSM architecture. This model emerged from attempts to overcome the limitations of the Transformer architecture, but Mamba itself also had limitations. Jamba combines the advantages of both Transformer and SSM, showing superior performance compared to existing models while improving throughput in long contexts by nearly 3x, prioritizing cost efficiency and accessibility.
+
+### Key Features
+
+![Jamba Performance Comparison](figs/jamba-2.jpeg)
+
+- First production-level Mamba-based model built on new SSM-Transformer hybrid architecture
+- Provides 3x throughput in long contexts compared to Mixtral 8x7B
+- Democratizes access to large-scale 256K context windows
+- Only model in its class supporting up to 140K context on a single GPU
+- Open LLM (OpenLLM) with model weights released under Apache 2.0 license
+- Available on Hugging Face and soon to be added to NVIDIA API catalog
+
+Jamba shows superior or comparable performance compared to other models of similar size. It demonstrates good results in reasoning-related benchmarks.
+
+### Jamba's Model Structure
+
+![Jamba Model Structure](figs/jamba-3.jpeg)
+
+Jamba is the world's first production-grade Mamba-based model that combines the advantages of SSM and Transformer architectures. This hybrid structure leverages both the powerful language understanding capabilities of Transformers and the efficient memory management and processing speed of SSMs. As a result, Jamba significantly improves the memory usage increase and processing speed degradation problems that existing language models had.
+
+### Large-Scale Context Window and Cost-Efficiency
+
+![Context Size Comparison](figs/jamba-4.jpeg)
+
+Jamba provides a 256K context window, enabling efficient processing of very long documents or conversations. This allows AI developers to perform more complex natural language processing tasks and contributes to understanding long contexts that existing models could not handle.
+
+### MoE (Mixture of Experts) Utilization
+
+![Jamba Throughput](figs/jamba-5.jpeg)
+
+Jamba utilizes only 12B out of 52B available parameters during inference through MoE layers. This makes the model's activated parameters more efficiently used and shows better performance than Transformer-only models of the same size.
 
 The main characteristics of Jamba architecture are as follows:
 
@@ -146,13 +181,17 @@ The main characteristics of Jamba architecture are as follows:
 
 Through this structure, **global content extraction** is handled by occasionally inserted attention layers, and **remaining most interactions** are efficiently processed by Mamba layers. As a result, **overall memory footprint** is greatly reduced by using less KV cache, and **even with long context processing**, sufficient performance is designed to be achieved with only a few attentions.
 
-- **Mixture-of-Experts (MoE) utilization**: Jamba replaced some of Transformer's MLP parts with **MoE**. Specifically, **one MoE layer is inserted every 2 layers**, each MoE layer has **16 Expert MLPs**, and only the top 2 Experts are activated per token (top-2 gating). This greatly increases **total parameter count (52B)** but limits **actually activated parameters during inference to 12B level**. That is, while increasing **model capacity**, **computation cost is suppressed** (Jamba 7B base model being *active 12B / total 52B* through MoE is an example).
+- **Mixture-of-Experts (MoE) utilization**: Jamba replaced some of Transformer's MLP parts with **MoE**. Specifically, **one MoE layer is inserted every 2 layers**, each MoE layer has **16 Expert MLPs**, and only the top 2 Experts are activated per token (top-2 gating). This greatly increases **total parameter count (52B)** but limits **actually activated parameters during inference to 12B level**. That is, while increasing **model capacity**, **computation cost is suppressed** (Jamba 7B base model being _active 12B / total 52B_ through MoE is an example).
 
 - **Long context and high efficiency**: Jamba supports **256K tokens**, a very long context window. This is among the longest levels among publicly available Transformer-based models, and it's reportedly possible to process **128K token input with 8-bit compression on a single 80GB GPU**. Equivalent general Transformers (like Mixtral-8×7B) cannot load such long context on single GPU, so **2x+ memory gains** are achieved. Also, **token processing speed (throughput) in long context is very high**, achieving **3x+ faster generation speed** compared to equivalent Transformers with 128K token input. This is because attention operations occur only in some layers when processing long input, so the overall burden is light. Jamba maintains **performance comparable to Mixtral-8x7B (active 39B) or Llama2-70B** while achieving such efficiency improvements.
 
 In summary, **Jamba is an innovative structure** that **replaces part of Transformer with Mamba** and **increases model capacity with MoE**. This **dramatically improves memory usage and inference speed** to make large-scale LLMs more suitable for actual applications. Jamba released weights as open source (Apache 2.0) upon release, allowing researchers to continue additional tuning and improvements.
 
 **Comparison:** While there were attempts at small hybrid models combining Mamba and attention in prior research (e.g., H3, Hyena, etc.), **expanding to tens of billions of parameters and integrating MoE** like Jamba is a first. Also, Jamba is evaluated as the first case showing stable performance at actual productization level.
+
+### Usage
+
+To use the Jamba model, you need Hugging Face's transformers library. The following is example code for loading the Jamba model using Python and performing simple text generation. Before running this code, you need to install the transformers library along with mamba-ssm and causal-conv1d libraries. This is to use Jamba's optimized Mamba implementation.
 
 ### Jamba Model Utilization Example Code
 
@@ -178,19 +217,19 @@ Jamba's context window is set to 256K by default, but you can check the currentl
 ### Checkpoint Questions
 
 - What ratio are **Transformer layers and Mamba layers** arranged in Jamba architecture? Explain what advantages this design provides in terms of **memory and speed**.
-- Why did Jamba introduce MoE? Explain using the concepts of *active parameters* and *total parameters*.
+- Why did Jamba introduce MoE? Explain using the concepts of _active parameters_ and _total parameters_.
 - What is the maximum context length that Jamba model supports, and what practical meaning does this have (e.g., application cases)?
 
 ## 5. Performance Comparison by Architecture
 
 Comparing the characteristics and performance of **Transformer, Mamba, RWKV, Jamba** examined earlier by major indicators:
 
-| Architecture               | Supported Context Length              | Time Complexity (During Inference)                                        | Inference Speed (Throughput)             | Parameter Efficiency                  | Memory Usage Characteristics                                                              |
-| :--------------------- | :------------------------------ | :----------------------------------------------------------- | :-------------------------------- | :------------------------------- | :---------------------------------------------------------------------------- |
-| **Transformer (Existing)** | Usually 2K~4K (Extended up to 32K+) | $O(n^2)$ (Computing all token pairs)<br/>_(O(n) per new token generation)_ | Baseline 1× (vs same size)          | - (Performance ~ proportional to parameter count)      | KV cache memory O(_n_) (proportional to context length)<br/>_GPU memory limits with long context_       |
-| **Mamba (SSM)**        | Theoretically unlimited (1M tokens in experiments)  | $O(n)$ (Linear time)                                           | ~5× faster than Transformer         | High: _3B performance of 6B Transformer_ | **Maintains only state**, memory O(1) per token (little effect from token length)                |
-| **RWKV (RNN)**         | Practically very long (within training limits)   | $O(n)$ (Linear)                                                | Faster than Transformer (similar to SSM) | High: _14B performance of GPT 13B level_     | **Maintains only hidden state**, very memory efficient                                      |
-| **Jamba (Hybrid)**     | Up to 256K                       | Mixed: Some $O(n^2)$ (4 layers) + Majority $O(n)$                    | ~3× faster in long context (vs Mixtral) | High: _Active 12B / Total 52B_        | Uses only part of KV cache -> **Memory savings**<br/>_128K context loadable on single 80GB GPU_ |
+| Architecture               | Supported Context Length                           | Time Complexity (During Inference)                                         | Inference Speed (Throughput)             | Parameter Efficiency                              | Memory Usage Characteristics                                                                      |
+| :------------------------- | :------------------------------------------------- | :------------------------------------------------------------------------- | :--------------------------------------- | :------------------------------------------------ | :------------------------------------------------------------------------------------------------ |
+| **Transformer (Existing)** | Usually 2K~4K (Extended up to 32K+)                | $O(n^2)$ (Computing all token pairs)<br/>_(O(n) per new token generation)_ | Baseline 1× (vs same size)               | - (Performance ~ proportional to parameter count) | KV cache memory O(_n_) (proportional to context length)<br/>_GPU memory limits with long context_ |
+| **Mamba (SSM)**            | Theoretically unlimited (1M tokens in experiments) | $O(n)$ (Linear time)                                                       | ~5× faster than Transformer              | High: _3B performance of 6B Transformer_          | **Maintains only state**, memory O(1) per token (little effect from token length)                 |
+| **RWKV (RNN)**             | Practically very long (within training limits)     | $O(n)$ (Linear)                                                            | Faster than Transformer (similar to SSM) | High: _14B performance of GPT 13B level_          | **Maintains only hidden state**, very memory efficient                                            |
+| **Jamba (Hybrid)**         | Up to 256K                                         | Mixed: Some $O(n^2)$ (4 layers) + Majority $O(n)$                          | ~3× faster in long context (vs Mixtral)  | High: _Active 12B / Total 52B_                    | Uses only part of KV cache -> **Memory savings**<br/>_128K context loadable on single 80GB GPU_   |
 
 **Comparison Explanation:** Transformer is advantageous for **parallel learning** but **inference time increases linearly** and memory usage increases as context length increases. Mamba and RWKV use **sequential processing** but are implemented with **selective state space, RNN formulas** respectively, so **inference complexity is linear**, and they **summarize context** to carry around, so they show **consistent speed** even with long input. Particularly, Mamba shows **5x+ token processing speed** compared to Transformers even in small models due to **hardware-friendly optimization**. RWKV also shows **performance insensitive to context length** similarly, enabling fast/low-memory inference.
 
