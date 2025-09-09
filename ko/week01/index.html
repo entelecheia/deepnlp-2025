@@ -619,7 +619,7 @@ document.write(`
 <section id="id4">
 <h3>소개<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
 <p><img alt="Jamba 소개" src="../_images/jamba-1.jpeg" /></p>
-<p><strong>Jamba</strong>는 <strong>Joint Attention + Mamba</strong>의 줄임말로, <strong>Transformer</strong>와 <strong>Mamba</strong>를 결합하고 거기에 <strong>MoE (Mixture-of-Experts)</strong> 기술을 적용한 <strong>하이브리드 아키텍처</strong>다. 이 모델은 2024년 AI21 Labs에 의해 발표되었으며, <strong>세계 최초의 상용 수준 하이브리드 SSM-Transformer 모델</strong>로 불린다. Jamba는 Mamba, 즉 새로운 구조의 SSM 아키텍처를 기반으로 한 첫 번째 생산 등급 모델로, 트랜스포머 아키텍처의 한계를 극복하려는 시도에서 출발했으나, Mamba만의 한계도 있었습니다. Jamba는 트랜스포머와 SSM의 장점을 모두 살려, 기존 모델들과 비교해 뛰어난 성능을 보여주는 동시에, 긴 문맥에서의 처리량을 3배 가까이 향상시키는 등 비용 효율성과 접근성을 우선시하는 모델입니다.</p>
+<p><strong>Jamba</strong>는 <strong>Joint Attention + Mamba</strong>의 줄임말로, <strong>Transformer</strong>와 <strong>Mamba</strong>를 결합하고 거기에 <strong>MoE (Mixture-of-Experts)</strong> 기술을 적용한 <strong>하이브리드 아키텍처</strong>다. 이 모델은 2024년 AI21 Labs에 의해 발표되었으며, <strong>세계 최초의 상용 수준 하이브리드 SSM-Transformer 모델</strong>로 불린다. Jamba는 Mamba, 즉 새로운 구조의 SSM 아키텍처를 기반으로 한 첫 번째 생산 등급 모델로, 트랜스포머 아키텍처의 한계를 극복하려는 시도에서 출발했으나, Mamba만의 한계도 있었다. Jamba는 트랜스포머와 SSM의 장점을 모두 살려, 기존 모델들과 비교해 뛰어난 성능을 보여주는 동시에, 긴 문맥에서의 처리량을 3배 가까이 향상시키는 등 비용 효율성과 접근성을 우선시하는 모델이다.</p>
 </section>
 <section id="id5">
 <h3>주요 특징<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
@@ -632,22 +632,22 @@ document.write(`
 <li><p>Apache 2.0 라이선스로 모델 가중치를 공개한 공개 LLM (OpenLLM)</p></li>
 <li><p>Hugging Face에서 사용 가능하며, NVIDIA API 카탈로그에도 곧 추가 예정</p></li>
 </ul>
-<p>Jamba는 비슷한 크기의 다른 모델들과 비교했을 때, 더 뛰어나거나 비슷한 성능을 보입니다. 추론(reasoning) 관련 벤치마크들에서 좋은 결과를 보이고 있습니다.</p>
+<p>Jamba는 비슷한 크기의 다른 모델들과 비교했을 때, 더 뛰어나거나 비슷한 성능을 보인다. 추론(reasoning) 관련 벤치마크들에서 좋은 결과를 보이고 있다.</p>
 </section>
 <section id="jamba">
 <h3>Jamba의 모델 구조<a class="headerlink" href="#jamba" title="Link to this heading">#</a></h3>
 <p><img alt="Jamba 모델 구조" src="../_images/jamba-3.jpeg" /></p>
-<p>Jamba는 SSM과 트랜스포머 아키텍처의 장점을 결합한 세계 최초의 프로덕션급의 Mamba 기반 모델입니다. 이 하이브리드 구조는 트랜스포머의 강력한 언어 이해 능력과 SSM의 효율적인 메모리 관리 및 처리 속도를 모두 활용합니다. 결과적으로, Jamba는 기존의 언어 모델들이 가지고 있던 메모리 사용량 증가와 처리 속도 저하 문제를 크게 개선합니다.</p>
+<p>Jamba는 SSM과 트랜스포머 아키텍처의 장점을 결합한 세계 최초의 프로덕션급의 Mamba 기반 모델이다. 이 하이브리드 구조는 트랜스포머의 강력한 언어 이해 능력과 SSM의 효율적인 메모리 관리 및 처리 속도를 모두 활용한다. 결과적으로, Jamba는 기존의 언어 모델들이 가지고 있던 메모리 사용량 증가와 처리 속도 저하 문제를 크게 개선한다.</p>
 </section>
 <section id="id6">
 <h3>대규모 컨텍스트 윈도우 및 비용-효율성<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <p><img alt="컨텍스트 크기 비교" src="../_images/jamba-4.jpeg" /></p>
-<p>Jamba는 256K의 컨텍스트 윈도우를 제공함으로써, 매우 긴 문서나 대화를 효율적으로 처리할 수 있습니다. 이는 AI 개발자들이 보다 복잡한 자연어 처리 작업을 수행할 수 있게 해주며, 기존 모델들이 다룰 수 없었던 긴 문맥의 이해에 기여합니다.</p>
+<p>Jamba는 256K의 컨텍스트 윈도우를 제공함으로써, 매우 긴 문서나 대화를 효율적으로 처리할 수 있다. 이는 AI 개발자들이 보다 복잡한 자연어 처리 작업을 수행할 수 있게 해주며, 기존 모델들이 다룰 수 없었던 긴 문맥의 이해에 기여한다.</p>
 </section>
 <section id="moe-mixture-of-experts">
 <h3>MoE(Mixture of Experts) 활용<a class="headerlink" href="#moe-mixture-of-experts" title="Link to this heading">#</a></h3>
 <p><img alt="Jamba 처리량" src="../_images/jamba-5.jpeg" /></p>
-<p>Jamba는 MoE 레이어를 통해 추론 시 사용 가능한 52B 파라미터 중 단 12B만을 활용합니다. 이로 인해 모델의 활성화 파라미터가 더 효율적으로 사용되며, 동일한 크기의 트랜스포머 전용 모델보다 더 나은 성능을 보입니다.</p>
+<p>Jamba는 MoE 레이어를 통해 추론 시 사용 가능한 52B 파라미터 중 단 12B만을 활용한다. 이로 인해 모델의 활성화 파라미터가 더 효율적으로 사용되며, 동일한 크기의 트랜스포머 전용 모델보다 더 나은 성능을 보인다.</p>
 <p>Jamba 아키텍처의 주요 특징은 다음과 같다:</p>
 <ul class="simple">
 <li><p><strong>교대 구조의 블록</strong>: Jamba는 <strong>8개 층 중 1개는 Transformer (Attention)</strong>, 나머지 7개는 Mamba로 구성되는 <strong>1:7 비율</strong>로 레이어들을 섞어 쌓는다. 예를 들어 32층짜리 모델이라면 그 중 4개 층에만 어텐션이 있고, 나머지 28개 층은 Mamba로 되어 있다. 이러한 <strong>블록 구조 다이어그램</strong>은 아래와 같다 (Transformer 또는 Mamba 레이어 + MLP로 한 블록을 형성):</p>
@@ -666,7 +666,7 @@ document.write(`
 </section>
 <section id="id7">
 <h3>사용 방법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
-<p>Jamba 모델을 사용하기 위해서는 Hugging Face의 transformers 라이브러리가 필요합니다. 다음은 Python을 사용하여 Jamba 모델을 불러오고, 간단한 텍스트 생성을 수행하는 예시 코드입니다. 이 코드를 실행하기 전에, transformers 라이브러리와 함께 mamba-ssm, causal-conv1d 라이브러리를 설치해야 합니다. 이는 Jamba의 최적화된 Mamba 구현을 사용하기 위함입니다.</p>
+<p>Jamba 모델을 사용하기 위해서는 Hugging Face의 transformers 라이브러리가 필요하다. 다음은 Python을 사용하여 Jamba 모델을 불러오고, 간단한 텍스트 생성을 수행하는 예시 코드다. 이 코드를 실행하기 전에, transformers 라이브러리와 함께 mamba-ssm, causal-conv1d 라이브러리를 설치해야 한다. 이는 Jamba의 최적화된 Mamba 구현을 사용하기 위함이다.</p>
 </section>
 <section id="id8">
 <h3>Jamba 모델 활용 예시 코드<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
