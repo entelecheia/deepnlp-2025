@@ -452,6 +452,12 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-architecture-moe-based-transformer-mamba-hybrid">4. Jamba Architecture – MoE-based Transformer+Mamba Hybrid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-s-model-structure">Jamba’s Model Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-scale-context-window-and-cost-efficiency">Large-Scale Context Window and Cost-Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-mixture-of-experts-utilization">MoE (Mixture of Experts) Utilization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-model-utilization-example-code">Jamba Model Utilization Example Code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
 </ul>
@@ -508,7 +514,7 @@ document.write(`
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># torch.Size([1, 5, 64])</span>
 </pre></div>
 </div>
-<p><strong>Code Explanation:</strong> In the above code, scores is the attention score matrix indicating how much attention each token <em>i</em> pays to other tokens <em>j</em>. Through softmax, attn_weights becomes a probability distribution with sum of 1 for each <em>i</em>. Finally, multiplying these weights with each <em>j</em>’s value vector <span class="math notranslate nohighlight">\(V_j\)</span> and summing gives the Self-Attention output for each position <em>i</em>.</p>
+<p><strong>Code Explanation:</strong> In the above code, scores is the attention score matrix indicating how much attention each token <em>i</em> pays to other tokens <em>j</em>. Through softmax, attn<em>weights becomes a probability distribution with sum of 1 for each _i</em>. Finally, multiplying these weights with each <em>j</em>’s value vector <span class="math notranslate nohighlight">\(V_j\)</span> and summing gives the Self-Attention output for each position <em>i</em>.</p>
 </section>
 <section id="checkpoint-questions">
 <h3>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h3>
@@ -610,7 +616,38 @@ document.write(`
 </section>
 <section id="jamba-architecture-moe-based-transformer-mamba-hybrid">
 <h2>4. Jamba Architecture – MoE-based Transformer+Mamba Hybrid<a class="headerlink" href="#jamba-architecture-moe-based-transformer-mamba-hybrid" title="Link to this heading">#</a></h2>
-<p><strong>Jamba</strong> is short for <strong>Joint Attention + Mamba</strong>, a <strong>hybrid architecture</strong> that combines <strong>Transformer</strong> and <strong>Mamba</strong> and applies <strong>MoE (Mixture-of-Experts)</strong> technology. This model was announced by AI21 Labs in 2024 and is called the <strong>world’s first commercial-level hybrid SSM-Transformer model</strong>. Jamba’s goal is to combine <strong>Transformer’s advantages (high performance)</strong> and <strong>Mamba’s advantages (efficiency, long context)</strong> to <strong>dramatically improve memory efficiency and inference speed</strong> while maintaining <strong>latest LLM-level output quality</strong>.</p>
+<section id="introduction">
+<h3>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba Introduction" src="../_images/jamba-1.jpeg" /></p>
+<p><strong>Jamba</strong> is short for <strong>Joint Attention + Mamba</strong>, a <strong>hybrid architecture</strong> that combines <strong>Transformer</strong> and <strong>Mamba</strong> and applies <strong>MoE (Mixture-of-Experts)</strong> technology. This model was announced by AI21 Labs in 2024 and is called the <strong>world’s first commercial-level hybrid SSM-Transformer model</strong>. Jamba is the first production-grade model based on Mamba, a new SSM architecture. This model emerged from attempts to overcome the limitations of the Transformer architecture, but Mamba itself also had limitations. Jamba combines the advantages of both Transformer and SSM, showing superior performance compared to existing models while improving throughput in long contexts by nearly 3x, prioritizing cost efficiency and accessibility.</p>
+</section>
+<section id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba Performance Comparison" src="../_images/jamba-2.jpeg" /></p>
+<ul class="simple">
+<li><p>First production-level Mamba-based model built on new SSM-Transformer hybrid architecture</p></li>
+<li><p>Provides 3x throughput in long contexts compared to Mixtral 8x7B</p></li>
+<li><p>Democratizes access to large-scale 256K context windows</p></li>
+<li><p>Only model in its class supporting up to 140K context on a single GPU</p></li>
+<li><p>Open LLM (OpenLLM) with model weights released under Apache 2.0 license</p></li>
+<li><p>Available on Hugging Face and soon to be added to NVIDIA API catalog</p></li>
+</ul>
+<p>Jamba shows superior or comparable performance compared to other models of similar size. It demonstrates good results in reasoning-related benchmarks.</p>
+</section>
+<section id="jamba-s-model-structure">
+<h3>Jamba’s Model Structure<a class="headerlink" href="#jamba-s-model-structure" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba Model Structure" src="../_images/jamba-3.jpeg" /></p>
+<p>Jamba is the world’s first production-grade Mamba-based model that combines the advantages of SSM and Transformer architectures. This hybrid structure leverages both the powerful language understanding capabilities of Transformers and the efficient memory management and processing speed of SSMs. As a result, Jamba significantly improves the memory usage increase and processing speed degradation problems that existing language models had.</p>
+</section>
+<section id="large-scale-context-window-and-cost-efficiency">
+<h3>Large-Scale Context Window and Cost-Efficiency<a class="headerlink" href="#large-scale-context-window-and-cost-efficiency" title="Link to this heading">#</a></h3>
+<p><img alt="Context Size Comparison" src="../_images/jamba-4.jpeg" /></p>
+<p>Jamba provides a 256K context window, enabling efficient processing of very long documents or conversations. This allows AI developers to perform more complex natural language processing tasks and contributes to understanding long contexts that existing models could not handle.</p>
+</section>
+<section id="moe-mixture-of-experts-utilization">
+<h3>MoE (Mixture of Experts) Utilization<a class="headerlink" href="#moe-mixture-of-experts-utilization" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba Throughput" src="../_images/jamba-5.jpeg" /></p>
+<p>Jamba utilizes only 12B out of 52B available parameters during inference through MoE layers. This makes the model’s activated parameters more efficiently used and shows better performance than Transformer-only models of the same size.</p>
 <p>The main characteristics of Jamba architecture are as follows:</p>
 <ul class="simple">
 <li><p><strong>Alternating block structure</strong>: Jamba stacks layers in a <strong>1:7 ratio</strong> where <strong>1 out of 8 layers is Transformer (Attention)</strong> and the remaining 7 are Mamba. For example, in a 32-layer model, only 4 layers use attention, and the remaining 28 layers are Mamba. The <strong>block structure diagram</strong> is as follows (forming one block with Transformer or Mamba layer + MLP):</p>
@@ -626,6 +663,11 @@ document.write(`
 </ul>
 <p>In summary, <strong>Jamba is an innovative structure</strong> that <strong>replaces part of Transformer with Mamba</strong> and <strong>increases model capacity with MoE</strong>. This <strong>dramatically improves memory usage and inference speed</strong> to make large-scale LLMs more suitable for actual applications. Jamba released weights as open source (Apache 2.0) upon release, allowing researchers to continue additional tuning and improvements.</p>
 <p><strong>Comparison:</strong> While there were attempts at small hybrid models combining Mamba and attention in prior research (e.g., H3, Hyena, etc.), <strong>expanding to tens of billions of parameters and integrating MoE</strong> like Jamba is a first. Also, Jamba is evaluated as the first case showing stable performance at actual productization level.</p>
+</section>
+<section id="usage">
+<h3>Usage<a class="headerlink" href="#usage" title="Link to this heading">#</a></h3>
+<p>To use the Jamba model, you need Hugging Face’s transformers library. The following is example code for loading the Jamba model using Python and performing simple text generation. Before running this code, you need to install the transformers library along with mamba-ssm and causal-conv1d libraries. This is to use Jamba’s optimized Mamba implementation.</p>
+</section>
 <section id="jamba-model-utilization-example-code">
 <h3>Jamba Model Utilization Example Code<a class="headerlink" href="#jamba-model-utilization-example-code" title="Link to this heading">#</a></h3>
 <p>Jamba is a model released by AI21 Labs and checkpoints are also available on Hugging Face Hub. It can be used through the transformers library as follows:</p>
@@ -959,6 +1001,12 @@ Let’s compare the speed at which Transformer model and Mamba model generate re
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-architecture-moe-based-transformer-mamba-hybrid">4. Jamba Architecture – MoE-based Transformer+Mamba Hybrid</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-features">Key Features</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-s-model-structure">Jamba’s Model Structure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#large-scale-context-window-and-cost-efficiency">Large-Scale Context Window and Cost-Efficiency</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-mixture-of-experts-utilization">MoE (Mixture of Experts) Utilization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#usage">Usage</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-model-utilization-example-code">Jamba Model Utilization Example Code</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
 </ul>

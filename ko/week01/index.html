@@ -452,23 +452,29 @@ document.write(`
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-moe-transformer-mamba">4. Jamba 아키텍처 – MoE 기반 Transformer+Mamba 하이브리드</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba 모델 활용 예시 코드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">소개</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주요 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba의 모델 구조</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">대규모 컨텍스트 윈도우 및 비용-효율성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-mixture-of-experts">MoE(Mixture of Experts) 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">사용 방법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Jamba 모델 활용 예시 코드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">체크포인트 질문</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5. 아키텍처별 성능 비교</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 아키텍처별 성능 비교</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">6. 최신 오픈소스 LLM 소개 및 특징</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llama-3">Llama 3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixtral-87b">Mixtral 8×7B</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qwen2-72b">Qwen2-72B</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7. 실습 지침</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">참고자료</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">주요 논문 및 연구 자료</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기술 문서 및 구현체</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">온라인 리소스 및 블로그</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">벤치마크 및 평가 자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">7. 실습 지침</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">참고자료</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">주요 논문 및 연구 자료</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">기술 문서 및 구현체</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">온라인 리소스 및 블로그</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">벤치마크 및 평가 자료</a></li>
 </ul>
 </li>
 </ul>
@@ -610,7 +616,38 @@ document.write(`
 </section>
 <section id="jamba-moe-transformer-mamba">
 <h2>4. Jamba 아키텍처 – MoE 기반 Transformer+Mamba 하이브리드<a class="headerlink" href="#jamba-moe-transformer-mamba" title="Link to this heading">#</a></h2>
-<p><strong>Jamba</strong>는 <strong>Joint Attention + Mamba</strong>의 줄임말로, <strong>Transformer</strong>와 <strong>Mamba</strong>를 결합하고 거기에 <strong>MoE (Mixture-of-Experts)</strong> 기술을 적용한 <strong>하이브리드 아키텍처</strong>다. 이 모델은 2024년 AI21 Labs에 의해 발표되었으며, <strong>세계 최초의 상용 수준 하이브리드 SSM-Transformer 모델</strong>로 불린다. Jamba의 목표는 **Transformer의 장점(높은 성능)**과 **Mamba의 장점(효율성, 긴 문맥)**을 모두 취합하여 <strong>메모리 효율과 추론 속도를 대폭 개선</strong>하면서도 <strong>최신 LLM 수준의 출력 품질</strong>을 유지하는 것이다.</p>
+<section id="id4">
+<h3>소개<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba 소개" src="../_images/jamba-1.jpeg" /></p>
+<p><strong>Jamba</strong>는 <strong>Joint Attention + Mamba</strong>의 줄임말로, <strong>Transformer</strong>와 <strong>Mamba</strong>를 결합하고 거기에 <strong>MoE (Mixture-of-Experts)</strong> 기술을 적용한 <strong>하이브리드 아키텍처</strong>다. 이 모델은 2024년 AI21 Labs에 의해 발표되었으며, <strong>세계 최초의 상용 수준 하이브리드 SSM-Transformer 모델</strong>로 불린다. Jamba는 Mamba, 즉 새로운 구조의 SSM 아키텍처를 기반으로 한 첫 번째 생산 등급 모델로, 트랜스포머 아키텍처의 한계를 극복하려는 시도에서 출발했으나, Mamba만의 한계도 있었습니다. Jamba는 트랜스포머와 SSM의 장점을 모두 살려, 기존 모델들과 비교해 뛰어난 성능을 보여주는 동시에, 긴 문맥에서의 처리량을 3배 가까이 향상시키는 등 비용 효율성과 접근성을 우선시하는 모델입니다.</p>
+</section>
+<section id="id5">
+<h3>주요 특징<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba 성능 비교" src="../_images/jamba-2.jpeg" /></p>
+<ul class="simple">
+<li><p>새로운 SSM-트랜스포머 하이브리드 아키텍처를 기반으로 구축된 최초의 프로덕션 수준의 맘바 기반 모델</p></li>
+<li><p>Mixtral 8x7B 대비 긴 컨텍스트에서 3배의 처리량 제공</p></li>
+<li><p>대규모 256K 컨텍스트 창에 대한 액세스의 대중화</p></li>
+<li><p>단일 GPU에서 최대 140K 컨텍스트까지 지원하는 동급 유일 모델</p></li>
+<li><p>Apache 2.0 라이선스로 모델 가중치를 공개한 공개 LLM (OpenLLM)</p></li>
+<li><p>Hugging Face에서 사용 가능하며, NVIDIA API 카탈로그에도 곧 추가 예정</p></li>
+</ul>
+<p>Jamba는 비슷한 크기의 다른 모델들과 비교했을 때, 더 뛰어나거나 비슷한 성능을 보입니다. 추론(reasoning) 관련 벤치마크들에서 좋은 결과를 보이고 있습니다.</p>
+</section>
+<section id="jamba">
+<h3>Jamba의 모델 구조<a class="headerlink" href="#jamba" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba 모델 구조" src="../_images/jamba-3.jpeg" /></p>
+<p>Jamba는 SSM과 트랜스포머 아키텍처의 장점을 결합한 세계 최초의 프로덕션급의 Mamba 기반 모델입니다. 이 하이브리드 구조는 트랜스포머의 강력한 언어 이해 능력과 SSM의 효율적인 메모리 관리 및 처리 속도를 모두 활용합니다. 결과적으로, Jamba는 기존의 언어 모델들이 가지고 있던 메모리 사용량 증가와 처리 속도 저하 문제를 크게 개선합니다.</p>
+</section>
+<section id="id6">
+<h3>대규모 컨텍스트 윈도우 및 비용-효율성<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p><img alt="컨텍스트 크기 비교" src="../_images/jamba-4.jpeg" /></p>
+<p>Jamba는 256K의 컨텍스트 윈도우를 제공함으로써, 매우 긴 문서나 대화를 효율적으로 처리할 수 있습니다. 이는 AI 개발자들이 보다 복잡한 자연어 처리 작업을 수행할 수 있게 해주며, 기존 모델들이 다룰 수 없었던 긴 문맥의 이해에 기여합니다.</p>
+</section>
+<section id="moe-mixture-of-experts">
+<h3>MoE(Mixture of Experts) 활용<a class="headerlink" href="#moe-mixture-of-experts" title="Link to this heading">#</a></h3>
+<p><img alt="Jamba 처리량" src="../_images/jamba-5.jpeg" /></p>
+<p>Jamba는 MoE 레이어를 통해 추론 시 사용 가능한 52B 파라미터 중 단 12B만을 활용합니다. 이로 인해 모델의 활성화 파라미터가 더 효율적으로 사용되며, 동일한 크기의 트랜스포머 전용 모델보다 더 나은 성능을 보입니다.</p>
 <p>Jamba 아키텍처의 주요 특징은 다음과 같다:</p>
 <ul class="simple">
 <li><p><strong>교대 구조의 블록</strong>: Jamba는 <strong>8개 층 중 1개는 Transformer (Attention)</strong>, 나머지 7개는 Mamba로 구성되는 <strong>1:7 비율</strong>로 레이어들을 섞어 쌓는다. 예를 들어 32층짜리 모델이라면 그 중 4개 층에만 어텐션이 있고, 나머지 28개 층은 Mamba로 되어 있다. 이러한 <strong>블록 구조 다이어그램</strong>은 아래와 같다 (Transformer 또는 Mamba 레이어 + MLP로 한 블록을 형성):</p>
@@ -622,12 +659,17 @@ document.write(`
 <p>이 구조를 통해 <strong>글로벌한 내용 추출</strong>은 가끔 삽입된 어텐션 층이 담당하고, <strong>나머지 대부분의 상호작용</strong>은 Mamba 층이 효율적으로 처리한다. 결과적으로 <strong>전체 메모리 footprint</strong>는 KV 캐시를 적게 사용하여 크게 줄고, <strong>긴 문맥 처리시에도</strong> 소수의 어텐션만으로 충분한 성능을 내도록 설계되었다.</p>
 <ul class="simple">
 <li><p><strong>Mixture-of-Experts (전문가 혼합)</strong> 활용: Jamba는 Transformer의 MLP 부분 일부를 <strong>MoE로 교체</strong>하였다. 구체적으로는 <strong>매 2개 층마다 하나의 MoE 레이어</strong>를 넣고, 각 MoE 레이어에는 <strong>16개의 Expert MLP</strong>가 존재하며, 매 토큰마다 상위 2개의 Expert만 활성화(top-2 gating)된다. 이로써 **총 파라미터 수는 크게 증가(52B)**하지만, <strong>실제 추론 시 활성화되는 파라미터는 12B 수준</strong>으로 제한된다. 즉, **모델 용량(capacity)**은 키우면서도 <strong>계산비용은 억제</strong>하는 효과를 낸다. (Jamba 7B 기본 모델이 MoE를 통해 <em>활성 12B / 전체 52B</em>인 것이 그 예다.)</p></li>
-<li><p><strong>긴 문맥과 높은 효율</strong>: Jamba는 <strong>256K 토큰</strong>이라는 매우 긴 컨텍스트 윈도우를 지원한다. 이는 Transformers 기반 공개 모델 중 가장 긴 수준이며, 실제로 <strong>128K 토큰 입력을 8-bit 압축으로 단일 80GB GPU에서 처리 가능</strong>한 것으로 보고되었다. 동등한 크기의 일반 Transformer(Mixtral-8×7B 등)는 이러한 긴 문맥을 단일 GPU에 올릴 수 없기 때문에, <strong>메모리 면에서 2배 이상의 이득</strong>을 보인다. 또한 <strong>긴 문맥에서의 토큰 처리 속도(througput)가 매우 높아</strong>, 128K 토큰 입력 기준으로 <strong>동일급 Transformer 대비 3배 이상 빠른 생성 속도</strong>를 달성했다. 이는 긴 입력을 처리할 때 어텐션 연산이 일부 층에서만 일어나므로 전체 부담이 적기 때문이다. Jamba는 이러한 효율 향상을 이루면서도, <strong>성능은 Mixtral-8x7B (활성 39B)나 Llama2-70B와 견줄만한 수준</strong>을 유지한다.</p></li>
+<li><p><strong>긴 문맥과 높은 효율</strong>: Jamba는 <strong>256K 토큰</strong>이라는 매우 긴 컨텍스트 윈도우를 지원한다. 이는 Transformers 기반 공개 모델 중 가장 긴 수준이며, 실제로 <strong>128K 토큰 입력을 8-bit 압축으로 단일 80GB GPU에서 처리 가능</strong>한 것으로 보고되었다. 동등한 크기의 일반 Transformer(Mixtral-8×7B 등)는 이러한 긴 문맥을 단일 GPU에 올릴 수 없기 때문에, <strong>메모리 면에서 2배 이상의 이득</strong>을 보인다. 또한 <strong>긴 문맥에서의 토큰 처리 속도(throughput)가 매우 높아</strong>, 128K 토큰 입력 기준으로 <strong>동일급 Transformer 대비 3배 이상 빠른 생성 속도</strong>를 달성했다. 이는 긴 입력을 처리할 때 어텐션 연산이 일부 층에서만 일어나므로 전체 부담이 적기 때문이다. Jamba는 이러한 효율 향상을 이루면서도, <strong>성능은 Mixtral-8x7B (활성 39B)나 Llama2-70B와 견줄만한 수준</strong>을 유지한다.</p></li>
 </ul>
 <p>요약하면, <strong>Jamba는 Transformer의 일부를 Mamba로 치환</strong>하고, <strong>모델 용량은 MoE로 늘린</strong> 독창적인 구조다. 이로써 <strong>메모리 사용량과 추론 속도를 극적으로 개선</strong>하여 대용량 LLM을 보다 실제 애플리케이션에 적합하게 만들었다. Jamba는 출시와 함께 오픈 소스로 가중치를 공개(Apache 2.0)하여, 연구자들이 추가 튜닝 및 개선을 이어갈 수 있도록 하였다.</p>
 <p><strong>비교:</strong> 선행 연구로 Mamba와 어텐션을 결합한 작은 하이브리드 모델 시도가 있었으나(예: H3, Hyena 등), Jamba처럼 <strong>수십억 파라미터 규모로 확장</strong>하고 <strong>MoE까지 통합</strong>한 것은 처음이다. 또한 Jamba는 실제 제품화 수준의 안정된 성능을 보여주는 첫 사례로 평가된다.</p>
-<section id="jamba">
-<h3>Jamba 모델 활용 예시 코드<a class="headerlink" href="#jamba" title="Link to this heading">#</a></h3>
+</section>
+<section id="id7">
+<h3>사용 방법<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>Jamba 모델을 사용하기 위해서는 Hugging Face의 transformers 라이브러리가 필요합니다. 다음은 Python을 사용하여 Jamba 모델을 불러오고, 간단한 텍스트 생성을 수행하는 예시 코드입니다. 이 코드를 실행하기 전에, transformers 라이브러리와 함께 mamba-ssm, causal-conv1d 라이브러리를 설치해야 합니다. 이는 Jamba의 최적화된 Mamba 구현을 사용하기 위함입니다.</p>
+</section>
+<section id="id8">
+<h3>Jamba 모델 활용 예시 코드<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <p>Jamba는 AI21 Labs에서 공개한 모델로, Hugging Face Hub에도 체크포인트가 올라와 있다. transformers 라이브러리를 통해 다음과 같이 사용할 수 있다:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
 
@@ -644,8 +686,8 @@ document.write(`
 <p>위 코드에서 trust_remote_code=True 옵션은, Jamba의 커스텀 모델 구조를 불러오기 위해 필요할 수 있다 (AI21이 제공한 모델 정의를 신뢰하여 로드). Jamba 모델을 GPU에서 사용하려면 .to(‘cuda’) 호출로 옮겨야 하며, 7B 기반이라 하더라도 전체 52B 파라미터를 포함하므로 로딩 시 메모리 요구사항을 고려해야 한다.</p>
 <p>Jamba의 컨텍스트 윈도우는 기본 256K로 설정되어 있지만, model.config.max_position_embeddings 등을 통해 현재 지원 컨텍스트를 확인할 수 있다. 긴 문맥 사용 시에도 Jamba는 <strong>적은 메모리</strong>로 <strong>빠른 추론</strong>이 가능하므로, 실제로 100K 토큰 이상의 장문 문서를 질의응답하거나 요약하는 등의 실험에 적합하다.</p>
 </section>
-<section id="id4">
-<h3>체크포인트 질문<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>체크포인트 질문<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Jamba 아키텍처에서 <strong>Transformer 층과 Mamba 층은 어떤 비율로 배치</strong>되는가? 이러한 설계가 <strong>메모리 및 속도 측면</strong>에 어떤 이점을 주는지 설명하라.</p></li>
 <li><p>Jamba가 MoE를 도입한 이유는 무엇인가? <em>활성 파라미터</em>와 <em>총 파라미터</em>의 개념을 들어 설명하라.</p></li>
@@ -653,8 +695,8 @@ document.write(`
 </ul>
 </section>
 </section>
-<section id="id5">
-<h2>5. 아키텍처별 성능 비교<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="id10">
+<h2>5. 아키텍처별 성능 비교<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
 <p>앞서 살펴본 <strong>Transformer, Mamba, RWKV, Jamba</strong>의 특성과 성능을 주요 지표별로 비교하면 다음과 같다:</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -736,8 +778,8 @@ document.write(`
 <p><strong>정리:</strong> Qwen2-72B는 <strong>기업 수준의 멀티모달 AI</strong>를 지향한 모델로, <strong>광범위한 언어 지원</strong>, <strong>강화된 추론 성능</strong>, <strong>멀티모달 처리를 위한 구조적 개선</strong>(M-ROPE, GQA 등)을 통해 현존 최고 공개 모델 중 하나로 평가된다. 산업 현장에서는 다국어 고객지원 봇, 실시간 영상 분석 등 다양한 분야에 적용 가능성을 보여주고 있다.</p>
 </section>
 </section>
-<section id="id6">
-<h2>7. 실습 지침<a class="headerlink" href="#id6" title="Link to this heading">#</a></h2>
+<section id="id11">
+<h2>7. 실습 지침<a class="headerlink" href="#id11" title="Link to this heading">#</a></h2>
 <p>마지막으로, 위에서 소개한 개념들과 모델들을 직접 다뤄볼 수 있는 <strong>실습 가이드</strong>를 제시한다. 아래 단계에 따라 환경을 구축하고, Transformer와 Mamba 모델의 <strong>속도 비교 실험</strong>까지 수행하라.</p>
 <ol class="arabic">
 <li><p><strong>Conda 가상환경 구성:</strong>
@@ -828,10 +870,10 @@ Mamba 아키텍처 실험을 위해 <strong>mamba-ssm</strong> 패키지를 설�
 </ol>
 </section>
 <hr class="docutils" />
-<section id="id7">
-<h2>참고자료<a class="headerlink" href="#id7" title="Link to this heading">#</a></h2>
-<section id="id8">
-<h3>주요 논문 및 연구 자료<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h2>참고자료<a class="headerlink" href="#id12" title="Link to this heading">#</a></h2>
+<section id="id13">
+<h3>주요 논문 및 연구 자료<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Vaswani, A., et al. (2017). “Attention is all you need.” Advances in neural information processing systems.</p></li>
 <li><p>Gu, A., &amp; Dao, T. (2023). “Mamba: Linear-Time Sequence Modeling with Selective State Spaces.” arXiv preprint.</p></li>
@@ -840,8 +882,8 @@ Mamba 아키텍처 실험을 위해 <strong>mamba-ssm</strong> 패키지를 설�
 <li><p>Meta AI (2024). “Llama 3: Technical Report.” Meta Research.</p></li>
 </ul>
 </section>
-<section id="id9">
-<h3>기술 문서 및 구현체<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>기술 문서 및 구현체<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Hugging Face Transformers Documentation: <a class="reference external" href="https://huggingface.co/docs/transformers">https://huggingface.co/docs/transformers</a></p></li>
 <li><p>Mamba GitHub Repository: <a class="github reference external" href="https://github.com/state-spaces/mamba">state-spaces/mamba</a></p></li>
@@ -851,8 +893,8 @@ Mamba 아키텍처 실험을 위해 <strong>mamba-ssm</strong> 패키지를 설�
 <li><p>Alibaba Qwen2 Model Card and Documentation</p></li>
 </ul>
 </section>
-<section id="id10">
-<h3>온라인 리소스 및 블로그<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h3>온라인 리소스 및 블로그<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>“A Visual Guide to Mamba and State Space Models” - Newsletter by Maarten Grootendorst</p></li>
 <li><p>“The RWKV language model: An RNN with the advantages of a transformer” - The Good Minima</p></li>
@@ -863,8 +905,8 @@ Mamba 아키텍처 실험을 위해 <strong>mamba-ssm</strong> 패키지를 설�
 <li><p>“Qwen2 — Alibaba’s New Powerhouse Multimodal AI” - Research Graph Hub</p></li>
 </ul>
 </section>
-<section id="id11">
-<h3>벤치마크 및 평가 자료<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>벤치마크 및 평가 자료<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>MLCommons MLPerf Inference Benchmark Results</p></li>
 <li><p>“Serving Performances of Mixtral 8x7B” - FriendliAI Blog</p></li>
@@ -959,23 +1001,29 @@ Mamba 아키텍처 실험을 위해 <strong>mamba-ssm</strong> 패키지를 설�
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba-moe-transformer-mamba">4. Jamba 아키텍처 – MoE 기반 Transformer+Mamba 하이브리드</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba 모델 활용 예시 코드</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">체크포인트 질문</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">소개</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주요 특징</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jamba">Jamba의 모델 구조</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">대규모 컨텍스트 윈도우 및 비용-효율성</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#moe-mixture-of-experts">MoE(Mixture of Experts) 활용</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">사용 방법</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Jamba 모델 활용 예시 코드</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">체크포인트 질문</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">5. 아키텍처별 성능 비교</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 아키텍처별 성능 비교</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">6. 최신 오픈소스 LLM 소개 및 특징</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llama-3">Llama 3</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mixtral-87b">Mixtral 8×7B</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#qwen2-72b">Qwen2-72B</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">7. 실습 지침</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">참고자료</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">주요 논문 및 연구 자료</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">기술 문서 및 구현체</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">온라인 리소스 및 블로그</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">벤치마크 및 평가 자료</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">7. 실습 지침</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">참고자료</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">주요 논문 및 연구 자료</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">기술 문서 및 구현체</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">온라인 리소스 및 블로그</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">벤치마크 및 평가 자료</a></li>
 </ul>
 </li>
 </ul>
