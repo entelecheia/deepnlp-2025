@@ -1,0 +1,1258 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 4: Advanced Prompting Techniques and Optimization &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week04/index';</script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Syllabus" href="../syllabus/index.html" />
+    <link rel="prev" title="Week 3: Efficient Fine-Tuning with Modern PEFT Techniques" href="../week03/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2 - Tool Learning: PyTorch and Latest Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week04/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek04/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week04/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 4: Advanced Prompting Techniques and Optimization</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systematic-prompting-techniques-role-assignment-and-structured-prompting">1. Systematic Prompting Techniques: Role Assignment and Structured Prompting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#role-prompting">1.1 Role Prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-prompting">1.2 Structured Prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-example-structured-prompt-construction">1.3 Practice Example: Structured Prompt Construction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-technique-and-gsm8k-performance-improvement">2. Self-Consistency Technique and GSM8K Performance Improvement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gsm8k-performance-improvement-case">2.1 GSM8K Performance Improvement Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-implementation-example">2.2 Self-Consistency Implementation Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-self-consistency">2.3 Advantages and Limitations of Self-Consistency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-of-thoughts-technique-exploration-for-complex-problem-solving">3. Tree of Thoughts Technique: Exploration for Complex Problem Solving</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-of-24-performance-improvement-case">3.1 Game of 24 Performance Improvement Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-of-thoughts-implementation-example">3.2 Tree of Thoughts Implementation Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-tree-of-thoughts">3.3 Advantages and Limitations of Tree of Thoughts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-framework-declarative-prompt-programming">4. DSPy Framework: Declarative Prompt Programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-dspy">4.1 Core Components of DSPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signature">Signature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer">Optimizer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-practice-example">4.2 DSPy Practice Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-dspy">4.3 Advantages and Limitations of DSPy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-prompt-optimization-ape-and-latest-trends">5. Automated Prompt Optimization (APE) and Latest Trends</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-prompt-engineer-ape">5.1 Automatic Prompt Engineer (APE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opro-optimization-by-prompting">5.2 OPRO (Optimization by PROmpting)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-improvement-cases">5.3 Performance Improvement Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significance-of-automated-prompt-optimization">5.4 Significance of Automated Prompt Optimization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-example-dspy-based-automated-prompt-optimization-pipeline">6. Practice Example: DSPy-based Automated Prompt Optimization Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-definition">6.1 Problem Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signature-module-composition">6.2 Signature &amp; Module Composition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-optimization-process">6.3 DSPy Optimization Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-papers-and-research-materials">Key Papers and Research Materials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-documentation-and-implementations">Technical Documentation and Implementations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online-resources-and-blogs">Online Resources and Blogs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarks-and-evaluation-materials">Benchmarks and Evaluation Materials</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-4-advanced-prompting-techniques-and-optimization">
+<h1>Week 4: Advanced Prompting Techniques and Optimization<a class="headerlink" href="#week-4-advanced-prompting-techniques-and-optimization" title="Link to this heading">#</a></h1>
+<section id="systematic-prompting-techniques-role-assignment-and-structured-prompting">
+<h2>1. Systematic Prompting Techniques: Role Assignment and Structured Prompting<a class="headerlink" href="#systematic-prompting-techniques-role-assignment-and-structured-prompting" title="Link to this heading">#</a></h2>
+<p>To enhance the performance of Large Language Models (LLMs), <strong>prompt engineering</strong> techniques have evolved significantly. Among these, <strong>role prompting</strong> and <strong>structured prompting</strong> are systematic methods for improving model response quality.</p>
+<section id="role-prompting">
+<h3>1.1 Role Prompting<a class="headerlink" href="#role-prompting" title="Link to this heading">#</a></h3>
+<p><strong>Role prompting</strong> is a technique that assigns a specific <strong>persona</strong> or role to the model to adjust its response style and focus. For example, starting a prompt with “You are a history teacher. Explain the importance of the Industrial Revolution.” causes the model to mimic the tone and perspective of a history teacher, providing more contextually appropriate explanations. Role prompting not only allows control over response tone and format but has also been reported to enhance the model’s <strong>reasoning performance</strong>. In practice, specifying expert roles like “You are a mathematician…” can help the model perform <strong>more consistent and accurate reasoning</strong> on complex problems.</p>
+</section>
+<section id="structured-prompting">
+<h3>1.2 Structured Prompting<a class="headerlink" href="#structured-prompting" title="Link to this heading">#</a></h3>
+<p><strong>Structured prompting</strong> is a technique that writes prompts following clear <strong>structure and steps</strong> to guide the model to respond systematically. Unlike simple conversational prompts, structured prompts explicitly separate roles, tasks, and formats. For example, using the <strong>“Role-Task-Format”</strong> framework:</p>
+<ul class="simple">
+<li><p><strong>Role</strong>: “As a history teacher,”</p></li>
+<li><p><strong>Task</strong>: “explain the causes of World War I, and”</p></li>
+<li><p><strong>Format</strong>: “answer in bullet points that students can easily understand.”</p></li>
+</ul>
+<p>In addition to this <strong>RTF framework</strong>, various structured strategies such as <strong>CIO (Context-Input-Output)</strong> and <strong>WWHW (Who-What-How-Why)</strong> have been proposed. Structured prompts provide <strong>clear instructions and output formats</strong> to the model, making them effective for improving response <strong>consistency</strong> and <strong>accuracy</strong>. For cases requiring <strong>structured output</strong> like JSON format, reliable results can be obtained by presenting prompts field by field.</p>
+</section>
+<section id="practice-example-structured-prompt-construction">
+<h3>1.3 Practice Example: Structured Prompt Construction<a class="headerlink" href="#practice-example-structured-prompt-construction" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">create_structured_prompt</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">format_instruction</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function to create structured prompts</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        role: Role to assign to the model</span>
+<span class="sd">        task: Task to perform</span>
+<span class="sd">        format_instruction: Output format instruction</span>
+<span class="sd">        context: Additional context (optional)</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Role: </span><span class="si">{</span><span class="n">role</span><span class="si">}</span>
+
+<span class="s2">Task: </span><span class="si">{</span><span class="n">task</span><span class="si">}</span>
+
+<span class="s2">Format: </span><span class="si">{</span><span class="n">format_instruction</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+    
+    <span class="k">if</span> <span class="n">context</span><span class="p">:</span>
+        <span class="n">prompt</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Context: </span><span class="si">{</span><span class="n">context</span><span class="si">}</span><span class="s2">&quot;</span>
+    
+    <span class="k">return</span> <span class="n">prompt</span>
+
+<span class="c1"># Example usage</span>
+<span class="n">role</span> <span class="o">=</span> <span class="s2">&quot;Experienced software developer&quot;</span>
+<span class="n">task</span> <span class="o">=</span> <span class="s2">&quot;Please explain step-by-step how to set up a new web server&quot;</span>
+<span class="n">format_instruction</span> <span class="o">=</span> <span class="s2">&quot;List each step with numbers and emphasize important parts&quot;</span>
+
+<span class="n">prompt</span> <span class="o">=</span> <span class="n">create_structured_prompt</span><span class="p">(</span><span class="n">role</span><span class="p">,</span> <span class="n">task</span><span class="p">,</span> <span class="n">format_instruction</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Role</span><span class="p">:</span> <span class="n">Experienced</span> <span class="n">software</span> <span class="n">developer</span>
+
+<span class="n">Task</span><span class="p">:</span> <span class="n">Please</span> <span class="n">explain</span> <span class="n">step</span><span class="o">-</span><span class="n">by</span><span class="o">-</span><span class="n">step</span> <span class="n">how</span> <span class="n">to</span> <span class="nb">set</span> <span class="n">up</span> <span class="n">a</span> <span class="n">new</span> <span class="n">web</span> <span class="n">server</span>
+
+<span class="n">Format</span><span class="p">:</span> <span class="n">List</span> <span class="n">each</span> <span class="n">step</span> <span class="k">with</span> <span class="n">numbers</span> <span class="ow">and</span> <span class="n">emphasize</span> <span class="n">important</span> <span class="n">parts</span>
+</pre></div>
+</div>
+<p>Such systematic prompts help the model clearly understand the <strong>role</strong>, <strong>objective</strong>, and <strong>format</strong> for its response, enabling higher quality responses compared to scattered instructions.</p>
+</section>
+</section>
+<section id="self-consistency-technique-and-gsm8k-performance-improvement">
+<h2>2. Self-Consistency Technique and GSM8K Performance Improvement<a class="headerlink" href="#self-consistency-technique-and-gsm8k-performance-improvement" title="Link to this heading">#</a></h2>
+<p>In <strong>Chain-of-Thought (CoT)</strong> prompting for complex problems, model performance can be influenced by <strong>initial path bias</strong> since the model often follows only one reasoning path. <strong>Self-Consistency</strong> is a <strong>decoding strategy</strong> that addresses this problem by <strong>sampling multiple reasoning paths</strong> instead of a single response and determining the final answer through <strong>voting</strong>. In other words, it generates multiple <strong>thought processes</strong> for the same question (typically using temperature) and selects the <strong>most consistently appearing final answer</strong>.</p>
+<p>The intuition behind this method is that “while thinking paths may differ for difficult problems, <strong>the correct answer is one</strong>.” By applying Self-Consistency, the model explores various approaches and takes answers closer to the <strong>intersection</strong>, reducing errors from single paths and significantly improving performance on complex problems.</p>
+<section id="gsm8k-performance-improvement-case">
+<h3>2.1 GSM8K Performance Improvement Case<a class="headerlink" href="#gsm8k-performance-improvement-case" title="Link to this heading">#</a></h3>
+<p>Self-Consistency showed remarkable improvement on the <strong>GSM8K</strong> benchmark, which requires mathematical reasoning. According to Wang et al.’s (2022) research, applying <strong>Self-Consistency decoding to CoT prompts</strong> achieved a <strong>17.9%p performance improvement</strong> on GSM8K. For example, a model’s GSM8K accuracy of 55% rose to approximately 72.9% after applying Self-Consistency. This technique also brought double-digit performance improvements to other reasoning tasks (SVAMP, AQuA, StrategyQA, etc.), and the effect was demonstrated in the representative paper published at ICLR 2023.</p>
+</section>
+<section id="self-consistency-implementation-example">
+<h3>2.2 Self-Consistency Implementation Example<a class="headerlink" href="#self-consistency-implementation-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_final_answer</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to extract final answer from text&quot;&quot;&quot;</span>
+    <span class="c1"># Find answers using various patterns</span>
+    <span class="n">patterns</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">r</span><span class="s1">&#39;answer is\s*(\d+)&#39;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s1">&#39;the answer is\s*(\d+)&#39;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s1">&#39;therefore\s*(\d+)&#39;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s1">&#39;result is\s*(\d+)&#39;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s1">&#39;(\d+)\s*is the answer&#39;</span><span class="p">,</span>
+        <span class="sa">r</span><span class="s1">&#39;(\d+)\s*is correct&#39;</span>
+    <span class="p">]</span>
+    
+    <span class="k">for</span> <span class="n">pattern</span> <span class="ow">in</span> <span class="n">patterns</span><span class="p">:</span>
+        <span class="n">match</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">search</span><span class="p">(</span><span class="n">pattern</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">match</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">match</span><span class="o">.</span><span class="n">group</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    
+    <span class="c1"># Find the last number</span>
+    <span class="n">numbers</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">findall</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\d+&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">numbers</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="k">if</span> <span class="n">numbers</span> <span class="k">else</span> <span class="kc">None</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">self_consistency_sampling</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Multi-sampling and voting through Self-Consistency</span>
+<span class="sd">    </span>
+<span class="sd">    Args:</span>
+<span class="sd">        question: Math problem</span>
+<span class="sd">        model: Model to use</span>
+<span class="sd">        num_samples: Number of samples to generate</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">cot_prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;Solve the following math problem step by step.</span>
+
+<span class="s2">Problem: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span>
+
+<span class="s2">Think step by step and provide the final answer at the end.&quot;&quot;&quot;</span>
+
+    <span class="n">answers</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_samples</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">cot_prompt</span><span class="p">}],</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>  <span class="c1"># Use high temperature for diversity</span>
+                <span class="n">max_tokens</span><span class="o">=</span><span class="mi">500</span>
+            <span class="p">)</span>
+            
+            <span class="n">answer_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+            <span class="n">final_answer</span> <span class="o">=</span> <span class="n">extract_final_answer</span><span class="p">(</span><span class="n">answer_text</span><span class="p">)</span>
+            
+            <span class="k">if</span> <span class="n">final_answer</span><span class="p">:</span>
+                <span class="n">answers</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">final_answer</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sample </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">final_answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error generating sample </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="c1"># Determine final answer through voting</span>
+    <span class="k">if</span> <span class="n">answers</span><span class="p">:</span>
+        <span class="n">answer_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+        <span class="n">most_common</span> <span class="o">=</span> <span class="n">answer_counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">1</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">final_answer</span> <span class="o">=</span> <span class="n">most_common</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">confidence</span> <span class="o">=</span> <span class="n">most_common</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span>
+        
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Final answer: </span><span class="si">{</span><span class="n">final_answer</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Confidence: </span><span class="si">{</span><span class="n">confidence</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">most_common</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">answers</span><span class="p">)</span><span class="si">}</span><span class="s2">)&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">final_answer</span><span class="p">,</span> <span class="n">confidence</span>
+    
+    <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">0</span>
+
+<span class="c1"># Usage example</span>
+<span class="n">question</span> <span class="o">=</span> <span class="s2">&quot;I bought 3 apples and 2 pears. Apples cost 500 won each and pears cost 700 won each. How much do I need to pay in total?&quot;</span>
+
+<span class="n">final_answer</span><span class="p">,</span> <span class="n">confidence</span> <span class="o">=</span> <span class="n">self_consistency_sampling</span><span class="p">(</span><span class="n">question</span><span class="p">,</span> <span class="n">num_samples</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sample</span> <span class="mi">1</span><span class="p">:</span> <span class="mi">2900</span>
+<span class="n">Sample</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">2900</span>
+<span class="n">Sample</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">2900</span>
+<span class="n">Sample</span> <span class="mi">4</span><span class="p">:</span> <span class="mi">2900</span>
+<span class="n">Sample</span> <span class="mi">5</span><span class="p">:</span> <span class="mi">2900</span>
+
+<span class="n">Final</span> <span class="n">answer</span><span class="p">:</span> <span class="mi">2900</span>
+<span class="n">Confidence</span><span class="p">:</span> <span class="mf">1.00</span> <span class="p">(</span><span class="mi">5</span><span class="o">/</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="advantages-and-limitations-of-self-consistency">
+<h3>2.3 Advantages and Limitations of Self-Consistency<a class="headerlink" href="#advantages-and-limitations-of-self-consistency" title="Link to this heading">#</a></h3>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p><strong>Reduced uncertainty</strong>: Explores multiple paths to reduce errors from single paths</p></li>
+<li><p><strong>Stable performance</strong>: Provides more stable accuracy rates for math problems or commonsense reasoning</p></li>
+<li><p><strong>Simple implementation</strong>: Only requires temperature adjustment and voting logic added to existing CoT prompts</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Increased computational cost</strong>: Multiple reasoning steps are required, increasing costs</p></li>
+<li><p><strong>Time delay</strong>: May be unsuitable for cases requiring real-time responses</p></li>
+<li><p><strong>No consistency guarantee</strong>: All samples may produce the same wrong answer</p></li>
+</ul>
+</section>
+</section>
+<section id="tree-of-thoughts-technique-exploration-for-complex-problem-solving">
+<h2>3. Tree of Thoughts Technique: Exploration for Complex Problem Solving<a class="headerlink" href="#tree-of-thoughts-technique-exploration-for-complex-problem-solving" title="Link to this heading">#</a></h2>
+<p><strong>Tree of Thoughts (ToT)</strong> extends Chain-of-Thought by enabling the model to <strong>explore multiple branches of thought in a tree structure</strong>. The core concept of ToT, proposed by Yao et al. (2023), is to have the model generate intermediate problem-solving steps (thoughts) one by one while creating <strong>multiple alternative branches</strong> for exploration, and at each step, <strong>self-evaluate</strong> to select promising branches or prune unnecessary ones through backtracking. This allows LLMs to mimic <strong>strategic forward-thinking (lookahead)</strong> and explore more systematically even in complex problems.</p>
+<p>The ToT algorithm is typically combined with <strong>search techniques</strong> like BFS/DFS. For example, when solving a problem requiring 3 intermediate thought steps, multiple candidate thoughts are created at step 1, <strong>step 2 candidates are expanded for each</strong>, and finally, by proceeding to step 3, the model <strong>evaluates “solvability”</strong> to select branches. The model indicates for each intermediate thought whether <em>“this path seems likely to lead to a solution (possible)”</em> or <em>“seems unlikely”</em>, <strong>keeping only high-probability paths</strong> to improve search efficiency.</p>
+<section id="game-of-24-performance-improvement-case">
+<h3>3.1 Game of 24 Performance Improvement Case<a class="headerlink" href="#game-of-24-performance-improvement-case" title="Link to this heading">#</a></h3>
+<p>ToT’s power was dramatically demonstrated in the mathematical puzzle <em>24 Game</em>. The <em>24 Game</em> is a problem of finding an expression that makes 24 using all four given numbers. When GPT-4 was asked to solve it using only <strong>traditional CoT prompts</strong>, the success rate was only <strong>4%</strong>. However, when the <strong>Tree of Thoughts strategy</strong> was applied to the same GPT-4, the <strong>success rate rose to 74%</strong>. This shows that ToT dramatically increased the rate of reaching correct answers through exploration of multiple paths. According to research results, ToT showed superior performance compared to traditional CoT across <strong>tasks requiring exploration and planning</strong> such as creative writing and mini crosswords.</p>
+</section>
+<section id="tree-of-thoughts-implementation-example">
+<h3>3.2 Tree of Thoughts Implementation Example<a class="headerlink" href="#tree-of-thoughts-implementation-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">openai</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">TreeOfThoughts</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-3.5-turbo&quot;</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">thoughts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evaluations</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">generate_thoughts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">current_thoughts</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Generate possible next thoughts from current situation&quot;&quot;&quot;</span>
+        
+        <span class="k">if</span> <span class="n">current_thoughts</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">current_thoughts</span> <span class="o">=</span> <span class="p">[]</span>
+        
+        <span class="n">context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Problem: </span><span class="si">{</span><span class="n">problem</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="k">if</span> <span class="n">current_thoughts</span><span class="p">:</span>
+            <span class="n">context</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Current thoughts: </span><span class="si">{</span><span class="s1">&#39; -&gt; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">current_thoughts</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+
+<span class="s2">Please suggest 3-5 possible approaches for the next step to solve the above problem.</span>
+<span class="s2">Each approach should be specific and actionable.</span>
+
+<span class="s2">Format:</span>
+<span class="s2">1. [Approach 1]</span>
+<span class="s2">2. [Approach 2]</span>
+<span class="s2">3. [Approach 3]</span>
+<span class="s2">...&quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span>
+                <span class="n">max_tokens</span><span class="o">=</span><span class="mi">300</span>
+            <span class="p">)</span>
+            
+            <span class="n">thoughts_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span>
+            <span class="n">thoughts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_parse_thoughts</span><span class="p">(</span><span class="n">thoughts_text</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">thoughts</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error generating thoughts: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="p">[]</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_thought</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">thought_path</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate the promise of a thought path (0-1 score)&quot;&quot;&quot;</span>
+        
+        <span class="n">context</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Problem: </span><span class="si">{</span><span class="n">problem</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">context</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;Thought path: </span><span class="si">{</span><span class="s1">&#39; -&gt; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">thought_path</span><span class="p">)</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        
+        <span class="n">prompt</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">context</span><span class="si">}</span>
+
+<span class="s2">Please rate how promising this thought path is for solving the problem on a scale of 0-10.</span>
+<span class="s2">Evaluation criteria:</span>
+<span class="s2">- Logical consistency</span>
+<span class="s2">- Problem-solving potential</span>
+<span class="s2">- Feasibility</span>
+
+<span class="s2">Answer with only the score number (e.g., 7)&quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">openai</span><span class="o">.</span><span class="n">ChatCompletion</span><span class="o">.</span><span class="n">create</span><span class="p">(</span>
+                <span class="n">model</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">,</span>
+                <span class="n">messages</span><span class="o">=</span><span class="p">[{</span><span class="s2">&quot;role&quot;</span><span class="p">:</span> <span class="s2">&quot;user&quot;</span><span class="p">,</span> <span class="s2">&quot;content&quot;</span><span class="p">:</span> <span class="n">prompt</span><span class="p">}],</span>
+                <span class="n">temperature</span><span class="o">=</span><span class="mf">0.3</span><span class="p">,</span>
+                <span class="n">max_tokens</span><span class="o">=</span><span class="mi">10</span>
+            <span class="p">)</span>
+            
+            <span class="n">score_text</span> <span class="o">=</span> <span class="n">response</span><span class="o">.</span><span class="n">choices</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">message</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="n">score</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">score_text</span><span class="p">)</span> <span class="o">/</span> <span class="mf">10.0</span>  <span class="c1"># Normalize to 0-1 range</span>
+            <span class="k">return</span> <span class="n">score</span>
+            
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Error during evaluation: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="mf">0.0</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">solve_with_tot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">problem</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">max_depth</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="n">beam_width</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">3</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Solve problem using Tree of Thoughts&quot;&quot;&quot;</span>
+        
+        <span class="c1"># Initial state</span>
+        <span class="n">current_paths</span> <span class="o">=</span> <span class="p">[[]]</span>  <span class="c1"># Start with empty path</span>
+        <span class="n">best_solution</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">best_score</span> <span class="o">=</span> <span class="mf">0.0</span>
+        
+        <span class="k">for</span> <span class="n">depth</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">max_depth</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Depth </span><span class="si">{</span><span class="n">depth</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="si">}</span><span class="s2"> ===&quot;</span><span class="p">)</span>
+            <span class="n">new_paths</span> <span class="o">=</span> <span class="p">[]</span>
+            
+            <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">current_paths</span><span class="p">:</span>
+                <span class="c1"># Generate next thoughts from current path</span>
+                <span class="n">next_thoughts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">generate_thoughts</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span>
+                <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Path </span><span class="si">{</span><span class="n">path</span><span class="si">}</span><span class="s2">: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">next_thoughts</span><span class="p">)</span><span class="si">}</span><span class="s2"> candidates generated&quot;</span><span class="p">)</span>
+                
+                <span class="k">for</span> <span class="n">thought</span> <span class="ow">in</span> <span class="n">next_thoughts</span><span class="p">:</span>
+                    <span class="n">new_path</span> <span class="o">=</span> <span class="n">path</span> <span class="o">+</span> <span class="p">[</span><span class="n">thought</span><span class="p">]</span>
+                    <span class="n">score</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">evaluate_thought</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">new_path</span><span class="p">)</span>
+                    
+                    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  &#39;</span><span class="si">{</span><span class="n">thought</span><span class="si">}</span><span class="s2">&#39; -&gt; Score: </span><span class="si">{</span><span class="n">score</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+                    
+                    <span class="n">new_paths</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">new_path</span><span class="p">,</span> <span class="n">score</span><span class="p">))</span>
+                    
+                    <span class="c1"># Update best score</span>
+                    <span class="k">if</span> <span class="n">score</span> <span class="o">&gt;</span> <span class="n">best_score</span><span class="p">:</span>
+                        <span class="n">best_score</span> <span class="o">=</span> <span class="n">score</span>
+                        <span class="n">best_solution</span> <span class="o">=</span> <span class="n">new_path</span>
+            
+            <span class="c1"># Keep only top beam_width paths</span>
+            <span class="n">new_paths</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">current_paths</span> <span class="o">=</span> <span class="p">[</span><span class="n">path</span> <span class="k">for</span> <span class="n">path</span><span class="p">,</span> <span class="n">score</span> <span class="ow">in</span> <span class="n">new_paths</span><span class="p">[:</span><span class="n">beam_width</span><span class="p">]]</span>
+            
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Keeping top </span><span class="si">{</span><span class="n">beam_width</span><span class="si">}</span><span class="s2"> paths&quot;</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;best_solution&quot;</span><span class="p">:</span> <span class="n">best_solution</span><span class="p">,</span>
+            <span class="s2">&quot;best_score&quot;</span><span class="p">:</span> <span class="n">best_score</span><span class="p">,</span>
+            <span class="s2">&quot;all_paths&quot;</span><span class="p">:</span> <span class="n">current_paths</span>
+        <span class="p">}</span>
+    
+    <span class="k">def</span><span class="w"> </span><span class="nf">_parse_thoughts</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Parse thoughts from generated text&quot;&quot;&quot;</span>
+        <span class="n">thoughts</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">lines</span> <span class="o">=</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+        
+        <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">lines</span><span class="p">:</span>
+            <span class="n">line</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">line</span> <span class="ow">and</span> <span class="p">(</span><span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isdigit</span><span class="p">()</span> <span class="ow">or</span> <span class="n">line</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;-&#39;</span><span class="p">)):</span>
+                <span class="c1"># Remove numbers or bullet points</span>
+                <span class="n">thought</span> <span class="o">=</span> <span class="n">line</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">thought</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;- &#39;</span><span class="p">):</span>
+                    <span class="n">thought</span> <span class="o">=</span> <span class="n">thought</span><span class="p">[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">thought</span><span class="p">:</span>
+                    <span class="n">thoughts</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">thought</span><span class="p">)</span>
+        
+        <span class="k">return</span> <span class="n">thoughts</span>
+
+<span class="c1"># Usage example</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">solve_24_game</span><span class="p">(</span><span class="n">numbers</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Solve 24 game&quot;&quot;&quot;</span>
+    <span class="n">problem</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Find an expression that makes 24 using the given numbers </span><span class="si">{</span><span class="n">numbers</span><span class="si">}</span><span class="s2">. Each number must be used exactly once.&quot;</span>
+    
+    <span class="n">tot</span> <span class="o">=</span> <span class="n">TreeOfThoughts</span><span class="p">()</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">tot</span><span class="o">.</span><span class="n">solve_with_tot</span><span class="p">(</span><span class="n">problem</span><span class="p">,</span> <span class="n">max_depth</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">beam_width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">=== Final Result ===&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Best score: </span><span class="si">{</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;best_score&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Optimal path: </span><span class="si">{</span><span class="s1">&#39; -&gt; &#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;best_solution&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="c1"># Example execution</span>
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">solve_24_game</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">===</span> <span class="n">Depth</span> <span class="mi">1</span> <span class="o">===</span>
+<span class="n">Path</span> <span class="p">[]:</span> <span class="mi">4</span> <span class="n">candidates</span> <span class="n">generated</span>
+  <span class="s1">&#39;First, try multiplying two numbers to make a large number&#39;</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.60</span>
+  <span class="s1">&#39;Try combining addition and subtraction&#39;</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.50</span>
+  <span class="s1">&#39;Use division&#39;</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.70</span>
+  <span class="s1">&#39;Try complex operations with parentheses&#39;</span> <span class="o">-&gt;</span> <span class="n">Score</span><span class="p">:</span> <span class="mf">0.80</span>
+
+<span class="n">Keeping</span> <span class="n">top</span> <span class="mi">3</span> <span class="n">paths</span>
+
+<span class="o">===</span> <span class="n">Final</span> <span class="n">Result</span> <span class="o">===</span>
+<span class="n">Best</span> <span class="n">score</span><span class="p">:</span> <span class="mf">0.90</span>
+<span class="n">Optimal</span> <span class="n">path</span><span class="p">:</span> <span class="n">Try</span> <span class="nb">complex</span> <span class="n">operations</span> <span class="k">with</span> <span class="n">parentheses</span> <span class="o">-&gt;</span> <span class="p">(</span><span class="mi">8</span><span class="o">-</span><span class="mi">4</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">6</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">=</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">=</span> <span class="mi">16</span> <span class="o">-&gt;</span> <span class="mi">16</span> <span class="o">+</span> <span class="mi">8</span> <span class="o">=</span> <span class="mi">24</span>
+</pre></div>
+</div>
+</section>
+<section id="advantages-and-limitations-of-tree-of-thoughts">
+<h3>3.3 Advantages and Limitations of Tree of Thoughts<a class="headerlink" href="#advantages-and-limitations-of-tree-of-thoughts" title="Link to this heading">#</a></h3>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p><strong>Systematic exploration</strong>: Systematically explores multiple possibilities, increasing the likelihood of reaching optimal solutions</p></li>
+<li><p><strong>Backtracking</strong>: Early abandonment of wrong paths improves efficiency</p></li>
+<li><p><strong>Complex problem solving</strong>: Effective for complex problems that are difficult to solve with simple CoT</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Computational cost</strong>: Significantly increased costs due to exploring multiple paths</p></li>
+<li><p><strong>Evaluation subjectivity</strong>: Consistency may be poor since the model evaluates itself</p></li>
+<li><p><strong>Implementation complexity</strong>: More complex to implement than simple CoT</p></li>
+</ul>
+</section>
+</section>
+<section id="dspy-framework-declarative-prompt-programming">
+<h2>4. DSPy Framework: Declarative Prompt Programming<a class="headerlink" href="#dspy-framework-declarative-prompt-programming" title="Link to this heading">#</a></h2>
+<p><strong>DSPy</strong> framework emerged as an innovative approach to make prompt engineering <strong>more systematic and modular</strong>. DSPy (Declarative <strong>Self-Improving</strong> Python) treats prompts as a kind of <strong>program</strong>, supporting <strong>declarative</strong> writing and automatic optimization. This allows describing and managing AI behavior through structured code instead of manually modifying prompt sentences one by one.</p>
+<section id="core-components-of-dspy">
+<h3>4.1 Core Components of DSPy<a class="headerlink" href="#core-components-of-dspy" title="Link to this heading">#</a></h3>
+<p>DSPy’s <strong>structure</strong> consists of three core elements:</p>
+<section id="signature">
+<h4>Signature<a class="headerlink" href="#signature" title="Link to this heading">#</a></h4>
+<p>Declares the <strong>input and output format</strong> of the task to be solved. Like defining a function signature, it specifies what input fields to receive and what output fields to generate. For example, it can be expressed simply as a string like “question -&gt; answer: float” or defined in detail through Python class inheritance. Signatures can specify <strong>field types</strong>, allowing DSPy to automatically generate prompt templates based on this and parse responses to the corresponding type.</p>
+</section>
+<section id="module">
+<h4>Module<a class="headerlink" href="#module" title="Link to this heading">#</a></h4>
+<p>Encapsulates the <strong>strategy</strong> for generating prompts and calling models. It plays a role in selecting which prompting technique to use based on the Signature. DSPy provides various modules:</p>
+<ul class="simple">
+<li><p><strong>dspy.Predict</strong>: Generates basic single question-answer frames</p></li>
+<li><p><strong>dspy.ChainOfThought</strong>: Creates prompts that include both <strong>intermediate reasoning and final answers</strong> in Chain-of-Thought style</p></li>
+<li><p><strong>dspy.ReAct</strong>: Constructs agent prompts applying tool usage and reactive reasoning (ReAct)</p></li>
+<li><p><strong>BestOfN, Parallel, Refine</strong> and other modules for complex pipelines</p></li>
+</ul>
+<p>When users select modules according to their signature, DSPy <strong>assembles prompts</strong> according to that strategy. For example, applying the ChainOfThought module to math problems automatically generates structured prompts like “<strong>[[Problem]]</strong>\n{question}\n**[[Solution]]<strong>\n…</strong>[[Answer]]**…”.</p>
+</section>
+<section id="optimizer">
+<h4>Optimizer<a class="headerlink" href="#optimizer" title="Link to this heading">#</a></h4>
+<p>DSPy’s secret weapon, an algorithm that <strong>automatically tunes</strong> prompts (or model parameters). The Optimizer operates with (i) DSPy programs (combinations of modules), (ii) evaluation metrics (metric functions), and (iii) small amounts of training input. The Optimizer uses LLMs to generate better instructions or examples, and <strong>searches and evaluates</strong> multiple candidate prompts to improve prompts in the direction of maximizing performance.</p>
+<p>For example, the <strong>MIPROv2</strong> optimizer initially collects <strong>reasoning traces</strong> by running programs on various inputs, selects high-scoring paths, and then modifies/proposes instructions based on this, finally finding optimal prompts through <strong>combinatorial search</strong>. Through this process, the Optimizer can automate <strong>Few-shot example composition, instruction reconstruction, and fine-tuning</strong> without manual tuning. DSPy includes various automatic prompt optimization algorithms such as <strong>Bootstrap</strong> series, <strong>Ensemble</strong>, and <strong>SIMBA</strong> in addition to MIPROv2.</p>
+</section>
+</section>
+<section id="dspy-practice-example">
+<h3>4.2 DSPy Practice Example<a class="headerlink" href="#dspy-practice-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">dspy</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+
+<span class="c1"># 1. Define signature</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">SentimentCls</span><span class="p">(</span><span class="n">dspy</span><span class="o">.</span><span class="n">Signature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classify sentiment of a given sentence.&quot;&quot;&quot;</span>
+    <span class="n">sentence</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">sentiment</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;positive&quot;</span><span class="p">,</span> <span class="s2">&quot;negative&quot;</span><span class="p">,</span> <span class="s2">&quot;neutral&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">OutputField</span><span class="p">()</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">OutputField</span><span class="p">()</span>
+
+<span class="c1"># 2. Create module</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">SentimentCls</span><span class="p">)</span>
+
+<span class="c1"># 3. Usage example</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">classifier</span><span class="p">(</span><span class="n">sentence</span><span class="o">=</span><span class="s2">&quot;This book was super fun to read, though not the last chapter.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Sentiment: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">sentiment</span><span class="si">}</span><span class="s2">, Confidence: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Output Example:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Sentiment</span><span class="p">:</span> <span class="n">positive</span><span class="p">,</span> <span class="n">Confidence</span><span class="p">:</span> <span class="mf">0.85</span>
+</pre></div>
+</div>
+<p>In the above code, the SentimentCls signature is defined and the dspy.Predict module is used to generate prompts. DSPy automatically describes input/output fields in the <strong>system message</strong> and constructs prompts by putting actual input values in the user message. The model’s response is parsed by DSPy into <strong>structured output</strong> like result.sentiment, result.confidence. This makes prompt writing <strong>reproducible</strong> and <strong>modular</strong> at the code level, and can be easily connected to <strong>performance improvement through Optimizer</strong>.</p>
+</section>
+<section id="advantages-and-limitations-of-dspy">
+<h3>4.3 Advantages and Limitations of DSPy<a class="headerlink" href="#advantages-and-limitations-of-dspy" title="Link to this heading">#</a></h3>
+<p><strong>Advantages:</strong></p>
+<ul class="simple">
+<li><p><strong>Modularity</strong>: Can compose prompts into reusable components</p></li>
+<li><p><strong>Automatic optimization</strong>: Can automatically improve prompts through Optimizer</p></li>
+<li><p><strong>Type safety</strong>: Reduces errors by specifying input/output types</p></li>
+<li><p><strong>Reproducibility</strong>: Manages prompts through code for reproducibility</p></li>
+</ul>
+<p><strong>Limitations:</strong></p>
+<ul class="simple">
+<li><p><strong>Learning curve</strong>: Must learn new concepts and paradigms</p></li>
+<li><p><strong>Limited modules</strong>: Not all prompting techniques are provided as modules</p></li>
+<li><p><strong>Performance dependency</strong>: Optimization results heavily depend on evaluation metrics</p></li>
+</ul>
+</section>
+</section>
+<section id="automated-prompt-optimization-ape-and-latest-trends">
+<h2>5. Automated Prompt Optimization (APE) and Latest Trends<a class="headerlink" href="#automated-prompt-optimization-ape-and-latest-trends" title="Link to this heading">#</a></h2>
+<p>Since manually experimenting and optimizing prompts is very cumbersome, research on <strong>automated prompt optimization</strong> is active. This is commonly called <strong>Automated Prompt Engineering (APE)</strong>, an approach that uses LLMs themselves to <strong>search</strong> or <strong>evolve</strong> optimal instructions or examples.</p>
+<section id="automatic-prompt-engineer-ape">
+<h3>5.1 Automatic Prompt Engineer (APE)<a class="headerlink" href="#automatic-prompt-engineer-ape" title="Link to this heading">#</a></h3>
+<p>The <strong>Automatic Prompt Engineer (APE)</strong> technique defines <strong>prompt optimization as a program optimization problem</strong>. Zhou et al.’s (2022) APE paper proposed a loop where <strong>LLMs generate candidate instructions</strong> and a separate verification model evaluates each candidate’s performance to select the <strong>highest performing prompt</strong>. Through this method, superior performance compared to human-written prompts was shown across various NLP tasks, achieving human-designed prompt level or better results in 19 out of 24 tasks.</p>
+</section>
+<section id="opro-optimization-by-prompting">
+<h3>5.2 OPRO (Optimization by PROmpting)<a class="headerlink" href="#opro-optimization-by-prompting" title="Link to this heading">#</a></h3>
+<p><strong>OPRO (Optimization by PROmpting)</strong>, one of the latest research areas, is a method that uses <strong>LLMs as optimization tools</strong>. Instead of humans explicitly creating prompts, it transforms the problem into a <strong>natural language optimization problem</strong> of finding “<strong>prompts that improve target performance</strong>” and has LLMs generate progressively better prompts. For example, OPRO first summarizes previously generated prompts and their performance to present to the LLM, then receives <strong>new prompts for the next iteration</strong> in a repeating manner. This causes prompts to evolve in the direction of progressively improving scores.</p>
+</section>
+<section id="performance-improvement-cases">
+<h3>5.3 Performance Improvement Cases<a class="headerlink" href="#performance-improvement-cases" title="Link to this heading">#</a></h3>
+<p>These automated techniques are significantly contributing to achieving <strong>state-of-the-art performance</strong>. Particularly on the <strong>GSM8K</strong> benchmark for math problems, APE-based methods have reached GPT-4 level performance. For example, the open-source <strong>Ape</strong> tool achieved <strong>93% accuracy on GSM8K</strong>, much higher than the same model’s basic prompt performance (70%) or DSPy optimization performance (86%). Google researchers’ OPRO technique also reported <strong>8%p+ improvement in GSM8K accuracy compared to human-designed prompts</strong>, achieving results close to SOTA, and achieved up to 50%p improvement even on challenging tasks like Big-Bench Hard.</p>
+<p>In another interesting direction, frameworks like <strong>PromptWizard</strong> take a strategy of optimizing both prompts and few-shot examples together through LLM’s <strong>feedback-driven iteration</strong>, and ideas like <strong>PanelGPT</strong> where multiple LLMs discuss and evaluate/improve prompts are being proposed. These tools and papers are all in the flow of maximizing model potential through <strong>automated prompt improvement</strong>.</p>
+</section>
+<section id="significance-of-automated-prompt-optimization">
+<h3>5.4 Significance of Automated Prompt Optimization<a class="headerlink" href="#significance-of-automated-prompt-optimization" title="Link to this heading">#</a></h3>
+<p>In summary, automated prompt optimization (APE) can be called <strong>“AutoML for prompts”</strong> that emerged in the modern LLM era. This allows obtaining high-performance instructions with minimal human intervention, and open-source tools like <strong>PromptChef/Ape</strong>, <strong>DSPy Optimizer</strong>, and <strong>PromptWizard</strong> are publicly available to help researchers and developers.</p>
+</section>
+</section>
+<section id="practice-example-dspy-based-automated-prompt-optimization-pipeline">
+<h2>6. Practice Example: DSPy-based Automated Prompt Optimization Pipeline<a class="headerlink" href="#practice-example-dspy-based-automated-prompt-optimization-pipeline" title="Link to this heading">#</a></h2>
+<p>Finally, let’s look at a practice example of constructing an <strong>automated prompt optimization</strong> pipeline using the DSPy framework introduced earlier. Here, we go through the steps of <strong>problem definition → Signature/Module composition → improvement through Optimizer → performance verification</strong> using a simple classification problem as an example.</p>
+<section id="problem-definition">
+<h3>6.1 Problem Definition<a class="headerlink" href="#problem-definition" title="Link to this heading">#</a></h3>
+<p>Let’s consider a task that takes <em>historical event descriptions</em> as input and classifies the <strong>field of the event</strong>. Output labels are one of about 10 categories like “War/Conflict”, “Politics/Governance”, “Science/Technology”. The model’s output also includes <strong>confidence scores</strong> to check uncertainty.</p>
+</section>
+<section id="signature-module-composition">
+<h3>6.2 Signature &amp; Module Composition<a class="headerlink" href="#signature-module-composition" title="Link to this heading">#</a></h3>
+<p>First, define a signature class in DSPy.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Literal</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">dspy</span>
+
+<span class="c1"># 1. Define signature</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CategorizeEvent</span><span class="p">(</span><span class="n">dspy</span><span class="o">.</span><span class="n">Signature</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Classify historic events into categories.&quot;&quot;&quot;</span>
+    <span class="n">event</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">InputField</span><span class="p">()</span>
+    <span class="n">category</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;Wars&quot;</span><span class="p">,</span> <span class="s2">&quot;Politics&quot;</span><span class="p">,</span> <span class="s2">&quot;Science&quot;</span><span class="p">,</span> <span class="s2">&quot;Culture&quot;</span><span class="p">,</span> <span class="s2">&quot;Economics&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">OutputField</span><span class="p">()</span>
+    <span class="n">confidence</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">OutputField</span><span class="p">()</span>
+
+<span class="c1"># 2. Create module</span>
+<span class="n">classifier</span> <span class="o">=</span> <span class="n">dspy</span><span class="o">.</span><span class="n">Predict</span><span class="p">(</span><span class="n">CategorizeEvent</span><span class="p">)</span>
+
+<span class="c1"># 3. Initial performance evaluation (example)</span>
+<span class="n">test_events</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="s2">&quot;World War II began in 1939&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;Einstein published the theory of relativity&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;The French Revolution occurred in 1789&quot;</span>
+<span class="p">]</span>
+
+<span class="c1"># 4. Automatic improvement through Optimizer</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">dspy.teleprompt</span><span class="w"> </span><span class="kn">import</span> <span class="n">MIPROv2</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">validate_category</span><span class="p">(</span><span class="n">example</span><span class="p">,</span> <span class="n">prediction</span><span class="p">):</span>
+    <span class="k">return</span> <span class="mf">1.0</span> <span class="k">if</span> <span class="n">example</span><span class="o">.</span><span class="n">category</span> <span class="o">==</span> <span class="n">prediction</span><span class="o">.</span><span class="n">category</span> <span class="k">else</span> <span class="mf">0.0</span>
+
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">MIPROv2</span><span class="p">(</span><span class="n">metric</span><span class="o">=</span><span class="n">validate_category</span><span class="p">,</span> <span class="n">auto</span><span class="o">=</span><span class="s2">&quot;light&quot;</span><span class="p">)</span>
+<span class="n">optimized_classifier</span> <span class="o">=</span> <span class="n">optimizer</span><span class="o">.</span><span class="n">compile</span><span class="p">(</span><span class="n">classifier</span><span class="p">,</span> <span class="n">trainset</span><span class="o">=</span><span class="n">train_examples</span><span class="p">)</span>
+
+<span class="c1"># 5. Performance improvement verification</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">optimized_classifier</span><span class="p">(</span><span class="n">event</span><span class="o">=</span><span class="s2">&quot;Einstein published the theory of relativity&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Category: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">category</span><span class="si">}</span><span class="s2">, Confidence: </span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">confidence</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>By declaring input (event) and output (category, confidence) fields in the Signature as above, DSPy creates <strong>basic prompts</strong> following that structure. The dspy.Predict module generates 0-shot prompts, so calling the model in this state performs classification tasks with <strong>boilerplate prompts</strong> that are not yet optimized.</p>
+</section>
+<section id="dspy-optimization-process">
+<h3>6.3 DSPy Optimization Process<a class="headerlink" href="#dspy-optimization-process" title="Link to this heading">#</a></h3>
+<ol class="arabic simple">
+<li><p><strong>Initial performance evaluation</strong>: Measure performance (classification accuracy) on a small number of example inputs with the prepared classifier module. For example, let’s assume that evaluating 20 historical event descriptions with correct labels for the above task resulted in about <strong>52% accuracy</strong>.</p></li>
+<li><p><strong>Optimizer application</strong>: Use DSPy’s <strong>MIPROv2</strong> to optimize prompts. MIPROv2 is an algorithm focused on improving <strong>the prompts themselves</strong> without touching model weights. When compile is called, MIPROv2 internally performs the following:</p>
+<ul class="simple">
+<li><p>Runs the classifier module on various inputs and collects model responses to measure current prompt performance</p></li>
+<li><p>Uses LLMs to generate multiple <strong>variation candidates</strong> for prompt instructions or attempts few-shot example addition when necessary</p></li>
+<li><p>Repeats mini-batch evaluation with various candidate prompts and <strong>searches</strong> in the direction of improving scores</p></li>
+</ul>
+</li>
+<li><p><strong>Performance improvement verification</strong>: Apply the optimized module to the same evaluation set to measure performance again. For example, if <strong>accuracy improved to 63%</strong>, it’s a significant improvement from the initial state. In actual cases, DSPy’s optimizer has been reported to improve accuracy from <strong>about 51.9% to 63.0%</strong>.</p></li>
+</ol>
+<p>Through this process, we can build <strong>declarative prompt design</strong> and <strong>automated optimization</strong> pipelines using DSPy. This approach is much more <strong>efficient</strong> than manually improving prompts and is a powerful tool that can <strong>systematically enhance</strong> model potential.</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="checkpoint-questions">
+<h2>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What is the <strong>Role Prompting</strong> technique and how does it affect model responses? What should be considered when applying it?</p></li>
+<li><p>How does <strong>Self-Consistency decoding</strong> work and why can it improve Chain-of-Thought prompting performance? Explain the performance improvement figures on GSM8K.</p></li>
+<li><p>How does the <strong>Tree of Thoughts (ToT)</strong> technique perform problem solving? Mention the performance improvement ToT showed in the <em>Game of 24</em> puzzle.</p></li>
+<li><p>What do <strong>DSPy’s Signature, Module, and Optimizer</strong> each mean and what roles do they play? What advantages does using them provide for prompt engineering?</p></li>
+<li><p>What is <strong>Automated Prompt Optimization (APE)</strong>? Explain the notable achievements APE techniques have accomplished compared to human-written prompts using GSM8K examples.</p></li>
+<li><p>Briefly summarize the procedure for improving prompts using <strong>DSPy and Optimizer</strong> for a given problem (Signature definition → module execution → Optimizer application → result verification). Also explain the advantages of such automated optimization.</p></li>
+</ol>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<section id="key-papers-and-research-materials">
+<h3>Key Papers and Research Materials<a class="headerlink" href="#key-papers-and-research-materials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Wang, X., et al. (2022). “Self-Consistency Improves Chain of Thought Reasoning in Language Models.” arXiv preprint arXiv:2203.11171.</p></li>
+<li><p>Yao, S., et al. (2023). “Tree of Thoughts: Deliberate Problem Solving with Large Language Models.” arXiv preprint arXiv:2305.10601.</p></li>
+<li><p>Zhou, D., et al. (2022). “Large Language Models Are Human-Level Prompt Engineers.” arXiv preprint arXiv:2211.01910.</p></li>
+<li><p>Yang, C., et al. (2023). “Large Language Models as Optimizers.” arXiv preprint arXiv:2309.03409.</p></li>
+</ul>
+</section>
+<section id="technical-documentation-and-implementations">
+<h3>Technical Documentation and Implementations<a class="headerlink" href="#technical-documentation-and-implementations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>DSPy Official Documentation: <a class="reference external" href="https://dspy.ai/">https://dspy.ai/</a></p></li>
+<li><p>Learn Prompting: <a class="reference external" href="https://learnprompting.org/">https://learnprompting.org/</a></p></li>
+<li><p>Prompt Engineering Guide: <a class="reference external" href="https://www.promptingguide.ai/">https://www.promptingguide.ai/</a></p></li>
+<li><p>PromptWizard Framework: <a class="reference external" href="https://microsoft.github.io/PromptWizard/">https://microsoft.github.io/PromptWizard/</a></p></li>
+</ul>
+</section>
+<section id="online-resources-and-blogs">
+<h3>Online Resources and Blogs<a class="headerlink" href="#online-resources-and-blogs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>“Role Prompting: Guide LLMs with Persona-Based Tasks” - Learn Prompting</p></li>
+<li><p>“Prompt Architectures: An Overview of structured prompting strategies” - Medium</p></li>
+<li><p>“Tree of Thoughts (ToT)” - Prompt Engineering Guide</p></li>
+<li><p>“Pipelines &amp; Prompt Optimization with DSPy” - Technical Blog</p></li>
+<li><p>“Best Free Prompt Engineering Tools of 2025” - SourceForge</p></li>
+</ul>
+</section>
+<section id="benchmarks-and-evaluation-materials">
+<h3>Benchmarks and Evaluation Materials<a class="headerlink" href="#benchmarks-and-evaluation-materials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>GSM8K: Grade School Math 8K Dataset</p></li>
+<li><p>Game of 24: Mathematical Puzzle Benchmark</p></li>
+<li><p>Big-Bench Hard: Challenging Language Understanding Tasks</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week04"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week03/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../syllabus/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Syllabus</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#systematic-prompting-techniques-role-assignment-and-structured-prompting">1. Systematic Prompting Techniques: Role Assignment and Structured Prompting</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#role-prompting">1.1 Role Prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#structured-prompting">1.2 Structured Prompting</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-example-structured-prompt-construction">1.3 Practice Example: Structured Prompt Construction</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-technique-and-gsm8k-performance-improvement">2. Self-Consistency Technique and GSM8K Performance Improvement</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gsm8k-performance-improvement-case">2.1 GSM8K Performance Improvement Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#self-consistency-implementation-example">2.2 Self-Consistency Implementation Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-self-consistency">2.3 Advantages and Limitations of Self-Consistency</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-of-thoughts-technique-exploration-for-complex-problem-solving">3. Tree of Thoughts Technique: Exploration for Complex Problem Solving</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#game-of-24-performance-improvement-case">3.1 Game of 24 Performance Improvement Case</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tree-of-thoughts-implementation-example">3.2 Tree of Thoughts Implementation Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-tree-of-thoughts">3.3 Advantages and Limitations of Tree of Thoughts</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-framework-declarative-prompt-programming">4. DSPy Framework: Declarative Prompt Programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-components-of-dspy">4.1 Core Components of DSPy</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#signature">Signature</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#module">Module</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#optimizer">Optimizer</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-practice-example">4.2 DSPy Practice Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#advantages-and-limitations-of-dspy">4.3 Advantages and Limitations of DSPy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#automated-prompt-optimization-ape-and-latest-trends">5. Automated Prompt Optimization (APE) and Latest Trends</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#automatic-prompt-engineer-ape">5.1 Automatic Prompt Engineer (APE)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#opro-optimization-by-prompting">5.2 OPRO (Optimization by PROmpting)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#performance-improvement-cases">5.3 Performance Improvement Cases</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#significance-of-automated-prompt-optimization">5.4 Significance of Automated Prompt Optimization</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practice-example-dspy-based-automated-prompt-optimization-pipeline">6. Practice Example: DSPy-based Automated Prompt Optimization Pipeline</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#problem-definition">6.1 Problem Definition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#signature-module-composition">6.2 Signature &amp; Module Composition</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dspy-optimization-process">6.3 DSPy Optimization Process</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-papers-and-research-materials">Key Papers and Research Materials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-documentation-and-implementations">Technical Documentation and Implementations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online-resources-and-blogs">Online Resources and Blogs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmarks-and-evaluation-materials">Benchmarks and Evaluation Materials</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
