@@ -11,6 +11,7 @@ parts:
           - file: week01/qna
       - file: week02/index
       - file: week03/index
+      - file: week04/index
   - caption: About
     chapters:
       - file: syllabus/index
