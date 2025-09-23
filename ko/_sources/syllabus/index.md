@@ -34,7 +34,7 @@
 
 | 주차 | 주요 주제 및 키워드                                                                                                                 | 핵심 실습/과제                                                                           |
 | :--: | :---------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-|  1   | Generative AI 소개, LLM의 발전, 최신 모델 (GPT-4o, Gemini 1.5 Pro, Claude 3 Opus)<br/>**Transformer의 한계와 새로운 아키텍처 소개** | PyTorch/Conda 환경 설정<br/>Hugging Face 파이프라인을 활용한 질의응답 데모               |
+|  1   | Generative AI 소개, LLM의 발전, 최신 모델 (GPT-5, Gemini 2.5 Pro, Claude 4.1 Opus)<br/>**Transformer의 한계와 새로운 아키텍처 소개** | PyTorch/Conda 환경 설정<br/>Hugging Face 파이프라인을 활용한 질의응답 데모               |
 |  2   | PyTorch 기초, Hugging Face Transformers 사용법<br/>**Mamba 및 RWKV 아키텍처 소개**                                                  | 사전학습 모델(BERT) 로드 및 **한국어 데이터셋으로** 간단한 분류 실습<br/>Mamba 모델 데모 |
 |  3   | 사전학습 모델 미세조정: fine-tuning vs. full-training<br/>**최신 State Space Model 실습**                                           | 프로그래밍 과제 1: Transformer와 SSM **성능 비교 실험 (한국어 분류 태스크)**             |
 |  4   | **과학적 프롬프트 엔지니어링** – 다양한 기법, DSPy 프레임워크, 자동 프롬프트 최적화                                                 | DSPy를 활용한 프롬프트 자동 최적화 실습                                                  |
