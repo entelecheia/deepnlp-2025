@@ -29,11 +29,11 @@ Even for educational small-scale models, the direct building experience provides
 | 9 | Model Alignment | RLHF/DPO retraining for instruction-following models | **NeMo Aligner**, RLHF (DPO algorithm) | Instruction-following improved LLM |
 | 10 | Integration and Conclusion | Full pipeline integration, model sharing and future task discussion | **NeMo & HF integration**, Gradio demo | Final demo and future development direction |
 
-## 1. Week 1: LLM Overview and Environment Setup
+## Week 1: LLM Overview and Environment Setup
 
 Week 1 provides an overview of the entire lifecycle of Large Language Models (LLMs) and prepares the practice environment. Using NVIDIA's **NGC Container**, we set up an environment that includes the NeMo framework and HuggingFace toolkit. We load example models using simple HuggingFace **Transformers** pipelines to verify operation and understand how NeMo and HF tools can work together. This ensures GPU acceleration environment and library compatibility needed for future practice, and helps understand the big picture of LLM workflows.
 
-### 1.1 Environment Setup Practice
+### Environment Setup Practice
 
 ```bash
 # Run NVIDIA NGC container
@@ -45,7 +45,7 @@ pip install transformers datasets accelerate
 pip install nemo-toolkit[all]
 ```
 
-### 1.2 Basic Model Execution Example
+### Basic Model Execution Example
 
 ```python
 from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
@@ -68,11 +68,11 @@ print(result[0]['generated_text'])
 - What are the main differences between NeMo and HuggingFace Transformers?
 - What are the main considerations when running models in GPU environments?
 
-## 2. Week 2: Data Collection and Preprocessing
+## Week 2: Data Collection and Preprocessing
 
 Week 2 covers **Korean corpus data collection and preprocessing**. Using **NeMo Curator**, we collect vast amounts of Korean text from Wikipedia, news, etc., and perform deduplication and filtering. For example, we load public datasets like KLUE corpus or NSMC sentiment corpus using **HuggingFace Datasets**, review quality, and add them to the training corpus. Curator's distributed processing filters out noisy data and builds homogeneous learning data. As a result, we secure **refined Korean text corpus** suitable for LLM pre-training and learn the considerations embedded in data composition.
 
-### 2.1 Korean Dataset Collection
+### Korean Dataset Collection
 
 ```python
 from datasets import load_dataset
@@ -91,7 +91,7 @@ print(f"KLUE NLI data: {len(klue_nli['train'])} samples")
 print(f"Wikipedia data: {len(wiki_ko)} samples")
 ```
 
-### 2.2 Data Cleaning and Preprocessing
+### Data Cleaning and Preprocessing
 
 ```python
 import re
@@ -123,11 +123,11 @@ filtered_texts = filter_by_length(cleaned_texts)
 - How does NeMo Curator's distributed processing differ from existing data cleaning methods?
 - What are the characteristics of data suitable for LLM pre-training?
 
-## 3. Week 3: Tokenizer Design and Construction
+## Week 3: Tokenizer Design and Construction
 
 Week 3 involves directly building a **Korean tokenizer**. We train tokenizers based on **SentencePiece BPE** or WordPiece from the collected corpus and analyze whether tokenization results preserve Korean word units and context well. Using HuggingFace **🤗Tokenizers** library, we train custom tokenizers and perform **token segmentation comparison** with existing multilingual model tokenizers. For example, we check how sentences like "한국어 형태소" are tokenized and determine vocabulary size and tokenization strategies optimized for Korean. Through this practice, we build **custom tokenizer models** before LLM training and experience the importance of the tokenization stage.
 
-### 3.1 Korean Tokenizer Training
+### Korean Tokenizer Training
 
 ```python
 from tokenizers import Tokenizer, models, pre_tokenizers, trainers
@@ -156,7 +156,7 @@ tokenizer.post_processor = TemplateProcessing(
 )
 ```
 
-### 3.2 Tokenizer Performance Comparison
+### Tokenizer Performance Comparison
 
 ```python
 def compare_tokenizers(text, tokenizers):
@@ -188,11 +188,11 @@ comparison = compare_tokenizers(text, tokenizers)
 - What are the differences between BPE and WordPiece tokenizers in Korean processing?
 - How does tokenizer vocabulary size affect model performance?
 
-## 4. Week 4: Model Architecture Exploration
+## Week 4: Model Architecture Exploration
 
 Week 4 explores the diversity of **LLM model architectures**. We first review the core of Transformer structure (self-attention, feedforward, etc.) and examine latest alternative architectures. For example, **Mamba** is based on SSM (State Space Model) enabling linear inference for long sequences, achieving similar performance to transformers while dramatically improving inference latency and memory usage. Also, **RWKV** is an innovative LLM architecture 100% RNN-based, operating with linear time complexity without KV cache while achieving transformer-level performance. We also cover concepts of **DeepSeek**, the latest LLM from China. DeepSeek uses Mixture-of-Experts (MoE) structure to activate only some experts per input for efficiency, and introduces Multi-Head Latent Attention to show high performance with low resources. For practice, we implement small-scale Transformers and simple RNN models through PyTorch and compare **learning speed and memory usage** on the same data. Through this, we learn to understand various structural trade-offs and reflect latest research trends in LLM design.
 
-### 4.1 Transformer Architecture Implementation
+### Transformer Architecture Implementation
 
 ```python
 import torch
@@ -236,7 +236,7 @@ class MultiHeadAttention(nn.Module):
         return self.W_o(context)
 ```
 
-### 4.2 Mamba Architecture Implementation
+### Mamba Architecture Implementation
 
 ```python
 from mamba_ssm import Mamba
@@ -279,11 +279,11 @@ class MambaModel(nn.Module):
 - How does RWKV combine the advantages of RNN and Transformer?
 - What is the principle behind MoE (Mixture-of-Experts) structure improving efficiency?
 
-## 5. Week 5: LLM Pre-training
+## Week 5: LLM Pre-training
 
 Week 5 involves **pre-training Korean LLMs** in earnest. Using the tokenizer and corpus prepared in previous weeks, we train GPT-series **basic language models** from scratch. We perform distributed training using NVIDIA's **NeMo Run** tool and Megatron-based recipes, and apply **NeMo AutoModel** functionality for HuggingFace integration. AutoModel allows loading HuggingFace model architectures directly in NeMo, with model parallelization and PyTorch JIT optimization supported by default. For example, we initialize custom GPT models with configured hidden size or layer count and train them in multi-GPU environments. We observe loss reduction trends through several epochs of training and evaluate initial model's language generation characteristics through **Korean sentence generation examples**. Through this week, we obtain **Korean-based LLM initial models** with our own corpus and practice large-scale pre-training processes and distributed training techniques.
 
-### 5.1 Pre-training Setup and Configuration
+### Pre-training Setup and Configuration
 
 ```python
 from transformers import AutoTokenizer, AutoModelForCausalLM, TrainingArguments, Trainer
@@ -325,7 +325,7 @@ def preprocess_function(examples):
     )
 ```
 
-### 5.2 Distributed Training Setup
+### Distributed Training Setup
 
 ```python
 # Distributed training setup using NeMo
@@ -355,11 +355,11 @@ nemo_model.setup_training_data(
 - What are the main factors to consider in distributed training?
 - What are the differences between Korean and English pre-training?
 
-## 6. Week 6: Fine-tuning and PEFT
+## Week 6: Fine-tuning and PEFT
 
 Week 6 involves **fine-tuning pre-trained models** for downstream tasks. We first specialize models to NSMC movie review sentiment analysis data through simple **supervised learning fine-tuning**. Instead of updating all parameters using HuggingFace's Trainer, we use PEFT techniques like **LoRA** to adjust only some weights for efficiency. LoRA application is easily done through HuggingFace **PEFT** library, and using **NeMo AutoModel**, we can attach LoRA adapters directly to pre-trained HF models for training. At this time, we also introduce latest techniques like **WaveFT** and **DoRA**. WaveFT achieves fine control and high-efficiency tuning superior to LoRA by learning only minimal parameters in the **wavelet domain** of weight residual matrices, experimentally showing that performance can be maintained with very few variables. **DoRA** (Weight-Decomposed LoRA) decomposes weight changes into magnitude and direction components for learning, achieving **accuracy closer to original full fine-tuning** than LoRA, which is NVIDIA's latest method. In practice, we perform the same sentiment analysis task with existing LoRA and DoRA and compare results. Through this, we learn **retraining techniques** that effectively retrain models with few resources and understand the advantages and disadvantages of each technique.
 
-### 6.1 LoRA Fine-tuning Implementation
+### LoRA Fine-tuning Implementation
 
 ```python
 from peft import LoraConfig, get_peft_model, TaskType
@@ -383,7 +383,7 @@ model = get_peft_model(model, lora_config)
 model.print_trainable_parameters()
 ```
 
-### 6.2 DoRA Fine-tuning Implementation
+### DoRA Fine-tuning Implementation
 
 ```python
 from peft import DoRAConfig, get_peft_model
@@ -408,11 +408,11 @@ model = get_peft_model(model, dora_config)
 - What are the main differences between LoRA and DoRA?
 - Which layers should be selected as targets during fine-tuning?
 
-## 7. Week 7: Model Evaluation and Prompt Utilization
+## Week 7: Model Evaluation and Prompt Utilization
 
 Week 7 focuses on **model performance evaluation and utilization methods**. We first conduct quantitative evaluation using parts of **KLUE benchmark** on fine-tuned models. For example, we measure model accuracy using natural language inference (NLI) or question answering (MRC) data and calculate metrics like Accuracy, F1 using **HuggingFace's evaluate library**. We also manually review model responses to prepared prompts for **generative evaluation** or evaluate summary accuracy using metrics like BLEU/ROUGE. In this process, we cover considerations for Korean evaluation and introduce **model output rating evaluation** techniques using GPT-4 when necessary. We also conduct practice on **prompt optimization**. We adjust prompt phrases for the same question and observe changes in model response content, sharing **prompt engineering tips** to elicit desired output formats. For example, we give prompts that induce step-by-step thinking to make models answer reasoning processes in detail. Through this week, we learn to measure **objective model performance** and utilize models through **effective prompt design**.
 
-### 7.1 Model Performance Evaluation
+### Model Performance Evaluation
 
 ```python
 from evaluate import load
@@ -443,7 +443,7 @@ def evaluate_model(model, tokenizer, test_dataset):
     return {"accuracy": accuracy["accuracy"], "f1": f1["f1"]}
 ```
 
-### 7.2 Prompt Engineering
+### Prompt Engineering
 
 ```python
 def test_prompt_variations(model, tokenizer, question):
@@ -472,11 +472,11 @@ def test_prompt_variations(model, tokenizer, question):
 - What are the core principles of prompt engineering?
 - How can generative model quality be objectively evaluated?
 
-## 8. Week 8: Inference Optimization and Deployment
+## Week 8: Inference Optimization and Deployment
 
 Week 8 covers **inference optimization techniques** for deploying completed models to production services. We first practice methods to reduce memory usage and increase CPU/GPU inference speed by quantizing model parameters to 8-bit or 4-bit. Using HuggingFace **Transformers** and **BitsAndBytes**, we generate INT8/INT4 quantized checkpoints and verify that response quality degradation is minimized. We then cover high-speed inference engine construction using NVIDIA's **TensorRT-LLM** toolkit. TensorRT-LLM automatically builds optimized TensorRT engines when LLMs are defined through Python API and efficiently performs inference on NVIDIA GPUs. For practice, we convert pre-trained models to TensorRT-LLM and deploy them through **Triton Inference Server** or **Gradio** interface. We measure **latency and throughput changes** before and after optimization to experience performance improvements. As a result, Week 8 teaches how to build **lightweight LLM services** and master optimization techniques to consider when deploying large models to real-world environments.
 
-### 8.1 Model Quantization
+### Model Quantization
 
 ```python
 from transformers import BitsAndBytesConfig, AutoModelForCausalLM
@@ -498,7 +498,7 @@ model = AutoModelForCausalLM.from_pretrained(
 )
 ```
 
-### 8.2 Deployment using Gradio
+### Deployment using Gradio
 
 ```python
 import gradio as gr
@@ -527,11 +527,11 @@ demo.launch()
 - What are the main factors to consider in production deployment?
 - What are the advantages and disadvantages of inference optimization techniques?
 
-## 9. Week 9: Model Alignment
+## Week 9: Model Alignment
 
 Week 9 focuses on the **Model Alignment** stage, practicing latest techniques to tune LLMs to user instructions or values. We first explain concepts of instruction-following model generation through Human Feedback reinforcement and learn procedures of representative method **RLHF** (Reinforcement Learning from Human Feedback). This includes learning **reward models** reflecting human feedback and optimizing language models through PPO algorithms. However, since RLHF is complex to implement and costly, we directly apply **DPO** (Direct Preference Optimization) presented as an alternative. DPO is a technique that **directly retrains models** using human preference data without separate reinforcement learning, showing performance comparable to RLHF while having the advantage of simple implementation. In practice, we retune our models to **follow instructions in conversation** using DPO algorithms with open **preference datasets** (e.g., rankings for instruction responses). Using NVIDIA's **NeMo-Aligner** toolkit, we can easily perform RLHF pipelines and DPO algorithms, and efficiently align models of hundreds of billions scale. After training completion, we input sensitive questions or complex instructions as prompts to verify that **safe and helpful responses** are generated. Through Week 9, participants understand the **importance of LLM Alignment** and implementation methods, and finally obtain user-friendly **instruction models**.
 
-### 9.1 DPO Implementation
+### DPO Implementation
 
 ```python
 from trl import DPOTrainer, DPOConfig
@@ -571,11 +571,11 @@ dpo_trainer = DPOTrainer(
 - What are the main differences between RLHF and DPO?
 - What considerations are needed to build safe AI models?
 
-## 10. Week 10: Integration and Conclusion
+## Week 10: Integration and Conclusion
 
 The final Week 10 **integrates** the content covered so far to organize final deliverables and explore additional development directions. We first connect processes from Week 1 to Week 9 into one pipeline for review. We organize the flow from data preparation, tokenization, pre-training, fine-tuning, evaluation, optimization, to alignment, and review how NeMo and HuggingFace tools collaborated at each stage. We upload the **final Korean LLM** created through practice to HuggingFace Hub or share with team members to run actual Q&A demos. We also build simple web interfaces using **Gradio** to complete **chatbot demos** where general users input questions and models respond. In this process, we can attempt final tuning to improve response usefulness and stability through prompt design optimization or additional fine-tuning. Finally, we conclude the workshop by briefly discussing topics like multimodal integration, continuous model monitoring, and feedback loops, which are latest LLM research trends. Through the final week, participants organize their direct experience of **the entire LLM development cycle** and gain direction for practical applications and future learning.
 
-### 10.1 Full Pipeline Integration
+### Full Pipeline Integration
 
 ```python
 # Full workflow integration example
@@ -604,7 +604,7 @@ def complete_llm_pipeline():
     return optimized_model
 ```
 
-### 10.2 Final Demo Construction
+### Final Demo Construction
 
 ```python
 import gradio as gr
