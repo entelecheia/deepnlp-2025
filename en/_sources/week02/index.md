@@ -1,4 +1,4 @@
-# Week 2 - PyTorch 2.x and Latest Deep Learning Frameworks
+# Week 2: PyTorch 2.x and Latest Deep Learning Frameworks
 
 ## 1. PyTorch 2.x and torch.compile: The Compiler Revolution
 
@@ -9,19 +9,23 @@ PyTorch 2.x is an innovative update that has changed the paradigm of deep learni
 The performance improvement of `torch.compile` is achieved through the organic collaboration of four core technologies: **TorchDynamo**, **AOTAutograd**, **PrimTorch**, and **TorchInductor**.
 
 #### 1. Graph Acquisition (TorchDynamo)
+
 - **Role**: Analyzes Python bytecode to safely capture PyTorch operations as FX graphs
 - **Core Technology**: "Guard" mechanism that perfectly supports dynamic Python characteristics (conditionals, loops)
 - **Advantage**: When code paths change, only the relevant parts are processed in eager mode while the rest runs compiled code
 
 #### 2. Ahead-of-Time Automatic Differentiation (AOTAutograd)
+
 - **Role**: Generates pre-optimized backward graphs based on forward graphs
 - **Advantage**: Pre-analyzes the entire computation graph to optimize gradient calculation processes and reduce memory usage
 
 #### 3. Graph Lowering (PrimTorch)
+
 - **Role**: Standardizes over 2,000 PyTorch operators into 250 core primitive operators
 - **Advantage**: Improves compatibility and portability across various hardware backends (GPU, CPU, custom accelerators)
 
 #### 4. Graph Compilation (TorchInductor)
+
 - **Role**: Converts primitive operator graphs into hardware-optimized machine code
 - **Core Technology**: Dynamic generation of high-performance CUDA kernels using Triton compiler on GPU, C++/OpenMP on CPU
 
@@ -289,19 +293,19 @@ The development of LLMs has opened the **AI agent** paradigm that goes beyond a 
 
 ### 4.1 Comparison of Major AI Agent Frameworks
 
-| Framework | Core Philosophy | Architecture Style | Main Use Cases |
-|:----------|:----------------|:-------------------|:---------------|
-| **LangGraph** | Explicit Control and State-based Orchestration | Directed Acyclic Graph (DAG) with state, allowing cycles | Building reliable and auditable complex multi-stage agents where human supervision is important |
-| **CrewAI** | Role-based Collaborative Intelligence | Hierarchical, role-based **multi-agent system** | Automating complex business workflows with clear role division (e.g., market analysis team) |
-| **LlamaIndex** | Data-centric Agents and Advanced RAG | Data-centric, event-based workflow | Building **question-answering and reasoning** systems for large-scale private/unstructured databases |
-| **Haystack** | Production-ready Modular Pipeline | Modular, branching/looping capable **pipeline** | Building scalable and robust production-grade **AI applications** |
-| **DSPy** | Declarative LM Programming ("Programming, not prompting") | Declarative, optimizable **pipeline** | Tasks requiring highest performance by replacing manual prompt tuning with **data-driven optimization** |
+| Framework      | Core Philosophy                                           | Architecture Style                                       | Main Use Cases                                                                                          |
+| :------------- | :-------------------------------------------------------- | :------------------------------------------------------- | :------------------------------------------------------------------------------------------------------ |
+| **LangGraph**  | Explicit Control and State-based Orchestration            | Directed Acyclic Graph (DAG) with state, allowing cycles | Building reliable and auditable complex multi-stage agents where human supervision is important         |
+| **CrewAI**     | Role-based Collaborative Intelligence                     | Hierarchical, role-based **multi-agent system**          | Automating complex business workflows with clear role division (e.g., market analysis team)             |
+| **LlamaIndex** | Data-centric Agents and Advanced RAG                      | Data-centric, event-based workflow                       | Building **question-answering and reasoning** systems for large-scale private/unstructured databases    |
+| **Haystack**   | Production-ready Modular Pipeline                         | Modular, branching/looping capable **pipeline**          | Building scalable and robust production-grade **AI applications**                                       |
+| **DSPy**       | Declarative LM Programming ("Programming, not prompting") | Declarative, optimizable **pipeline**                    | Tasks requiring highest performance by replacing manual prompt tuning with **data-driven optimization** |
 
 As shown in the table, **LangGraph** focuses on **long-term execution and reliability** by explicitly managing agent states and control flow, while **CrewAI** emphasizes **collaboration** among agents with different expertise. **LlamaIndex** aims for data-centric agents combined with vast knowledge bases, and **Haystack** is strong in practical application of **modular combination pipelines** like search-reasoning. Finally, **DSPy** abstracts prompt engineering itself to advance LLM utilization in a **declarative programming** style. Understanding the philosophy and structure of each framework allows selecting the most appropriate tool based on the nature of the problem to be solved.
 
 ### 4.2 DSPy: Declarative Prompt Programming
 
-**DSPy** stands for *Declarative Self-Improving Python* and is a **declarative prompt programming** framework released by Databricks. It reduces the complexity of managing **long prompt strings** that arise when directly handling LLMs, and allows you to create AI programs with modular composition as if **writing code**. In short, it's designed with the philosophy of "don't hardcode prompts, write them **like programming**."
+**DSPy** stands for _Declarative Self-Improving Python_ and is a **declarative prompt programming** framework released by Databricks. It reduces the complexity of managing **long prompt strings** that arise when directly handling LLMs, and allows you to create AI programs with modular composition as if **writing code**. In short, it's designed with the philosophy of "don't hardcode prompts, write them **like programming**."
 
 DSPy's core concepts are divided into three: **LM**, **Signature**, **Module**:
 
@@ -427,7 +431,7 @@ In summary, CrewAI is a framework that **systematizes collaboration of role-base
 
 **LangGraph** is a **low-level orchestration framework** developed by the LangChain team, specialized for building **multi-agent systems with persistent state**. LangGraph manages agent execution as **graph data structures**, where each node represents an agent's state and behavior, and edges express interaction paths. This allows explicit handling of inter-agent message flow, state changes, and **recovery points (checkpoints)** when errors occur, making it suitable for scenarios requiring **reliability** and **durability**.
 
-The core of LangGraph usage is defining a graph object called *StateGraph* and, when necessary, linking it with **checkpoint storage** to continuously save/recover agent states. For example, even if one agent fails during **long conversations** or **plan execution**, you can design **fault-tolerant** systems that rollback to the last saved state and retry. Additionally, **Human-in-the-loop** intervention is easy, allowing people to review or modify at intermediate states and then continue execution.
+The core of LangGraph usage is defining a graph object called _StateGraph_ and, when necessary, linking it with **checkpoint storage** to continuously save/recover agent states. For example, even if one agent fails during **long conversations** or **plan execution**, you can design **fault-tolerant** systems that rollback to the last saved state and retry. Additionally, **Human-in-the-loop** intervention is easy, allowing people to review or modify at intermediate states and then continue execution.
 
 Let's examine the concept through a simple LangGraph example. The code below creates a React-style agent with one tool and processes user questions on the graph (assuming Anthropic Claude model):
 
@@ -463,7 +467,6 @@ In summary, LangGraph is a framework for ensuring **reliability and persistence*
 - What is LangGraph's core feature of **state-based orchestration**, and what advantages does it provide?
 - How can LangGraph's **checkpoint** and **Human-in-the-loop** features be utilized in long processes or long-running agents?
 - What design is needed to prevent infinite conversations or conflicts between agents in LangGraph-built agent systems?
-
 
 ## 5. Practice: BERT vs Mamba Model Comparison Experiment
 
@@ -648,4 +651,3 @@ In summary, **BERT** and **Mamba** each have their strengths and different use c
 - "FlashAttention-3: The Next Generation of Attention Optimization" - Technical Blog
 - "AI Agent Frameworks: A Comprehensive Comparison" - Medium
 - "DSPy: The Future of Prompt Engineering" - Databricks Blog
-

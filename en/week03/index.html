@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques &#8212; Deep Learning for NLP 2025</title>
+    <title>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -97,7 +97,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Week 4: Advanced Prompting Techniques and Optimization" href="../week04/index.html" />
-    <link rel="prev" title="Week 2 - PyTorch 2.x and Latest Deep Learning Frameworks" href="../week02/index.html" />
+    <link rel="prev" title="Week 2: PyTorch 2.x and Latest Deep Learning Frameworks" href="../week02/index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
     <script src="/_static/language_switcher.js"></script>
@@ -213,12 +213,12 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1 - Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2 - PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
 </ul>
@@ -433,7 +433,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques</h1>
+    <h1>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -517,7 +517,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-3-efficient-fine-tuning-with-modern-peft-techniques">
-<h1>Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques<a class="headerlink" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques" title="Link to this heading">#</a></h1>
+<h1>Week 3: Efficient Fine-Tuning with Modern PEFT Techniques<a class="headerlink" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques" title="Link to this heading">#</a></h1>
 <section id="the-need-for-parameter-efficient-fine-tuning-peft">
 <h2>1. The Need for Parameter-Efficient Fine-Tuning (PEFT)<a class="headerlink" href="#the-need-for-parameter-efficient-fine-tuning-peft" title="Link to this heading">#</a></h2>
 <p>The emergence of large language models (LLMs) has necessitated a <strong>new paradigm for fine-tuning</strong>. Fully fine-tuning models like GPT-3, BERT, or LLaMA with billions of parameters presents fundamental challenges:</p>
@@ -574,7 +574,7 @@ document.write(`
 <span class="c1"># Apply LoRA to Korean BERT model</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;klue/bert-base&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="n">model_name</span><span class="p">,</span> 
+    <span class="n">model_name</span><span class="p">,</span>
     <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
 <span class="p">)</span>
@@ -692,28 +692,28 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span> <span class="o">=</span> <span class="n">base_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
-        
+
         <span class="c1"># LoRA matrices</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        
+
         <span class="c1"># Magnitude parameter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">))</span>
-        
+
         <span class="c1"># Initialize</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_uniform_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
-        
+
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># Base output</span>
         <span class="n">base_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        
+
         <span class="c1"># LoRA update</span>
         <span class="n">lora_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
-        
+
         <span class="c1"># Apply magnitude scaling</span>
         <span class="n">scaled_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_output</span> <span class="o">+</span> <span class="n">lora_output</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span>
-        
+
         <span class="k">return</span> <span class="n">scaled_output</span>
 </pre></div>
 </div>
@@ -897,15 +897,15 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Evaluate a PEFT method and record metrics&quot;&quot;&quot;</span>
-        
+
         <span class="c1"># Load model</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># Apply PEFT method</span>
         <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">:</span>
             <span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
@@ -913,11 +913,11 @@ document.write(`
         <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;DoRA&quot;</span><span class="p">:</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
         <span class="c1"># Add other methods...</span>
-        
+
         <span class="c1"># Record metrics</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">start_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
-        
+
         <span class="c1"># Training (simplified)</span>
         <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
@@ -929,12 +929,12 @@ document.write(`
                 <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
-        
+
         <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-        
+
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">end_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
-        
+
         <span class="c1"># Record results</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;trainable_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">),</span>
@@ -943,14 +943,14 @@ document.write(`
             <span class="s2">&quot;memory_usage&quot;</span><span class="p">:</span> <span class="n">end_memory</span> <span class="o">-</span> <span class="n">start_memory</span><span class="p">,</span>
             <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span>
         <span class="p">}</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">compare_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compare all methods and print results&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT Methods Comparison&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-        
+
         <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  Trainable Parameters: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -993,9 +993,9 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="c1"># Data preprocessing function</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">preprocess_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span>
-        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;document&quot;</span><span class="p">],</span> 
-        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;document&quot;</span><span class="p">],</span>
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span>
     <span class="p">)</span>
 
@@ -1017,11 +1017,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="k">def</span><span class="w"> </span><span class="nf">train_lora_model</span><span class="p">():</span>
     <span class="c1"># Load model</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-        <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span>
         <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># LoRA configuration</span>
     <span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
         <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
@@ -1031,11 +1031,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
         <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Apply LoRA to model</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LoRA trainable parameters: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+
     <span class="c1"># Training setup</span>
     <span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./lora_results&quot;</span><span class="p">,</span>
@@ -1048,7 +1048,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
         <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Start training</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
@@ -1058,13 +1058,13 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)),</span>
         <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">training_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-    
+
     <span class="c1"># Evaluation</span>
     <span class="n">eval_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">,</span>
         <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;eval_accuracy&quot;</span><span class="p">],</span>
@@ -1090,7 +1090,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
         <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Load model with quantization</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
         <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span>
@@ -1098,7 +1098,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
         <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Configure LoRA for QLoRA</span>
     <span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
         <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
@@ -1108,11 +1108,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
         <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Apply LoRA</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QLoRA trainable parameters: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+
     <span class="c1"># Training setup</span>
     <span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./qlora_results&quot;</span><span class="p">,</span>
@@ -1126,7 +1126,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># Start training</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
@@ -1136,13 +1136,13 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)),</span>
         <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">training_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-    
+
     <span class="c1"># Evaluation</span>
     <span class="n">eval_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;QLoRA&quot;</span><span class="p">,</span>
         <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;eval_accuracy&quot;</span><span class="p">],</span>
@@ -1164,32 +1164,32 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="k">def</span><span class="w"> </span><span class="nf">compare_results</span><span class="p">():</span>
     <span class="c1"># Collect results</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">lora_results</span><span class="p">,</span> <span class="n">qlora_results</span><span class="p">]</span>
-    
+
     <span class="c1"># Create DataFrame</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-    
+
     <span class="c1"># Print results</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT Methods Comparison Results&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-    
+
     <span class="c1"># Visualization</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    
+
     <span class="c1"># Accuracy comparison</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Accuracy Comparison&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Accuracy&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-    
+
     <span class="c1"># Training time comparison</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;training_time&#39;</span><span class="p">])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;Training Time Comparison&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;Time (seconds)&#39;</span><span class="p">)</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="n">df</span>
 
 <span class="c1"># Compare results</span>
@@ -1484,7 +1484,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Week 2 - PyTorch 2.x and Latest Deep Learning Frameworks</p>
+        <p class="prev-next-title">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</p>
       </div>
     </a>
     <a class="right-next"

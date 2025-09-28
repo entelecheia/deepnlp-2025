@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 1 - Transformer and Next-Generation Architectures &#8212; Deep Learning for NLP 2025</title>
+    <title>Week 1: Transformer and Next-Generation Architectures &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -213,12 +213,12 @@
         </ul>
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
 <ul class="current nav bd-sidenav">
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 1 - Transformer and Next-Generation Architectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Week 1: Transformer and Next-Generation Architectures</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2 - PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
 </ul>
@@ -433,7 +433,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 1 - Transformer and Next-Generation Architectures</h1>
+    <h1>Week 1: Transformer and Next-Generation Architectures</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -496,7 +496,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-1-transformer-and-next-generation-architectures">
-<h1>Week 1 - Transformer and Next-Generation Architectures<a class="headerlink" href="#week-1-transformer-and-next-generation-architectures" title="Link to this heading">#</a></h1>
+<h1>Week 1: Transformer and Next-Generation Architectures<a class="headerlink" href="#week-1-transformer-and-next-generation-architectures" title="Link to this heading">#</a></h1>
 <section id="basic-structure-of-transformer-architecture">
 <h2>1. Basic Structure of Transformer Architecture<a class="headerlink" href="#basic-structure-of-transformer-architecture" title="Link to this heading">#</a></h2>
 <p>Transformer is a model based on <strong>Self-Attention</strong> mechanism that processes input sentences through an encoder-decoder structure. The encoder encodes the input sequence to generate context, and the decoder generates the output sequence by referring to this context. Self-Attention is a method where one token calculates its relationship (similarity) with all other tokens in the sequence to adjust its own representation. This enables <strong>parallel processing</strong>, making learning faster than RNN-based models and effectively learning long dependency relationships. However, <strong>computation is required for each token pair</strong>, so the attention operation cost increases to <span class="math notranslate nohighlight">\(O(n^2)\)</span>, making it inefficient as sequence length increases. Especially during <strong>inference</strong>, new tokens must be generated one by one while calculating attention with all previous tokens, requiring operations proportional to approximately <span class="math notranslate nohighlight">\(L^2\)</span> for sequence length <em>L</em>. This causes <strong>speed to slow down</strong> and <strong>memory usage to increase linearly</strong> during long context processing, becoming a major limitation.</p>
