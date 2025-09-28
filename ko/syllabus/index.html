@@ -525,24 +525,24 @@ document.write(`
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-center"><p>1</p></td>
-<td class="text-left"><p>Generative AI 소개, LLM의 발전, 최신 모델 (GPT-5, Gemini 2.5 Pro, Claude 4.1 Opus)<br/><strong>Transformer의 한계와 새로운 아키텍처 소개</strong></p></td>
-<td class="text-left"><p>PyTorch/Conda 환경 설정<br/>Hugging Face 파이프라인을 활용한 질의응답 데모</p></td>
+<td class="text-left"><p><strong>Transformer 및 차세대 아키텍처</strong><br/>• Self-Attention 메커니즘과 한계<br/>• <strong>Mamba (Selective State Space Model)</strong><br/>• <strong>RWKV (RNN-Transformer 하이브리드)</strong><br/>• <strong>Jamba (MoE 기반 Transformer+Mamba)</strong></p></td>
+<td class="text-left"><p><strong>NVIDIA NGC 컨테이너 환경 설정</strong><br/><strong>Hugging Face Transformers 실습</strong><br/><strong>Mamba vs Transformer 성능 비교 실험</strong></p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p>2</p></td>
-<td class="text-left"><p>PyTorch 기초, Hugging Face Transformers 사용법<br/><strong>Mamba 및 RWKV 아키텍처 소개</strong></p></td>
-<td class="text-left"><p>사전학습 모델(BERT) 로드 및 <strong>한국어 데이터셋으로</strong> 간단한 분류 실습<br/>Mamba 모델 데모</p></td>
+<td class="text-left"><p><strong>PyTorch 2.x와 최신 딥러닝 프레임워크</strong><br/>• <strong>torch.compile과 컴파일러 혁명</strong><br/>• <strong>FlashAttention-3 하드웨어 가속</strong><br/>• <strong>AI 에이전트 프레임워크</strong> (DSPy, Haystack, CrewAI, LangGraph)</p></td>
+<td class="text-left"><p><strong>torch.compile 성능 최적화 실습</strong><br/><strong>FlashAttention-3 구현 및 비교</strong><br/><strong>AI 에이전트 시스템 구축</strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p>3</p></td>
-<td class="text-left"><p>사전학습 모델 미세조정: fine-tuning vs. full-training<br/><strong>최신 State Space Model 실습</strong></p></td>
-<td class="text-left"><p>프로그래밍 과제 1: Transformer와 SSM <strong>성능 비교 실험 (한국어 분류 태스크)</strong></p></td>
+<td class="text-left"><p><strong>현대적 PEFT 기법을 활용한 효율적 파인튜닝</strong><br/>• <strong>LoRA (Low-Rank Adaptation)</strong><br/>• <strong>DoRA (Weight-Decomposed LoRA)</strong><br/>• <strong>QLoRA (4비트 양자화 + LoRA)</strong><br/>• <strong>VB-LoRA, WaveFT 등 최신 기법</strong></p></td>
+<td class="text-left"><p><strong>PEFT 방법 비교 실험</strong><br/><strong>한국어 감성 분석을 통한 LoRA/DoRA/QLoRA 성능 평가</strong><br/><strong>메모리 효율성 및 추론 속도 분석</strong></p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p>4</p></td>
-<td class="text-left"><p><strong>과학적 프롬프트 엔지니어링</strong> – 다양한 기법, DSPy 프레임워크, 자동 프롬프트 최적화</p></td>
-<td class="text-left"><p>DSPy를 활용한 프롬프트 자동 최적화 실습</p></td>
+<td class="text-left"><p><strong>고급 프롬프트 기법과 최적화</strong><br/>• <strong>체계적 프롬프트 기법</strong> (역할 부여, 구조화된 프롬프팅)<br/>• <strong>Self-Consistency와 Tree of Thoughts</strong><br/>• <strong>DSPy 프레임워크</strong> (선언형 프롬프트 프로그래밍)<br/>• <strong>자동 프롬프트 최적화 (APE)</strong></p></td>
+<td class="text-left"><p><strong>DSPy를 활용한 프롬프트 자동 최적화</strong><br/><strong>Self-Consistency 디코딩 구현</strong><br/><strong>Tree of Thoughts 문제 해결 실습</strong></p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p>5</p></td>
-<td class="text-left"><p><strong>최신 평가 체계</strong> – G-Eval, LiveCodeBench, MMLU-Pro 등 도메인별 벤치마크</p></td>
-<td class="text-left"><p>LLM 기반 자동 평가 시스템 구축 실습</p></td>
+<td class="text-left"><p><strong>LLM 평가 패러다임과 벤치마크</strong><br/>• <strong>전통 지표의 한계</strong> (BLEU/ROUGE vs 의미 기반 평가)<br/>• <strong>LLM-as-a-Judge</strong> (GPTScore, G-Eval, FLASK)<br/>• <strong>특수 목적 벤치마크</strong> (LiveCodeBench, MMLU-Pro)<br/>• <strong>도메인 특화 벤치마크</strong> (FinBen, AgentHarm, LEXam)</p></td>
+<td class="text-left"><p><strong>BLEU/ROUGE vs G-Eval 비교 실험</strong><br/><strong>GPTScore 구현 및 평가</strong><br/><strong>FLASK 다차원 평가 시스템 구축</strong></p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p>6</p></td>
 <td class="text-left"><p>Seq2Seq 응용 및 <strong>멀티모달 통합</strong> – SmolVLM2, Qwen 2.5 Omni, 음성-텍스트 모델</p></td>
