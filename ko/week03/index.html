@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 3 - 현대적 PEFT 기법을 활용한 효율적 파인튜닝 &#8212; Deep Learning for NLP 2025</title>
+    <title>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝 &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -218,7 +218,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x와 최신 딥러닝 프레임워크</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3 - 현대적 PEFT 기법을 활용한 효율적 파인튜닝</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: 고급 프롬프트 기법과 최적화</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM 평가 패러다임과 벤치마크</a></li>
 </ul>
@@ -433,7 +433,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 3 - 현대적 PEFT 기법을 활용한 효율적 파인튜닝</h1>
+    <h1>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -517,7 +517,7 @@ document.write(`
                 <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="week-3-peft">
-<h1>Week 3 - 현대적 PEFT 기법을 활용한 효율적 파인튜닝<a class="headerlink" href="#week-3-peft" title="Link to this heading">#</a></h1>
+<h1>Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝<a class="headerlink" href="#week-3-peft" title="Link to this heading">#</a></h1>
 <section id="peft">
 <h2>1. 파라미터 효율적 파인튜닝(PEFT)의 필요성과 기본 원리<a class="headerlink" href="#peft" title="Link to this heading">#</a></h2>
 <p>대형 언어모델(LLM)의 등장과 함께 <strong>파인튜닝의 새로운 패러다임</strong>이 필요해졌다. GPT-3, BERT, LLaMA와 같은 수십억 파라미터를 가진 모델을 완전 파인튜닝하는 것은 다음과 같은 <strong>근본적인 한계</strong>에 직면한다:</p>
@@ -574,7 +574,7 @@ document.write(`
 <span class="c1"># 한국어 BERT 모델에 LoRA 적용</span>
 <span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;klue/bert-base&quot;</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-    <span class="n">model_name</span><span class="p">,</span> 
+    <span class="n">model_name</span><span class="p">,</span>
     <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
 <span class="p">)</span>
@@ -692,28 +692,28 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span> <span class="o">=</span> <span class="n">base_layer</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rank</span> <span class="o">=</span> <span class="n">rank</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">alpha</span>
-        
+
         <span class="c1"># LoRA 행렬</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">in_features</span><span class="p">,</span> <span class="n">rank</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">rank</span><span class="p">,</span> <span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">,</span> <span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-        
+
         <span class="c1"># 크기 파라미터</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Parameter</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">base_layer</span><span class="o">.</span><span class="n">out_features</span><span class="p">))</span>
-        
+
         <span class="c1"># 초기화</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">kaiming_uniform_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
         <span class="n">nn</span><span class="o">.</span><span class="n">init</span><span class="o">.</span><span class="n">zeros_</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
-        
+
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
         <span class="c1"># 기본 출력</span>
         <span class="n">base_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">base_layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        
+
         <span class="c1"># LoRA 업데이트</span>
         <span class="n">lora_output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lora_B</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">lora_A</span><span class="p">(</span><span class="n">x</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">rank</span><span class="p">)</span>
-        
+
         <span class="c1"># 크기 스케일링 적용</span>
         <span class="n">scaled_output</span> <span class="o">=</span> <span class="p">(</span><span class="n">base_output</span> <span class="o">+</span> <span class="n">lora_output</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">magnitude</span>
-        
+
         <span class="k">return</span> <span class="n">scaled_output</span>
 </pre></div>
 </div>
@@ -897,15 +897,15 @@ document.write(`
         <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span> <span class="o">=</span> <span class="n">model_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_method</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">method_name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">config</span><span class="p">:</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">]):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;PEFT 방법을 평가하고 메트릭을 기록한다&quot;&quot;&quot;</span>
-        
+
         <span class="c1"># 모델 로드</span>
         <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">model_name</span><span class="p">,</span> <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span>
         <span class="p">)</span>
-        
+
         <span class="c1"># PEFT 방법 적용</span>
         <span class="k">if</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">:</span>
             <span class="n">peft_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">)</span>
@@ -913,11 +913,11 @@ document.write(`
         <span class="k">elif</span> <span class="n">method_name</span> <span class="o">==</span> <span class="s2">&quot;DoRA&quot;</span><span class="p">:</span>
             <span class="n">model</span> <span class="o">=</span> <span class="n">apply_dora_to_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span>
         <span class="c1"># 다른 방법들 추가...</span>
-        
+
         <span class="c1"># 메트릭 기록</span>
         <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">start_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
-        
+
         <span class="c1"># 훈련 (간소화)</span>
         <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
             <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
@@ -929,12 +929,12 @@ document.write(`
                 <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
             <span class="p">)</span>
         <span class="p">)</span>
-        
+
         <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
-        
+
         <span class="n">end_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
         <span class="n">end_memory</span> <span class="o">=</span> <span class="n">psutil</span><span class="o">.</span><span class="n">Process</span><span class="p">()</span><span class="o">.</span><span class="n">memory_info</span><span class="p">()</span><span class="o">.</span><span class="n">rss</span> <span class="o">/</span> <span class="mi">1024</span> <span class="o">/</span> <span class="mi">1024</span>  <span class="c1"># MB</span>
-        
+
         <span class="c1"># 결과 기록</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
             <span class="s2">&quot;trainable_params&quot;</span><span class="p">:</span> <span class="nb">sum</span><span class="p">(</span><span class="n">p</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="k">for</span> <span class="n">p</span> <span class="ow">in</span> <span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">()</span> <span class="k">if</span> <span class="n">p</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">),</span>
@@ -943,14 +943,14 @@ document.write(`
             <span class="s2">&quot;memory_usage&quot;</span><span class="p">:</span> <span class="n">end_memory</span> <span class="o">-</span> <span class="n">start_memory</span><span class="p">,</span>
             <span class="s2">&quot;config&quot;</span><span class="p">:</span> <span class="n">config</span>
         <span class="p">}</span>
-        
+
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">[</span><span class="n">method_name</span><span class="p">]</span>
-    
+
     <span class="k">def</span><span class="w"> </span><span class="nf">compare_methods</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;모든 방법을 비교하고 결과를 출력한다&quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT 방법 비교&quot;</span><span class="p">)</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-        
+
         <span class="k">for</span> <span class="n">method</span><span class="p">,</span> <span class="n">results</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n</span><span class="si">{</span><span class="n">method</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
             <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;  훈련 가능한 파라미터: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;trainable_params&#39;</span><span class="p">]</span><span class="si">:</span><span class="s2">,</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
@@ -993,9 +993,9 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="c1"># 데이터 전처리 함수</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">preprocess_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span>
-        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;document&quot;</span><span class="p">],</span> 
-        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
-        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> 
+        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;document&quot;</span><span class="p">],</span>
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">max_length</span><span class="o">=</span><span class="mi">128</span>
     <span class="p">)</span>
 
@@ -1017,11 +1017,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="k">def</span><span class="w"> </span><span class="nf">train_lora_model</span><span class="p">():</span>
     <span class="c1"># 모델 로드</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
-        <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span> 
+        <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span>
         <span class="n">num_labels</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
         <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># LoRA 구성</span>
     <span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
         <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
@@ -1031,11 +1031,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
         <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># LoRA 적용</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;LoRA 훈련 가능 파라미터: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+
     <span class="c1"># 훈련 설정</span>
     <span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./lora_results&quot;</span><span class="p">,</span>
@@ -1048,7 +1048,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_steps</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
         <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># 훈련 시작</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
@@ -1058,13 +1058,13 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)),</span>
         <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">training_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-    
+
     <span class="c1"># 평가</span>
     <span class="n">eval_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;LoRA&quot;</span><span class="p">,</span>
         <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;eval_accuracy&quot;</span><span class="p">],</span>
@@ -1090,7 +1090,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
         <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># 양자화로 모델 로드</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
         <span class="s2">&quot;klue/bert-base&quot;</span><span class="p">,</span>
@@ -1098,7 +1098,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
         <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># LoRA 구성 (QLoRA용)</span>
     <span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
         <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
@@ -1108,11 +1108,11 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
         <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># LoRA 적용</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;QLoRA 훈련 가능 파라미터: </span><span class="si">{</span><span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-    
+
     <span class="c1"># 훈련 설정</span>
     <span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
         <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./qlora_results&quot;</span><span class="p">,</span>
@@ -1126,7 +1126,7 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">load_best_model_at_end</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
         <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="c1"># 훈련 시작</span>
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
     <span class="n">trainer</span> <span class="o">=</span> <span class="n">Trainer</span><span class="p">(</span>
@@ -1136,13 +1136,13 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
         <span class="n">eval_dataset</span><span class="o">=</span><span class="n">test_dataset</span><span class="o">.</span><span class="n">select</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">200</span><span class="p">)),</span>
         <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
     <span class="p">)</span>
-    
+
     <span class="n">trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
     <span class="n">training_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span>
-    
+
     <span class="c1"># 평가</span>
     <span class="n">eval_results</span> <span class="o">=</span> <span class="n">trainer</span><span class="o">.</span><span class="n">evaluate</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;method&quot;</span><span class="p">:</span> <span class="s2">&quot;QLoRA&quot;</span><span class="p">,</span>
         <span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">eval_results</span><span class="p">[</span><span class="s2">&quot;eval_accuracy&quot;</span><span class="p">],</span>
@@ -1164,32 +1164,32 @@ pip<span class="w"> </span>install<span class="w"> </span>numpy<span class="w"> 
 <span class="k">def</span><span class="w"> </span><span class="nf">compare_results</span><span class="p">():</span>
     <span class="c1"># 결과 수집</span>
     <span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">lora_results</span><span class="p">,</span> <span class="n">qlora_results</span><span class="p">]</span>
-    
+
     <span class="c1"># DataFrame 생성</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>
-    
+
     <span class="c1"># 결과 출력</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;PEFT 방법 비교 결과&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">to_string</span><span class="p">(</span><span class="n">index</span><span class="o">=</span><span class="kc">False</span><span class="p">))</span>
-    
+
     <span class="c1"># 시각화</span>
     <span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
-    
+
     <span class="c1"># 정확도 비교</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;accuracy&#39;</span><span class="p">])</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;정확도 비교&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;정확도&#39;</span><span class="p">)</span>
     <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="mf">0.8</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">)</span>
-    
+
     <span class="c1"># 훈련 시간 비교</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">bar</span><span class="p">(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;method&#39;</span><span class="p">],</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;training_time&#39;</span><span class="p">])</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s1">&#39;훈련 시간 비교&#39;</span><span class="p">)</span>
     <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;시간 (초)&#39;</span><span class="p">)</span>
-    
+
     <span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
     <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-    
+
     <span class="k">return</span> <span class="n">df</span>
 
 <span class="c1"># 결과 비교</span>
