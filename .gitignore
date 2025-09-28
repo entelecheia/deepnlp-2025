@@ -35,6 +35,3 @@ pytest-coverage.*
 
 # UV lock file
 uv.lock
-
-workshop_guidelines.md
-lecture_guidelines.md
