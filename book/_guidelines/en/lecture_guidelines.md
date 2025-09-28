@@ -178,6 +178,7 @@ import math
 - [ ] References properly organized
 - [ ] Unnecessary escape characters removed (e.g., `1\.` → `1.`)
 - [ ] Footnote links removed from main text
+- [ ] Bold formatting errors checked (proper format for special characters/parentheses)
 
 ## 10. Markdown Formatting and Technical Guidelines
 
@@ -194,6 +195,11 @@ import math
 - **Remove footnote links**: Remove all `[\[1\]](URL)` style footnote links
 - **URL links**: Use only in references section
 - **Mathematical expressions**: Use LaTeX syntax `$...$` or `$$...$$`
+- **Bold formatting error prevention**: Apply bold formatting only up to special characters or parentheses
+  - Correct: `**Extended thinking mode**(extended thinking)`
+  - Incorrect: `**Extended thinking mode(extended thinking)**`
+  - Correct: `**Coding accuracy 74.5**% (SWE-Bench)`
+  - Incorrect: `**Coding accuracy 74.5% (SWE-Bench)**`
 
 ### 10.3 Code Block Formatting
 
