@@ -1,4 +1,4 @@
-# Week 1 - Transformer 및 차세대 아키텍처
+# Week 1: Transformer 및 차세대 아키텍처
 
 ## 1. Transformer 아키텍처의 기본 구조
 

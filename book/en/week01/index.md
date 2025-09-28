@@ -1,4 +1,4 @@
-# Week 1 - Transformer and Next-Generation Architectures
+# Week 1: Transformer and Next-Generation Architectures
 
 ## 1. Basic Structure of Transformer Architecture
 

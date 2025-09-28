@@ -1,4 +1,4 @@
-# Week 3 - Efficient Fine-Tuning with Modern PEFT Techniques
+# Week 3: Efficient Fine-Tuning with Modern PEFT Techniques
 
 ## 1. The Need for Parameter-Efficient Fine-Tuning (PEFT)
 
@@ -32,6 +32,7 @@ Instead of directly updating the full weight matrix $W_0 \in \mathbb{R}^{d \time
 $$\Delta W = A \times B$$
 
 where:
+
 - $A \in \mathbb{R}^{d \times r}$ and $B \in \mathbb{R}^{r \times k}$ are **low-rank matrices**
 - $r \ll \min(d, k)$ is the **rank** (typically 4, 8, 16)
 - Only $A$ and $B$ are **trainable parameters**
@@ -41,6 +42,7 @@ The final weight becomes: $W = W_0 + \Delta W = W_0 + AB$
 ### 2.2 Mathematical Example of LoRA
 
 For a **768×768 attention weight matrix** with rank $r=8$:
+
 - **Full fine-tuning**: 768² = **589,824 parameters**
 - **LoRA**: 8×(768+768) = **12,288 parameters** (98% reduction!)
 
@@ -56,7 +58,7 @@ from peft import LoraConfig, get_peft_model
 # Apply LoRA to Korean BERT model
 model_name = "klue/bert-base"
 model = AutoModelForSequenceClassification.from_pretrained(
-    model_name, 
+    model_name,
     num_labels=2,
     torch_dtype=torch.float16
 )
@@ -77,6 +79,7 @@ print(f"Trainable parameters: {model.print_trainable_parameters()}")
 ```
 
 **Example Output:**
+
 ```
 trainable params: 1,572,864 || all params: 110,104,322 || trainable%: 1.43
 ```
@@ -84,12 +87,14 @@ trainable params: 1,572,864 || all params: 110,104,322 || trainable%: 1.43
 ### 2.4 Key Advantages and Limitations of LoRA
 
 **Advantages:**
+
 - **Parameter Efficiency**: Uses only 0.1%-0.5% of original parameters
 - **Memory Savings**: 90%+ reduction in memory usage
 - **No Inference Overhead**: Adapters can be merged into base weights
 - **Modularity**: Task-specific adapters can be easily swapped
 
 **Limitations:**
+
 - **Low-rank Bottleneck**: Rank constraints may limit expressiveness
 - **Hyperparameter Sensitivity**: Performance varies with rank and alpha values
 - **Lack of Layer-wise Optimization**: Same settings applied to all layers
@@ -117,21 +122,24 @@ The key insight is that these components can be **updated independently** during
 
 For a weight matrix $W_0 \in \mathbb{R}^{d \times k}$:
 
-1. **Decomposition**: 
+1. **Decomposition**:
+
    - $V = \frac{W_0}{||W_0||_F}$ (direction vector)
    - $m = ||W_0||_F$ (magnitude scalar)
 
 2. **Direction Update**: Apply LoRA to the direction
+
    - $\Delta V = AB$ where $A \in \mathbb{R}^{d \times r}$, $B \in \mathbb{R}^{r \times k}$
    - $V' = V + \Delta V$
 
 3. **Magnitude Update**: Learn a scaling factor
+
    - $m' = m + \Delta m$ where $\Delta m$ is a learnable scalar
 
 4. **Reconstruction**: $W' = m' \times \frac{V'}{||V'||_F}$
 
 ![DoRA Architecture](figs/image1.jpeg)
-*DoRA Structure: The pre-trained weight $W_0$ is factored into a frozen direction $V$ and a learnable magnitude $m$. DoRA applies a LoRA-style low-rank update to adjust the direction and also tunes the magnitude $m$. After training, the magnitude and new direction are multiplied to form the merged weight $W'$.*
+_DoRA Structure: The pre-trained weight $W_0$ is factored into a frozen direction $V$ and a learnable magnitude $m$. DoRA applies a LoRA-style low-rank update to adjust the direction and also tunes the magnitude $m$. After training, the magnitude and new direction are multiplied to form the merged weight $W'$._
 
 ### 3.3 Key Advantages of DoRA
 
@@ -161,28 +169,28 @@ class DoRALayer(nn.Module):
         self.base_layer = base_layer
         self.rank = rank
         self.alpha = alpha
-        
+
         # LoRA matrices
         self.lora_A = nn.Linear(base_layer.in_features, rank, bias=False)
         self.lora_B = nn.Linear(rank, base_layer.out_features, bias=False)
-        
+
         # Magnitude parameter
         self.magnitude = nn.Parameter(torch.ones(base_layer.out_features))
-        
+
         # Initialize
         nn.init.kaiming_uniform_(self.lora_A.weight)
         nn.init.zeros_(self.lora_B.weight)
-        
+
     def forward(self, x):
         # Base output
         base_output = self.base_layer(x)
-        
+
         # LoRA update
         lora_output = self.lora_B(self.lora_A(x)) * (self.alpha / self.rank)
-        
+
         # Apply magnitude scaling
         scaled_output = (base_output + lora_output) * self.magnitude
-        
+
         return scaled_output
 ```
 
@@ -217,11 +225,13 @@ The success of QLoRA hinges on **NF4 (NormalFloat-4)**, a custom 4-bit data type
 ### 4.3 QLoRA Technical Innovations
 
 **Double Quantization:**
+
 - Quantizes both model weights (4-bit) and scaling factors (8-bit)
 - Further reduces **memory overhead without performance loss**
 - Implemented efficiently in the bitsandbytes library
 
 **Paged Optimizers:**
+
 - Swaps gradients and momentum to **CPU memory during peaks**
 - Prevents **out-of-memory errors** on large models
 - Enables training of models that wouldn't fit otherwise
@@ -236,7 +246,7 @@ QLoRA achieves remarkable results:
 - **Speed**: **4-bit operations are often faster** than 16-bit on modern hardware
 
 ![QLoRA Comparison](figs/image3.jpeg)
-*Comparison of full fine-tuning vs LoRA vs QLoRA. QLoRA does the same low-rank adaptation but on a 4-bit quantized base model; gradients flow through the 4-bit model to the LoRA adapters. This approach cuts memory by ~75% while preserving performance.*
+_Comparison of full fine-tuning vs LoRA vs QLoRA. QLoRA does the same low-rank adaptation but on a 4-bit quantized base model; gradients flow through the 4-bit model to the LoRA adapters. This approach cuts memory by ~75% while preserving performance._
 
 ### 4.5 QLoRA Implementation Example
 
@@ -286,26 +296,29 @@ Now let's compare the **LoRA, DoRA, QLoRA** and other PEFT techniques we've expl
 
 ### 5.1 PEFT Method Performance Comparison
 
-| Method | Parameter Efficiency | Performance | Memory Savings | Use Case |
-|--------|---------------------|-------------|----------------|----------|
-| **LoRA** | 0.1-0.5% of model | Baseline | 90% | General purpose |
-| **DoRA** | 0.1-0.5% of model | +3.7% over LoRA | 90% | Better performance needed |
-| **QLoRA** | 75% memory reduction | Matches full FT | 75% | Large models |
-| **VB-LoRA** | 0.01% of LoRA | Better than LoRA | 99% | Multi-task scenarios |
+| Method      | Parameter Efficiency | Performance      | Memory Savings | Use Case                  |
+| ----------- | -------------------- | ---------------- | -------------- | ------------------------- |
+| **LoRA**    | 0.1-0.5% of model    | Baseline         | 90%            | General purpose           |
+| **DoRA**    | 0.1-0.5% of model    | +3.7% over LoRA  | 90%            | Better performance needed |
+| **QLoRA**   | 75% memory reduction | Matches full FT  | 75%            | Large models              |
+| **VB-LoRA** | 0.01% of LoRA        | Better than LoRA | 99%            | Multi-task scenarios      |
 
 ### 5.2 Situational PEFT Method Selection Guide
 
 **For Research and Experimentation:**
+
 - **Baseline Performance**: Start with LoRA
 - **Better Results**: Use DoRA
 - **Large Models**: Consider QLoRA
 
 **For Production Deployment:**
+
 - **Large Models (7B+ parameters)**: Use QLoRA
 - **Memory-Constrained Environment**: QLoRA + DoRA combination
 - **Multi-Task Scenarios**: Use VB-LoRA
 
 **For Resource-Limited Environments:**
+
 - **Minimal Parameter Budget**: VB-LoRA
 - **Memory Constraints**: QLoRA
 - **Storage Limitations**: VB-LoRA
@@ -323,15 +336,15 @@ class PEFTComparison:
         self.model_name = model_name
         self.dataset = dataset
         self.results = {}
-    
+
     def evaluate_method(self, method_name: str, config: Dict[str, Any]):
         """Evaluate a PEFT method and record metrics"""
-        
+
         # Load model
         model = AutoModelForSequenceClassification.from_pretrained(
             self.model_name, num_labels=2
         )
-        
+
         # Apply PEFT method
         if method_name == "LoRA":
             peft_config = LoraConfig(**config)
@@ -339,11 +352,11 @@ class PEFTComparison:
         elif method_name == "DoRA":
             model = apply_dora_to_model(model, **config)
         # Add other methods...
-        
+
         # Record metrics
         start_time = time.time()
         start_memory = psutil.Process().memory_info().rss / 1024 / 1024  # MB
-        
+
         # Training (simplified)
         trainer = Trainer(
             model=model,
@@ -355,12 +368,12 @@ class PEFTComparison:
                 logging_steps=10,
             )
         )
-        
+
         trainer.train()
-        
+
         end_time = time.time()
         end_memory = psutil.Process().memory_info().rss / 1024 / 1024  # MB
-        
+
         # Record results
         self.results[method_name] = {
             "trainable_params": sum(p.numel() for p in model.parameters() if p.requires_grad),
@@ -369,14 +382,14 @@ class PEFTComparison:
             "memory_usage": end_memory - start_memory,
             "config": config
         }
-        
+
         return self.results[method_name]
-    
+
     def compare_methods(self):
         """Compare all methods and print results"""
         print("PEFT Methods Comparison")
         print("=" * 50)
-        
+
         for method, results in self.results.items():
             print(f"\n{method}:")
             print(f"  Trainable Parameters: {results['trainable_params']:,}")
@@ -417,9 +430,9 @@ tokenizer = AutoTokenizer.from_pretrained("klue/bert-base")
 # Data preprocessing function
 def preprocess_function(examples):
     return tokenizer(
-        examples["document"], 
-        truncation=True, 
-        padding=True, 
+        examples["document"],
+        truncation=True,
+        padding=True,
         max_length=128
     )
 
@@ -441,11 +454,11 @@ import time
 def train_lora_model():
     # Load model
     model = AutoModelForSequenceClassification.from_pretrained(
-        "klue/bert-base", 
+        "klue/bert-base",
         num_labels=2,
         torch_dtype=torch.float16
     )
-    
+
     # LoRA configuration
     lora_config = LoraConfig(
         task_type=TaskType.SEQ_CLS,
@@ -455,11 +468,11 @@ def train_lora_model():
         lora_dropout=0.1,
         bias="none"
     )
-    
+
     # Apply LoRA to model
     model = get_peft_model(model, lora_config)
     print(f"LoRA trainable parameters: {model.print_trainable_parameters()}")
-    
+
     # Training setup
     training_args = TrainingArguments(
         output_dir="./lora_results",
@@ -472,7 +485,7 @@ def train_lora_model():
         eval_steps=500,
         load_best_model_at_end=True,
     )
-    
+
     # Start training
     start_time = time.time()
     trainer = Trainer(
@@ -482,13 +495,13 @@ def train_lora_model():
         eval_dataset=test_dataset.select(range(200)),
         tokenizer=tokenizer,
     )
-    
+
     trainer.train()
     training_time = time.time() - start_time
-    
+
     # Evaluation
     eval_results = trainer.evaluate()
-    
+
     return {
         "method": "LoRA",
         "accuracy": eval_results["eval_accuracy"],
@@ -514,7 +527,7 @@ def train_qlora_model():
         bnb_4bit_compute_dtype=torch.float16,
         bnb_4bit_use_double_quant=True,
     )
-    
+
     # Load model with quantization
     model = AutoModelForSequenceClassification.from_pretrained(
         "klue/bert-base",
@@ -522,7 +535,7 @@ def train_qlora_model():
         quantization_config=quantization_config,
         torch_dtype=torch.float16
     )
-    
+
     # Configure LoRA for QLoRA
     lora_config = LoraConfig(
         task_type=TaskType.SEQ_CLS,
@@ -532,11 +545,11 @@ def train_qlora_model():
         lora_dropout=0.1,
         bias="none"
     )
-    
+
     # Apply LoRA
     model = get_peft_model(model, lora_config)
     print(f"QLoRA trainable parameters: {model.print_trainable_parameters()}")
-    
+
     # Training setup
     training_args = TrainingArguments(
         output_dir="./qlora_results",
@@ -550,7 +563,7 @@ def train_qlora_model():
         load_best_model_at_end=True,
         fp16=True,
     )
-    
+
     # Start training
     start_time = time.time()
     trainer = Trainer(
@@ -560,13 +573,13 @@ def train_qlora_model():
         eval_dataset=test_dataset.select(range(200)),
         tokenizer=tokenizer,
     )
-    
+
     trainer.train()
     training_time = time.time() - start_time
-    
+
     # Evaluation
     eval_results = trainer.evaluate()
-    
+
     return {
         "method": "QLoRA",
         "accuracy": eval_results["eval_accuracy"],
@@ -588,32 +601,32 @@ import matplotlib.pyplot as plt
 def compare_results():
     # Collect results
     results = [lora_results, qlora_results]
-    
+
     # Create DataFrame
     df = pd.DataFrame(results)
-    
+
     # Print results
     print("PEFT Methods Comparison Results")
     print("=" * 50)
     print(df.to_string(index=False))
-    
+
     # Visualization
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
-    
+
     # Accuracy comparison
     ax1.bar(df['method'], df['accuracy'])
     ax1.set_title('Accuracy Comparison')
     ax1.set_ylabel('Accuracy')
     ax1.set_ylim(0.8, 1.0)
-    
+
     # Training time comparison
     ax2.bar(df['method'], df['training_time'])
     ax2.set_title('Training Time Comparison')
     ax2.set_ylabel('Time (seconds)')
-    
+
     plt.tight_layout()
     plt.show()
-    
+
     return df
 
 # Compare results
@@ -625,9 +638,9 @@ comparison_df = compare_results()
 **Expected Results:**
 
 | Method | Accuracy | Training Time | Trainable Parameters |
-|--------|----------|---------------|---------------------|
-| LoRA | ~0.92 | ~300s | ~1.5M |
-| QLoRA | ~0.91 | ~400s | ~1.5M |
+| ------ | -------- | ------------- | -------------------- |
+| LoRA   | ~0.92    | ~300s         | ~1.5M                |
+| QLoRA  | ~0.91    | ~400s         | ~1.5M                |
 
 **Key Observations:**
 
@@ -648,32 +661,36 @@ In this final section, we'll explore **practical applications** of PEFT techniqu
 ### 7.1 Practical Application Guide by PEFT Method
 
 **LoRA Applications:**
+
 - **General fine-tuning**: Most NLP tasks with moderate resource requirements
 - **Multi-task learning**: Easy adapter swapping for different tasks
 - **Research prototyping**: Quick experimentation with different configurations
 
 **DoRA Applications:**
+
 - **Performance-critical tasks**: When you need better results than LoRA
 - **Low-rank constraints**: When memory is extremely limited
 - **Production systems**: Where performance improvement justifies complexity
 
 **QLoRA Applications:**
+
 - **Large model fine-tuning**: 7B+ parameter models on single GPUs
 - **Memory-constrained environments**: Limited GPU memory scenarios
 - **Research with large models**: Experimenting with state-of-the-art models
 
 ### 7.2 Comprehensive PEFT Performance Comparison
 
-| Method | Parameter Efficiency | Performance | Memory Savings | Training Speed | Use Case |
-|--------|---------------------|-------------|----------------|----------------|----------|
-| **LoRA** | 0.1-0.5% of model | Baseline | 90% | Fast | General purpose |
-| **DoRA** | 0.1-0.5% of model | +3.7% over LoRA | 90% | Fast | Better performance needed |
-| **QLoRA** | 75% memory reduction | Matches full FT | 75% | Medium | Large models |
-| **VB-LoRA** | 0.01% of LoRA | Better than LoRA | 99% | Fast | Multi-task scenarios |
+| Method      | Parameter Efficiency | Performance      | Memory Savings | Training Speed | Use Case                  |
+| ----------- | -------------------- | ---------------- | -------------- | -------------- | ------------------------- |
+| **LoRA**    | 0.1-0.5% of model    | Baseline         | 90%            | Fast           | General purpose           |
+| **DoRA**    | 0.1-0.5% of model    | +3.7% over LoRA  | 90%            | Fast           | Better performance needed |
+| **QLoRA**   | 75% memory reduction | Matches full FT  | 75%            | Medium         | Large models              |
+| **VB-LoRA** | 0.01% of LoRA        | Better than LoRA | 99%            | Fast           | Multi-task scenarios      |
 
 ### 7.3 Practical Implementation Considerations
 
 **Memory Optimization:**
+
 ```python
 # Enable gradient checkpointing
 training_args = TrainingArguments(
@@ -689,6 +706,7 @@ training_args = TrainingArguments(
 ```
 
 **Hyperparameter Tuning:**
+
 ```python
 # LoRA hyperparameters
 lora_configs = [
@@ -742,14 +760,17 @@ The field of PEFT is rapidly evolving. Key areas of future development include:
 ### Key Papers and Research Materials
 
 1. **LoRA: Low-Rank Adaptation of Large Language Models**
+
    - [arXiv:2106.09685](https://arxiv.org/abs/2106.09685)
    - Microsoft Research, 2021
 
 2. **DoRA: Weight-Decomposed Low-Rank Adaptation**
+
    - [arXiv:2402.09353](https://arxiv.org/abs/2402.09353)
    - NVIDIA, 2024
 
 3. **QLoRA: Efficient Finetuning of Quantized LLMs**
+
    - [arXiv:2305.14314](https://arxiv.org/abs/2305.14314)
    - University of Washington, 2023
 
@@ -760,10 +781,12 @@ The field of PEFT is rapidly evolving. Key areas of future development include:
 ### Technical Documentation and Implementations
 
 1. **PEFT: Parameter-Efficient Fine-Tuning Methods for LLMs**
+
    - [Hugging Face Documentation](https://huggingface.co/docs/peft)
    - [GitHub Repository](https://github.com/huggingface/peft)
 
 2. **bitsandbytes: 8-bit optimizers and quantization routines**
+
    - [GitHub Repository](https://github.com/TimDettmers/bitsandbytes)
    - [Documentation](https://huggingface.co/docs/transformers/main/en/quantization)
 
@@ -773,9 +796,11 @@ The field of PEFT is rapidly evolving. Key areas of future development include:
 ### Online Resources and Blogs
 
 1. **Making LLMs even more accessible with bitsandbytes, 4-bit quantization and QLoRA**
+
    - [Hugging Face Blog](https://huggingface.co/blog/4bit-transformers-bitsandbytes)
 
 2. **PEFT Methods Explained**
+
    - [Hugging Face Blog](https://huggingface.co/blog/samuellimabraz/peft-methods)
 
 3. **VB-LoRA Documentation**
