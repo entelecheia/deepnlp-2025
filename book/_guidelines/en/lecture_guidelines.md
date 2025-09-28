@@ -176,56 +176,88 @@ import math
 - [ ] Appropriate section divisions
 - [ ] Checkpoint questions included
 - [ ] References properly organized
+- [ ] Unnecessary escape characters removed (e.g., `1\.` → `1.`)
+- [ ] Footnote links removed from main text
 
-## 10. International Considerations
+## 10. Markdown Formatting and Technical Guidelines
 
-### 10.1 Global Accessibility
+### 10.1 Markdown Syntax
+
+- **Title format**: `# Week N: [Topic Name]` (number followed by period and space)
+- **Section numbering**: `## 1.`, `## 2.` etc. (no backslash escape characters)
+- **Subsection hierarchy**: Use `###`, `####` for logical structure
+- **Emphasis**: Use `**bold**`, `*italic*` appropriately
+
+### 10.2 Special Character Handling
+
+- **Remove escape characters**: `1\.` → `1.`, `2\.` → `2.` etc.
+- **Remove footnote links**: Remove all `[\[1\]](URL)` style footnote links
+- **URL links**: Use only in references section
+- **Mathematical expressions**: Use LaTeX syntax `$...$` or `$$...$$`
+
+### 10.3 Code Block Formatting
+
+````markdown
+```python
+# 1. Step-by-step comments
+# 2. Executable code
+# 3. Result interpretation
+```
+````
+
+- **Language specification**: Add appropriate language tags to code blocks
+- **Comment usage**: Include purpose and explanation for each step
+- **Indentation**: Use consistent indentation
+
+## 11. International Considerations
+
+### 11.1 Global Accessibility
 
 - **Cultural neutrality**: Use examples that work across cultures
 - **Language clarity**: Write for international English speakers
 - **Time zone awareness**: Consider global lecture scheduling
 - **Resource availability**: Ensure tools are accessible worldwide
 
-### 10.2 Technical Accessibility
+### 11.2 Technical Accessibility
 
 - **Platform diversity**: Address different operating systems
 - **Hardware variations**: Consider different GPU configurations
 - **Network considerations**: Account for varying internet speeds
 - **Regional restrictions**: Be aware of service availability
 
-## 11. Update and Maintenance
+## 12. Update and Maintenance
 
-### 11.1 Regular Review
+### 12.1 Regular Review
 
 - **Technology updates**: Reflect new tools and techniques
 - **Feedback incorporation**: Integrate learner feedback for improvement
 - **Error correction**: Fix discovered issues and problems
 - **Content refresh**: Update examples and references
 
-### 11.2 Version Management
+### 12.2 Version Management
 
 - **Change tracking**: Record major modifications
 - **Compatibility**: Consider backward compatibility
 - **Testing**: Perform thorough testing after changes
 - **Documentation**: Update related documentation
 
-## 12. Specific English Writing Guidelines
+## 13. Specific English Writing Guidelines
 
-### 12.1 Technical Terminology
+### 13.1 Technical Terminology
 
 - **Consistent translation**: Use standard English terms for technical concepts
 - **Acronym explanation**: Define acronyms on first use
 - **Domain-specific language**: Use appropriate technical vocabulary
 - **Avoid anglicization**: Maintain original technical terms when appropriate
 
-### 12.2 Sentence Structure
+### 13.2 Sentence Structure
 
 - **Subject-verb-object**: Use clear sentence patterns
 - **Modifier placement**: Position descriptive words carefully
 - **Parallel construction**: Maintain consistent grammatical patterns
 - **Sentence length**: Balance clarity with readability
 
-### 12.3 Paragraph Organization
+### 13.3 Paragraph Organization
 
 - **Topic sentences**: Start paragraphs with clear main ideas
 - **Supporting details**: Provide evidence and examples
