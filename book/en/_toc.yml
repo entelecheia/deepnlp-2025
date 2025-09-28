@@ -16,6 +16,7 @@ parts:
   - caption: Workshops
     chapters:
       - file: workshops/index
+      - file: workshops/week01
   - caption: About
     chapters:
       - file: syllabus/index
