@@ -1,0 +1,748 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Team Project Guidelines &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'projects/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Syllabus" href="../syllabus/index.html" />
+    <link rel="prev" title="Week 1 Workshop: LLM Overview and Development Environment Setup" href="../workshops/week01.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/projects/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fprojects/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/projects/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Team Project Guidelines</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-objectives">1. Overview and Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-topics-and-goals">2. Project Topics and Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#team-composition-and-role-division">3. Team Composition and Role Division</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-and-resource-conditions">4. Development Environment and Resource Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-and-deliverables">5. Schedule and Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#midterm-presentation-requirements">6. Midterm Presentation Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-presentation-and-submission-requirements">7. Final Presentation and Submission Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-criteria">8. Evaluation Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-considerations">9. Important Considerations</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="team-project-guidelines">
+<h1>Team Project Guidelines<a class="headerlink" href="#team-project-guidelines" title="Link to this heading">#</a></h1>
+<section id="overview-and-objectives">
+<h2>1. Overview and Objectives<a class="headerlink" href="#overview-and-objectives" title="Link to this heading">#</a></h2>
+<p>The team project provides students with hands-on experience in solving real-world problems by applying deep learning-based natural language processing (NLP) techniques learned throughout the semester. Each team consists of approximately 4 students who collaborate to train large language models (LLMs) on real data and develop application agents that utilize these models. Through this process, students integrate theoretical learning to implement complete NLP models and applications while developing problem-solving abilities and project management capabilities through team collaboration.</p>
+<p>This guideline presents project execution methods and evaluation criteria to facilitate smooth implementation. It outlines requirements and deliverables for project execution, including midterm and final presentation requirements. Students should refer to this guideline to proceed with their projects systematically and produce creative yet achievable results.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the main objectives of the team project?</p></li>
+<li><p>How does this project integrate theoretical learning with practical implementation?</p></li>
+<li><p>What key skills will students develop through this project?</p></li>
+</ul>
+</section>
+<section id="project-topics-and-goals">
+<h2>2. Project Topics and Goals<a class="headerlink" href="#project-topics-and-goals" title="Link to this heading">#</a></h2>
+<p>Each team should autonomously select their project topic, which must focus on solving natural language processing-related problems through LLMs. The project goal is to train a language model specialized for the chosen problem (through fine-tuning or additional pre-training) using the team’s selected domain dataset and base LLM model, then implement it as a functioning LLM-based agent. Examples include an LLM for summarizing Korean legal documents, a medical consultation chatbot, or a knowledge search agent based on user queries. When selecting topics, teams should consider their areas of interest, data availability, model scale, and difficulty level.</p>
+<p>Project goals should be defined as specifically and measurably as possible. This helps clarify the project scope and establish evaluation criteria. Each team should clearly describe “what problem to solve and how,” and plan in advance what metrics to use for evaluating model performance. The chosen topic must be achievable within one semester with limited resources, so setting realistic scope is important. Teams should select topics that can achieve improved performance or new functionality compared to existing methods by utilizing various techniques covered in class (e.g., PEFT-based fine-tuning, RAG, DPO, etc.). After topic selection, teams should obtain approval from the supervising professor and pursue a balance between creativity and practicality.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What criteria should teams consider when selecting their project topic?</p></li>
+<li><p>How should project goals be defined to ensure successful completion?</p></li>
+<li><p>What techniques learned in class can be applied to improve model performance?</p></li>
+</ul>
+</section>
+<section id="team-composition-and-role-division">
+<h2>3. Team Composition and Role Division<a class="headerlink" href="#team-composition-and-role-division" title="Link to this heading">#</a></h2>
+<p>Teams are composed of approximately 4 members, with students of diverse capabilities balanced as much as possible. Within teams, roles can be divided into project leader, data manager, model manager, and agent implementation manager. For example, one person can serve as project manager handling schedule management and overall coordination, another as data engineer specializing in data collection and preprocessing, another as model architect selecting models and building training pipelines, and the last as agent developer implementing user interfaces or system integration. Role division should be determined autonomously based on team members’ strengths, ensuring all team members understand and participate in the overall project.</p>
+<p>Active participation of all team members is essential. Each member should take responsibility for their role while sharing progress through regular team meetings and solving problems together. Teams should use collaboration tools such as messengers, email, Notion/Google Docs for smooth communication. Since all team members must participate in midterm and final presentations, equal contribution should be made in preparing presentation materials and practice sessions. If any team member is overloaded with specific tasks, roles should be readjusted or other team members should help maintain collaboration and balance. While team performance evaluation is applied equally, individual scores may be adjusted based on individual contribution when necessary. If problems arise or team conflicts occur, early consultation with the supervising professor should be sought to find solutions.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the key roles that should be assigned within a team?</p></li>
+<li><p>How can teams ensure equal participation from all members?</p></li>
+<li><p>What strategies can teams use to maintain effective collaboration?</p></li>
+</ul>
+</section>
+<section id="development-environment-and-resource-conditions">
+<h2>4. Development Environment and Resource Conditions<a class="headerlink" href="#development-environment-and-resource-conditions" title="Link to this heading">#</a></h2>
+<p>The school provides high-performance GPU server environments for this project. Each team can use one NVIDIA H100 GPU (SXM, 80GB HBM memory) to perform large-scale model training. The H100 GPU is optimized for large-scale computation with the latest architecture, enabling efficient training of models with billions of parameters. However, since GPU resources allocated per team are limited, it is important to efficiently utilize GPU memory and computation time. Strategies such as using Mixed Precision (FP16/BF16), adjusting Gradient Accumulation, optimizing batch size, and reducing memory usage through PEFT techniques like LoRA/QLoRA learned in class are recommended. Rather than fine-tuning entire large models from start to finish, maximum performance should be extracted within limited resources through partial fine-tuning or reusing pre-trained weights.</p>
+<p>The software environment is based on PyTorch and Hugging Face Transformers libraries, and frameworks covered in class such as DSPy, Haystack, and CrewAI can be used as needed. The development server has major deep learning frameworks and libraries installed, and teams work in assigned computing accounts or container environments. All experiments should be conducted in the provided server environment as a principle, and external cloud or personal equipment should only be used with prior consultation for special reasons. Each team will be allocated a certain amount of storage for data storage and experiment result backup. Important model weights or deliverables should be backed up regularly, and code version management should be thorough through GitHub repositories. When using GPUs, responsible usage should be demonstrated by following scheduled times or allocated resources for fairness with other teams, and terminating processes after use to return resources.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What computational resources are available for this project?</p></li>
+<li><p>How can teams optimize GPU memory usage during model training?</p></li>
+<li><p>What best practices should teams follow for code version management?</p></li>
+</ul>
+</section>
+<section id="schedule-and-deliverables">
+<h2>5. Schedule and Deliverables<a class="headerlink" href="#schedule-and-deliverables" title="Link to this heading">#</a></h2>
+<p>The project proceeds according to a systematic schedule plan from the beginning of the semester to the final presentation. Major milestones and deliverables are as follows:</p>
+<ul class="simple">
+<li><p>Weeks 1-2: Complete team formation and project topic selection. Team members brainstorm ideas and create a list of possible topics, then consult with the supervising professor to finalize the topic. Deliverables: Team roster and project topic proposal (submit simple overview).</p></li>
+<li><p>Weeks 3-4: Data collection and base model selection phase. Secure or build datasets suitable for the chosen topic and decide on the base language model to use (e.g., Llama 2, KoGPT, BERT, etc.). Perform data preprocessing and initial exploratory analysis, and test run the selected model with small sample data. Deliverables: Dataset documentation (data source, size, characteristics) and model selection report (reasons for selection and expected advantages/disadvantages).</p></li>
+<li><p>Weeks 5-6: Model training preparation and prototype implementation. Complete code writing for full-scale model fine-tuning or pre-training and hyperparameter settings. Also implement a simple prototype of the LLM-based agent (e.g., simple dialogue scenario processing test). Identify issues arising at this stage and seek solutions. Deliverables: Training script draft, agent prototype (model output samples for example inputs).</p></li>
+<li><p>Week 7: Midterm presentation preparation. Organize project plans and create midterm presentation slides. Each team member reflects their responsible part in the slides and refines delivery content through presentation practice. Simultaneously, start some model training and include intermediate results (e.g., initial validation set performance) in presentation materials if obtained. Deliverables: Midterm presentation PPT file draft.</p></li>
+<li><p>Week 8: Midterm project plan presentation (replaces midterm exam). Teams present and receive feedback (detailed requirements refer to section 6 below). Deliverables: Final midterm presentation slides (PPT) submission.</p></li>
+<li><p>Weeks 9-12: Model development and agent completion phase. Complete full-scale model training/fine-tuning by reflecting midterm presentation feedback. Continuously evaluate performance during training and perform data augmentation, parameter adjustment, etc., as needed. Simultaneously improve LLM agent functionality and build user interface or demo demonstration environment. During this period, conduct regular team meetings to check progress and solve problems as they arise. Deliverables: Trained final model (weight files), initial version of agent application.</p></li>
+<li><p>Weeks 13-14: Testing and final presentation preparation. Validate the completed model with various test cases to produce performance metrics (e.g., accuracy, F1, BLEU, etc., appropriate for the project). Perform comparative evaluation with other public models or existing methods to interpret the meaning of results. Stabilize agent operation and prepare scenarios needed for demonstration demos. Begin final report writing and create final presentation slides. Deliverables: Test result summary, final presentation slide draft, project report draft.</p></li>
+<li><p>Week 15: Final presentation and result submission (replaces final exam). Teams present final results and demonstrate LLM agent demos. After presentation, submit all final deliverables (detailed requirements refer to section 7 below). Deliverables: Final presentation slides (PPT), final project report (document file), GitHub code repository link and usage instructions.</p></li>
+</ul>
+<p>The above schedule is recommended, and detailed plans may vary by team. What’s important is adhering to the milestones of midterm and final presentation weeks. Each team should create and manage their own detailed schedule, and major deliverables must be submitted by the deadline. Deliverable submission will be conducted through LMS upload or email submission, as announced later.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the key milestones in the project timeline?</p></li>
+<li><p>What deliverables are required for each phase of the project?</p></li>
+<li><p>How should teams manage their schedule to meet all deadlines?</p></li>
+</ul>
+</section>
+<section id="midterm-presentation-requirements">
+<h2>6. Midterm Presentation Requirements<a class="headerlink" href="#midterm-presentation-requirements" title="Link to this heading">#</a></h2>
+<p>The midterm project presentation is an opportunity for each team to share their planned project and progress, conducted during the midterm exam period. Presentation time is approximately 10 minutes per team, with an additional 5 minutes for Q&amp;A (total within 15 minutes). All team members should participate evenly in the presentation, with each person speaking for 2-3 minutes or more recommended. The midterm presentation should clearly convey the following content:</p>
+<ul class="simple">
+<li><p>Project Overview: Problem definition and importance of the chosen topic. Explain what question or task to solve and why it’s important, providing background. If necessary, briefly mention existing research or cases in related fields to clarify the project’s motivation.</p></li>
+<li><p>Dataset Introduction: Explain the source, scale, and characteristics of the data to be used. Present input/output formats and quality included in the data, preprocessing plans, potential problems (e.g., class imbalance, noise, etc.), and response measures.</p></li>
+<li><p>Base Model and Techniques: Identify the base LLM model to be used for fine-tuning or pre-training and logically present the reasons for selection. Also explain the training techniques to be applied. Specifically mention which of the PEFT techniques (e.g., LoRA), RLHF series techniques (e.g., DPO), prompt strategies, etc., learned in class will be utilized. It’s good to show that the team sufficiently understands the model structure or algorithmic characteristics.</p></li>
+<li><p>Project Implementation Plan: Present the development schedule and task division plan for the remaining period. Share schedules of when and what to complete for each major stage (data preparation → model training → agent integration → testing/evaluation → report writing). Using role division tables or Gantt charts for visual presentation is effective. Briefly explain each team member’s responsibilities and contributions so far, showing that everyone is performing their roles.</p></li>
+<li><p>Progress to Date: Report completed work and initial achievements up to the midterm point. This can include data exploration results, test results on small samples of the model, or demo videos/screenshots of agent prototypes. Share interesting results discovered in initial experiments or problems faced to seek audience feedback.</p></li>
+<li><p>Expected Difficulties and Countermeasures: Honestly identify expected challenges in completing the project (model training time issues, data shortage, performance limitations, etc.) and explain the team’s strategy to solve them. If additional support or advice is needed from professors or mentors, this can be mentioned at this time.</p></li>
+</ul>
+<p>Midterm presentation materials (PPT) should be concise while containing core information, using diagrams, figures, and tables rather than text to aid understanding. Structure the flow so listeners can easily grasp the project’s intent and plan, use professional terms only when necessary and explain as simply as possible. After the presentation, sincerely listen to and record feedback from professors and colleagues to reflect in subsequent project progress. Since the midterm presentation has the nature of process evaluation toward final results, solid planning and preparation are evaluated more than perfect results. Presentation attitude, time compliance, and team coordination are reflected in evaluation, so rehearsal should be conducted to control presentation time and improve delivery effectiveness.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the key components that must be included in the midterm presentation?</p></li>
+<li><p>How should teams structure their presentation to effectively communicate their project plan?</p></li>
+<li><p>What feedback should teams seek during the midterm presentation?</p></li>
+</ul>
+</section>
+<section id="final-presentation-and-submission-requirements">
+<h2>7. Final Presentation and Submission Requirements<a class="headerlink" href="#final-presentation-and-submission-requirements" title="Link to this heading">#</a></h2>
+<p>The final project presentation is conducted during the final exam period at the end of the semester, with approximately 20 minutes of presentation and 10 minutes of Q&amp;A per team (30 minutes total allocated per team). All team members must participate in the presentation, dealing with more in-depth content and results than the midterm presentation. The final presentation should systematically convey content covering the entire project process. Major elements to be included in the presentation are:</p>
+<ul class="simple">
+<li><p>Problem Definition and Approach Reintroduction: Briefly reintroduce the project’s topic and goals to help audience understanding (as some may not have attended the midterm presentation). Summarize the initially set problem and solution approach in one or two slides and provide an overview of the project’s overall structure.</p></li>
+<li><p>Data and Model Methodology: Explain in detail the final state of the dataset used (data size after preprocessing, etc.) and model architecture/training settings. For example, share specific setting values such as “fine-tuned KoGPT-6B model with Korean news summarization data of 500,000 sentences using LoRA technique, learning rate 2e-5, 3 epochs,” model structure or fine-tuning strategy, and time/epoch information spent on training. Also mention any special considerations or tuning know-how during model training (e.g., techniques to prevent collapse, memory optimization application, etc.).</p></li>
+<li><p>LLM Agent Implementation: Introduce how the agent developed using the trained model operates. Present a system architecture diagram showing how user input is processed by the model and how model output is reflected in the application. If there are special features such as external tool or API integration, or multimodal input, explain these. Demonstrate the agent’s usage scenarios with examples, showing actual operation screens or result predictions in demo format. If possible, conducting a live demo during the on-site presentation to show interaction with the agent is recommended. (However, prepare videos or screenshots as backup for unexpected errors during live demos)</p></li>
+<li><p>Performance Evaluation Results: Present the final model’s performance evaluated with various metrics. Report how much the model achieved compared to the success criteria set in the project goals and present comparison results with existing models or baselines. Visualize appropriate metrics such as accuracy, precision/recall, BLEU, ROUGE, or human evaluation scores with tables or graphs. Don’t just list performance numbers but add interpretation and analysis of results. For example, perform advantages/disadvantages evaluation such as “our model excelled in controlling summary sentence length compared to existing methods but showed limitations in factual accuracy.” Error analysis is also important, so selecting several representative failure cases and providing error case analysis adds depth to the project.</p></li>
+<li><p>Conclusion and Future Tasks: Summarize the overall project results while self-evaluating how much achievement was made compared to initial goals. Honestly describe expected parts, lessons learned, and limitations. Furthermore, suggest directions for future improvement or expansion. For example, add developmental discussion such as “performance improvement is expected by expanding data or combining multimodal elements,” “future user evaluation is needed to verify the model’s usefulness.” Briefly mention lessons learned or feelings from team collaboration and conclude.</p></li>
+</ul>
+<p>After the final presentation, all final project deliverables must be submitted. Items to be submitted are:</p>
+<ul class="simple">
+<li><p>Presentation Slide File: PPT or PDF file used for the final presentation. (Updated final version compared to midterm presentation slides)</p></li>
+<li><p>Project Report: Final report document containing project progress and results. The report is generally written in about 10 pages and should preferably include the following items: Introduction (background and objectives), Data and Methodology, Experiments and Results, Analysis and Discussion, Conclusion, References. The report should describe more detailed content than presentation materials, implementation details, code explanations, experimental environment (e.g., hardware specifications, library versions), etc. Especially if other research or open source is utilized, sources should be specified and included in references.</p></li>
+<li><p>GitHub Repository Link: Submit the URL of the team’s code repository. The repository should be equipped with source code, model training scripts, <a class="reference external" href="http://README.md">README.md</a> (including usage instructions), license and reference materials, etc. For code reproducibility, important hyperparameter settings or execution methods should be specified in README, and if the dataset can be made public, provide some samples or download paths. (If data cannot be made public due to copyright reasons, only describe usage methods in the report)</p></li>
+<li><p>Other Deliverables: Final model weight files obtained from model training may be omitted from submission if the file size is large, but teams should store them safely as professors may request them for result verification when necessary. Also, agent demo videos (if live demo was not conducted or prepared as supplementary material) can be submitted together.</p></li>
+</ul>
+<p>Final deliverables must all be submitted within the specified deadline after the final presentation (e.g., by midnight on the presentation day), and late submission may result in point deduction or non-submission treatment. Submission methods and detailed formats will be announced later, generally in the form of LMS upload or email submission. The final presentation and deliverable submission are the culmination of the project, comprehensively evaluating all efforts and results, so all requirements should be faithfully satisfied.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the key components of the final presentation?</p></li>
+<li><p>What deliverables must be submitted after the final presentation?</p></li>
+<li><p>How should teams prepare for the final presentation and demo?</p></li>
+</ul>
+</section>
+<section id="evaluation-criteria">
+<h2>8. Evaluation Criteria<a class="headerlink" href="#evaluation-criteria" title="Link to this heading">#</a></h2>
+<p>This team project evaluation consists of 30% midterm presentation, 50% final results, and 20% attendance and participation, totaling 100%. Detailed evaluation indicators are as follows:</p>
+<ul class="simple">
+<li><p>Attendance and Participation (20%): Evaluated based on class attendance rate throughout the semester and activeness in class and team activities. Factors such as frequent absences or tardiness, attitude toward participating in class discussions or Q&amp;A, and workshop practice participation are comprehensively reflected. For team projects, collaboration contribution within the team may also be partially included in participation. For this purpose, team member feedback or self-evaluation may be received frequently during project progress, and if a specific student’s contribution is extremely low, it may affect the participation score. It’s important to show sincere attitude and communication efforts.</p></li>
+<li><p>Midterm Presentation (30%): Evaluation score for the project plan presentation conducted during the midterm exam period. Evaluation items include clarity of planning, appropriateness and creativity of topics, specificity and feasibility of plans, validity of data/model selection, and team members’ presentation skills and preparation. For example, whether the problem definition is clear and distinct, whether goals and plans are realistic with well-established step-by-step strategies, whether efforts to utilize content learned in class are visible, whether all team members participate in presentation and sincerely answer questions, etc. Since midterm presentation evaluation also has the nature of feedback for improving subsequent projects, attention should be paid to comments as well as scores to supplement insufficient parts.</p></li>
+<li><p>Final Project Results (50%): Comprehensive evaluation score for final presentation and submitted deliverables. This includes final presentation content (presentation materials and delivery effectiveness), completeness of project deliverables (model performance and innovation, agent implementation quality), report thoroughness, code quality and reproducibility, Q&amp;A response, etc. Specifically, the difficulty and challenge level of the problem to be solved, appropriateness and creativity of the approach used, goal achievement level (whether model performance approaches or achieves initial goals), depth of result analysis and interpretation, clarity and logical development of presentation, actual implementation level through demos, etc., are major evaluation factors. Additionally, harmony and effort balance among team members may be qualitatively judged. Submitted project reports are evaluated based on content accuracy, completeness, document structure, reference notation, etc., and GitHub code is also reflected in evaluation based on execution ease, comment and README organization, version management utilization, etc. The 50% final result score is basically given equally to all team members, but individual scores may be adjusted when necessary based on the aforementioned participation or separate peer evaluation.</p></li>
+</ul>
+<p>In summary, evaluation criteria encompass not only the excellence of deliverables themselves but also the thoroughness of the process and teamwork. Even if innovative and difficult challenges were attempted but goals were not perfectly achieved, learning and creativity in the attempt process can be highly evaluated, while conversely, selecting easy topics and only achieving high performance may be a deduction factor in terms of challenge spirit. Therefore, it’s important to well appeal in the final presentation and report what intention the team project was designed with and what efforts were made.</p>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What are the three main components of the project evaluation?</p></li>
+<li><p>How are individual contributions evaluated within team performance?</p></li>
+<li><p>What factors can lead to point deductions in the evaluation?</p></li>
+</ul>
+</section>
+<section id="important-considerations">
+<h2>9. Important Considerations<a class="headerlink" href="#important-considerations" title="Link to this heading">#</a></h2>
+<p>The following matters should be noted and followed during project execution:</p>
+<ul class="simple">
+<li><p>Ethical AI and Responsible Research: AI ethics standards should be kept in mind from data collection to model development and result utilization during project progress. If data contains personal information, measures such as de-identification must be taken and usage permission must be obtained. Care should be taken to ensure that outputs generated during model training do not contain socially biased or harmful content, and potential misuse possibilities when the final agent interacts with users should also be considered. Refer to AI ethics and regulatory content (EU AI Act, etc.) covered in class to consider responsible AI implementation plans from the project design stage.</p></li>
+<li><p>Learning Material Utilization and Plagiarism Prohibition: Utilizing or expanding content practiced in workshops or code covered in final assignments for projects is encouraged. However, when utilizing publicly available code or pretrained models written by others, sources must be specified. References (papers, blogs, GitHub repositories, etc.) should be disclosed in reports and code comments to avoid plagiarism disputes. Submitted code and reports will undergo plagiarism checks, and if misconduct is detected, strict measures will be taken according to school regulations. Be careful not to submit code not written by oneself as one’s own, and as it’s a team project, all team members should understand the content and implementation.</p></li>
+<li><p>Efficient Time Management: LLM model training and agent development may take more time than expected. Sufficient time should be allocated for each stage including large-scale data processing, model fine-tuning, parameter exploration, error debugging, and result organization. Working intensively just before deadlines may cause quality degradation and unexpected errors leading to presentation problems. Especially since GPU resources are limited, teams should plan training schedules systematically. If necessary, flexibly operate schedules by team members taking turns using night or weekend hours, and prepare intermediate backups for important training to prepare for unexpected accidents.</p></li>
+<li><p>Communication and Collaboration: Active communication among team members is the key to project success. Regularly share progress and help each other when difficulties arise. Ensure all team members know the full scope of the project, and don’t let only a few specific people write all code or make decisions. Regular meetings should be held at least once a week to check issues, and it’s recommended to keep simple meeting minutes.</p></li>
+<li><p>Technical Considerations: When working in the provided development environment, pay special attention to data backup and environment setting storage. Store important experiment results separately and manage code change history through Git to prevent accidentally losing or damaging code. If new libraries or tools need to be installed, check compatibility with other team members and utilize tools already verified in class when possible. If operations exceed GPU memory, the kernel may crash, so check memory usage before experiments and adjust token length or batch size when necessary. Also, when preparing final demos, check internet connection or API usage in advance to prepare for operation in offline environments. For example, if internet connection is absolutely necessary for demonstration, prepare backup videos as Plan B.</p></li>
+<li><p>Presentation and Document Writing: Time compliance during presentation is essential, and each person’s allocated portion should be confirmed through practice. Slides should be composed with consistent templates, sufficiently large fonts, and easy-to-see diagrams, pursuing organized design through team agreement on colors or fonts. Presenters should make eye contact with the audience and speak clearly, and when questions arise, listen carefully and answer sincerely after consulting with team members. Reports should be written in formal technical report format and proofread to avoid spelling and grammar errors. Also, add references when necessary to specify theoretical foundations or tool references of the project.</p></li>
+<li><p>Other Matters: Final deliverables are not utilized for purposes other than education, and excellent projects may be shared through department websites or report collections. If photos or videos were taken during project execution, they can be utilized for future department events, so it’s good for teams to keep records. Finally, work with passion within the range that doesn’t harm health, but complete the project enjoyably based on consideration and respect among team members. If the project is completed while following various considerations, valuable experience of taking one step closer to solving real-world problems can be gained through this team assignment. I hope everyone achieves good results.</p></li>
+</ul>
+<p><strong>Checkpoint Questions:</strong></p>
+<ul class="simple">
+<li><p>What ethical considerations should teams keep in mind during project execution?</p></li>
+<li><p>How can teams ensure efficient time management throughout the project?</p></li>
+<li><p>What technical considerations are important when working in the development environment?</p></li>
+</ul>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./projects"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../workshops/week01.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 1 Workshop: LLM Overview and Development Environment Setup</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../syllabus/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Syllabus</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview-and-objectives">1. Overview and Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#project-topics-and-goals">2. Project Topics and Goals</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#team-composition-and-role-division">3. Team Composition and Role Division</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#development-environment-and-resource-conditions">4. Development Environment and Resource Conditions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#schedule-and-deliverables">5. Schedule and Deliverables</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#midterm-presentation-requirements">6. Midterm Presentation Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#final-presentation-and-submission-requirements">7. Final Presentation and Submission Requirements</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#evaluation-criteria">8. Evaluation Criteria</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#important-considerations">9. Important Considerations</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
