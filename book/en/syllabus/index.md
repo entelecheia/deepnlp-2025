@@ -1,4 +1,4 @@
-# Deep Learning Natural Language Processing (131307379A) Syllabus
+# Syllabus
 
 ## Overview
 
