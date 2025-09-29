@@ -1,279 +1,335 @@
-# 강의계획서
+# 딥러닝자연어처리 (131307379A) 강의계획서
 
 ## 개요
 
-최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)은 텍스트를 생성하고 이해하는 능력을 극적으로 향상시키며 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4o와 Gemini 1.5 Pro처럼 텍스트·이미지·음성까지 처리하는 멀티모달 모델이 등장하여 LLM의 활용 범위를 크게 확장했다. 특히 **Transformer를 넘어서는 새로운 아키텍처**의 등장이 주목된다. 예를 들어 **Mamba**와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 100만 토큰까지 처리할 수 있으며 Transformer보다 5배 빠른 추론 속도를 제공한다.
+최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)의 등장으로 텍스트 생성과 이해 능력이 극적으로 향상되어 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4 기반 모델을 넘어 GPT-5와 **Gemini 2.5 Pro**처럼 텍스트·이미지·음성까지 동시에 처리하는 멀티모달 LLM이 등장하여 활용 범위를 더욱 확장하였다. 특히 **Transformer**를 넘어서는 새로운 아키텍처의 등장이 주목된다. 예를 들어 **Mamba**와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 수백만 토큰까지 효율적으로 처리하며, **RWKV**는 대화 메시지를 기존 대비 10배 이상 저렴한 비용으로 실시간 처리할 수 있다.
 
-이 강의는 이러한 최신 발전을 반영하여 **실습 중심의 심층 학습과 NLP 기법**을 배운다. 학생들은 초반에 PyTorch와 Hugging Face 도구 사용법을 익히고, 이후 Transformer 기반 모델 및 **최신 SSM 아키텍처**의 미세조정(fine-tuning), 프롬프트 엔지니어링(prompt engineering), 검색 증강 생성(RAG), 인간 피드백 강화 학습(RLHF), 에이전트 프레임워크 구현 등을 직접 경험한다. 아울러 **최신 파라미터 효율적 미세조정 기법**(WaveFT, DoRA, VB-LoRA)과 **고급 RAG 아키텍처**(HippoRAG, GraphRAG)를 다루며, 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 모델을 완성한다.
+이 강의는 이러한 최신 발전을 반영하여 **실습 중심**으로 심층 학습 기반 NLP 기법을 다룬다. 학생들은 초반에 PyTorch와 Hugging Face 사용법 등 **핵심 도구 활용법**을 익히고, 이후 **Transformer 기반 모델 및 최신 SSM 아키텍처**의 파인튜닝, **프롬프트 엔지니어링(prompt engineering)**, **검색 증강 생성(RAG)**, **인간 피드백 강화 학습(RLHF)**, **에이전트 프레임워크** 구현 등을 직접 경험한다. 아울러 최신 **파라미터 효율적 미세조정(PEFT)** 기법들(WaveFT, DoRA, VB-LoRA 등)과 고급 **RAG 아키텍처**(HippoRAG, GraphRAG)를 다루며, **멀티모달 LLM**과 **초장문맥 처리** 같은 최첨단 개념도 실습한다. 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 **완성형 모델 및 애플리케이션**을 구현한다.
 
-본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 _언어모형과 자연어처리 (131107967A)_ 이수를 전제로 한다. 팀 프로젝트를 통해 **한국어 코퍼스**를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 **산학 협력**을 고려하여 실제 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.
+본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 _언어모형과 자연어처리_ (131107967A) 이수를 전제로 한다. 팀 프로젝트를 통해 한국어 코퍼스를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 **산학 협력**을 고려하여 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.
 
-### 교육 목표
+## 교육 목표
 
-- 현대 NLP에서 대규모 언어 모델의 역할과 한계를 이해하고 관련 도구(PyTorch, Hugging Face 등)를 활용한다.
+- 현대 NLP에서 **대규모 언어 모델의 역할과 한계**를 이해하고 PyTorch, Hugging Face 등 관련 도구를 활용할 수 있다.
 
-- Transformer와 더불어 **State Space Model**(예: Mamba, RWKV) 등 최신 아키텍처의 원리와 장단점을 이해한다.
+- Transformer와 더불어 **State Space Model**(예: Mamba, RWKV) 등 **최신 아키텍처**의 원리와 장단점을 이해한다.
 
-- 사전학습 모델을 fine-tuning하거나 **WaveFT, DoRA, VB-LoRA** 같은 최신 **매개변수 효율적 미세조정** 방법을 적용할 수 있다.
+- 사전학습 모델을 **fine-tuning**하거나 WaveFT, DoRA, VB-LoRA 같은 최신 **매개변수 효율적 미세조정 방법**을 적용할 수 있다.
 
-- **프롬프트 엔지니어링 기법**과 **DSPy 프레임워크**를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.
+- **프롬프트 엔지니어링** 기법과 DSPy 프레임워크를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.
 
-- 평가 지표의 발전(G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, **DPO(Direct Preference Optimization)** 등 RLHF의 최신 대안을 학습한다.
+- **평가 지표의 발전**(예: G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, DPO(Direct Preference Optimization) 등 RLHF의 최신 대안을 학습한다.
 
-- **HippoRAG, GraphRAG** 등 고급 RAG(Build Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계하고 구현한다.
+- **HippoRAG, GraphRAG 등 고급 RAG**(Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계·구현한다.
 
-- **EU AI Act** 등 AI 규제 프레임워크를 이해하고, 책임감 있는 AI 시스템 구현 방법론을 습득한다.
+- **EU AI Act** 등 AI 규제 프레임워크를 이해하고, 책임있는 AI 시스템 구현 방법론을 습득한다.
 
-- 최신 연구 동향을 추적하여 멀티모달 LLM, 소형 언어 모델(SLM), 상태공간 모델(SSM), 혼합 전문가(MoE) 등 **최신 기술의 장단점**을 토의한다.
+- 최신 연구 동향을 추적하여 **멀티모달 LLM**, **소형 언어 모델(SLM)**, **상태공간 모델(SSM)**, **멀티에이전트 시스템**, **혼합 전문가(MoE)** 등 다양한 최신 기술의 장단점을 토의한다.
 
-- **한국어 말뭉치**를 활용한 실습을 통해 한국어 NLP의 특성과 과제를 이해하고 적용 능력을 기른다.
+- 한국어 말뭉치를 활용한 실습을 통해 **한국어 NLP의 특성과 과제**를 이해하고 적용 능력을 기른다.
 
-- 팀 프로젝트를 통해 협업 및 실전 문제 해결 역량을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.
+- 팀 프로젝트를 통해 **협업 및 실전 문제 해결 역량**을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.
 
 ## 강의 계획
 
-| 주차 | 주요 주제 및 키워드                                                                                                                 | 핵심 실습/과제                                                                           |
-| :--: | :---------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-|  1   | **Transformer 및 차세대 아키텍처**<br/>• Self-Attention 메커니즘과 한계<br/>• **Mamba (Selective State Space Model)**<br/>• **RWKV (RNN-Transformer 하이브리드)**<br/>• **Jamba (MoE 기반 Transformer+Mamba)** | **NVIDIA NGC 컨테이너 환경 설정**<br/>**Hugging Face Transformers 실습**<br/>**Mamba vs Transformer 성능 비교 실험** |
-|  2   | **PyTorch 2.x와 최신 딥러닝 프레임워크**<br/>• **torch.compile과 컴파일러 혁명**<br/>• **FlashAttention-3 하드웨어 가속**<br/>• **AI 에이전트 프레임워크** (DSPy, Haystack, CrewAI, LangGraph) | **torch.compile 성능 최적화 실습**<br/>**FlashAttention-3 구현 및 비교**<br/>**AI 에이전트 시스템 구축** |
-|  3   | **현대적 PEFT 기법을 활용한 효율적 파인튜닝**<br/>• **LoRA (Low-Rank Adaptation)**<br/>• **DoRA (Weight-Decomposed LoRA)**<br/>• **QLoRA (4비트 양자화 + LoRA)**<br/>• **VB-LoRA, WaveFT 등 최신 기법** | **PEFT 방법 비교 실험**<br/>**한국어 감성 분석을 통한 LoRA/DoRA/QLoRA 성능 평가**<br/>**메모리 효율성 및 추론 속도 분석** |
-|  4   | **고급 프롬프트 기법과 최적화**<br/>• **체계적 프롬프트 기법** (역할 부여, 구조화된 프롬프팅)<br/>• **Self-Consistency와 Tree of Thoughts**<br/>• **DSPy 프레임워크** (선언형 프롬프트 프로그래밍)<br/>• **자동 프롬프트 최적화 (APE)** | **DSPy를 활용한 프롬프트 자동 최적화**<br/>**Self-Consistency 디코딩 구현**<br/>**Tree of Thoughts 문제 해결 실습** |
-|  5   | **LLM 평가 패러다임과 벤치마크**<br/>• **전통 지표의 한계** (BLEU/ROUGE vs 의미 기반 평가)<br/>• **LLM-as-a-Judge** (GPTScore, G-Eval, FLASK)<br/>• **특수 목적 벤치마크** (LiveCodeBench, MMLU-Pro)<br/>• **도메인 특화 벤치마크** (FinBen, AgentHarm, LEXam) | **BLEU/ROUGE vs G-Eval 비교 실험**<br/>**GPTScore 구현 및 평가**<br/>**FLASK 다차원 평가 시스템 구축** |
-|  6   | Seq2Seq 응용 및 **멀티모달 통합** – SmolVLM2, Qwen 2.5 Omni, 음성-텍스트 모델                                                       | 멀티모달 애플리케이션 개발 과제 2                                                        |
-|  7   | 대규모 모델과 Few-shot 학습<br/>**초장문맥 처리 기술** (100만+ 토큰)                                                                | 장문맥 처리 전략 비교 실습                                                               |
-|  8   | **차세대 PEFT** – WaveFT, DoRA, VB-LoRA, QLoRA 등 최신 기법                                                                         | 다양한 PEFT 기법 성능 비교 실험                                                          |
-|  9   | **고급 RAG 시스템** – HippoRAG, GraphRAG, 하이브리드 검색 전략                                                                      | 과제 3: GraphRAG 기반 **한국어 엔터프라이즈 검색 시스템** 구축                           |
-|  10  | **정렬 기법의 혁신** – DPO, Constitutional AI, Process Reward Models                                                                | DPO와 기존 RLHF 기법 비교 실습                                                           |
-|  11  | **프로덕션 에이전트 시스템** – CrewAI, Mirascope, 타입-세이프티 개발                                                                | 멀티에이전트 오케스트레이션 구현                                                         |
-|  12  | **AI 규제와 책임 있는 AI** – EU AI Act, 차등 프라이버시, 연합 학습                                                                  | 규제 준수 AI 시스템 설계 과제                                                            |
-|  13  | **최신 연구 동향** – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)                                               | 학생별 최신 논문 발표 및 종합 토론                                                       |
-|  14  | 최종 프로젝트 개발 및 MLOps                                                                                                         | 팀별 프로토타입 구현 및 피드백 세션 **(산업 멘토 참여)**                                 |
-|  15  | 프로젝트 최종 발표 및 종합 평가                                                                                                     | 팀별 발표, 강의 내용 총정리 및 미래 전망 토론                                            |
+| 주차 | 주요 주제 및 키워드                                                                                                                                                                                                                                            | 핵심 실습/과제                                                                                                            |
+| :--: | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------ |
+|  1   | **Transformer 및 차세대 아키텍처**<br/>• Self-Attention 메커니즘과 한계<br/>• **Mamba (Selective State Space Model)**<br/>• **RWKV (RNN-Transformer 하이브리드)**<br/>• **Jamba (MoE 기반 Transformer+Mamba)**                                                 | **NVIDIA NGC 컨테이너 환경 설정**<br/>**Hugging Face Transformers 실습**<br/>**Mamba vs Transformer 성능 비교 실험**      |
+|  2   | **PyTorch 2.x와 최신 딥러닝 프레임워크**<br/>• **torch.compile과 컴파일러 혁명**<br/>• **FlashAttention-3 하드웨어 가속**<br/>• **AI 에이전트 프레임워크** (DSPy, Haystack, CrewAI, LangGraph)                                                                 | **torch.compile 성능 최적화 실습**<br/>**FlashAttention-3 구현 및 비교**<br/>**AI 에이전트 시스템 구축**                  |
+|  3   | **현대적 PEFT 기법을 활용한 효율적 파인튜닝**<br/>• **LoRA (Low-Rank Adaptation)**<br/>• **DoRA (Weight-Decomposed LoRA)**<br/>• **QLoRA (4비트 양자화 + LoRA)**<br/>• **VB-LoRA, WaveFT 등 최신 기법**                                                        | **PEFT 방법 비교 실험**<br/>**한국어 감성 분석을 통한 LoRA/DoRA/QLoRA 성능 평가**<br/>**메모리 효율성 및 추론 속도 분석** |
+|  4   | **고급 프롬프트 기법과 최적화**<br/>• **체계적 프롬프트 기법** (역할 부여, 구조화된 프롬프팅)<br/>• **Self-Consistency와 Tree of Thoughts**<br/>• **DSPy 프레임워크** (선언형 프롬프트 프로그래밍)<br/>• **자동 프롬프트 최적화 (APE)**                        | **DSPy를 활용한 프롬프트 자동 최적화**<br/>**Self-Consistency 디코딩 구현**<br/>**Tree of Thoughts 문제 해결 실습**       |
+|  5   | **LLM 평가 패러다임과 벤치마크**<br/>• **전통 지표의 한계** (BLEU/ROUGE vs 의미 기반 평가)<br/>• **LLM-as-a-Judge** (GPTScore, G-Eval, FLASK)<br/>• **특수 목적 벤치마크** (LiveCodeBench, MMLU-Pro)<br/>• **도메인 특화 벤치마크** (FinBen, AgentHarm, LEXam) | **BLEU/ROUGE vs G-Eval 비교 실험**<br/>**GPTScore 구현 및 평가**<br/>**FLASK 다차원 평가 시스템 구축**                    |
+|  6   | Seq2Seq 응용 및 **멀티모달 통합** – SmolVLM2, Qwen 2.5 Omni, 음성-텍스트 모델                                                                                                                                                                                  | 멀티모달 애플리케이션 개발 과제 2                                                                                         |
+|  7   | 대규모 모델과 Few-shot 학습<br/>**초장문맥 처리 기술** (100만+ 토큰)                                                                                                                                                                                           | 장문맥 처리 전략 비교 실습                                                                                                |
+|  8   | **차세대 PEFT** – WaveFT, DoRA, VB-LoRA, QLoRA 등 최신 기법                                                                                                                                                                                                    | 다양한 PEFT 기법 성능 비교 실험                                                                                           |
+|  9   | **고급 RAG 시스템** – HippoRAG, GraphRAG, 하이브리드 검색 전략                                                                                                                                                                                                 | 과제 3: GraphRAG 기반 **한국어 엔터프라이즈 검색 시스템** 구축                                                            |
+|  10  | **정렬 기법의 혁신** – DPO, Constitutional AI, Process Reward Models                                                                                                                                                                                           | DPO와 기존 RLHF 기법 비교 실습                                                                                            |
+|  11  | **프로덕션 에이전트 시스템** – CrewAI, Mirascope, 타입-세이프티 개발                                                                                                                                                                                           | 멀티에이전트 오케스트레이션 구현                                                                                          |
+|  12  | **AI 규제와 책임 있는 AI** – EU AI Act, 차등 프라이버시, 연합 학습                                                                                                                                                                                             | 규제 준수 AI 시스템 설계 과제                                                                                             |
+|  13  | **최신 연구 동향** – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)                                                                                                                                                                          | 학생별 최신 논문 발표 및 종합 토론                                                                                        |
+|  14  | 최종 프로젝트 개발 및 MLOps                                                                                                                                                                                                                                    | 팀별 프로토타입 구현 및 피드백 세션 **(산업 멘토 참여)**                                                                  |
+|  15  | 프로젝트 최종 발표 및 종합 평가                                                                                                                                                                                                                                | 팀별 발표, 강의 내용 총정리 및 미래 전망 토론                                                                             |
 
 ## 주차별 교육 내용
 
-### 1주차 – 차세대 NLP 아키텍처의 이해
+### 1주차 – Generative AI 최신 동향
 
-#### _핵심 주제_
+#### 핵심 주제
 
-- **Transformer를 넘어서:** 최근 연구에서 Transformer의 $O(n^2)$ 복잡도 한계를 극복하는 새로운 아키텍처들이 등장했다. 예를 들어 **Mamba**는 선택적 상태공간 모델(SSM)을 활용하여 **선형 시간**에 최대 100만 토큰의 시퀀스를 처리하며, **RWKV**는 하루 500만 개 이상의 메시지를 기존 대비 10~100배 저렴한 비용으로 실시간 처리할 수 있다.
+- **LLM의 발전사와 최신 모델 소개**: GPT-5, Gemini 2.5 Pro, Claude 4.1 Opus 등 최신 모델들의 특징과 성능 비교
+- **Transformer 구조의 한계**: $O(n^2)$ 복잡도 문제와 긴 시퀀스 처리의 어려움
+- **새로운 아키텍처 개요**: Mamba, RWKV 등 Transformer를 대체하는 혁신적 접근법
 
-- **하이브리드 아키텍처:** Jamba(총 52B 파라미터)는 Transformer와 Mamba를 혼합 전문가(MoE)로 결합하여 효율성과 성능을 모두 잡았다. 이와 함께 **선형 접근**을 활용한 Transformer 변형들(GLA, Sparse-K Attention 등)도 주목받고 있다.
+#### 실습/활동
 
-- **오픈소스 모델의 약진:** Llama 3(405B), Mixtral 8×7B, Qwen2-72B 등 다수의 오픈소스 LLM이 GPT-4에 근접한 성능을 달성하며 산업 적용이 가속화되고 있다.
+- **환경 설정**: PyTorch/Conda 개발환경 구성, Hugging Face Transformers 설치
+- **핵심 실습**: Hugging Face 파이프라인을 이용한 질의응답 간단 데모 구축
+- **비교 실험**: Transformer 기반 모델과 최신 모델의 응답 품질 및 속도 비교
 
-#### _실습/활동_
+### 2주차 – 딥러닝 NLP를 위한 도구 학습
 
-- **환경 설정:** Conda 가상환경 구성, PyTorch 및 Hugging Face Transformers 설치, **Mamba 라이브러리** 설치
-- **데모:** 동일한 질의응답 태스크에 대해 Transformer 기반 모델과 Mamba 모델의 **추론 속도**를 비교 실험
+#### 핵심 주제
 
-### 2주차 – 도구 학습: PyTorch와 최신 프레임워크
+- **PyTorch 기초**: 텐서 연산, 자동 미분 등 딥러닝 프레임워크 핵심 개념
+- **Hugging Face Transformers**: 사전학습 모델 활용법과 파이프라인 사용법
+- **FlashAttention-3**: 대용량 배치 처리 가속 기법 (H100 GPU에서 ~2× 속도 향상)
+- **NLP 생태계 도구**: DSPy, Haystack, CrewAI 등 특화된 프레임워크 소개
 
-- **프레임워크 기초:** PyTorch 텐서 연산 및 자동미분 기초, 최신 **FlashAttention-3** 활용법 (H100 GPU에서 1.5~2× 속도 향상)
-- **생태계 도구:** Hugging Face Transformers 실습 및 **DSPy**, **Haystack**, **CrewAI** 등 특화된 NLP 프레임워크 소개
-- **실습:** BERT와 Mamba 모델을 각각 로드하여 **동일한 한국어 텍스트 분류 작업**에서 성능과 효율성을 비교
+#### 실습/활동
 
-### 3주차 – 효율적 미세조정의 최신 기법
+- **핵심 실습**: 사전학습 언어모델(BERT)과 최신 SSM(Mamba) 모델을 각각 로드하여 한국어 분류 작업에 적용
+- **성능 비교**: 동일한 한국어 데이터셋에서 성능과 효율성 비교 분석
 
-- **차세대 PEFT 방법론:** 최신 매개변수 효율적 파인튜닝 기법들의 개념과 구현
+### 3주차 – 효율적 미세조정 (PEFT) 기법
 
-  - **WaveFT:** 파라미터 업데이트를 주파수(웨이블릿) 영역에서 희소화하여 효율 향상
-  - **DoRA:** 가중치 분해(Decomposition)를 통한 적응적 미세조정
-  - **VB-LoRA:** 다중 사용자/태스크 환경을 위한 **벡터 뱅크** 기반 LoRA 확장
-  - **QR-Adaptor:** 양자화 비트폭과 LoRA 랭크를 동시에 최적화하는 어댑터 기법
+#### 핵심 주제
 
-- **양자화의 진화:** 4-bit 양자화 포맷 **NF4 (NormalFloat4)**가 QLoRA의 표준으로 자리매김하여, 7B 모델을 메모리 약 10GB에서 ~1.5GB로 축소 가능
-- **과제 1:** 동일 **한국어 데이터셋**에서 LoRA, DoRA, WaveFT의 성능을 비교 실험하여 파인튜닝 효율 및 성능 유지율 분석
+- **파라미터 효율적 파인튜닝**: 전체 파인튜닝 대비 <1% 미만 파라미터만으로 95% 이상의 성능을 달성하는 경량화 기법
+- **최신 PEFT 방법론**:
+  - _WaveFT_: 파라미터 업데이트를 **주파수 영역(Wavelet)**에서 희소화하여 효율 향상
+  - _DoRA_: **가중치 분해**를 통한 적응형 미세조정 (미세 표현 학습)
+  - _VB-LoRA_: 다중 사용자·태스크 환경을 위한 **벡터 뱅크 기반 LoRA** 확장
+  - _QR-Adaptor_: **양자화(Q)** 비트폭과 LoRA 랭크(R)를 동시 최적화하는 어댑터 기법
+- **모델 경량화 추세**: 4-bit 양자화 포맷 NF4(NormalFloat4)가 QLoRA의 사실상 표준이 되어 7B 모델을 메모리 10GB→1.5GB로 줄임
+
+#### 실습/과제
+
+- **프로그래밍 과제 1**: 동일한 한국어 데이터셋을 대상으로 LoRA, DoRA, WaveFT 방법으로 각각 미세조정 실험을 수행하고, 파인튜닝 효율 및 성능 유지율을 비교 분석
 
 ### 4주차 – 프롬프트 엔지니어링의 과학화
 
-- **체계적 프롬프트 기법:** 다양한 프롬프트 기법 사례 학습 (예: 역할 부여, 체계적 질문 등)
-- **핵심 기법 심화:** 성능 향상을 이끈 주요 프롬프트 기법들
+#### 핵심 주제
 
-  - _Self-Consistency:_ 수학 문제 풀이에서 다중 해 경로 탐색으로 GSM8K 벤치마크 **17%p** 향상
-  - _Tree of Thoughts:_ 문제 해결 시 사고의 가지를 확장하여 Game of 24 성공률 **74%** 달성 (기존 9% 대비)
-  - _DSPy 프레임워크:_ "프롬프트를 프로그래밍하듯" 자동으로 최적 프롬프트를 생성/조합하는 패러다임
+- **체계적 프롬프트 설계**: 효과적인 프롬프트 설계 기법들을 체계적으로 학습
+- **다양한 프롬프트 전략**: 역할 지시, 단계적 질문 등 성능 향상에 기여한 핵심 기법들
+- **핵심 기법 심화**:
+  - _Self-Consistency_: 수학 문제 풀이에서 **다중 해답 경로 탐색**으로 정답률 개선 (GSM8K 벤치마크 +17%p 향상)
+  - _Tree-of-Thoughts_: **사고의 확장**을 통해 난제 해결 (24 게임 성공률 9%→74%)
+  - _DSPy 프레임워크_: "프롬프트를 **프로그래밍**하듯" 최적 프롬프트를 자동 생성/조합하는 방법론
+  - _Automatic Prompt Engineering (APE)_: 프롬프트를 알고리즘적으로 최적화하여 GSM8K에서 **93% 정답률** 달성
 
-- **자동 프롬프트 최적화:** APE(Automatic Prompt Engineering) 기법을 통해 GSM8K에서 **93%**의 정답률 달성 등 사례 소개
-- **실습:** DSPy를 활용하여 주어진 문제에 대한 **프롬프트 자동 최적화 파이프라인**을 구축하고 결과를 기존 기법과 비교
+#### 실습/활동
 
-### 5주차 – 차세대 평가 시스템
+- **핵심 실습**: **DSPy**를 활용한 프롬프트 최적화 파이프라인 구축
+- **비교 분석**: 주어진 문제에 대해 DSPy로 다양한 프롬프트를 자동 생성하고, 성능을 수작업 프롬프트와 비교
 
-- **평가 패러다임의 변화:** 전통적 정답 일치 평가에서 벗어나 LLM을 활용한 메타 평가로 전환
+### 5주차 – 최신 AI 평가 체계
 
-  - _G-Eval:_ GPT-4 기반 LLM이 체인-of-Thought를 사용하여 다른 LLM의 응답 품질을 평가
-  - _LiveCodeBench:_ 온라인 코드 콘테스트 방식을 차용한 **오염 방지**형 코드 평가
-  - _MMLU-Pro:_ 선택지가 4→10개로 늘고 다단계 추론을 요구하는 멀티턴 지식 평가 세트
+#### 핵심 주제
 
-- **도메인별 벤치마크:** 금융 도메인의 FinBen (36개 금융 태스크 세트), 에이전트 위험성 평가 AgentHarm (110개 악성 에이전트 시나리오) 등 특화 벤치마크
-- **실습:** G-Eval과 기존 자동 평가 지표(BLEU, ROUGE 등)를 동일 응답에 적용하여 결과를 비교 분석
+- **평가 패러다임의 변화**: 전통적인 정답 일치 위주의 평가를 넘어, LLM을 활용한 메타 평가와 실험적 벤치마크들이 대두
+- **새로운 평가 기법 및 벤치마크**:
+  - _G-Eval_: **GPT-4 기반 메타 평가** – LLM이 체인-of-Thought를 활용하여 다른 LLM의 답변을 평가하는 자동화된 품질 평가
+  - _LiveCodeBench_: **온라인 코드 실행 대회 형식**을 차용한 자동 코드 평가 – 테스트 케이스 실행으로 정답 검증 (데이터 오염 방지)
+  - _MMMU_: **멀티모달 대학수준 시험** – 6개 분야, 30과목에서 1.15만 문제로 구성된 **대규모 멀티디스플린 평가** 세트
+  - _OmniBench_: **삼중 멀티모달 평가** – 이미지·음성·텍스트를 **동시에** 이해하고 추론하는 능력을 측정하는 최초의 **Tri-modal 통합 벤치마크**
+  - _Humanity's Last Exam (HLE)_: 인간 전문가들이 제작한 **2500문항의 종합 시험** – 수학, 인문, 과학 등 광범위한 분야에서 현존 AI의 한계를 시험하는 **최종 시험**
+- **도메인별 특화 벤치마크**: **SWE-Bench Verified**(실제 GitHub 이슈 기반 **소프트웨어 문제 해결** 500문제 검증 세트) 등
+
+#### 실습/활동
+
+- **핵심 실습**: G-Eval 등 **LLM 기반 평가** 기법을 기존 자동평가지표(BLEU, ROUGE 등)와 동일 응답에 적용하여 평가 결과를 비교 분석
 
 ### 6주차 – 멀티모달 NLP의 혁신
 
-- **"Any-to-Any" 모델 등장:** 범용 입력/출력 처리 모델들의 발전
+#### 핵심 주제
 
-  - _SmolVLM2 (256M–2.2B):_ 소형 파라미터로 **비디오 이해**까지 수행하는 경량 비전언어 모델
-  - _Qwen 2.5 Omni:_ 텍스트-이미지-음성 간 상호 변환 가능한 통합 멀티모달 아키텍처
-  - _QVQ-72B (프리뷰):_ 최초의 오픈소스 거대 멀티모달 추론 모델 (텍스트→비전→쿼리 형태 변환)
+- **"Any-to-Any" 멀티모달 모델**: 단일 모델이 텍스트, 이미지, 음성 등 다양한 형태의 입력을 받아 여러 형태의 출력까지 생성하는 기술
+- **대표 사례**:
+  - _SmolVLM2_ (소형 2억~22억 매개변수): 경량 모델로 **동영상 이해**까지 수행하는 차세대 Vision-Language 모델
+  - _Qwen 2.5 Omni_: 텍스트·이미지·음성을 **통합 변환**하는 알리바바의 멀티모달 LLM (하나의 모델로 모든 모달 입력/출력 지원)
+  - _QVQ-Max_ (구 QVQ-72B): **시각 추론 특화 초거대 모델** – 이미지 내용을 이해하고 추론까지 수행하는 72B 규모의 오픈소스 비전언어 모델
+  - _실시간 멀티모달 스트리밍_: **스트리밍 입력/출력**을 지원하는 멀티모달 LLM의 등장
+- **음성 기술과 LLM의 결합**:
+  - _Voxtral_: OpenAI Whisper를 능가하는 성능의 오픈소스 **음성 인식** 모델 (Realtime ASR)
+  - _Orpheus_: **제로샷 화자 합성**을 지원하는 TTS – 한 문장으로 화자 목소리 특징을 학습, 임의 문장 읽기
 
-- **음성 통합의 발전:** LLM에 실시간 음성 처리 접목
+#### 실습/과제
 
-  - _Voxtral:_ Whisper를 능가하는 성능의 오픈소스 음성 인식 모델
-  - _Orpheus:_ 제로샷으로 화자의 목소리를 복제·합성하는 TTS 모델
+- **프로그래밍 과제 2**: 이미지·텍스트·음성 혼합 입력에 대응하는 **멀티모달 QA 애플리케이션 개발**. 예를 들어, 사용자가 음성으로 질문하면 모델이 관련 이미지를 찾아 시각 정보와 텍스트를 조합한 답변을 생성하도록 구현
 
-- **과제 2:** 이미지-텍스트-음성 입력이 **혼합된 질의**에 대응하는 멀티모달 QA 애플리케이션 개발 (예: 음성으로 질문하고 이미지와 텍스트로 답변 생성)
+### 7주차 – 초장문맥 처리와 효율적 추론
 
-### 7주차 – 장문맥 처리와 효율적 추론
+#### 핵심 주제
 
-- **극한의 문맥 확장:** 초장문맥 지원 LLM의 등장
+- **초장문맥(Long Context) 지원**: 극단적으로 긴 문맥창(수백만 토큰)을 처리할 수 있는 모델이 등장하여 장문의 문서 요약, 장기간 대화에도 일관성을 유지
+- **대표 사례**:
+  - _Gemini 2.5 Pro_: 최대 **백만 단위 토큰**까지 처리 가능한 Google 차세대 거대 멀티모달 모델 (이전 세대 Gemini 대비 향상된 추론 능력과 멀티모달 이해를 구현; 연구 프로토타입은 1,000만 토큰 목표)
+  - _Magic LTM-2-Mini_: 경제적인 구조로 **1억 토큰** 규모의 문맥창을 구현한 실험적 모델 – 동급 성능에서 Llama 대비 비용 1/1000 수준으로 초장문맥 처리
+- **효율적 장문맥 구현 메커니즘**: Flash **Linear Attention**, **LongRoPE** (긴 문맥 위치 인코딩) 등 메모리와 속도 문제를 해결하는 다양한 기법을 비교
 
-  - _Gemini 1.5 Pro:_ 최대 **100만 토큰**까지 처리 가능한 거대 멀티모달 모델 (연구 버전은 1000만 토큰 목표)
-  - _Magic LTM-2-Mini:_ 경제적인 구조로 **1억 토큰** 문맥창을 구현 (동일 성능에서 Llama 대비 비용 1/1000 수준)
+#### 실습/활동
 
-- **효율적 장문맥 메커니즘:** Flash Linear Attention, LongRoPE (긴 문맥 위치 인코딩) 등 초장문맥 구현 기법 분석
-- **실습:** 장문맥 대화 시나리오에 대해 **RAG (Retrieval-Augmented Generation)** 기반 요약 시스템 구현 및 초장문맥 LLM과의 성능 비교
+- **핵심 실습**: 장문맥 시나리오를 위한 **RAG 기반 요약 시스템**을 구현하고, 초장문맥 LLM(Gemini 등)과 요약 정확도와 속도를 비교 (예: 수십 페이지 분량의 문서를 질의응답하거나 요약해보기)
 
-### 8주차 – 최신 PEFT 기법 심화
+### 8주차 – 1~7주차 핵심 복습과 실습 강화
 
-- **경량 미세조정으로 95% 성능 달성:** 전체 파인튜닝 대비 성능 저하 없이 <1% 파라미터만 변경하는 최신 방법들
-- **주요 기법 비교:** 각 PEFT 방법의 실제 구현 난이도와 효과 비교
+#### 핵심 주제
 
-  - 메모리 사용량(저장 공간) 비교
-  - 추론 속도 및 지연 시간 벤치마크
-  - 하나의 프롬프트로 다중 태스크 적응 가능성 평가
+- **중간고사 기간**을 고려하여, 앞선 7주간 학습한 핵심 개념들을 정리하고 이해도를 끌어올림
+- **주요 주제 요약 정리**: Transformer 및 SSM 아키텍처, PyTorch 활용과 FlashAttention 최적화, 최신 PEFT 기법, 프롬프트 엔지니어링, LLM 평가 방법, 멀티모달 통합 등을 팀별로 분담하여 발표 형식으로 정리
+- **팀 기반 액티비티**:
+  - _퀴즈 리그_: 각 팀이 교대로 출제한 **복습 퀴즈**를 풀며 경쟁하고 토론함으로써 주요 개념을 재확인
+  - _미니 프로젝트 재설계_: 전반부에 수행했던 과제나 실습 중 하나를 선택해 **새로운 접근으로 재구현**하거나 성능 개선을 시도 (예: 다른 모델 아키텍처로 동일 과제를 풀어보기 등)
 
-- **실습:** 주어진 NLP 태스크에 대해 여러 PEFT 방법으로 미세조정 실험을 진행하고, **프로덕션 환경**에서의 활용을 고려한 PEFT 선택 가이드 작성
+#### 실습/활동
+
+- **핵심 실습**: 팀별 퀴즈 풀이 및 결과 공유, 개선된 실습 결과에 대한 **발표 및 피드백 세션**을 진행
+- **중간고사 성적 피드백** 및 향후 학습 방향도 점검
 
 ### 9주차 – 고급 RAG 아키텍처
 
-- **차세대 RAG 시스템:** 대용량 지식 통합을 위한 신규 기법
+#### 핵심 주제
 
-  - _HippoRAG:_ 인간 기억(Hippocampus) 메커니즘을 차용하여 벡터 DB 저장 공간을 **25% 절감**하고 장기 기억력을 향상
-  - _GraphRAG:_ 지식 그래프를 활용해 문맥 간 연관성을 모델링, 질의 응답 정밀도 **99%**까지 향상
-  - 하이브리드 검색: 최신 밀집 임베딩(NV-Embed-v2)과 희소 기법(SPLADE), 그래프 탐색을 조합한 멀티팩터 검색
+- **차세대 Retrieval-Augmented Generation**: 대용량 지식을 통합하여 응답 정확도를 높이는 고급 RAG 시스템의 구조
+- **주요 내용**:
+  - _HippoRAG_: 인간 **해마(hippocampus)**의 작동 원리를 모방하여 벡터 DB 저장공간을 25% 절감하고 **장기 메모리**를 향상시킨 RAG (정보망 속 지속적 기억 강화)
+  - _GraphRAG_: **지식 그래프**를 활용해 문맥 간 **연관성**을 명시적으로 모델링함으로써 질의 응답 정밀도를 99%까지 향상
+  - _하이브리드 검색_: 최신 **밀집 임베딩** 기법(NV-Embed-v2 등)과 **희소 검색 기법**(SPLADE) 및 그래프 탐색을 조합한 다중 전략 검색으로, 대규모 지식베이스에서 **정확도와 속도**를 모두 확보하는 방법
+- **프로덕션 사례 연구**: 일일 수천만 토큰의 쿼리를 처리하면서 P95 응답 지연을 100ms 이내로 유지한 **대규모 RAG 시스템**의 아키텍처를 분석
 
-- **프로덕션 사례:** 일일 1000만 개 이상의 입력 토큰을 처리하면서도 **P95 응답 지연 <100ms**를 달성한 대규모 RAG 시스템 구조 분석
-- **과제 3:** GraphRAG 기반 **한국어 엔터프라이즈 검색** 시스템을 구축하여 사내 지식베이스 질의응답에 적용
+#### 실습/과제
 
-### 10주차 – 정렬 기법의 혁신
+- **과제 3**: GraphRAG 기반의 **한국어 엔터프라이즈 검색 시스템** 구축. 주어진 사내 위키/문서 데이터베이스에 질의응답 RAG 시스템을 만들고, 검색 정확도와 응답 속도를 평가
 
-- **RLHF를 넘어서:** LLM 출력의 유용성과 안전성을 높이기 위한 새로운 접근법
+### 10주차 – 정렬(Alignment) 기법의 혁신
 
-  - _DPO (Direct Preference Optimization):_ 별도의 보상 모델을 사용하지 않고 사용자 선호 학습 (RLHF 대비 간소화)
-  - _Constitutional AI:_ AI 스스로 75개 이상의 헌법 원칙에 따라 응답을 교정하여 유해 콘텐츠 생성 억제
-  - _Process Supervision:_ 최종 답변이 아니라 **과정(Chain-of-Thought)**에 대해 세분화된 피드백을 주는 보상모델 기법
-  - _RLAIF (RL from AI Feedback):_ 인간 대신 AI 평가자를 활용하여 인간 수준의 응답 품질을 모방
+#### 핵심 주제
 
-- **오픈소스 구현 동향:** TRL (Transformer Reinforcement Learning) 라이브러리, OpenRLHF 프로젝트 등 공개 구현체 소개 (기존 DeepSpeed-Chat 대비 3~4× 속도 개선)
-- **실습:** 동일한 제어 지침에 대해 DPO로 미세조정한 모델과 RLHF로 미세조정한 모델의 응답을 비교 평가
+- **RLHF 이후 등장한 LLM 출력 제어**: LLM의 유용성과 안전성을 높이기 위한 새로운 기법들
+- **다양한 접근법**:
+  - _DPO (Direct Preference Optimization)_: 별도 **보상 모델** 없이도 사용자 선호도를 직접 학습하는 방법 (RLHF 대비 간소화된 파이프라인)
+  - _Constitutional AI_: AI 스스로 약 75개의 **헌법 원칙**에 따라 응답을 교정하여 유해한 콘텐츠 생성을 억제하는 기법 (Anthropic Claude 모델에 적용)
+  - _Process Supervision_: 최종 답변의 품질 대신 **문제 해결 과정**(Chain-of-Thought)에 세분화된 피드백을 주어 올바른 추론 과정을 강화하는 보상모델 기법
+  - _RLAIF (RL from AI Feedback)_: 인간 대신 AI 평가자를 활용하여 **AI가 AI를 평가**하며 학습하는 접근 (인간 수준의 평가를 모방)
+- **오픈소스 구현 동향**: TRL (Transformer Reinforcement Learning) 라이브러리, OpenRLHF 프로젝트 등 공개 구현체들이 등장하여 누구나 최신 정렬 기법을 실험해볼 수 있게 됨 (기존 DeepSpeed-Chat 대비 3~4× 학습속도 개선 사례)
+
+#### 실습/활동
+
+- **핵심 실습**: 동일한 프롬프트/명령에 대해 DPO로 미세조정된 모델과 기존 **RLHF**로 미세조정된 모델의 응답을 비교 평가 (안전성, 내용 품질 등의 측면 비교)
 
 ### 11주차 – 프로덕션 에이전트 시스템
 
-- **전문화된 에이전트 프레임워크:** 실제 서비스에 활용되는 에이전트 개발 도구 소개
+#### 핵심 주제
 
-  - _CrewAI:_ 역할 기반 멀티에이전트 협업 시나리오 구축 프레임워크 (예: 다수의 GPT 인스턴스에 역할을 분담시켜 팀처럼 작동)
-  - _Mirascope:_ Pydantic 데이터 검증으로 프롬프트 입력/출력의 **타입 안정성**을 높인 에이전트 개발 도구
-  - _Haystack:_ 문서 RAG 파이프라인에 특화된 오픈소스 프레임워크 (검색-독해 체인의 커스터마이징 용이)
+- **에이전트 프레임워크와 멀티에이전트 시스템**: 실제 서비스에 활용되는 기술로, LLM을 단일 QA봇이 아닌 여러 개체로 활용하여 복잡한 작업을 처리
+- **주요 내용**:
+  - _CrewAI_: 역할 기반 **다중 에이전트 협업** 프레임워크 – 여러 LLM에게 각기 다른 전문 역할을 부여하여 **팀처럼 문제 해결**을 수행
+  - _Mirascope_: **타입-안전성**을 보장하는 에이전트 개발 도구 – Pydantic 데이터 검증을 통해 프롬프트 I/O의 형식과 타입을 엄격히 관리
+  - _Haystack Agents_: 문서 RAG 파이프라인에 특화된 오픈소스 에이전트 프레임워크 – 검색-독해 체인을 손쉽게 구성하여 도메인 지식에 특화된 에이전트를 구현
+  - _저코드 통합 플랫폼_: Flowise AI, LangFlow, n8n 등 **GUI 기반**으로 프롬프트 워크플로우를 설계하고 여러 도구를 시각적으로 통합할 수 있는 환경
+- **Toolformer 등 LLM 자체에 외부 도구 사용 능력을 내재화하는 접근**: 사전에 API 호출 시그널을 삽입해 훈련함으로써, 모델이 답변 중 필요한 시점에 계산기나 검색 등의 **툴 사용**을 결정하도록 하는 기법
 
-- **저코드 통합 플랫폼:** Flowise AI, n8n, Langflow 등 프롬프트와 워크플로를 GUI로 설계할 수 있는 도구 활용
-- **실습:** 멀티에이전트 프레임워크를 활용하여 **자동화 고객 상담 시스템** 구현 (예: FAQ 답변, 데이터베이스 조회, 이슈 티켓 발행 에이전트 연계)
+#### 실습/활동
 
-### 12주차 – AI 규제와 책임 있는 AI
+- **핵심 실습**: 멀티에이전트 프레임워크를 활용하여 **자동화 고객 상담 시스템** 프로토타입을 구현. 예를 들어 한 에이전트는 **FAQ 질의응답**을, 다른 에이전트는 **데이터베이스 조회** 또는 **티켓 발행**을 담당하게 하여 협업으로 사용자의 복잡한 요구를 처리하는 **오케스트레이션**을 실습
 
-- **EU AI Act (2024년 8월 시행):** 세계 최초의 포괄적 AI 법규의 주요 내용과 개발자/서비스 제공자 영향 분석
-- **프라이버시 강화 기술:** 생성형 AI 서비스에 필요한 개인정보 및 민감정보 보호 기법
+### 12주차 – AI 규제와 책임있는 AI
 
-  - 텍스트 임베딩에 **차등 프라이버시** 도입하여 사용자 데이터 노출 방지
-  - 중앙 서버 없이 협업 학습하는 **연합 학습 (Federated Learning)** 활용
-  - 모델 학습에 암호화된 데이터를 활용하는 **동형 암호화** 기술
+#### 핵심 주제
 
-- **산업별 규제 준수:** 의료 분야 HIPAA, 금융 분야 GDPR/바젤, 교육 분야 FERPA 등 **도메인별 규제**에 맞춘 NLP 솔루션 설계 사례
-- **과제:** 주어진 시나리오에 대해 EU AI Act 기준 **적합한 LLM 서비스** 설계 및 법규 준수 체크리스트 작성
+- **AI 거버넌스와 윤리적 문제**: 2024년 8월 시행된 **EU AI Act**를 비롯하여 세계 최초의 포괄적 AI 법규들이 산업에 미칠 영향과 개발자 준수 사항을 학습
+- **프라이버시 및 안전성 강화 기술**: LLM 서비스를 실제 배포할 때 책임있고 법규 준수하는 방법론
+  - _차등 프라이버시_: 텍스트 임베딩 등에 Differential Privacy를 도입하여 **개인정보 노출을 방지**
+  - _연합학습 (Federated Learning)_: 사용자 데이터가 중앙 서버에 모이지 않도록, **로컬에서 공동 학습**하는 프레임워크를 활용
+  - _동형암호화 학습_: 데이터 자체를 암호화한 상태로 모델 학습을 수행하여 민감 정보 보호
+- **산업별 규제 대응 사례**: 의료 분야 HIPAA 준수 챗봇, 금융 분야 GDPR 대응 예시, 교육 분야 FERPA 준수 튜터 AI 등 **도메인별 NLP 솔루션 설계** 사례 소개
 
-### 13주차 – 최신 연구 동향과 미래 전망
+#### 실습/과제
 
-- **소형 언어 모델의 르네상스:** 경량 모델들의 약진과 최적화 기법
+- **핵심 실습/과제**: 주어진 시나리오에 대해 EU AI Act 등 관련 법규에 **적합한 LLM 서비스 설계안**을 작성. 모델 개발부터 배포까지 어떤 조치를 취해야 하는지 체크리스트를 만들고, **법규 준수 여부**를 팀별로 발표
 
-  - _Gemma 3 (1B~4B):_ 소비자 기기에서도 원활히 동작하도록 최적화된 초경량 LLM 시리즈
-  - _Mistral NeMo 12B:_ NVIDIA NeMo 최적화를 통해 **128K 토큰** 문맥창을 구현한 12B 모델 (긴 대화/문서 처리 특화)
-  - _MathΣtral 7B:_ Mistral 기반으로 수학 문제에 특화된 모델 (MATH 벤치마크 **74.59%** 기록, 기존 GPT-4 수준 접근)
+### 13주차 – 최신 연구 동향 및 논문 리뷰
 
-- **추론 능력의 진화:** 복잡한 문제 해결을 위한 LLM의 새로운 시도들
+#### 핵심 주제
 
-  - _Long CoT:_ 매우 긴 Chain-of-Thought를 활용, 필요 시 **백트래킹**과 오류 수정까지 수행하는 추론 기법
-  - _PAL (Program-Aided Language Modeling):_ 코드 실행 능력을 결합하여 수치 계산이나 논리 추론 정확도 향상
-  - _ReAct:_ 추론 중 **외부 도구 활용**(예: 계산기, 웹검색)을 병행하여 보다 정확하고 사실적인 답변 생성
+- **급변하는 NLP 분야의 최신 연구 결과**: 현재 공개된 최신 모델 및 기법들을 살펴보며 미래 방향을 토론
+- **주요 토픽**:
+  - **초거대 멀티모달 LLM의 발전**: GPT-5, **Claude 4.1 Opus**, **Qwen 2.5 Omni**, **QVQ-Max** 등 최첨단 모델들의 혁신 특징을 분석. 예를 들어 GPT-5는 **추론 능력과 컨텍스트 확장**에서 GPT-4를 뛰어넘는 성능을 보이며, Claude 4.1은 **헌법적 AI 원칙**을 적용해 응답의 일관성과 안전성을 강화. Qwen 2.5 Omni와 QVQ-Max는 멀티모달 **시각-언어 추론**에서 새로운 경지를 개척하여, 이미지 해석과 복잡한 추론을 동시에 수행하는 능력을 선보임
+  - **소형 언어 모델의 르네상스**: 경량화된 **소형 모델(SLM)**들의 약진. _Gemma 3_ (1B~4B 규모) 시리즈는 소비자 기기에서도 원활히 동작하도록 최적화된 초경량 LLM으로 주목받고 있고, *Mistral NeMo 12B*는 NVIDIA NeMo 최적화를 통해 **128K 토큰**의 긴 문맥창을 지원하는 등 특화된 성능을 보임. *MathΣtral 7B*와 같이 특정 영역(수학)에 특화되어 GPT-4에 필적하는 결과를 내는 사례도 소개. 이러한 작은 모델들은 전문화와 경량화 측면에서 **대규모 모델의 대안**으로 연구되고 있음
+  - **추론 능력의 진화**: 복잡한 문제 해결을 위한 LLM의 새로운 시도들. *Long CoT*는 매우 긴 **Chain-of-Thought**로 추론하며 필요 시 **백트래킹**과 오류 수정을 수행하고, *PAL (Program-Aided LM)*은 코드 실행 능력을 결합하여 수치 계산이나 논리 추론 정확도를 높임. *ReAct*는 **외부 도구 활용**(계산기, 웹검색 등)을 병행하여 더 정확하고 사실적인 답변을 생성하는 전략. 추가로, _Thinking Mode_ 개념을 소개 – 예를 들어 Qwen 시리즈는 enable_thinking 모드를 통해 **모델 내부에 자체 추론 단계를 수행**하도록 하여 복잡한 수학·코드 문제에서 성능을 크게 향상시킴. 또한 Meta의 *Toolformer*처럼 **사전학습 단계에서 모델에 툴 사용 능력을 내장**시켜, 모델이 답변 중 필요한 시점에 외부 API를 호출해 문제를 푸는 최첨단 접근도 다룸
+  - **배포 및 최적화 프레임워크**: 실제 서비스 환경에서 LLM을 효율적으로 **배포**하기 위한 도구들도 발전. 예를 들어 *llama.cpp*는 단일 파일 C++ 구현으로 CPU 상에서 대형 모델을 실행 가능케 했고, *MLC-LLM*은 WebGPU를 활용하여 **모바일/브라우저에서 LLM 추론**을 지원. *PowerInfer-2*는 대규모 모델 분산 추론 시 **전력 효율을 극대화**하는 프레임워크로, 운영 비용 절감에 기여
 
-- **배포 및 최적화 프레임워크:** 경량화/최적화된 LLM 배포를 위한 도구 현황
+#### 실습/활동
 
-  - _llama.cpp:_ CPU 상에서 LLM 실행을 가능케 한 경량화 C++ 구현
-  - _MLC-LLM:_ 모바일/웹 브라우저에서 LLM 추론을 지원하는 WebGPU 기반 런타임
-  - _PowerInfer-2:_ 대규모 모델 추론 시 전력 효율을 극대화한 분산 추론 프레임워크
-
-- **학생 발표:** 조별로 선정한 최신 논문을 리뷰 및 발표하고, 해당 연구의 의의와 한계, 미래 연구 방향에 대해 토론
+- **학생 최신 논문 발표**: 조별로 선정한 **최신 NLP 논문**을 리뷰하여 발표하고, 해당 연구의 의의와 한계, 응용 가능성을 토론. 예를 들어 위에서 언급된 새로운 벤치마크(MMMU, HLE 등) 논문이나 최신 모델 기법들을 선정하여 토의함으로써, **최신 기술 동향을 종합적으로 정리** _(산업체 멘토 또는 초청 연구자가 피드백 참여)_
 
 ### 14주차 – 최종 프로젝트 개발 및 MLOps
 
-- **NLP 모델 MLOps:** 실제 서비스에 적용하기 위한 NLP MLOps 개념과 도구
+#### 핵심 주제
 
-  - 모델 버전관리 및 A/B 테스트 기법
-  - 사용자 피드백을 활용한 지속적 학습 파이프라인 구축
-  - 실시간 모니터링과 성능 저하(드리프트) 감지 시스템
+- **팀 프로젝트의 프로토타입 구현 완성**: MLOps 개념을 적용하여 실제 서비스 수준의 NLP 모델을 배포하기 위해 고려해야 할 요소들을 다루며, 각 팀의 진행 상황을 점검
+- **NLP 모델 MLOps 개념**: 모델 **버전 관리** 전략, A/B 테스트 기법, **배포 파이프라인** 설계 등을 소개. 사용자 피드백을 지속적으로 학습에 반영하는 **온라인 러닝 파이프라인**, 실시간 **모니터링 및 성능 드리프트 감지** 시스템 구축 방법도 다룸
+- **팀별 프로토타입 개발**: 각 팀은 선정된 프로젝트 주제에 대한 **최종 모델과 애플리케이션 프로토타입**을 구현. 산업 데이터셋이나 실제 사용자 시나리오를 반영하여 완성도를 높이고, 이번 주차에 중간 결과를 시연
+- **멘토 리뷰 세션**: 초청된 산업 멘토들과 함께 프로젝트 진행 상황을 검토. 모델 아키텍처의 적절성, 최신 기술 활용 여부(예: 멀티모달 통합, 에이전트 사용 등), 실용성 등을 피드백 받아 최종 개선 방향에 반영
 
-- **팀별 프로젝트 개발:** 각 팀별로 선정한 주제에 대한 **프로토타입 모델** 개발 진행 상황 점검
-- **산업 멘토 리뷰:** 초청된 업계 멘토들과 프로젝트 진행 상황 리뷰 세션을 갖고 피드백을 수렴 (산업계 요구사항 반영 여부, 실용성 평가 등)
+#### 실습/활동
+
+- **핵심 활동**: 팀별 프로토타입 **데모 발표** (현재까지 성능 및 남은 과제 공유) 및 멘토 피드백 반영 토론
 
 ### 15주차 – 산업 응용 사례 분석 및 최종 발표
 
-- **산업별 NLP 성공 사례:**
+#### 핵심 주제
 
-  - 의료: 임상 기록 자동화 NLP로 의사 문서작성 부담 **49% → 27%** 감소 (의료 도메인 특화 LLM 활용)
-  - 금융: Morgan Stanley의 법률 분석 봇 COIN 도입으로 연간 **36만 시간**의 업무량 절감
-  - 교육: 맞춤형 학습 및 다국어 지원 튜터 AI로 학습 효율 향상 (학생 참여도 30% 증가)
+- **강의의 대미를 장식하며, 최신 기술이 적용된 산업 사례를 분석하고 팀 프로젝트 최종 결과를 공유**
+- **산업별 NLP 성공 사례**: 의료, 금융, 교육 등 각 분야에서 **LLM 및 NLP 기술의 최신 적용 사례**를 소개
+  - 의료 분야: 임상 기록 자동화 NLP로 의사 문서작성 부담을 49%에서 27%로 감소시킨 사례
+  - 금융 분야: Morgan Stanley의 계약서 분석 봇 도입으로 연간 36만 시간을 절감한 사례
+  - 교육 분야: 다국어 대응 **맞춤형 튜터 AI**로 학습 효율을 향상시켜 학생 참여도가 30% 증가한 사례
+  - 이러한 사례들을 통해 **최신 NLP 기술의 실무 영향**을 파악
+- **최종 프로젝트 결과 발표**: 팀별로 프로젝트 최종 산출물을 발표하고 데모를 시연. 각 팀은 개발한 **모델 아키텍처**, 핵심 기술 적용 내용(예: 초장문맥 지원, 멀티모달 입력, 에이전트 협업 등), 성능 평가 결과와 한계를 공유. 산업 멘토 및 수강생들의 질의응답을 통해 실용성 및 개선점에 대한 피드백을 받음
+- **강좌 종합 토의**: 마지막으로 강의에서 다룬 내용들을 **종합적으로 정리**하고 자유 토론을 진행. 학생들은 1주차부터 15주차까지의 **학습 내용을 돌이켜보고**, 가장 인상 깊었던 기술이나 앞으로 더 공부하고 싶은 주제에 대해 의견을 나눔. 교수진은 **미래 전망**을 제시하며 (예: GPT-5 이후 예상되는 발전, AI와 인간 협업의 방향 등), 수강생들이 이후에도 최신 NLP 동향을 추적하고 활용할 수 있도록 조언 _(설문을 통한 강의 피드백 수렴)_
 
-- **최종 발표:** 팀별 프로젝트 결과 발표 및 데모 시연 (모델 아키텍처, 시연 결과 및 한계 공유)
-- **강좌 종합 토의:** 강의 내용 전체 요약 및 질의응답, 미래 전망 브레인스토밍 (학생 피드백 수렴 및 향후 학습 가이드)
+#### 실습/활동
 
-## 참고자료
+- **최종 발표**: 팀별 프로젝트 결과 발표 및 데모 시연
+- **강좌 종합 토의**: 강의 내용 전체 요약 및 질의응답, 미래 전망 브레인스토밍
+
+## 참고자료 (선정된 최신 논문 및 자료)
 
 ### 최신 아키텍처 및 모델
 
-- Gu & Dao (2023). _Mamba: Linear-Time Sequence Modeling with Selective State Spaces._
-- Peng et al. (2023). _RWKV: Reinventing RNNs for the Transformer Era._
-- Lieber et al. (2024). _Jamba: A Hybrid Transformer-Mamba Language Model._
+- Gu & Dao (2023), _Mamba: Linear-Time Sequence Modeling with Selective State Spaces._
+- Peng et al. (2023), _RWKV: Reinventing RNNs for the Transformer Era._
+- Lieber et al. (2024), _Jamba: A Hybrid Transformer-Mamba Language Model._
+- **(멀티모달 LLM)** OpenAI (2025), _GPT-4 Technical Report (Augmentations for GPT-5 Preview)._
+- Anthropic (2025), _Claude 4.1 Opus System Card._
 
-### 파라미터 효율적 학습
+### 파라미터 효율적 미세조정
 
-- Zhang et al. (2024). _WaveFT: Wavelet-based Parameter-Efficient Fine-Tuning._
-- Liu et al. (2024). _DoRA: Weight-Decomposed Low-Rank Adaptation._
-- Chen et al. (2024). _VB-LoRA: Vector Bank for Efficient Multi-Task Adaptation._
+- Zhang et al. (2024), _WaveFT: Wavelet-based Parameter-Efficient Fine-Tuning._
+- Liu et al. (2024), _DoRA: Weight-Decomposed Low-Rank Adaptation._
+- Chen et al. (2024), _VB-LoRA: Vector Bank for Efficient Multi-Task Adaptation._
+- Dettmers et al. (2023), _QLoRA: Efficient Finetuning of Quantized LLMs._
 
-### 프롬프트 엔지니어링과 평가
+### 프롬프트 엔지니어링 및 평가
 
-- Khattab et al. (2023). _DSPy: Compiling Declarative Language Model Calls._
-- Liu et al. (2023). _G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment._
-- Jain et al. (2024). _LiveCodeBench: Holistic and Contamination Free Evaluation._
+- Khattab et al. (2023), _DSPy: Compiling Declarative Language Model Calls._
+- Zhou et al. (2023), _Self-Consistency for Chain-of-Thought._
+- Yao et al. (2023), _Tree of Thoughts: Deliberate Problem Solving with Large Language Models._
+- Liu et al. (2023), _G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment._
+- Jain et al. (2024), _LiveCodeBench: Holistic and Contamination-Free Code Evaluation._
 
-### RAG와 지식 통합
+### 지식 통합 및 RAG
 
-- Zhang et al. (2024). _HippoRAG: Neurobiologically Inspired Long-Term Memory._
-- Edge et al. (2024). _GraphRAG: A Modular Graph-Based RAG Approach._
-- Chen et al. (2024). _Hybrid Retrieval-Augmented Generation: Best Practices._
+- Zhang et al. (2024), _HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs._
+- Edge et al. (2024), _GraphRAG: A Modular Graph-Based RAG Approach._
+- Chen et al. (2024), _Hybrid Retrieval-Augmented Generation: Best Practices._
 
-### 정렬과 책임 있는 AI
+### 정렬(Alignment)과 책임 AI
 
-- Rafailov et al. (2023). _Direct Preference Optimization: Your Language Model is Secretly a Reward Model._
-- Bai et al. (2022). _Constitutional AI: Harmlessness from AI Feedback._
-- EU Commission (2024). _EU AI Act: Implementation Guidelines._
+- Rafailov et al. (2023), _Direct Preference Optimization: Your Language Model is Secretly a Reward Model._
+- Bai et al. (2022), _Constitutional AI: Harmlessness from AI Feedback._
+- OpenAI (2024), _SWE-bench Verified: Real-world Software Engineering Benchmark._
+- Phan et al. (2025), _Humanity's Last Exam: The Ultimate Multimodal Benchmark at the Frontier of Knowledge._
+- EU Commission (2024), _EU AI Act: Implementation Guidelines._
 
-### 산업 응용 및 배포
+### 산업 응용 및 MLOps
 
-- _Healthcare NLP Market Report 2024–2028_. Markets and Markets.
-- _Financial Services AI Applications 2025_. McKinsey Global Institute.
-- _State of AI in Education 2025_. Stanford HAI.
-
-### 개발 도구 및 프레임워크
-
-- **CrewAI Documentation:** [https://docs.crewai.com/](https://docs.crewai.com/)
-- **DSPy Official Guide:** [https://dspy-docs.vercel.app/](https://dspy-docs.vercel.app/)
-- **OpenRLHF Project:** [https://github.com/OpenRLHF/OpenRLHF](https://github.com/OpenRLHF/OpenRLHF)
+- **Healthcare NLP** Market Report 2024–2028 (Markets&Markets).
+- **Financial Services AI** Applications 2025 (McKinsey Global Institute).
+- **State of AI in Education 2025** (Stanford HAI).
+- Cremer & Liu (2025), _PowerInfer-2: Energy-Efficient LLM Inference at Scale._
+- **개발 도구:** CrewAI Documentation – _멀티에이전트 시나리오 구현 가이드_
+- DSPy Official Guide – _프롬프트 DSL 활용법_
+- OpenRLHF Project – _오픈소스 RLHF 구현체_
