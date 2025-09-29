@@ -449,10 +449,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">교육 목표</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">교육 목표</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">강의 계획</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
 </ul>
@@ -472,24 +470,24 @@ document.write(`
 <h1>딥러닝자연어처리 (131307379A)<a class="headerlink" href="#a" title="Link to this heading">#</a></h1>
 <section id="id1">
 <h2>개요<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
-<p>최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)은 텍스트를 생성하고 이해하는 능력을 극적으로 향상시키며 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4o와 Gemini 1.5 Pro처럼 텍스트·이미지·음성까지 처리하는 멀티모달 모델이 등장하여 LLM의 활용 범위를 크게 확장했다. 특히 <strong>Transformer를 넘어서는 새로운 아키텍처</strong>의 등장이 주목된다. 예를 들어 <strong>Mamba</strong>와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 100만 토큰까지 처리할 수 있으며 Transformer보다 5배 빠른 추론 속도를 제공한다.</p>
-<p>이 강의는 이러한 최신 발전을 반영하여 <strong>실습 중심의 심층 학습과 NLP 기법</strong>을 배운다. 학생들은 초반에 PyTorch와 Hugging Face 도구 사용법을 익히고, 이후 Transformer 기반 모델 및 <strong>최신 SSM 아키텍처</strong>의 미세조정(fine-tuning), 프롬프트 엔지니어링(prompt engineering), 검색 증강 생성(RAG), 인간 피드백 강화 학습(RLHF), 에이전트 프레임워크 구현 등을 직접 경험한다. 아울러 <strong>최신 파라미터 효율적 미세조정 기법</strong>(WaveFT, DoRA, VB-LoRA)과 <strong>고급 RAG 아키텍처</strong>(HippoRAG, GraphRAG)를 다루며, 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 모델을 완성한다.</p>
-<p>본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 <em>언어모형과 자연어처리 (131107967A)</em> 이수를 전제로 한다. 팀 프로젝트를 통해 <strong>한국어 코퍼스</strong>를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 <strong>산학 협력</strong>을 고려하여 실제 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.</p>
-<section id="id2">
-<h3>교육 목표<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>현대 NLP에서 대규모 언어 모델의 역할과 한계를 이해하고 관련 도구(PyTorch, Hugging Face 등)를 활용한다.</p></li>
-<li><p>Transformer와 더불어 <strong>State Space Model</strong>(예: Mamba, RWKV) 등 최신 아키텍처의 원리와 장단점을 이해한다.</p></li>
-<li><p>사전학습 모델을 fine-tuning하거나 <strong>WaveFT, DoRA, VB-LoRA</strong> 같은 최신 <strong>매개변수 효율적 미세조정</strong> 방법을 적용할 수 있다.</p></li>
-<li><p><strong>프롬프트 엔지니어링 기법</strong>과 <strong>DSPy 프레임워크</strong>를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.</p></li>
-<li><p>평가 지표의 발전(G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, <strong>DPO(Direct Preference Optimization)</strong> 등 RLHF의 최신 대안을 학습한다.</p></li>
-<li><p><strong>HippoRAG, GraphRAG</strong> 등 고급 RAG(Build Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계하고 구현한다.</p></li>
-<li><p><strong>EU AI Act</strong> 등 AI 규제 프레임워크를 이해하고, 책임감 있는 AI 시스템 구현 방법론을 습득한다.</p></li>
-<li><p>최신 연구 동향을 추적하여 멀티모달 LLM, 소형 언어 모델(SLM), 상태공간 모델(SSM), 혼합 전문가(MoE) 등 <strong>최신 기술의 장단점</strong>을 토의한다.</p></li>
-<li><p><strong>한국어 말뭉치</strong>를 활용한 실습을 통해 한국어 NLP의 특성과 과제를 이해하고 적용 능력을 기른다.</p></li>
-<li><p>팀 프로젝트를 통해 협업 및 실전 문제 해결 역량을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.</p></li>
-</ul>
+<p>최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)의 등장으로 텍스트 생성과 이해 능력이 극적으로 향상되어 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4 기반 모델을 넘어 GPT-5와 <strong>Gemini 2.5 Pro</strong>처럼 텍스트·이미지·음성까지 동시에 처리하는 멀티모달 LLM이 등장하여 활용 범위를 더욱 확장하였다. 특히 <strong>Transformer</strong>를 넘어서는 새로운 아키텍처의 등장이 주목된다. 예를 들어 <strong>Mamba</strong>와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 수백만 토큰까지 효율적으로 처리하며, <strong>RWKV</strong>는 대화 메시지를 기존 대비 10배 이상 저렴한 비용으로 실시간 처리할 수 있다.</p>
+<p>이 강의는 이러한 최신 발전을 반영하여 <strong>실습 중심</strong>으로 심층 학습 기반 NLP 기법을 다룬다. 학생들은 초반에 PyTorch와 Hugging Face 사용법 등 <strong>핵심 도구 활용법</strong>을 익히고, 이후 <strong>Transformer 기반 모델 및 최신 SSM 아키텍처</strong>의 파인튜닝, <strong>프롬프트 엔지니어링(prompt engineering)</strong>, <strong>검색 증강 생성(RAG)</strong>, <strong>인간 피드백 강화 학습(RLHF)</strong>, <strong>에이전트 프레임워크</strong> 구현 등을 직접 경험한다. 아울러 최신 <strong>파라미터 효율적 미세조정(PEFT)</strong> 기법들(WaveFT, DoRA, VB-LoRA 등)과 고급 <strong>RAG 아키텍처</strong>(HippoRAG, GraphRAG)를 다루며, <strong>멀티모달 LLM</strong>과 <strong>초장문맥 처리</strong> 같은 최첨단 개념도 실습한다. 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 <strong>완성형 모델 및 애플리케이션</strong>을 구현한다.</p>
+<p>본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 <em>언어모형과 자연어처리</em> (131107967A) 이수를 전제로 한다. 팀 프로젝트를 통해 한국어 코퍼스를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 <strong>산학 협력</strong>을 고려하여 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.</p>
 </section>
+<section id="id2">
+<h2>교육 목표<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>현대 NLP에서 <strong>대규모 언어 모델의 역할과 한계</strong>를 이해하고 PyTorch, Hugging Face 등 관련 도구를 활용할 수 있다.</p></li>
+<li><p>Transformer와 더불어 <strong>State Space Model</strong>(예: Mamba, RWKV) 등 <strong>최신 아키텍처</strong>의 원리와 장단점을 이해한다.</p></li>
+<li><p>사전학습 모델을 <strong>fine-tuning</strong>하거나 WaveFT, DoRA, VB-LoRA 같은 최신 <strong>매개변수 효율적 미세조정 방법</strong>을 적용할 수 있다.</p></li>
+<li><p><strong>프롬프트 엔지니어링</strong> 기법과 DSPy 프레임워크를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.</p></li>
+<li><p><strong>평가 지표의 발전</strong>(예: G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, DPO(Direct Preference Optimization) 등 RLHF의 최신 대안을 학습한다.</p></li>
+<li><p><strong>HippoRAG, GraphRAG 등 고급 RAG</strong>(Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계·구현한다.</p></li>
+<li><p><strong>EU AI Act</strong> 등 AI 규제 프레임워크를 이해하고, 책임있는 AI 시스템 구현 방법론을 습득한다.</p></li>
+<li><p>최신 연구 동향을 추적하여 <strong>멀티모달 LLM</strong>, <strong>소형 언어 모델(SLM)</strong>, <strong>상태공간 모델(SSM)</strong>, <strong>멀티에이전트 시스템</strong>, <strong>혼합 전문가(MoE)</strong> 등 다양한 최신 기술의 장단점을 토의한다.</p></li>
+<li><p>한국어 말뭉치를 활용한 실습을 통해 <strong>한국어 NLP의 특성과 과제</strong>를 이해하고 적용 능력을 기른다.</p></li>
+<li><p>팀 프로젝트를 통해 <strong>협업 및 실전 문제 해결 역량</strong>을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.</p></li>
+</ul>
 </section>
 <section id="id3">
 <h2>강의 계획<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
@@ -658,10 +656,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">교육 목표</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">교육 목표</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">강의 계획</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
 </ul>

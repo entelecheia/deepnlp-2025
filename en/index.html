@@ -449,10 +449,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
 </ul>
@@ -472,24 +470,24 @@ document.write(`
 <h1>Deep Learning for Natural Language Processing (131307379A)<a class="headerlink" href="#deep-learning-for-natural-language-processing-131307379a" title="Link to this heading">#</a></h1>
 <section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
-<p>In recent years, natural language processing (NLP) research has undergone a massive transformation. Large language models (LLMs) have dramatically improved the ability to generate and understand text, revolutionizing various application domains such as translation, question answering, and summarization. In 2024-2025, multimodal models like GPT-4o and Gemini 1.5 Pro that can process text, images, and audio have emerged, greatly expanding the scope of LLM applications. Particularly noteworthy is the emergence of <strong>new architectures beyond Transformer</strong>. For example, <strong>Mamba</strong>, a state space model (SSM), can process up to 1 million tokens with linear O(n) complexity and provides 5x faster inference speed than Transformer.</p>
-<p>This course reflects these latest developments to learn <strong>hands-on deep learning and NLP techniques</strong>. Students first learn to use PyTorch and Hugging Face tools, then directly experience fine-tuning of Transformer-based models and <strong>latest SSM architectures</strong>, prompt engineering, retrieval-augmented generation (RAG), reinforcement learning from human feedback (RLHF), and agent framework implementation. Additionally, we cover <strong>latest parameter-efficient fine-tuning techniques</strong> (WaveFT, DoRA, VB-LoRA) and <strong>advanced RAG architectures</strong> (HippoRAG, GraphRAG), and finally complete a model that solves real problems by integrating learned content through team projects.</p>
-<p>This course is designed for third-year undergraduate level and assumes completion of prerequisite course <em>Language Models and Natural Language Processing (131107967A)</em>. Through team projects, students challenge real problem-solving using <strong>Korean corpora</strong>, and in the final project phase, we provide opportunities to work with actual industry datasets and receive feedback from industry experts, considering <strong>industry-academia collaboration</strong>.</p>
-<section id="learning-objectives">
-<h3>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h3>
-<ul class="simple">
-<li><p>Understand the role and limitations of large language models in modern NLP and utilize related tools (PyTorch, Hugging Face, etc.).</p></li>
-<li><p>Understand the principles and trade-offs of <strong>State Space Models</strong> (e.g., Mamba, RWKV) along with Transformer and other latest architectures.</p></li>
-<li><p>Apply fine-tuning to pre-trained models or latest <strong>parameter-efficient fine-tuning</strong> methods like <strong>WaveFT, DoRA, VB-LoRA</strong>.</p></li>
-<li><p>Learn methods to systematically optimize prompts using <strong>prompt engineering techniques</strong> and <strong>DSPy framework</strong>.</p></li>
-<li><p>Understand the evolution of evaluation metrics (G-Eval, LiveCodeBench, etc.) and the importance of human evaluation, and learn latest alternatives to RLHF such as <strong>DPO (Direct Preference Optimization)</strong>.</p></li>
-<li><p>Design and implement <strong>advanced RAG (Retrieval-Augmented Generation)</strong> architectures like <strong>HippoRAG, GraphRAG</strong> and hybrid search strategies.</p></li>
-<li><p>Understand AI regulatory frameworks like <strong>EU AI Act</strong> and acquire methodologies for implementing responsible AI systems.</p></li>
-<li><p>Track latest research trends to discuss <strong>advantages and disadvantages of latest technologies</strong> such as multimodal LLMs, small language models (SLM), state space models (SSM), and mixture of experts (MoE).</p></li>
-<li><p>Understand the characteristics and challenges of Korean NLP and develop application capabilities through hands-on practice using <strong>Korean corpora</strong>.</p></li>
-<li><p>Strengthen collaboration and practical problem-solving capabilities through team projects and gain project experience connected to industry.</p></li>
-</ul>
+<p>In recent years, natural language processing (NLP) research has undergone a massive transformation. The emergence of large language models (LLMs) has dramatically improved the ability to generate and understand text, revolutionizing various application domains such as translation, question answering, and summarization. In 2024-2025, multimodal LLMs like GPT-5 and <strong>Gemini 2.5 Pro</strong> that can simultaneously process text, images, and audio have emerged, further expanding the scope of applications. Particularly noteworthy is the emergence of new architectures beyond <strong>Transformer</strong>. For example, <strong>Mamba</strong>, a state space model (SSM), can efficiently process up to millions of tokens with linear O(n) complexity, while <strong>RWKV</strong> can process conversational messages at 10x or more lower cost than existing methods in real-time.</p>
+<p>This course reflects these latest developments to provide <strong>hands-on</strong> deep learning-based NLP techniques. Students first learn <strong>core tool utilization methods</strong> such as PyTorch and Hugging Face usage, then directly experience fine-tuning of <strong>Transformer-based models and latest SSM architectures</strong>, <strong>prompt engineering</strong>, <strong>retrieval-augmented generation (RAG)</strong>, <strong>reinforcement learning from human feedback (RLHF)</strong>, and <strong>agent framework</strong> implementation. Additionally, we cover latest <strong>parameter-efficient fine-tuning (PEFT)</strong> techniques (WaveFT, DoRA, VB-LoRA, etc.) and advanced <strong>RAG architectures</strong> (HippoRAG, GraphRAG), and practice cutting-edge concepts such as <strong>multimodal LLMs</strong> and <strong>ultra-long context processing</strong>. Finally, through team projects, students integrate learned content to implement <strong>complete models and applications</strong> that solve real problems.</p>
+<p>This course is designed for third-year undergraduate level and assumes completion of prerequisite course <em>Language Models and Natural Language Processing (131107967A)</em>. Through team projects, students challenge real problem-solving using Korean corpora, and in the final project phase, we provide opportunities to work with industry datasets and receive feedback from industry experts, considering <strong>industry-academia collaboration</strong>.</p>
 </section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Understand <strong>the role and limitations of large language models</strong> in modern NLP and utilize related tools such as PyTorch and Hugging Face.</p></li>
+<li><p>Understand the principles and trade-offs of <strong>State Space Models</strong> (e.g., Mamba, RWKV) along with <strong>latest architectures</strong>.</p></li>
+<li><p>Apply <strong>fine-tuning</strong> to pre-trained models or latest <strong>parameter-efficient fine-tuning methods</strong> like WaveFT, DoRA, VB-LoRA.</p></li>
+<li><p>Learn methods to systematically optimize prompts using <strong>prompt engineering</strong> techniques and DSPy framework.</p></li>
+<li><p>Understand <strong>the evolution of evaluation metrics</strong> (e.g., G-Eval, LiveCodeBench, etc.) and the importance of human evaluation, and learn latest alternatives to RLHF such as DPO (Direct Preference Optimization).</p></li>
+<li><p>Design and implement <strong>advanced RAG</strong> (Retrieval-Augmented Generation) architectures like <strong>HippoRAG, GraphRAG</strong> and hybrid search strategies.</p></li>
+<li><p>Understand AI regulatory frameworks like <strong>EU AI Act</strong> and acquire methodologies for implementing responsible AI systems.</p></li>
+<li><p>Track latest research trends to discuss <strong>multimodal LLMs</strong>, <strong>small language models (SLM)</strong>, <strong>state space models (SSM)</strong>, <strong>multi-agent systems</strong>, <strong>mixture of experts (MoE)</strong>, and other diverse latest technologies.</p></li>
+<li><p>Understand <strong>the characteristics and challenges of Korean NLP</strong> and develop application capabilities through hands-on practice using Korean corpora.</p></li>
+<li><p>Strengthen <strong>collaboration and practical problem-solving capabilities</strong> through team projects and gain project experience connected to industry.</p></li>
+</ul>
 </section>
 <section id="course-schedule">
 <h2>Course Schedule<a class="headerlink" href="#course-schedule" title="Link to this heading">#</a></h2>
@@ -658,10 +656,8 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-of-contents">Table of Contents</a><ul class="nav section-nav flex-column">
 </ul>
