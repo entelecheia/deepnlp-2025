@@ -175,20 +175,22 @@ Hugging Face pipeline은 추론을 위한 가장 높은 수준의 사용하기 �
 
 다음은 제공된 Python 스크립트다.
 
-Python
-
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM  
+```python
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 import torch
 
-\# 간단한 텍스트 생성 파이프라인  
-generator \= pipeline("text-generation",  
- model="gpt2",  
- device=0 if torch.cuda.is_available() else \-1)
+# 간단한 텍스트 생성 파이프라인
+generator = pipeline(
+    "text-generation",
+    model="gpt2",
+    device=0 if torch.cuda.is_available() else -1
+)
 
-\# 텍스트 생성 테스트  
-prompt \= "The future of Artificial Intelligence is"  
-result \= generator(prompt, max_length=50, num_return_sequences=1)  
-print(result\['generated_text'\])
+# 텍스트 생성 테스트
+prompt = "The future of Artificial Intelligence is"
+result = generator(prompt, max_length=50, num_return_sequences=1)
+print(result[0]['generated_text'])
+```
 
 - **코드 분석:**
   - pipeline("text-generation", model="gpt2",...): 파이프라인을 인스턴스화한다.
