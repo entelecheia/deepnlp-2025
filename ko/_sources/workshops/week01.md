@@ -122,9 +122,11 @@ LLM 프로젝트는 단순한 모델 훈련을 넘어, 명확한 목표 설정�
    - docker pull nvcr.io/nvidia/pytorch:23.10-py3 명령을 실행한다. 이 컨테이너에는 PyTorch, CUDA, cuDNN 등 NVIDIA GPU에 최적화된 필수 라이브러리가 모두 포함되어 있다.
 5. **대화형 컨테이너 실행:**
 
-   - 다음 명령을 실행한다. 각 플래그의 의미는 다음과 같다.  
-     Bash  
-     docker run \--gpus all \-it \--rm \-v $(pwd):/workspace nvcr.io/nvidia/pytorch:23.10-py3
+   - 다음 명령을 실행한다. 각 플래그의 의미는 다음과 같다.
+
+   ```bash
+   docker run --gpus all -it --rm -v $(pwd):/workspace nvcr.io/nvidia/pytorch:23.10-py3
+   ```
 
    - \--gpus all: 사용 가능한 모든 호스트 GPU를 컨테이너에 노출시켜 GPU 가속 환경의 핵심을 이룬다.
    - \-it: 컨테이너를 대화형 모드로 실행하여 컨테이너 내부 셸에 접근할 수 있게 한다.
@@ -139,13 +141,13 @@ LLM 프로젝트는 단순한 모델 훈련을 넘어, 명확한 목표 설정�
 
 실행 중인 컨테이너 내부에서 다음 pip 명령을 실행하여 NeMo와 Hugging Face 생태계를 설치한다.
 
-Bash
-
-\# Hugging Face 라이브러리 설치  
+```bash
+# Hugging Face 라이브러리 설치
 pip install transformers datasets accelerate
 
-\# 전체 NVIDIA NeMo 툴킷 설치  
-pip install nemo-toolkit\[all\]
+# 전체 NVIDIA NeMo 툴킷 설치
+pip install nemo-toolkit[all]
+```
 
 ### **문제 해결 가이드**
 
@@ -175,20 +177,22 @@ Hugging Face pipeline은 추론을 위한 가장 높은 수준의 사용하기 �
 
 다음은 제공된 Python 스크립트다.
 
-Python
-
-from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM  
+```python
+from transformers import pipeline, AutoTokenizer, AutoModelForCausalLM
 import torch
 
-\# 간단한 텍스트 생성 파이프라인  
-generator \= pipeline("text-generation",  
- model="gpt2",  
- device=0 if torch.cuda.is_available() else \-1)
+# 간단한 텍스트 생성 파이프라인
+generator = pipeline(
+  "text-generation",
+  model="gpt2",
+  device=0 if torch.cuda.is_available() else -1
+)
 
-\# 텍스트 생성 테스트  
-prompt \= "The future of Artificial Intelligence is"  
-result \= generator(prompt, max_length=50, num_return_sequences=1)  
-print(result\['generated_text'\])
+# 텍스트 생성 테스트
+prompt = "The future of Artificial Intelligence is"
+result = generator(prompt, max_length=50, num_return_sequences=1)
+print(result['generated_text'])
+```
 
 - **코드 분석:**
   - pipeline("text-generation", model="gpt2",...): 파이프라인을 인스턴스화한다.
@@ -200,16 +204,21 @@ print(result\['generated_text'\])
 
 배운 내용을 한국어 모델에 적용해 본다. EleutherAI/polyglot-ko-1.3b는 잘 문서화된 오픈소스(Apache 2.0 라이선스) 한국어 LLM으로 좋은 선택이다.
 
-Python
+```python
+# 한국어 텍스트 생성 파이프라인
+from transformers import pipeline
+import torch
 
-\# 한국어 텍스트 생성 파이프라인  
-korean_generator \= pipeline("text-generation",  
- model="EleutherAI/polyglot-ko-1.3b",  
- device=0 if torch.cuda.is_available() else \-1)
+korean_generator = pipeline(
+  "text-generation",
+  model="EleutherAI/polyglot-ko-1.3b",
+  device=0 if torch.cuda.is_available() else -1
+)
 
-prompt \= "대한민국 인공지능의 미래는"  
-result \= korean_generator(prompt, max_length=50, num_return_sequences=1)  
-print(result\['generated_text'\])
+prompt = "대한민국 인공지능의 미래는"
+result = korean_generator(prompt, max_length=50, num_return_sequences=1)
+print(result[0]['generated_text'])
+```
 
 ### **출력 제어: 생성 파라미터 가이드**
 
