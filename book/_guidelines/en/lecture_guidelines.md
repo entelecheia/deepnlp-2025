@@ -66,6 +66,8 @@
 
 ### 4.1 Code Block Organization
 
+**All code must use code block syntax:**
+
 ```python
 # 1. Import necessary libraries
 import torch
@@ -75,6 +77,12 @@ import math
 # 3. Executable code
 # 4. Result interpretation
 ```
+
+**Code Block Usage Rules:**
+- All code must be wrapped with ` ```python ` or ` ``` `
+- Execution results and outputs should also be displayed in code blocks
+- Inline code should use ` `backticks` `
+- General text that is not code should not use code blocks
 
 ### 4.2 Code Documentation
 
@@ -179,6 +187,8 @@ import math
 - [ ] Unnecessary escape characters removed (e.g., `1\.` → `1.`)
 - [ ] Footnote links removed from main text
 - [ ] Bold formatting errors checked (proper format for special characters/parentheses)
+- [ ] All code written in code blocks
+- [ ] Execution results also displayed in code blocks
 
 ## 10. Markdown Formatting and Technical Guidelines
 
@@ -206,6 +216,8 @@ import math
 
 ### 10.3 Code Block Formatting
 
+**All code must be written in code blocks:**
+
 ````markdown
 ```python
 # 1. Step-by-step comments
@@ -214,9 +226,13 @@ import math
 ```
 ````
 
-- **Language specification**: Add appropriate language tags to code blocks
+**Code Block Writing Rules:**
+- **Language specification**: Add appropriate language tags to code blocks (`python`, `bash`, `json`, etc.)
 - **Comment usage**: Include purpose and explanation for each step
 - **Indentation**: Use consistent indentation
+- **Execution results**: Display code execution results in separate code blocks
+- **Inline code**: Use ` `backticks` ` for short code or variable names
+- **Prohibited**: Do not wrap general text in code blocks
 
 ## 11. International Considerations
 
