@@ -86,6 +86,7 @@ LLM의 초기 발전 단계에서 컨텍스트 창은 모델의 가장 큰 제�
 
 Hugging Face의 🤗 Transformers 라이브러리는 FlashAttention을 긴밀하게 통합하여, **모델 로드 시 attn_implementation 인자 하나만으로** 간단하게 활성화할 수 있습니다. 이를 통해 기존 코드를 거의 변경하지 않으면서도 **상당한 추론 속도 및 메모리 효율성 개선**을 얻을 수 있습니다. 아래는 FlashAttention-3를 지원하는 예시 모델을 로드할 때 표준 어텐션과 FlashAttention을 선택적으로 사용하는 방법입니다:
 
+```python
 import torch  
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -123,12 +124,15 @@ except ImportError:
  print("FlashAttention is not installed or the environment does not support it.")  
 except Exception as e:  
  print(f"An error occurred while loading with FlashAttention: {e}")
+```
 
 **실행 결과 예시:**
 
+```
 Model with standard attention loaded.  
 Model with FlashAttention-3 loaded successfully.  
 Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).
+```
 
 ##### **체크포인트 질문**
 
@@ -227,6 +231,7 @@ LongRoPE는 이러한 문제를 해결하기 위해 **효율적인 2단계 점�
 
 LongRoPE 방법론의 오픈 소스 구현이 공개되어 있어, 이를 활용하면 **기존 사전학습 LLM의 컨텍스트 창을 손쉽게 확장**해볼 수 있다. 아래 예시는 base 4k 컨텍스트를 가진 모델을 LongRoPE로 확장하여 **2048k (약 210만) 토큰 컨텍스트**로 늘리는 과정을 보여준다.
 
+```python
 # 1. 설정: 모델 차원 및 목표 컨텍스트 길이 정의
 
 data_path = "path/to/your/dataset"  
@@ -234,7 +239,7 @@ d_model = 512
 n_heads = 8  
 num_layers = 6  
 base_length = 4096 # 기존 모델의 최대 컨텍스트 길이 (4k)  
-target_length = 2048 \* 1024 # 목표 컨텍스트 길이 (2048k, 약 210만 토큰)
+target_length = 2048 * 1024 # 목표 컨텍스트 길이 (2048k, 약 210만 토큰)
 
 # 2. 데이터 로드 및 LongRoPE 모델 초기화
 
@@ -250,6 +255,7 @@ model = model.extend_context(data, target_length)
 input_ids = torch.randn(2, target_length, d_model)  
 output = model(input_ids)  
 print(output.shape) # 예상 출력 형태: (batch_size, target_length, d_model)
+```
 
 위 코드에서는 LongRoPEModel을 초기화하고 extend_context() 메서드를 통해 **사전 학습된 모델을 점진적 보간 전략으로 파인튜닝**함으로써 컨텍스트 창을 늘리고 있습니다. 예를 들어 base_length=4096이던 모델이 LongRoPE를 거쳐 target_length=2097152 (2,097,152) 토큰까지 처리가 가능해진 것을 확인할 수 있습니다. 최종 출력의 shape을 출력하면 배치 크기 2에 약 210만 길이 시퀀스를 문제없이 처리했음을 보여줍니다.
 
@@ -281,6 +287,7 @@ print(output.shape) # 예상 출력 형태: (batch_size, target_length, d_model)
 
 현업에서는 RAG를 구현하기 위해 **Haystack**과 같은 오픈소스 프레임워크를 널리 활용합니다. Haystack은 **유연한 파이프라인 구성**을 통해 **문서 저장소 + 검색기 + 읽기/생성 모델**로 이루어진 **엔드투엔드 QA 시스템**을 손쉽게 구축할 수 있게 해줍니다. 아래는 간단한 문서 기반 QA 파이프라인 예제입니다. 하나의 문서를 인메모리 문서저장소에 넣고, BM25 기반 **Retriever**와 사전학습된 **Reader** 모델로부터 답을 추출하는 과정을 보여줍니다.
 
+```python
 pipeline = Pipeline()  
 pipeline.add_node(component=retriever, name="Retriever", inputs=["Query"])  
 pipeline.add_node(component=reader, name="Reader", inputs=["Retriever"])
@@ -290,6 +297,7 @@ pipeline.add_node(component=reader, name="Reader", inputs=["Retriever"])
 query = "오징어 게임 감독이 누구야?"  
 result = pipeline.run(query=query, params={"Retriever": {"top_k": 5}, "Reader": {"top_k": 1}})  
 print(result['answers'][0].answer)
+```
 
 위 코드에서는 간단히 **인메모리 문서저장소**에 하나의 문서를 넣고, BM25 기반 **Retriever**와 한국어 KorQuAD 데이터로 학습된 Electra **Reader**를 조합한 파이프라인을 구축했습니다. pipeline.run()에 질의를 넣으면 Retriever가 상위 5개 문서를 찾고, Reader가 그 중에서 답을 추출하여 반환합니다. 예를 들어 위 질문에 대해 "황동혁"이라는 정답을 얻을 수 있을 것입니다.
 
