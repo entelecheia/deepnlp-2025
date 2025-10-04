@@ -15,6 +15,7 @@ parts:
       - file: week05/index
       - file: week06/index
       - file: week07/index
+      - file: week08/index
   - caption: Workshops
     chapters:
       - file: workshops/index
