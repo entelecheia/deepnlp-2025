@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Week 7: LLM의 새로운 지평 – 초장문 컨텍스트(Ultra-Long Context) 혁명 &#8212; Deep Learning for NLP 2025</title>
+    <title>Week 7: 초장문맥 처리와 효율적 추론 &#8212; Deep Learning for NLP 2025</title>
   
   
   
@@ -222,7 +222,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: 고급 프롬프트 기법과 최적화</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM 평가 패러다임과 벤치마크</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: 멀티모달 NLP의 발전</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 7: LLM의 새로운 지평 – 초장문 컨텍스트(Ultra-Long Context) 혁명</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 7: 초장문맥 처리와 효율적 추론</a></li>
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
 <ul class="nav bd-sidenav">
@@ -439,7 +439,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Week 7: LLM의 새로운 지평 – 초장문 컨텍스트(Ultra-Long Context) 혁명</h1>
+    <h1>Week 7: 초장문맥 처리와 효율적 추론</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -449,7 +449,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 서론: 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1 킬로바이트에서 메가바이트로 – 컨텍스트의 양적 도약</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 2025년 플래그십 모델들의 역량</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 새로운 개발자 패러다임: 단순 질의응답을 넘어서</a></li>
@@ -511,10 +511,10 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="week-7-llm-ultra-long-context">
-<h1>Week 7: LLM의 새로운 지평 – 초장문 컨텍스트(Ultra-Long Context) 혁명<a class="headerlink" href="#week-7-llm-ultra-long-context" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="week-7">
+<h1>Week 7: 초장문맥 처리와 효율적 추론<a class="headerlink" href="#week-7" title="Link to this heading">#</a></h1>
 <section id="context-window">
-<h2>1. 서론: 컨텍스트 창(Context Window)의 패러다임 전환<a class="headerlink" href="#context-window" title="Link to this heading">#</a></h2>
+<h2>1. 컨텍스트 창(Context Window)의 패러다임 전환<a class="headerlink" href="#context-window" title="Link to this heading">#</a></h2>
 <p>지난 몇 년간 자연어 처리(NLP) 분야는 대규모 언어 모델(Large Language Models, LLMs)의 발전으로 인해 급격한 변화를 겪어왔다. 이러한 발전의 중심에는 모델이 한 번에 처리하고 참조할 수 있는 정보의 양, 즉 ‘컨텍스트 창’의 확장이 자리하고 있다. <strong>2025년을 기점으로, 우리는 단순히 점진적인 개선을 넘어선, LLM의 활용 방식을 재정의하는 ‘초장문 컨텍스트 혁명’의 시대에 진입</strong>했다. 본 강의에서는 이 혁명을 이끄는 핵심 기술, 최신 플래그십 모델, 그리고 이로 인해 파생되는 새로운 패러다임과 현실적인 과제들을 심층적으로 탐구한다.</p>
 <section id="id1">
 <h3>1.1 킬로바이트에서 메가바이트로 – 컨텍스트의 양적 도약<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
@@ -612,22 +612,22 @@ document.write(`
 <section id="hugging-face-transformers-flashattention">
 <h4><strong><em>2.2.1 실습: Hugging Face Transformers에서 FlashAttention 활성화</em></strong><a class="headerlink" href="#hugging-face-transformers-flashattention" title="Link to this heading">#</a></h4>
 <p>Hugging Face의 🤗 Transformers 라이브러리는 FlashAttention을 긴밀하게 통합하여, <strong>모델 로드 시 attn_implementation 인자 하나만으로</strong> 간단하게 활성화할 수 있습니다. 이를 통해 기존 코드를 거의 변경하지 않으면서도 <strong>상당한 추론 속도 및 메모리 효율성 개선</strong>을 얻을 수 있습니다. 아래는 FlashAttention-3를 지원하는 예시 모델을 로드할 때 표준 어텐션과 FlashAttention을 선택적으로 사용하는 방법입니다:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>  
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
 
 <span class="c1"># GPU가 Hopper 아키텍처 이상이고, flash-attn 라이브러리가 설치되어 있다고 가정</span>
 
-<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>  
+<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
 <span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;openai/gpt-oss-20b&quot;</span> <span class="c1"># FlashAttention-3를 지원하는 예시 모델 ID</span>
 
 <span class="c1"># 1. 기본 어텐션 구현으로 모델 로드</span>
 
-<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>  
-<span class="n">model_eager</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>  
- <span class="n">model_id</span><span class="p">,</span>  
- <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>  
- <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>  
-<span class="p">)</span>  
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="n">model_eager</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+ <span class="n">model_id</span><span class="p">,</span>
+ <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+ <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with standard attention loaded.&quot;</span><span class="p">)</span>
 
 <span class="c1"># 2. FlashAttention-3 구현으로 모델 로드</span>
@@ -636,24 +636,24 @@ document.write(`
 
 <span class="c1"># 해당 커널은 &#39;kernels&#39; 패키지를 통해 허브에서 자동 다운로드됩니다.</span>
 
-<span class="k">try</span><span class="p">:</span>  
- <span class="n">model_flash</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>  
- <span class="n">model_id</span><span class="p">,</span>  
- <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>  
- <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>  
- <span class="n">attn_implementation</span><span class="o">=</span><span class="s2">&quot;kernels-community/vllm-flash-attn3&quot;</span> <span class="c1"># FlashAttention-3 활성화  </span>
- <span class="p">)</span>  
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with FlashAttention-3 loaded successfully.&quot;</span><span class="p">)</span>  
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).&quot;</span><span class="p">)</span>  
-<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>  
- <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FlashAttention is not installed or the environment does not support it.&quot;</span><span class="p">)</span>  
-<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>  
+<span class="k">try</span><span class="p">:</span>
+ <span class="n">model_flash</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+ <span class="n">model_id</span><span class="p">,</span>
+ <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+ <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+ <span class="n">attn_implementation</span><span class="o">=</span><span class="s2">&quot;kernels-community/vllm-flash-attn3&quot;</span> <span class="c1"># FlashAttention-3 활성화</span>
+ <span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with FlashAttention-3 loaded successfully.&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FlashAttention is not installed or the environment does not support it.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred while loading with FlashAttention: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><strong>실행 결과 예시:</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="k">with</span> <span class="n">standard</span> <span class="n">attention</span> <span class="n">loaded</span><span class="o">.</span>  
-<span class="n">Model</span> <span class="k">with</span> <span class="n">FlashAttention</span><span class="o">-</span><span class="mi">3</span> <span class="n">loaded</span> <span class="n">successfully</span><span class="o">.</span>  
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="k">with</span> <span class="n">standard</span> <span class="n">attention</span> <span class="n">loaded</span><span class="o">.</span>
+<span class="n">Model</span> <span class="k">with</span> <span class="n">FlashAttention</span><span class="o">-</span><span class="mi">3</span> <span class="n">loaded</span> <span class="n">successfully</span><span class="o">.</span>
 <span class="n">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">compatible</span> <span class="n">GPU</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">NVIDIA</span> <span class="n">Hopper</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span>
 </pre></div>
 </div>
@@ -772,16 +772,16 @@ document.write(`
 <p>LongRoPE 방법론의 오픈 소스 구현이 공개되어 있어, 이를 활용하면 <strong>기존 사전학습 LLM의 컨텍스트 창을 손쉽게 확장</strong>해볼 수 있다. 아래 예시는 base 4k 컨텍스트를 가진 모델을 LongRoPE로 확장하여 <strong>2048k (약 210만) 토큰 컨텍스트</strong>로 늘리는 과정을 보여준다.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 설정: 모델 차원 및 목표 컨텍스트 길이 정의</span>
 
-<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/dataset&quot;</span>  
-<span class="n">d_model</span> <span class="o">=</span> <span class="mi">512</span>  
-<span class="n">n_heads</span> <span class="o">=</span> <span class="mi">8</span>  
-<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">6</span>  
-<span class="n">base_length</span> <span class="o">=</span> <span class="mi">4096</span> <span class="c1"># 기존 모델의 최대 컨텍스트 길이 (4k)  </span>
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/dataset&quot;</span>
+<span class="n">d_model</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">n_heads</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">base_length</span> <span class="o">=</span> <span class="mi">4096</span> <span class="c1"># 기존 모델의 최대 컨텍스트 길이 (4k)</span>
 <span class="n">target_length</span> <span class="o">=</span> <span class="mi">2048</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1"># 목표 컨텍스트 길이 (2048k, 약 210만 토큰)</span>
 
 <span class="c1"># 2. 데이터 로드 및 LongRoPE 모델 초기화</span>
 
-<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>  
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
 <span class="n">model</span> <span class="o">=</span> <span class="n">LongRoPEModel</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_heads</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">base_length</span><span class="p">)</span>
 
 <span class="c1"># 3. LongRoPE를 통해 컨텍스트 창 확장</span>
@@ -790,8 +790,8 @@ document.write(`
 
 <span class="c1"># 4. 확장된 모델 테스트: target_length 길이의 임의 입력 처리</span>
 
-<span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">target_length</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>  
-<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>  
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">target_length</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># 예상 출력 형태: (batch_size, target_length, d_model)</span>
 </pre></div>
 </div>
@@ -819,14 +819,14 @@ document.write(`
 <section id="haystack-rag-qa">
 <h4><strong><em>4.2.1 실습: Haystack를 활용한 RAG 기반 QA 파이프라인</em></strong><a class="headerlink" href="#haystack-rag-qa" title="Link to this heading">#</a></h4>
 <p>현업에서는 RAG를 구현하기 위해 <strong>Haystack</strong>과 같은 오픈소스 프레임워크를 널리 활용합니다. Haystack은 <strong>유연한 파이프라인 구성</strong>을 통해 <strong>문서 저장소 + 검색기 + 읽기/생성 모델</strong>로 이루어진 <strong>엔드투엔드 QA 시스템</strong>을 손쉽게 구축할 수 있게 해줍니다. 아래는 간단한 문서 기반 QA 파이프라인 예제입니다. 하나의 문서를 인메모리 문서저장소에 넣고, BM25 기반 <strong>Retriever</strong>와 사전학습된 <strong>Reader</strong> 모델로부터 답을 추출하는 과정을 보여줍니다.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>  
-<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Retriever&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Query&quot;</span><span class="p">])</span>  
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Retriever&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Query&quot;</span><span class="p">])</span>
 <span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reader&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retriever&quot;</span><span class="p">])</span>
 
 <span class="c1"># 4) QA 실행</span>
 
-<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;오징어 게임 감독이 누구야?&quot;</span>  
-<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Retriever&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;Reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}})</span>  
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;오징어 게임 감독이 누구야?&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Retriever&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;Reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}})</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;answers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1017,7 +1017,7 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 서론: 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1 킬로바이트에서 메가바이트로 – 컨텍스트의 양적 도약</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 2025년 플래그십 모델들의 역량</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 새로운 개발자 패러다임: 단순 질의응답을 넘어서</a></li>
