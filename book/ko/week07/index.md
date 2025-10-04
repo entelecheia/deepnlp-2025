@@ -1,6 +1,6 @@
-# Week 7: LLM의 새로운 지평 – 초장문 컨텍스트(Ultra-Long Context) 혁명
+# Week 7: 초장문맥 처리와 효율적 추론
 
-## 1. 서론: 컨텍스트 창(Context Window)의 패러다임 전환
+## 1. 컨텍스트 창(Context Window)의 패러다임 전환
 
 지난 몇 년간 자연어 처리(NLP) 분야는 대규모 언어 모델(Large Language Models, LLMs)의 발전으로 인해 급격한 변화를 겪어왔다. 이러한 발전의 중심에는 모델이 한 번에 처리하고 참조할 수 있는 정보의 양, 즉 '컨텍스트 창'의 확장이 자리하고 있다. **2025년을 기점으로, 우리는 단순히 점진적인 개선을 넘어선, LLM의 활용 방식을 재정의하는 '초장문 컨텍스트 혁명'의 시대에 진입**했다. 본 강의에서는 이 혁명을 이끄는 핵심 기술, 최신 플래그십 모델, 그리고 이로 인해 파생되는 새로운 패러다임과 현실적인 과제들을 심층적으로 탐구한다.
 
@@ -87,22 +87,22 @@ LLM의 초기 발전 단계에서 컨텍스트 창은 모델의 가장 큰 제�
 Hugging Face의 🤗 Transformers 라이브러리는 FlashAttention을 긴밀하게 통합하여, **모델 로드 시 attn_implementation 인자 하나만으로** 간단하게 활성화할 수 있습니다. 이를 통해 기존 코드를 거의 변경하지 않으면서도 **상당한 추론 속도 및 메모리 효율성 개선**을 얻을 수 있습니다. 아래는 FlashAttention-3를 지원하는 예시 모델을 로드할 때 표준 어텐션과 FlashAttention을 선택적으로 사용하는 방법입니다:
 
 ```python
-import torch  
+import torch
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 # GPU가 Hopper 아키텍처 이상이고, flash-attn 라이브러리가 설치되어 있다고 가정
 
-device = "cuda" if torch.cuda.is_available() else "cpu"  
+device = "cuda" if torch.cuda.is_available() else "cpu"
 model_id = "openai/gpt-oss-20b" # FlashAttention-3를 지원하는 예시 모델 ID
 
 # 1. 기본 어텐션 구현으로 모델 로드
 
-tokenizer = AutoTokenizer.from_pretrained(model_id)  
-model_eager = AutoModelForCausalLM.from_pretrained(  
- model_id,  
- torch_dtype=torch.bfloat16,  
- device_map="auto"  
-)  
+tokenizer = AutoTokenizer.from_pretrained(model_id)
+model_eager = AutoModelForCausalLM.from_pretrained(
+ model_id,
+ torch_dtype=torch.bfloat16,
+ device_map="auto"
+)
 print("Model with standard attention loaded.")
 
 # 2. FlashAttention-3 구현으로 모델 로드
@@ -111,26 +111,26 @@ print("Model with standard attention loaded.")
 
 # 해당 커널은 'kernels' 패키지를 통해 허브에서 자동 다운로드됩니다.
 
-try:  
- model_flash = AutoModelForCausalLM.from_pretrained(  
- model_id,  
- torch_dtype=torch.bfloat16,  
- device_map="auto",  
- attn_implementation="kernels-community/vllm-flash-attn3" # FlashAttention-3 활성화  
- )  
- print("Model with FlashAttention-3 loaded successfully.")  
- print("Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).")  
-except ImportError:  
- print("FlashAttention is not installed or the environment does not support it.")  
-except Exception as e:  
+try:
+ model_flash = AutoModelForCausalLM.from_pretrained(
+ model_id,
+ torch_dtype=torch.bfloat16,
+ device_map="auto",
+ attn_implementation="kernels-community/vllm-flash-attn3" # FlashAttention-3 활성화
+ )
+ print("Model with FlashAttention-3 loaded successfully.")
+ print("Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).")
+except ImportError:
+ print("FlashAttention is not installed or the environment does not support it.")
+except Exception as e:
  print(f"An error occurred while loading with FlashAttention: {e}")
 ```
 
 **실행 결과 예시:**
 
 ```
-Model with standard attention loaded.  
-Model with FlashAttention-3 loaded successfully.  
+Model with standard attention loaded.
+Model with FlashAttention-3 loaded successfully.
 Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).
 ```
 
@@ -234,16 +234,16 @@ LongRoPE 방법론의 오픈 소스 구현이 공개되어 있어, 이를 활용
 ```python
 # 1. 설정: 모델 차원 및 목표 컨텍스트 길이 정의
 
-data_path = "path/to/your/dataset"  
-d_model = 512  
-n_heads = 8  
-num_layers = 6  
-base_length = 4096 # 기존 모델의 최대 컨텍스트 길이 (4k)  
+data_path = "path/to/your/dataset"
+d_model = 512
+n_heads = 8
+num_layers = 6
+base_length = 4096 # 기존 모델의 최대 컨텍스트 길이 (4k)
 target_length = 2048 * 1024 # 목표 컨텍스트 길이 (2048k, 약 210만 토큰)
 
 # 2. 데이터 로드 및 LongRoPE 모델 초기화
 
-data = load_data(data_path)  
+data = load_data(data_path)
 model = LongRoPEModel(d_model, n_heads, num_layers, base_length)
 
 # 3. LongRoPE를 통해 컨텍스트 창 확장
@@ -252,8 +252,8 @@ model = model.extend_context(data, target_length)
 
 # 4. 확장된 모델 테스트: target_length 길이의 임의 입력 처리
 
-input_ids = torch.randn(2, target_length, d_model)  
-output = model(input_ids)  
+input_ids = torch.randn(2, target_length, d_model)
+output = model(input_ids)
 print(output.shape) # 예상 출력 형태: (batch_size, target_length, d_model)
 ```
 
@@ -288,14 +288,14 @@ print(output.shape) # 예상 출력 형태: (batch_size, target_length, d_model)
 현업에서는 RAG를 구현하기 위해 **Haystack**과 같은 오픈소스 프레임워크를 널리 활용합니다. Haystack은 **유연한 파이프라인 구성**을 통해 **문서 저장소 + 검색기 + 읽기/생성 모델**로 이루어진 **엔드투엔드 QA 시스템**을 손쉽게 구축할 수 있게 해줍니다. 아래는 간단한 문서 기반 QA 파이프라인 예제입니다. 하나의 문서를 인메모리 문서저장소에 넣고, BM25 기반 **Retriever**와 사전학습된 **Reader** 모델로부터 답을 추출하는 과정을 보여줍니다.
 
 ```python
-pipeline = Pipeline()  
-pipeline.add_node(component=retriever, name="Retriever", inputs=["Query"])  
+pipeline = Pipeline()
+pipeline.add_node(component=retriever, name="Retriever", inputs=["Query"])
 pipeline.add_node(component=reader, name="Reader", inputs=["Retriever"])
 
 # 4) QA 실행
 
-query = "오징어 게임 감독이 누구야?"  
-result = pipeline.run(query=query, params={"Retriever": {"top_k": 5}, "Reader": {"top_k": 1}})  
+query = "오징어 게임 감독이 누구야?"
+result = pipeline.run(query=query, params={"Retriever": {"top_k": 5}, "Reader": {"top_k": 1}})
 print(result['answers'][0].answer)
 ```
 
@@ -458,4 +458,3 @@ Haystack의 강력한 점은 이처럼 **구성 요소를 교체하거나 확장
 29. Evidently AI (2025). _10 LLM coding benchmarks_. (Accessed Sep. 30, 2025)
 
 30. Li et al. (2025). _LONGCODEU: Benchmarking Long-Context LMs on Long Code Understanding_. ACL Anthology
-
