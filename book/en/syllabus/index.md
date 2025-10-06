@@ -32,16 +32,16 @@ This course is designed for third-year undergraduate level and assumes completio
 
 ## Course Schedule
 
-| Week | Main Topics and Keywords                                                                                                                 | Key Hands-on/Assignments                                                                           |
-| :--: | :---------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------- |
-|  1   | **Transformer and Next-Generation Architectures**<br/>• Self-Attention Mechanism and Limitations<br/>• **Mamba (Selective State Space Model)**<br/>• **RWKV (RNN-Transformer Hybrid)**<br/>• **Jamba (MoE-based Transformer+Mamba)** | **NVIDIA NGC Container Environment Setup**<br/>**Hugging Face Transformers Practice**<br/>**Mamba vs Transformer Performance Comparison Experiment** |
-|  2   | **PyTorch 2.x and Latest Deep Learning Frameworks**<br/>• **torch.compile and Compiler Revolution**<br/>• **FlashAttention-3 Hardware Acceleration**<br/>• **AI Agent Frameworks** (DSPy, Haystack, CrewAI, LangGraph) | **torch.compile Performance Optimization Practice**<br/>**FlashAttention-3 Implementation and Comparison**<br/>**AI Agent System Construction** |
-|  3   | **Modern PEFT Techniques for Efficient Fine-tuning**<br/>• **LoRA (Low-Rank Adaptation)**<br/>• **DoRA (Weight-Decomposed LoRA)**<br/>• **QLoRA (4-bit Quantization + LoRA)**<br/>• **VB-LoRA, WaveFT and Latest Techniques** | **PEFT Method Comparison Experiment**<br/>**LoRA/DoRA/QLoRA Performance Evaluation through Korean Sentiment Analysis**<br/>**Memory Efficiency and Inference Speed Analysis** |
-|  4   | **Advanced Prompt Techniques and Optimization**<br/>• **Systematic Prompt Techniques** (Role Assignment, Structured Prompting)<br/>• **Self-Consistency and Tree of Thoughts**<br/>• **DSPy Framework** (Declarative Prompt Programming)<br/>• **Automatic Prompt Optimization (APE)** | **DSPy-based Automatic Prompt Optimization**<br/>**Self-Consistency Decoding Implementation**<br/>**Tree of Thoughts Problem Solving Practice** |
-|  5   | **LLM Evaluation Paradigms and Benchmarks**<br/>• **Limitations of Traditional Metrics** (BLEU/ROUGE vs Meaning-based Evaluation)<br/>• **LLM-as-a-Judge** (GPTScore, G-Eval, FLASK)<br/>• **Specialized Benchmarks** (LiveCodeBench, MMLU-Pro)<br/>• **Domain-specific Benchmarks** (FinBen, AgentHarm, LEXam) | **BLEU/ROUGE vs G-Eval Comparison Experiment**<br/>**GPTScore Implementation and Evaluation**<br/>**FLASK Multi-dimensional Evaluation System Construction** |
-|  6   | Seq2Seq Applications and **Multimodal Integration** – SmolVLM2, Qwen 2.5 Omni, Speech-Text Models                                                       | Multimodal Application Development Assignment 2                                                        |
-|  7   | Large-scale Models and Few-shot Learning<br/>**Ultra-long Context Processing Technology** (1M+ tokens)                                                                | Long Context Processing Strategy Comparison Practice                                                               |
-|  8   | **Next-generation PEFT** – WaveFT, DoRA, VB-LoRA, QLoRA, etc. Latest Techniques                                                                         | Performance Comparison Experiments of Various PEFT Techniques                                                          |
+| Week | Main Topics and Keywords | Key Hands-on/Assignments |
+| :--: | :---------------------- | :------------------------ |
+|  1   | **Transformer and Next-Generation Architectures**<br/>• Self-Attention Mechanism and Limitations<br/>• **Mamba (SSM)**, **RWKV**, **Jamba** | **Transformer Component Implementation**<br/>**Mamba vs Transformer Performance Comparison**<br/>**Architecture Complexity Analysis** |
+|  2   | **PyTorch 2.x and Latest Deep Learning Frameworks**<br/>• **torch.compile Compiler Revolution**<br/>• **FlashAttention-3 Hardware Acceleration**<br/>• **AI Agent Frameworks** | **torch.compile Performance Optimization**<br/>**FlashAttention-3 Implementation**<br/>**AI Agent Framework Comparison** |
+|  3   | **Modern PEFT Techniques for Efficient Fine-tuning**<br/>• **LoRA**, **DoRA**, **QLoRA**<br/>• **Advanced PEFT Techniques** | **PEFT Method Comparison Experiment**<br/>**LoRA/DoRA/QLoRA Performance Evaluation**<br/>**Memory Efficiency Analysis** |
+|  4   | **Advanced Prompt Techniques and Optimization**<br/>• **Prompt Engineering Fundamentals**<br/>• **Self-Consistency**, **Tree of Thoughts**<br/>• **DSPy Framework** | **DSPy-based Automatic Prompt Optimization**<br/>**Self-Consistency Implementation**<br/>**Tree of Thoughts Problem Solving** |
+|  5   | **LLM Evaluation Paradigms and Benchmarks**<br/>• **Evaluation Paradigm Evolution**<br/>• **LLM-as-a-Judge** (GPTScore, G-Eval, FLASK)<br/>• **Specialized and Domain-specific Benchmarks** | **G-Eval Implementation**<br/>**Benchmark Comparison Experiment**<br/>**Evaluation Bias Analysis** |
+|  6   | **Multimodal NLP Advancements**<br/>• **Vision-Language Models** (LLaVA, MiniGPT-4, Qwen-2.5-Omni)<br/>• **Visual Reasoning** (QVQ-Max)<br/>• **Speech Integration** | **Multimodal QA Application Development**<br/>**Vision-Language Model Comparison**<br/>**End-to-end Multimodal System** |
+|  7   | **Ultra-Long Context Processing and Efficient Inference**<br/>• **Context Window Revolution** (1M+ tokens)<br/>• **Attention Mechanism Optimization**<br/>• **LongRoPE and RAG Integration** | **FlashAttention-3 Integration**<br/>**Long Context Processing Comparison**<br/>**Performance Analysis** |
+|  8   | **Core Review and Latest Trends**<br/>• **Architecture Review**<br/>• **Latest Model Trends** (GPT-5, Gemini 2.5 Pro, Claude 4.1)<br/>• **Industry Applications** | **Comprehensive Review**<br/>**Model Comparison**<br/>**Industry Case Analysis** |
 |  9   | **Advanced RAG Systems** – HippoRAG, GraphRAG, Hybrid Search Strategies                                                                      | Assignment 3: Building **Korean Enterprise Search System** based on GraphRAG                           |
 |  10  | **Innovation in Alignment Techniques** – DPO, Constitutional AI, Process Reward Models                                                                | Comparison Practice between DPO and Existing RLHF Techniques                                                           |
 |  11  | **Production Agent Systems** – CrewAI, Mirascope, Type-Safety Development                                                                | Multi-agent Orchestration Implementation                                                         |
@@ -52,130 +52,131 @@ This course is designed for third-year undergraduate level and assumes completio
 
 ## Weekly Educational Content
 
-### Week 1 – Latest Trends in Generative AI
+### Week 1 – Transformer and Next-Generation Architectures
 
 #### Core Topics
 
-- **Development History of LLMs and Latest Model Introduction**: Features and performance comparison of latest models such as GPT-5, Gemini 2.5 Pro, Claude 4.1 Opus
-- **Limitations of Transformer Architecture**: O(n²) complexity problems and difficulties in long sequence processing
-- **Overview of New Architectures**: Innovative approaches replacing Transformer such as Mamba, RWKV
+- **Transformer Architecture**: Self-attention mechanism, encoder-decoder structure, computational complexity $O(N^2)$
+- **Mamba Architecture**: Selective State Space Model (SSM), linear time complexity $O(N)$, hardware optimization through selective mechanisms
+- **RWKV Architecture**: RNN-Transformer hybrid, parallel training capability, infinite context processing
+- **Jamba Architecture**: Hybrid Transformer-Mamba with Mixture-of-Experts (MoE), long context window support, efficiency optimization
 
 #### Hands-on/Activities
 
-- **Environment Setup**: PyTorch/Conda development environment configuration, Hugging Face Transformers installation
-- **Key Hands-on**: Simple Q&A demo using Hugging Face pipeline
-- **Comparison Experiment**: Response quality and speed comparison between Transformer-based and latest models
+- **Core Practice**: Implement basic Transformer components (multi-head self-attention, positional encoding) and compare with Mamba's selective state space mechanisms
+- **Architecture Comparison**: Analyze computational complexity and memory usage differences between Transformer ($O(N^2)$) and Mamba ($O(N)$)
+- **Performance Evaluation**: Benchmark different architectures on sequence modeling tasks, focusing on long-range dependency learning
 
-### Week 2 – Tool Learning for Deep Learning NLP
+### Week 2 – PyTorch 2.x and Latest Deep Learning Frameworks
 
 #### Core Topics
 
-- **PyTorch Basics**: Core concepts of deep learning framework such as tensor operations and automatic differentiation
-- **Hugging Face Transformers**: Usage of pre-trained models and pipeline usage
-- **FlashAttention-3**: Large batch processing acceleration technique (~2× speed improvement on H100 GPU)
-- **NLP Ecosystem Tools**: Introduction to specialized frameworks such as DSPy, Haystack, CrewAI
+- **PyTorch 2.x Revolution**: `torch.compile` compiler revolution, TorchDynamo, AOTAutograd, PrimTorch, TorchInductor
+- **FlashAttention-3**: Hardware acceleration with tiling, TMA, WGMMA, FP8 support, ~2× speed improvement on H100 GPU
+- **Hugging Face Transformers Ecosystem**: Model support, quantization, Zero-Build Kernels, `pipeline` API
+- **AI Agent Frameworks**: LangGraph, CrewAI, LlamaIndex, Haystack, DSPy for building intelligent agent systems
 
 #### Hands-on/Activities
 
-- **Key Hands-on**: Load pre-trained language models (BERT) and latest SSM (Mamba) models respectively, apply to Korean classification tasks
-- **Performance Comparison**: Performance and efficiency comparison analysis on identical Korean datasets
+- **Core Practice**: Implement `torch.compile` performance optimization and FlashAttention-3 integration
+- **Framework Comparison**: Compare different AI agent frameworks (LangGraph vs CrewAI vs DSPy) for specific use cases
+- **Performance Benchmarking**: Measure speed improvements and memory efficiency gains from latest optimizations
 
-### Week 3 – Efficient Fine-tuning (PEFT) Techniques
-
-#### Core Topics
-
-- **Parameter-Efficient Fine-tuning**: Lightweight techniques that achieve 95% or more performance with <1% parameters compared to full fine-tuning
-- **Latest PEFT Methodologies**:
-  - _WaveFT_: Improve efficiency by sparsifying parameter updates in **frequency domain (Wavelet)**
-  - _DoRA_: Adaptive fine-tuning through **weight decomposition** (fine-grained representation learning)
-  - _VB-LoRA_: **Vector bank-based LoRA** extension for multi-user·task environments
-  - _QR-Adaptor_: Adapter technique that simultaneously optimizes **quantization (Q)** bitwidth and LoRA rank (R)
-- **Model Lightweighting Trends**: 4-bit quantization format NF4 (NormalFloat4) becoming the de facto standard for QLoRA, reducing 7B models from 10GB→1.5GB memory
-
-#### Hands-on/Assignment
-
-- **Programming Assignment 1**: Perform fine-tuning experiments on the same Korean dataset using LoRA, DoRA, WaveFT methods respectively, and compare and analyze fine-tuning efficiency and performance retention rates
-
-### Week 4 – Scientific Prompt Engineering
+### Week 3 – Efficient Fine-tuning with Modern PEFT Techniques
 
 #### Core Topics
 
-- **Systematic Prompt Design**: Systematically learn effective prompt design techniques
-- **Various Prompt Strategies**: Core techniques that contributed to performance improvement such as role instruction and step-by-step questioning
-- **Core Technique Deep Dive**:
-  - _Self-Consistency_: Improve accuracy through **multiple solution path exploration** in math problem solving (+17%p improvement on GSM8K benchmark)
-  - _Tree-of-Thoughts_: Solve difficult problems through **expansion of thinking** (24 game success rate 9%→74%)
-  - _DSPy Framework_: Methodology that automatically generates/combines optimal prompts by "**programming** prompts like code"
-  - _Automatic Prompt Engineering (APE)_: Cases such as achieving **93% accuracy** on GSM8K through algorithmic prompt optimization
+- **PEFT Fundamentals**: Parameter-Efficient Fine-Tuning techniques that achieve 95%+ performance with <1% parameters
+- **LoRA (Low-Rank Adaptation)**: Decompose weight matrices into low-rank form, learn only small rank matrices
+- **DoRA (Weight-Decomposed LoRA)**: Adaptive fine-tuning through weight decomposition for fine-grained representation learning
+- **QLoRA**: 4-bit quantization + LoRA, enabling 65B model fine-tuning on single 48GB GPU
+- **Advanced PEFT**: NF4 quantization, double quantization, VB-LoRA, QR-Adaptor techniques
 
 #### Hands-on/Activities
 
-- **Key Hands-on**: Build **prompt optimization pipeline** using **DSPy**
-- **Comparison Analysis**: Automatically generate various prompts using DSPy for given problems and compare performance with manual prompts
+- **Core Practice**: Implement LoRA, DoRA, and QLoRA fine-tuning on Korean sentiment analysis dataset
+- **Performance Comparison**: Compare memory usage, training speed, and final performance across different PEFT methods
+- **Efficiency Analysis**: Measure parameter reduction ratios and performance retention rates
 
-### Week 5 – Latest AI Evaluation Systems
+### Week 4 – Advanced Prompting Techniques and Optimization
 
 #### Core Topics
 
-- **Paradigm Shifts in Evaluation**: Beyond traditional answer-matching evaluation, meta-evaluation using LLMs and experimental benchmarks have emerged
-- **New Evaluation Techniques and Benchmarks**:
-  - _G-Eval_: **GPT-4-based meta-evaluation** – Automated quality evaluation where LLMs evaluate other LLMs' responses using chain-of-thought
-  - _LiveCodeBench_: Automatic code evaluation adopting **online code execution contest format** – Answer verification through test case execution (data contamination prevention)
-  - _MMMU_: **Multimodal university-level exam** – **Large-scale multidisciplinary evaluation** set consisting of 11,500 problems across 6 fields and 30 subjects
-  - _OmniBench_: **Triple multimodal evaluation** – First **Tri-modal integrated benchmark** measuring ability to understand and reason with images·audio·text **simultaneously**
-  - _Humanity's Last Exam (HLE)_: **Comprehensive exam of 2500 questions** created by human experts – **Final exam** testing limitations of existing AI across broad fields including mathematics, humanities, and science
-- **Domain-specific Specialized Benchmarks**: **SWE-Bench Verified** (500 verified problems for **software problem solving** based on actual GitHub issues), etc.
+- **Prompt Engineering Fundamentals**: Role prompting, structured prompting, few-shot vs zero-shot techniques
+- **Self-Consistency**: Multiple solution path exploration for improved accuracy (+17% improvement on GSM8K)
+- **Tree of Thoughts**: Deliberate problem solving through thought expansion (24 game success rate 9%→74%)
+- **DSPy Framework**: Declarative Self-Improving Python, Signature, Module, Optimizer for automated prompt optimization
+- **Automated Prompt Engineering**: APE, OPRO techniques for algorithmic prompt optimization
 
 #### Hands-on/Activities
 
-- **Key Hands-on**: Apply **LLM-based evaluation** techniques such as G-Eval to identical responses with existing automatic evaluation metrics (BLEU, ROUGE, etc.) and compare evaluation results
+- **Core Practice**: Implement DSPy-based automatic prompt optimization pipeline
+- **Technique Comparison**: Compare Self-Consistency, Tree of Thoughts, and automated prompt engineering approaches
+- **Performance Evaluation**: Measure accuracy improvements across different prompting strategies on reasoning tasks
 
-### Week 6 – Innovation in Multimodal NLP
-
-#### Core Topics
-
-- **"Any-to-Any" Multimodal Models**: Technology where single models receive various forms of input such as text, images, and audio and generate various forms of output
-- **Representative Cases**:
-  - _SmolVLM2_ (small 200M-2.2B parameters): Next-generation Vision-Language model that performs **video understanding** with lightweight models
-  - _Qwen 2.5 Omni_: Alibaba's multimodal LLM that **integrates conversion** of text·image·audio (supporting all modal input/output with one model)
-  - _QVQ-Max_ (formerly QVQ-72B): **Visual reasoning specialized ultra-large model** – 72B scale open-source vision-language model that understands image content and performs reasoning
-  - _Real-time multimodal streaming_: Emergence of multimodal LLMs supporting **streaming input/output**
-- **Integration of Speech Technology and LLM**:
-  - _Voxtral_: Open-source **speech recognition** model with performance exceeding OpenAI Whisper (Realtime ASR)
-  - _Orpheus_: TTS supporting **zero-shot speaker synthesis** – Learn speaker voice characteristics with one sentence, read arbitrary sentences
-
-#### Hands-on/Assignment
-
-- **Programming Assignment 2**: Develop **multimodal QA application** responding to image·text·audio mixed input. For example, implement so that when users ask questions with voice, the model finds related images and generates answers combining visual information and text
-
-### Week 7 – Ultra-long Context Processing and Efficient Reasoning
+### Week 5 – LLM Evaluation Paradigms and Benchmarks
 
 #### Core Topics
 
-- **Ultra-long Context (Long Context) Support**: Models capable of processing extremely long context windows (millions of tokens) have emerged, maintaining consistency in long document summarization and long-term conversations
-- **Representative Cases**:
-  - _Gemini 2.5 Pro_: Google's next-generation large multimodal model capable of processing up to **million-unit tokens** (enhanced reasoning ability and multimodal understanding compared to previous generation Gemini; research prototype targets 10 million tokens)
-  - _Magic LTM-2-Mini_: Experimental model implementing **100 million token** scale context window with economical structure – Ultra-long context processing at 1/1000 cost level compared to Llama at same performance
-- **Efficient Long Context Implementation Mechanisms**: Compare various techniques solving memory and speed problems such as Flash **Linear Attention**, **LongRoPE** (long context positional encoding)
+- **Evaluation Paradigm Evolution**: Traditional metrics (BLEU/ROUGE) vs meaning-based evaluation (BERTScore/BLEURT) vs LLM-as-a-Judge
+- **LLM-as-a-Judge**: GPTScore, G-Eval, FLASK frameworks for automated evaluation using LLMs
+- **Specialized Purpose Benchmarks**: LiveCodeBench, EvalPlus, HELM-Code, MMLU-Pro, GPQA, BBH
+- **Domain-Specific Benchmarks**: FinBen, AgentHarm, LEXam, CSEDB, MATH, GSM8K
+- **Evaluation Bias and Limitations**: Narcissistic bias, verbosity bias, inconsistency, differences from human evaluation
 
 #### Hands-on/Activities
 
-- **Key Hands-on**: Implement **RAG-based summarization system** for long context scenarios and compare summarization accuracy and speed with ultra-long context LLMs (Gemini, etc.). (Example: Q&A or summarization of documents of dozens of pages)
+- **Core Practice**: Implement G-Eval and other LLM-based evaluation techniques
+- **Benchmark Comparison**: Compare traditional metrics (BLEU/ROUGE) with LLM-as-a-Judge approaches on identical responses
+- **Bias Analysis**: Analyze evaluation biases and limitations in different evaluation paradigms
 
-### Week 8 – Core Review and Hands-on Reinforcement of Weeks 1-7
+### Week 6 – Multimodal NLP Advancements
 
 #### Core Topics
 
-- Considering **midterm exam period**, organize and enhance understanding of core concepts learned in the previous 7 weeks
-- **Key Topic Summary**: Organize key topics such as Transformer and SSM architectures, PyTorch utilization and FlashAttention optimization, latest PEFT techniques, prompt engineering, LLM evaluation methods, multimodal integration by team assignment in presentation format
-- **Team-based Activities**:
-  - _Quiz League_: Reconfirm key concepts by solving **review quizzes** alternately set by each team while competing and discussing
-  - _Mini Project Redesign_: Select one of the assignments or hands-on activities performed in the first half and attempt **reimplementation with new approaches** or performance improvement (e.g., solving same task with different model architectures)
+- **Multimodal Integration**: Text, image, audio, and video processing in unified models
+- **Vision-Language Models**: LLaVA, MiniGPT-4, Qwen-2.5-Omni for comprehensive multimodal understanding
+- **Visual Reasoning**: QVQ-Max specialized for visual reasoning and logical context understanding
+- **Speech Integration**: Voxtral for speech recognition, Orpheus for zero-shot speaker synthesis
+- **Real-time Multimodal Streaming**: Streaming input/output capabilities in multimodal LLMs
 
 #### Hands-on/Activities
 
-- **Key Hands-on**: Conduct team quiz solving and result sharing, **presentation and feedback sessions** on improved hands-on results
-- **Midterm exam score feedback** and future learning direction review
+- **Core Practice**: Implement multimodal QA application with image, text, and audio input
+- **Model Comparison**: Compare different vision-language models (LLaVA vs MiniGPT-4 vs Qwen-2.5-Omni)
+- **Integration Challenge**: Build end-to-end multimodal system with voice input, image analysis, and text generation
+
+### Week 7 – Ultra-Long Context Processing and Efficient Inference
+
+#### Core Topics
+
+- **Context Window Revolution**: From kilobytes to megabytes - quantitative leap in context processing capabilities
+- **2025 Flagship Models**: GPT-5, Gemini 2.5 Pro (1M tokens), Claude Sonnet 4 (1M tokens), Llama 4 (10M tokens), LTM-2-Mini (100M tokens)
+- **Attention Mechanism Optimization**: FlashAttention I/O bottleneck optimization, Linear Attention approximation, Ring Attention distributed processing
+- **Positional Encoding Extension**: LongRoPE for extending context windows beyond 2M tokens with minimal fine-tuning
+- **RAG vs Ultra-Long Context**: Integration paradigms, HippoRAG as long-term memory system
+
+#### Hands-on/Activities
+
+- **Core Practice**: Implement FlashAttention-3 integration and LongRoPE context extension
+- **RAG vs Long Context**: Compare RAG-based summarization with ultra-long context LLMs on long documents
+- **Performance Analysis**: Measure cost, latency, and accuracy trade-offs in long context processing
+
+### Week 8 – Core Review and Latest Trends
+
+#### Core Topics
+
+- **Architecture Review**: Transformer vs SSM architectures, computational complexity analysis, performance trade-offs
+- **Optimization Techniques**: FlashAttention optimization, PEFT methods (LoRA, DoRA, QLoRA), efficiency improvements
+- **Advanced Techniques**: Prompt engineering, LLM evaluation paradigms, multimodal integration, long context processing
+- **Latest Model Trends**: GPT-5, Gemini 2.5 Pro, Claude 4.1, Qwen 2.5 series - comprehensive model comparison
+- **Industry Applications**: Medical, legal, financial field applications, real-world deployment considerations
+
+#### Hands-on/Activities
+
+- **Core Practice**: Comprehensive review of key concepts through hands-on reinforcement
+- **Model Comparison**: Compare latest models across different dimensions (performance, cost, capabilities)
+- **Industry Case Analysis**: Analyze real-world applications and deployment strategies
 
 ### Week 9 – Advanced RAG Architectures
 
