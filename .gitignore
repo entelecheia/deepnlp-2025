@@ -35,3 +35,6 @@ pytest-coverage.*
 
 # UV lock file
 uv.lock
+
+# Cursor
+.cursor
