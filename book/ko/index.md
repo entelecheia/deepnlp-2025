@@ -32,23 +32,23 @@
 
 ## 강의 계획
 
-| 주차 | 주요 주제 및 키워드                                                                                                                                          | 핵심 실습/과제                                                                                      |
-| :--: | :----------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------- |
-|  1   | **Transformer 및 차세대 아키텍처**<br/>• Self-Attention 메커니즘과 한계<br/>• **Mamba (SSM)**, **RWKV**, **Jamba**                                           | **Transformer 컴포넌트 구현**<br/>**Mamba vs Transformer 성능 비교**<br/>**아키텍처 복잡도 분석**   |
-|  2   | **PyTorch 2.x와 최신 딥러닝 프레임워크**<br/>• **torch.compile 컴파일러 혁명**<br/>• **FlashAttention-3 하드웨어 가속**<br/>• **AI 에이전트 프레임워크**     | **torch.compile 성능 최적화**<br/>**FlashAttention-3 구현**<br/>**AI 에이전트 프레임워크 비교**     |
-|  3   | **현대적 PEFT 기법을 활용한 효율적 파인튜닝**<br/>• **LoRA**, **DoRA**, **QLoRA**<br/>• **고급 PEFT 기법**                                                   | **PEFT 방법 비교 실험**<br/>**LoRA/DoRA/QLoRA 성능 평가**<br/>**메모리 효율성 분석**                |
-|  4   | **고급 프롬프트 기법과 최적화**<br/>• **프롬프트 엔지니어링 기초**<br/>• **Self-Consistency**, **Tree of Thoughts**<br/>• **DSPy 프레임워크**                | **DSPy 기반 자동 프롬프트 최적화**<br/>**Self-Consistency 구현**<br/>**Tree of Thoughts 문제 해결** |
-|  5   | **LLM 평가 패러다임과 벤치마크**<br/>• **평가 패러다임 진화**<br/>• **LLM-as-a-Judge** (GPTScore, G-Eval, FLASK)<br/>• **특수 목적 및 도메인 특화 벤치마크** | **G-Eval 구현**<br/>**벤치마크 비교 실험**<br/>**평가 편향 분석**                                   |
-|  6   | **멀티모달 NLP 발전**<br/>• **비전-언어 모델** (LLaVA, MiniGPT-4, Qwen-2.5-Omni)<br/>• **시각적 추론** (QVQ-Max)<br/>• **음성 통합**                         | **멀티모달 QA 애플리케이션 개발**<br/>**비전-언어 모델 비교**<br/>**엔드투엔드 멀티모달 시스템**    |
-|  7   | **초장문맥 처리와 효율적 추론**<br/>• **문맥 윈도우 혁명** (100만+ 토큰)<br/>• **어텐션 메커니즘 최적화**<br/>• **LongRoPE 및 RAG 통합**                     | **FlashAttention-3 통합**<br/>**장문맥 처리 비교**<br/>**성능 분석**                                |
-|  8   | **핵심 복습 및 최신 동향**<br/>• **아키텍처 복습**<br/>• **최신 모델 동향** (GPT-5, Gemini 2.5 Pro, Claude 4.1)<br/>• **산업 응용**                          | **종합 복습**<br/>**모델 비교**<br/>**산업 사례 분석**                                              |
-|  9   | **고급 RAG 시스템** – HippoRAG, GraphRAG, 하이브리드 검색 전략                                                                                               | 과제 3: GraphRAG 기반 **한국어 엔터프라이즈 검색 시스템** 구축                                      |
-|  10  | **정렬 기법의 혁신** – DPO, Constitutional AI, Process Reward Models                                                                                         | DPO와 기존 RLHF 기법 비교 실습                                                                      |
-|  11  | **프로덕션 에이전트 시스템** – CrewAI, Mirascope, 타입-세이프티 개발                                                                                         | 멀티에이전트 오케스트레이션 구현                                                                    |
-|  12  | **AI 규제와 책임 있는 AI** – EU AI Act, 차등 프라이버시, 연합 학습                                                                                           | 규제 준수 AI 시스템 설계 과제                                                                       |
-|  13  | **최신 연구 동향** – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)                                                                        | 학생별 최신 논문 발표 및 종합 토론                                                                  |
-|  14  | 최종 프로젝트 개발 및 MLOps                                                                                                                                  | 팀별 프로토타입 구현 및 피드백 세션 **(산업 멘토 참여)**                                            |
-|  15  | 프로젝트 최종 발표 및 종합 평가                                                                                                                              | 팀별 발표, 강의 내용 총정리 및 미래 전망 토론                                                       |
+| 주차 | 주요 주제 및 키워드                                                                                                                          | 핵심 실습/과제                                                                          |
+| :--: | :------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------- |
+|  1   | Transformer 및 차세대 아키텍처<br/>• Self-Attention 메커니즘과 한계<br/>• Mamba (SSM), RWKV, Jamba                                           | Transformer 컴포넌트 구현<br/>Mamba vs Transformer 성능 비교<br/>아키텍처 복잡도 분석   |
+|  2   | PyTorch 2.x와 최신 딥러닝 프레임워크<br/>• torch.compile 컴파일러 혁명<br/>• FlashAttention-3 하드웨어 가속<br/>• AI 에이전트 프레임워크     | torch.compile 성능 최적화<br/>FlashAttention-3 구현<br/>AI 에이전트 프레임워크 비교     |
+|  3   | 현대적 PEFT 기법을 활용한 효율적 파인튜닝<br/>• LoRA, DoRA, QLoRA<br/>• 고급 PEFT 기법                                                       | PEFT 방법 비교 실험<br/>LoRA/DoRA/QLoRA 성능 평가<br/>메모리 효율성 분석                |
+|  4   | 고급 프롬프트 기법과 최적화<br/>• 프롬프트 엔지니어링 기초<br/>• Self-Consistency, Tree of Thoughts<br/>• DSPy 프레임워크                    | DSPy 기반 자동 프롬프트 최적화<br/>Self-Consistency 구현<br/>Tree of Thoughts 문제 해결 |
+|  5   | LLM 평가 패러다임과 벤치마크<br/>• 평가 패러다임 진화<br/>• LLM-as-a-Judge (GPTScore, G-Eval, FLASK)<br/>• 특수 목적 및 도메인 특화 벤치마크 | G-Eval 구현<br/>벤치마크 비교 실험<br/>평가 편향 분석                                   |
+|  6   | 멀티모달 NLP 발전<br/>• 비전-언어 모델 (LLaVA, MiniGPT-4, Qwen-2.5-Omni)<br/>• 시각적 추론 (QVQ-Max)<br/>• 음성 통합                         | 멀티모달 QA 애플리케이션 개발<br/>비전-언어 모델 비교<br/>엔드투엔드 멀티모달 시스템    |
+|  7   | 초장문맥 처리와 효율적 추론<br/>• 문맥 윈도우 혁명 (100만+ 토큰)<br/>• 어텐션 메커니즘 최적화<br/>• LongRoPE 및 RAG 통합                     | FlashAttention-3 통합<br/>장문맥 처리 비교<br/>성능 분석                                |
+|  8   | 핵심 복습 및 최신 동향<br/>• 아키텍처 복습<br/>• 최신 모델 동향 (GPT-5, Gemini 2.5 Pro, Claude 4.1)<br/>• 산업 응용                          | 종합 복습<br/>모델 비교<br/>산업 사례 분석                                              |
+|  9   | 고급 RAG 시스템 – HippoRAG, GraphRAG, 하이브리드 검색 전략                                                                                   | 과제 3: GraphRAG 기반 한국어 엔터프라이즈 검색 시스템 구축                              |
+|  10  | 정렬 기법의 혁신 – DPO, Constitutional AI, Process Reward Models                                                                             | DPO와 기존 RLHF 기법 비교 실습                                                          |
+|  11  | 프로덕션 에이전트 시스템 – CrewAI, Mirascope, 타입-세이프티 개발                                                                             | 멀티에이전트 오케스트레이션 구현                                                        |
+|  12  | AI 규제와 책임 있는 AI – EU AI Act, 차등 프라이버시, 연합 학습                                                                               | 규제 준수 AI 시스템 설계 과제                                                           |
+|  13  | 최신 연구 동향 – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)                                                            | 학생별 최신 논문 발표 및 종합 토론                                                      |
+|  14  | 최종 프로젝트 개발 및 MLOps                                                                                                                  | 팀별 프로토타입 구현 및 피드백 세션 (산업 멘토 참여)                                    |
+|  15  | 프로젝트 최종 발표 및 종합 평가                                                                                                              | 팀별 발표, 강의 내용 총정리 및 미래 전망 토론                                           |
 
 ## Table of Contents
 
