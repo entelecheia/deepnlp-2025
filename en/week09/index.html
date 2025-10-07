@@ -708,8 +708,108 @@ document.write(`
 <li><p><strong>Continuous Learning and Forgetting</strong>: In situations where new documents are added daily, applying HippoRAG approach, <strong>triples of new documents are periodically extracted</strong> to update knowledge graph index, and <strong>memory management policies</strong> are applied that remove old information from graphs or lower weights of edges with decreased importance. This maintains both <strong>update efficiency</strong> and <strong>search quality</strong>.</p></li>
 </ul>
 <p>The techniques we examined—<strong>HippoRAG</strong>, <strong>GraphRAG</strong>, <strong>Hybrid Search</strong>—serve as core elements of such large-scale systems, each responsible for <strong>long-term memory</strong>, <strong>relational reasoning</strong>, and <strong>search precision</strong>. Learners can gain deep insights by going beyond theoretical understanding of these architectures to <strong>directly implement and tune</strong> them through practice and projects.</p>
-<p><img alt="Advanced RAG Technique Comparison" src="../_images/advanced-rag-comparison.jpeg" />
-<em>Figure 9: Comparison of characteristics and application areas of HippoRAG, GraphRAG, and hybrid search</em></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Aspect</p></th>
+<th class="head"><p>HippoRAG</p></th>
+<th class="head"><p>GraphRAG</p></th>
+<th class="head"><p>Hybrid Search</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><strong>Core Approach</strong></p></td>
+<td><p>Biologically-inspired memory indexing using hippocampus theory</p></td>
+<td><p>Knowledge graph construction with community detection</p></td>
+<td><p>Combination of sparse (BM25) and dense (vector) search</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Data Structure</strong></p></td>
+<td><p>Knowledge graph with synopsis links (PHR connections)</p></td>
+<td><p>Hierarchical knowledge graph with community clusters</p></td>
+<td><p>Vector embeddings + inverted index</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Indexing Method</strong></p></td>
+<td><p>LLM-based OpenIE → Graph construction → Synopsis linking</p></td>
+<td><p>Entity/relationship extraction → Graph building → Community analysis</p></td>
+<td><p>Document embedding + keyword indexing</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Search Strategy</strong></p></td>
+<td><p>Query entity extraction → PPR graph traversal → Memory restoration</p></td>
+<td><p>Community summary selection → Map-reduce answering</p></td>
+<td><p>Parallel BM25 + vector search → Score fusion</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Memory Management</strong></p></td>
+<td><p>Pattern separation and completion (like hippocampus)</p></td>
+<td><p>Hierarchical summarization and clustering</p></td>
+<td><p>Static index with periodic updates</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Multi-hop Reasoning</strong></p></td>
+<td><p>✅ Excellent (single-step PPR traversal)</p></td>
+<td><p>✅ Good (community-based reasoning)</p></td>
+<td><p>❌ Limited (requires multiple queries)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Exact Match Capability</strong></p></td>
+<td><p>⚠️ Moderate (depends on entity extraction)</p></td>
+<td><p>⚠️ Moderate (depends on graph structure)</p></td>
+<td><p>✅ Excellent (BM25 component)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Semantic Understanding</strong></p></td>
+<td><p>✅ Good (through synopsis links and PPR)</p></td>
+<td><p>✅ Excellent (LLM-based extraction and summarization)</p></td>
+<td><p>✅ Good (vector component)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Storage Efficiency</strong></p></td>
+<td><p>✅ High (25% reduction reported)</p></td>
+<td><p>❌ Low (requires extensive graph storage)</p></td>
+<td><p>⚠️ Moderate (dual indexing overhead)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Query Speed</strong></p></td>
+<td><p>✅ Fast (6-13x faster than iterative methods)</p></td>
+<td><p>⚠️ Moderate (depends on graph size)</p></td>
+<td><p>⚠️ Moderate (parallel search overhead)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Setup Complexity</strong></p></td>
+<td><p>⚠️ Moderate (requires graph construction)</p></td>
+<td><p>❌ High (complex pipeline with community detection)</p></td>
+<td><p>✅ Low (straightforward implementation)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Real-time Updates</strong></p></td>
+<td><p>⚠️ Moderate (requires graph updates)</p></td>
+<td><p>❌ Difficult (expensive re-clustering)</p></td>
+<td><p>✅ Easy (independent index updates)</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Interpretability</strong></p></td>
+<td><p>✅ Good (graph paths and node activations)</p></td>
+<td><p>✅ Excellent (community summaries and graph evidence)</p></td>
+<td><p>⚠️ Limited (score combination only)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Best Use Cases</strong></p></td>
+<td><p>Multi-document reasoning, long-term memory systems, academic research</p></td>
+<td><p>Large-scale document analysis, enterprise knowledge bases, topic discovery</p></td>
+<td><p>Technical documentation, code search, mixed content types</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Typical Domains</strong></p></td>
+<td><p>Scientific literature, legal documents, research papers</p></td>
+<td><p>Corporate reports, Wikipedia-scale content, news archives</p></td>
+<td><p>Stack Overflow, medical records, software documentation</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Integration with LLMs</strong></p></td>
+<td><p>Direct context restoration for answer generation</p></td>
+<td><p>Hierarchical prompting with community summaries</p></td>
+<td><p>Enhanced retrieval for standard RAG pipelines</p></td>
+</tr>
+<tr class="row-even"><td><p><strong>Scalability</strong></p></td>
+<td><p>✅ Good (efficient graph operations)</p></td>
+<td><p>⚠️ Moderate (community detection bottleneck)</p></td>
+<td><p>✅ Good (parallel processing)</p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>Accuracy Improvement</strong></p></td>
+<td><p>20% higher for multi-hop QA</p></td>
+<td><p>Up to 99% precision reported</p></td>
+<td><p>Significant improvement over single-method approaches</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p>Completing this week, you will have learned <strong>components and operation principles of latest RAG architectures</strong>, which becomes the foundation for upcoming <strong>LangChain-based RAG practice</strong>. For example, in the next step, you will perform tasks of building GraphRAG for actual <strong>internal wiki documents</strong> and <strong>benchmarking and improving</strong> search performance. Through such practice, I hope you experience how concepts learned in this lecture are applied to real systems.</p>
 <section id="id5">
 <h3>Checkpoint Questions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
