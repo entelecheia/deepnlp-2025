@@ -463,7 +463,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1. 핵심 아이디어: 강화학습을 분류로 변환</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlhf-dpo">2.2. 수학적 심화: RLHF 목적함수와 DPO의 암시적 보상 모델</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-ppo-rlhf">2.3. 2025년 논쟁: DPO가 항상 PPO(RLHF)보다 우수한가?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-variants-2025-robust-dpo-for-distributional-robustness">2.4. Latest Variants (2025): Robust DPO for Distributional Robustness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robust-dpo">2.4. 최신 변종 (2025): 분포 강건성을 위한 Robust DPO</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">체크포인트 질문</a></li>
 </ul>
 </li>
@@ -613,7 +613,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <p>(여기서 <span class="math notranslate nohighlight">\(\hat{r}_\theta(x, y) = \beta \log\left(\frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)}\right)\)</span>는 암시적 보상이다.)</p>
 </li>
 </ol>
-<p>이 유도는 DPO가 RLHF와 _동일한 목적함수_를 최적화함을 보여준다. 그러나 두 개의 불안정하고 복잡한 단계(RM 훈련과 PPO)를 거치는 대신, DPO는 “최적 정책이 암시적으로 보상 함수를 정의한다”는 수학적 관계를 활용하여 전체 문제를 단일 SFT 분류 문제로 변환한다: “선호되는 응답의 로그 확률을 증가시키고 거부된 응답의 로그 확률을 감소시킨다.”</p>
+<p>이 유도는 DPO가 RLHF와 <em>동일한 목적함수</em>를 최적화함을 보여준다. 그러나 두 개의 불안정하고 복잡한 단계(RM 훈련과 PPO)를 거치는 대신, DPO는 “최적 정책이 암시적으로 보상 함수를 정의한다”는 수학적 관계를 활용하여 전체 문제를 단일 SFT 분류 문제로 변환한다: “선호되는 응답의 로그 확률을 증가시키고 거부된 응답의 로그 확률을 감소시킨다.”</p>
 </section>
 <section id="dpo-ppo-rlhf">
 <h3>2.3. 2025년 논쟁: DPO가 항상 PPO(RLHF)보다 우수한가?<a class="headerlink" href="#dpo-ppo-rlhf" title="Link to this heading">#</a></h3>
@@ -625,20 +625,20 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 </ul>
 <p>2025년 이 논쟁의 잠정적 결론은 다음과 같다: DPO는 <em>단순성</em>, <em>안정성</em>, <em>자원 효율성</em> 면에서 압도적인 장점을 가지며 대부분의 표준 정렬 작업(예: Zephyr 모델)에서 사실상의 표준이 되었다. 그러나 매우 복잡하고 탐색적 추론이나 코드 생성 작업의 경우, PPO의 <em>온라인</em> 특성(실시간 탐색과 피드백)이 DPO의 <em>오프라인</em> 특성(정적 데이터셋에 대한 의존성)보다 더 높은 성능 한계를 가질 수 있다.</p>
 </section>
-<section id="latest-variants-2025-robust-dpo-for-distributional-robustness">
-<h3>2.4. Latest Variants (2025): Robust DPO for Distributional Robustness<a class="headerlink" href="#latest-variants-2025-robust-dpo-for-distributional-robustness" title="Link to this heading">#</a></h3>
-<p>DPO’s fundamental limitation is assuming that the static preference dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> used for training perfectly represents actual user preferences in deployment environments.</p>
+<section id="robust-dpo">
+<h3>2.4. 최신 변종 (2025): 분포 강건성을 위한 Robust DPO<a class="headerlink" href="#robust-dpo" title="Link to this heading">#</a></h3>
+<p>DPO의 근본적 한계는 훈련에 사용된 정적 선호 데이터셋 <span class="math notranslate nohighlight">\(\mathcal{D}\)</span>가 실제 배포 환경의 사용자 선호를 완벽하게 대표한다고 가정한다는 점이다.</p>
 <ul class="simple">
-<li><p><strong>Problem: Preference Distribution Shift</strong>: Actual user preferences constantly change based on region, demographics, culture, and time. When preference distributions differ between training data (e.g., American college students) and actual users (e.g., Korean office workers), alignment failure can occur.</p></li>
-<li><p><strong>2025 Solution: Robust DPO (WDPO, KLDPO)</strong>: These techniques proposed in February 2025 apply <strong>Distributionally Robust Optimization (DRO)</strong> framework to DPO.</p></li>
-<li><p><strong>Core Principle</strong>:</p>
+<li><p><strong>문제: 선호 분포 변화(Distribution Shift)</strong>: 실제 사용자 선호는 지역, 인구통계, 문화, 시간 등에 따라 끊임없이 변한다. 훈련 데이터(예: 미국 대학생)와 실제 사용자(예: 한국 직장인) 간 선호 분포가 다르면 정렬 실패가 발생할 수 있다.</p></li>
+<li><p><strong>2025년 솔루션: Robust DPO (WDPO, KLDPO)</strong>: 2025년 2월에 제안된 이 기법들은 <strong>분포 강건 최적화(DRO)</strong> 프레임워크를 DPO에 적용한다.</p></li>
+<li><p><strong>핵심 원리</strong>:</p>
 <ol class="arabic simple">
-<li><p>Define an “Uncertainty Set” centered around the training data distribution (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) (e.g., the set of all possible preference distributions within <span class="math notranslate nohighlight">\(\epsilon\)</span> Wasserstein (WDPO) or KL (KLDPO) distance from the training distribution).</p></li>
-<li><p>Perform <strong>minimax optimization</strong> that minimizes loss for the <em>worst-case</em> preference distribution within this uncertainty set.</p></li>
+<li><p>훈련 데이터 분포(<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>)를 중심으로 “불확실성 집합(uncertainty set)”을 정의한다. (예: 훈련 분포로부터 <span class="math notranslate nohighlight">\(\epsilon\)</span> 이내의 Wasserstein 거리(WDPO) 또는 KL 거리(KLDPO)를 가지는 모든 가능한 선호 분포 집합)</p></li>
+<li><p>이 불확실성 집합 내의 <em>최악의</em> 선호 분포에 대해 손실을 최소화하는 <strong>미니맥스(minimax) 최적화</strong>를 수행한다.</p></li>
 </ol>
 </li>
 </ul>
-<p>This approach prevents DPO models from overfitting to specific biases in the training dataset and ensures stable alignment performance even when unexpected preference changes occur in actual deployment environments.</p>
+<p>이 접근법은 DPO 모델이 특정 훈련 데이터셋의 편향에 과적합되는 것을 방지하고, 실제 배포 환경에서 예기치 않은 선호 변화가 발생해도 안정적인 정렬 성능을 보장한다.</p>
 </section>
 <section id="id6">
 <h3>체크포인트 질문<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
@@ -664,8 +664,8 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <p>이 단계는 RL을 시작하기 전에 헌법적 원칙을 모델에 ‘사전 주입’하는 부트스트래핑 과정이다.</p>
 <ol class="arabic simple">
 <li><p><strong>초기 응답 생성</strong>: 도움이 되도록만 훈련된 초기 SFT 모델(<span class="math notranslate nohighlight">\(\pi_{SFT}\)</span>)에 유해한 프롬프트(레드팀 프롬프트)를 입력하여 유해한 초기 응답을 생성한다.</p></li>
-<li><p><strong>자기 비판</strong>: 모델에게 헌법적 원칙(예: ‘유해한 콘텐츠를 생성하지 마라’)을 제시하고 방금 생성한 자신의 응답을 _비판_하도록 지시한다.</p></li>
-<li><p><strong>자기 수정</strong>: 모델에게 자기 생성 비판 내용을 바탕으로 헌법적 원칙에 따라 원래 유해한 응답을 _수정_하도록 지시한다.</p></li>
+<li><p><strong>자기 비판</strong>: 모델에게 헌법적 원칙(예: ‘유해한 콘텐츠를 생성하지 마라’)을 제시하고 방금 생성한 자신의 응답을 <em>비판</em>하도록 지시한다.</p></li>
+<li><p><strong>자기 수정</strong>: 모델에게 자기 생성 비판 내용을 바탕으로 헌법적 원칙에 따라 원래 유해한 응답을 <em>수정</em>하도록 지시한다.</p></li>
 <li><p><strong>SFT 미세 조정</strong>: (유해한 프롬프트, 최종 수정된 응답) 쌍으로 구성된 데이터셋으로 원래 SFT 모델(<span class="math notranslate nohighlight">\(\pi_{SFT}\)</span>)을 재미세 조정한다. 이렇게 훈련된 모델이 <span class="math notranslate nohighlight">\(\pi_{SL-CAI}\)</span>다.</p></li>
 </ol>
 <p>이 SL-CAI 단계를 통해 모델은 단순히 유해한 응답을 피하는 것이 아니라 헌법적 원칙에 기반하여 <em>왜</em> 그러한 요청을 거부해야 하는지 설명하는 방법을 학습한다.</p>
@@ -692,7 +692,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 </ul>
 </li>
 </ul>
-<p>Anthropic의 2025년 이전 최근 연구에 따르면, 매우 큰 LLM의 경우 “인류에게 최선을 다하라”와 같은 _단일 일반 원칙_도 유해한 행동(예: 자기 보존 욕구)을 부분적으로 억제할 수 있다. 이는 상세한 헌법 목록의 역할이 보편적 원칙에서 <em>나타날</em> 수 있음을 시사한다. 그러나 세밀한 해악 제어를 위해서는 상세한 헌법이 여전히 우수한 성능을 보인다.</p>
+<p>Anthropic의 2025년 이전 최근 연구에 따르면, 매우 큰 LLM의 경우 “인류에게 최선을 다하라”와 같은 <em>단일 일반 원칙</em>도 유해한 행동(예: 자기 보존 욕구)을 부분적으로 억제할 수 있다. 이는 상세한 헌법 목록의 역할이 보편적 원칙에서 <em>나타날</em> 수 있음을 시사한다. 그러나 세밀한 해악 제어를 위해서는 상세한 헌법이 여전히 우수한 성능을 보인다.</p>
 </section>
 <section id="id8">
 <h3>체크포인트 질문<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
@@ -710,8 +710,8 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <h3>4.1. PRM(Process-supervised Reward Models) vs ORM(Outcome-supervised Reward Models)<a class="headerlink" href="#prm-process-supervised-reward-models-vs-orm-outcome-supervised-reward-models" title="Link to this heading">#</a></h3>
 <p>정렬 기법의 또 다른 혁신은 보상 모델이 평가하는 대상을 바꾸는 것이다.</p>
 <ul class="simple">
-<li><p><strong>ORM(Outcome-supervised RMs)</strong>: 모델이 생성한 _최종 답_이 맞는지 틀린지만 보고 보상을 주는(예: +1 또는 -1) 기존 보상 모델이다.</p></li>
-<li><p><strong>PRM(Process-supervised RMs)</strong>: OpenAI가 제안한 방법으로 모델이 최종 답에 도달하기 위해 거치는 _추론 과정(Chain-of-Thought, CoT)_을 단계별로 평가하고 각 단계에 대해 세분화된 보상을 주는 방법이다.</p></li>
+<li><p><strong>ORM(Outcome-supervised RMs)</strong>: 모델이 생성한 <em>최종 답</em>이 맞는지 틀린지만 보고 보상을 주는(예: +1 또는 -1) 기존 보상 모델이다.</p></li>
+<li><p><strong>PRM(Process-supervised RMs)</strong>: OpenAI가 제안한 방법으로 모델이 최종 답에 도달하기 위해 거치는 *추론 과정(Chain-of-Thought, CoT)*을 단계별로 평가하고 각 단계에 대해 세분화된 보상을 주는 방법이다.</p></li>
 </ul>
 </section>
 <section id="prm">
@@ -720,8 +720,8 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <ul class="simple">
 <li><p><strong>문제: ORM의 신용 할당 실패</strong>:</p>
 <ul>
-<li><p>모델이 10단계 수학 문제에서 최종 답을 틀렸다면, ORM은 ‘틀림’(-1) 보상을 주지만 10단계 중 _어느 단계_가 잘못되었는지 알 수 없다.</p></li>
-<li><p>더 심각한 문제는 ORM으로 훈련된 모델이 “잘못된 추론 과정을 (우연히) 사용하여 정확한 답에 도달하는” 경우다. ORM은 이 잘못된 과정을 _긍정적으로 보상_하는 치명적 오류를 범한다.</p></li>
+<li><p>모델이 10단계 수학 문제에서 최종 답을 틀렸다면, ORM은 ‘틀림’(-1) 보상을 주지만 10단계 중 <em>어느 단계</em>가 잘못되었는지 알 수 없다.</p></li>
+<li><p>더 심각한 문제는 ORM으로 훈련된 모델이 “잘못된 추론 과정을 (우연히) 사용하여 정확한 답에 도달하는” 경우다. ORM은 이 잘못된 과정을 <em>긍정적으로 보상</em>하는 치명적 오류를 범한다.</p></li>
 </ul>
 </li>
 <li><p><strong>PRM의 해결책: 정밀한 피드백</strong>:</p>
@@ -732,7 +732,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 </ul>
 </li>
 </ul>
-<p>PRM은 단순한 성능 향상(MATH 데이터셋에서 ORM을 크게 능가)을 넘어 중요한 _정렬 이익_을 제공한다. 이는 모델의 ‘사고 과정’ 자체를 인간 의도와 정렬시켜 해석 가능하고 신뢰할 수 있는 추론을 유도하기 때문이다. 2024년 말과 2025년 초 연구는 이 과정 감독을 _자동화_하거나 ToT(Tree-of-Thoughts) 탐색 중에 생성된 “차선책 사고”를 DPO의 CPO(Chain of Preference Optimization) 기법에서 ‘거부된’ 샘플로 사용하여 과정 감독을 DPO 패러다임과 적극적으로 결합하려는 시도를 제안한다.</p>
+<p>PRM은 단순한 성능 향상(MATH 데이터셋에서 ORM을 크게 능가)을 넘어 중요한 <em>정렬 이익</em>을 제공한다. 이는 모델의 ‘사고 과정’ 자체를 인간 의도와 정렬시켜 해석 가능하고 신뢰할 수 있는 추론을 유도하기 때문이다. 2024년 말과 2025년 초 연구는 이 과정 감독을 <em>자동화</em>하거나 ToT(Tree-of-Thoughts) 탐색 중에 생성된 “차선책 사고”를 DPO의 CPO(Chain of Preference Optimization) 기법에서 ‘거부된’ 샘플로 사용하여 과정 감독을 DPO 패러다임과 적극적으로 결합하려는 시도를 제안한다.</p>
 </section>
 <section id="id9">
 <h3>체크포인트 질문<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
@@ -748,7 +748,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <h2>5. RLAIF(RL from AI Feedback): 확장성과 편향 증폭<a class="headerlink" href="#rlaif-rl-from-ai-feedback" title="Link to this heading">#</a></h2>
 <section id="ai-llm-as-a-judge">
 <h3>5.1. AI 평가자의 필요성(‘LLM-as-a-judge’)과 작동 방식<a class="headerlink" href="#ai-llm-as-a-judge" title="Link to this heading">#</a></h3>
-<p>RLAIF(RL from AI Feedback)는 RLHF의 <em>인간</em> 라벨러를 <em>AI</em> 라벨러(보통 GPT-4와 같은 강력한 LLM, ‘LLM-as-a-judge’)로 대체하는 접근법에 대한 일반적인 용어다. (참고: CAI는 _명시적 원칙_인 헌법을 사용하는 RLAIF의 특정 형태다.)</p>
+<p>RLAIF(RL from AI Feedback)는 RLHF의 <em>인간</em> 라벨러를 <em>AI</em> 라벨러(보통 GPT-4와 같은 강력한 LLM, ‘LLM-as-a-judge’)로 대체하는 접근법에 대한 일반적인 용어다. (참고: CAI는 <em>명시적 원칙</em>인 헌법을 사용하는 RLAIF의 특정 형태다.)</p>
 <p>RLAIF는 정책 모델이 생성한 두 응답을 AI 평가자에게 보여주고 “어떤 것이 더 도움이 되는가?” 또는 “어떤 것이 더 무해한가?”를 판단하도록 요청하여 대규모로 선호도 데이터를 자동 생성한다. 이 기법의 가장 큰 장점은 RLHF의 가장 큰 병목인 인간 피드백 수집 비용을 제거하는 <strong>확장성</strong>이다. AI 피드백은 “저렴하고 빠르며 (최소한 표면적으로는) 일관되게” 대규모 선호도 데이터를 생성할 수 있다.</p>
 </section>
 <section id="rlaif-vs-rlhf">
@@ -761,7 +761,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <p>RLAIF의 확장성은 치명적인 비용을 수반할 수 있다. RLAIF의 근본적 위험은 “판단 모델로부터의 체계적 편향 상속 및 증폭” 가능성이다.</p>
 <p>AI 판단자들 자체도 완벽하지 않으며 다양한 한계를 가진다.</p>
 <ul class="simple">
-<li><p><strong>자기 편향</strong>: AI 판단자들은 인간이 작성한 응답보다 _자신(AI)이 생성한 스타일_의 응답을 선호하는 경향이 있다.</p></li>
+<li><p><strong>자기 편향</strong>: AI 판단자들은 인간이 작성한 응답보다 <em>자신(AI)이 생성한 스타일</em>의 응답을 선호하는 경향이 있다.</p></li>
 <li><p><strong>성능 격차</strong>: AI 판단자들은 <em>미묘한</em> 성능 차이를 가진 두 모델을 비교하고 평가하는 데 어려움을 겪는다.</p></li>
 <li><p><strong>일관성 부족</strong>: AI 판단자 판단과 인간 판단은 여러 작업에 걸쳐 “광범위한 불일치”를 보인다.</p></li>
 </ul>
@@ -770,8 +770,8 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <li><p>AI 판단자(예: GPT-4)를 사용하여 선호도 라벨을 생성한다.</p></li>
 <li><p>이 판단 모델들은 고유한 편향(예: 미국 중심적 가치, 긴 답변 선호, 특정 단어 사용 선호)을 가진다.</p></li>
 <li><p>RLAIF는 이러한 편향된 라벨을 수백만 개 생성하여 대규모 데이터셋을 구축한다.</p></li>
-<li><p>새로운 정책 모델(<span class="math notranslate nohighlight">\(\pi_\theta\)</span>)이 DPO나 RM 훈련을 통해 이 _대규모 편향된 데이터셋_에 과적합한다.</p></li>
-<li><p><strong>결과</strong>: 새로운 모델은 판단자의 편향을 단순히 _학습_하는 것이 아니라 _증폭_시킨다. 우리는 특정 AI 모델 편향을 전 세계적으로 배포되는 차세대 모델에 대규모로 주입할 위험을 감수하면서 확장성을 얻는다.</p></li>
+<li><p>새로운 정책 모델(<span class="math notranslate nohighlight">\(\pi_\theta\)</span>)이 DPO나 RM 훈련을 통해 이 <em>대규모 편향된 데이터셋</em>에 과적합한다.</p></li>
+<li><p><strong>결과</strong>: 새로운 모델은 판단자의 편향을 단순히 <em>학습</em>하는 것이 아니라 <em>증폭</em>시킨다. 우리는 특정 AI 모델 편향을 전 세계적으로 배포되는 차세대 모델에 대규모로 주입할 위험을 감수하면서 확장성을 얻는다.</p></li>
 </ol>
 </section>
 <section id="id10">
@@ -824,7 +824,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 </section>
 <section id="llama-2-7b-dpo-vs-rlhf">
 <h2>7. 실습: LLaMA 2 7B – DPO vs RLHF 정렬 비교<a class="headerlink" href="#llama-2-7b-dpo-vs-rlhf" title="Link to this heading">#</a></h2>
-<p>이 실습 세션에서는 <strong>Anthropic HH(Harmless &amp; Helpful) 데이터셋</strong>을 사용하여 <strong>LLaMA 2 7B</strong> 언어 모델을 RLHF와 DPO 방법 모두로 미세 조정하고 <strong>출력 결과의 안전성과 품질을 비교</strong>한다. 실습 환경은 <strong>1개의 H100 GPU</strong>를 가정하며 Hugging Face의 <strong>TRL</strong> 라이브러리와 <strong>OpenRLHF</strong> 프레임워크를 사용한다. TRL은 _transformers_와 연결된 RLHF/DPO 훈련 도구이고, OpenRLHF는 대규모 분산 RLHF를 지원하는 최신 오픈소스 프레임워크다.</p>
+<p>이 실습 세션에서는 <strong>Anthropic HH(Harmless &amp; Helpful) 데이터셋</strong>을 사용하여 <strong>LLaMA 2 7B</strong> 언어 모델을 RLHF와 DPO 방법 모두로 미세 조정하고 <strong>출력 결과의 안전성과 품질을 비교</strong>한다. 실습 환경은 <strong>1개의 H100 GPU</strong>를 가정하며 Hugging Face의 <strong>TRL</strong> 라이브러리와 <strong>OpenRLHF</strong> 프레임워크를 사용한다. TRL은 <em>transformers</em>와 연결된 RLHF/DPO 훈련 도구이고, OpenRLHF는 대규모 분산 RLHF를 지원하는 최신 오픈소스 프레임워크다.</p>
 <section id="id13">
 <h3>7.1 실험 준비: 라이브러리와 데이터셋<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <p>먼저 필요한 라이브러리를 설치하고 모델과 데이터셋을 준비한다.</p>
@@ -921,7 +921,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
     <span class="n">stats</span> <span class="o">=</span> <span class="n">ppo_trainer</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="n">rewards</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>이 과정에서 참조 모델(ref_model)은 정책 모델이 원래 분포에서 너무 멀리 벗어나지 않도록 KL 페널티 계산에 사용된다. reward_model.score 부분은 사전 훈련된 보상 모델 <span class="math notranslate nohighlight">\(r_\phi(x,y)\)</span>가 응답 점수를 생성한다고 가정한다. KL 페널티는 내부적으로 reward += -beta * KL(model||ref_model) 형태로 적용되어 페널티 양만큼 보상을 감소시킨다(TRL 기본값 0.1 같은 베타 값).</p>
+<p>이 과정에서 참조 모델(ref*model)은 정책 모델이 원래 분포에서 너무 멀리 벗어나지 않도록 KL 페널티 계산에 사용된다. reward_model.score 부분은 사전 훈련된 보상 모델 <span class="math notranslate nohighlight">\(r*\phi(x,y)\)</span>가 응답 점수를 생성한다고 가정한다. KL 페널티는 내부적으로 reward += -beta * KL(model||ref_model) 형태로 적용되어 페널티 양만큼 보상을 감소시킨다(TRL 기본값 0.1 같은 베타 값).</p>
 <p>실제로는 OpenRLHF 같은 프레임워크를 사용하면 위의 저수준 루프를 작성하지 않고도 <strong>원클릭 스크립트</strong>로 PPO RLHF를 수행할 수 있다. 예를 들어, OpenRLHF에서는 다음과 같은 명령으로 LLaMA2 7B에 대한 PPO RLHF를 시작할 수 있다(개념적으로):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openrlhf<span class="w"> </span>--model<span class="w"> </span>LLaMA-7B<span class="w"> </span>--tokenizer<span class="w"> </span>LLaMA-7B<span class="w"> </span><span class="se">\</span>
 <span class="w">         </span>--actor_model<span class="w"> </span>LLaMA-7B<span class="w"> </span>--reward_model<span class="w"> </span>&lt;pre-trained<span class="w"> </span>RM&gt;<span class="w"> </span><span class="se">\</span>
@@ -946,7 +946,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <p>두 응답 모두 상대적으로 안전하고 유용하지만 미묘한 차이가 있을 수 있다. 이러한 사례들을 여러 개 수집하여 <strong>전문가 평가</strong>나 <strong>크라우드소싱 평가</strong>로 <strong>선호도</strong>를 조사할 수 있다. DPO 모델이 RLHF 모델에 비해 <strong>더 부드럽고 덜 격식적인</strong> 답변을 제공한다면 사용자 만족도가 높을 수 있지만, RLHF 모델이 항상 <strong>매우 안전하게만</strong> 답하고 유용한 정보를 덜 제공한다면 선호도가 감소할 수 있다.</p>
 <p><strong>정량적 평가 메트릭</strong>:</p>
 <ul class="simple">
-<li><p>안전성: 예를 들어, 100개의 잠재적으로 유해한 프롬프트를 입력하고 <strong>부적절한 응답의 비율</strong>(금지된 단어 사용, 증오/폭력 선동 등)을 측정한다. 낮은 비율이 더 안전한 모델을 의미한다. 또한 <strong>거부율</strong>도 확인한다 - 안전할 때도 불필요하게 많이 거부하는지. 모델이 <strong>모호한 요청에도 과도하게 거부</strong>한다면 유용성이 감소한다. 따라서 _적절한 거부_와 _과도한 거부_를 구분하는 정성적 평가가 필요하다.</p></li>
+<li><p>안전성: 예를 들어, 100개의 잠재적으로 유해한 프롬프트를 입력하고 <strong>부적절한 응답의 비율</strong>(금지된 단어 사용, 증오/폭력 선동 등)을 측정한다. 낮은 비율이 더 안전한 모델을 의미한다. 또한 <strong>거부율</strong>도 확인한다 - 안전할 때도 불필요하게 많이 거부하는지. 모델이 <strong>모호한 요청에도 과도하게 거부</strong>한다면 유용성이 감소한다. 따라서 <em>적절한 거부</em>와 <em>과도한 거부</em>를 구분하는 정성적 평가가 필요하다.</p></li>
 <li><p>품질: 정답이 있는 질문의 경우 <strong>정확도</strong>를 계산할 수 있고, 창의적 응답의 경우 <strong>설문 점수</strong>(예: “도움이 되었는가” 1-5 척도) 평균을 비교할 수 있다. Anthropic HH에서 <strong>도움성 평가 세트</strong>가 있다면 <strong>승률</strong>(쌍방 대화 비교에서 해당 모델 응답이 이기는 비율)도 측정할 수 있다.</p></li>
 </ul>
 <p><strong>예상 결과</strong>: 일반적으로 <strong>DPO와 RLHF 모델은 비슷한 수준의 도움성</strong>을 보이지만 미묘한 차이가 있을 수 있다. 연구에 따르면 DPO 정렬 모델은 RLHF 모델에 비해 선호도에 정렬되면서도 <strong>원래 모델로부터 약간 더 많은 다양성을 유지</strong>한다. 즉, RLHF는 KL 페널티로 인한 텍스트 분포 수축으로 <strong>다양성을 감소</strong>시키고 출력이 균일해지는 경향이 있지만, DPO는 더 많은 자연스러움을 유지할 수 있다. 한편, 안전성 측면에서는 두 접근법 모두 인간 선호도 데이터를 반영하므로 큰 차이가 없어야 하지만, <strong>세부 정책 준수</strong> 측면에서는 RLHF(특히 헌법 없이 인간 피드백으로 훈련된 모델)가 <strong>약간 더 보수적인 경향</strong>을 보일 수 있다. 이러한 평가를 통해 학생들은 <strong>정렬 방법에 따른 모델 행동 차이</strong>를 직접 확인할 수 있다.</p>
@@ -1181,7 +1181,7 @@ RLHF의 보상 모델(RM) 훈련은 일반적으로 Bradley-Terry 선호도 모�
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">2.1. 핵심 아이디어: 강화학습을 분류로 변환</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlhf-dpo">2.2. 수학적 심화: RLHF 목적함수와 DPO의 암시적 보상 모델</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-ppo-rlhf">2.3. 2025년 논쟁: DPO가 항상 PPO(RLHF)보다 우수한가?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-variants-2025-robust-dpo-for-distributional-robustness">2.4. Latest Variants (2025): Robust DPO for Distributional Robustness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#robust-dpo">2.4. 최신 변종 (2025): 분포 강건성을 위한 Robust DPO</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">체크포인트 질문</a></li>
 </ul>
 </li>
