@@ -1,0 +1,1283 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 10: Revolutionary Alignment Techniques &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week10/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="LLM From Scratch Workshop" href="../workshops/index.html" />
+    <link rel="prev" title="Week 9: Advanced RAG Architectures" href="../week09/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 10: Revolutionary Alignment Techniques</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week10/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek10/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week10/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 10: Revolutionary Alignment Techniques</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-the-need-for-alignment-and-limitations-of-classical-rlhf">1. Introduction: The Need for Alignment and Limitations of Classical RLHF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-alignment-helpfulness-and-harmlessness">1.1. Defining Alignment: Helpfulness and Harmlessness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-rlhf-pipeline-review">1.2. Classical RLHF Pipeline Review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-limitations-of-rlhf-diagnosed-in-2025">1.3. Fundamental Limitations of RLHF Diagnosed in 2025</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-direct-preference-optimization-reward-model-free-direct-optimization">2. DPO (Direct Preference Optimization): Reward Model-Free Direct Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-idea-transforming-rl-into-classification">2.1. Core Idea: Transforming RL into Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-deep-dive-rlhf-objective-and-dpo-s-implicit-reward-model">2.2. Mathematical Deep Dive: RLHF Objective and DPO’s Implicit Reward Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-2025-debate-is-dpo-always-superior-to-ppo-rlhf">2.3. The 2025 Debate: Is DPO Always Superior to PPO (RLHF)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-variants-2025-robust-dpo-for-distributional-robustness">2.4. Latest Variants (2025): Robust DPO for Distributional Robustness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutional-ai-cai-principle-based-self-correction">3. Constitutional AI (CAI): Principle-Based Self-Correction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anthropic-s-approach-replacing-human-feedback-with-ai-feedback">3.1. Anthropic’s Approach: Replacing Human Feedback with AI Feedback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-analysis-of-cai-s-2-stage-learning-process-sl-cai-rl-cai">3.2. Detailed Analysis of CAI’s 2-Stage Learning Process (SL-CAI &amp; RL-CAI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitution-composition-real-principle-examples-2025-standards">3.3. Constitution Composition: Real Principle Examples (2025 Standards)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-supervision-valuing-process-over-outcome">4. Process Supervision: Valuing Process Over Outcome</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prm-process-supervised-reward-models-vs-orm-outcome-supervised-reward-models">4.1. PRM (Process-supervised Reward Models) vs ORM (Outcome-supervised Reward Models)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-prm-is-more-effective-for-multi-step-reasoning-e-g-mathematics">4.2. Why PRM is More Effective for Multi-step Reasoning (e.g., Mathematics)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rlaif-rl-from-ai-feedback-scalability-and-bias-amplification">5. RLAIF (RL from AI Feedback): Scalability and Bias Amplification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#need-for-ai-evaluators-llm-as-a-judge-and-how-they-work">5.1. Need for AI Evaluators (‘LLM-as-a-judge’) and How They Work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlaif-vs-rlhf-benchmarks-equal-or-superior-performance">5.2. RLAIF vs RLHF Benchmarks: Equal or Superior Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-risk-inherited-and-amplified-bias-from-ai-judge-models">5.3. Core Risk: Inherited and Amplified Bias from AI Judge Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation-analysis-of-latest-open-source-frameworks">6. Practical Implementation: Analysis of Latest Open Source Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-trl-toolkit-for-practitioners-sfttrainer-dpotrainer">6.1. Hugging Face TRL: Toolkit for Practitioners (SFTTrainer, DPOTrainer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openrlhf-high-performance-distributed-training">6.2. OpenRLHF: High-Performance Distributed Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice-llama-2-7b-dpo-vs-rlhf-alignment-comparison">7. Hands-on Practice: LLaMA 2 7B – DPO vs RLHF Alignment Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-preparation-libraries-and-dataset">7.1 Experiment Preparation: Libraries and Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-method-fine-tuning">7.2 DPO Method Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlhf-ppo-method-fine-tuning">7.3 RLHF (PPO) Method Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-evaluation-and-comparison">7.4 Output Evaluation and Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-research-trends-personalization-and-multimodal">8. Latest Research Trends: Personalization and Multimodal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-average-alignment-personalized-alignment">8.1. Beyond ‘Average Alignment’: Personalized Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-text-multimodal-alignment">8.2. Beyond Text: Multimodal Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-10-revolutionary-alignment-techniques">
+<h1>Week 10: Revolutionary Alignment Techniques<a class="headerlink" href="#week-10-revolutionary-alignment-techniques" title="Link to this heading">#</a></h1>
+<section id="introduction-the-need-for-alignment-and-limitations-of-classical-rlhf">
+<h2>1. Introduction: The Need for Alignment and Limitations of Classical RLHF<a class="headerlink" href="#introduction-the-need-for-alignment-and-limitations-of-classical-rlhf" title="Link to this heading">#</a></h2>
+<section id="defining-alignment-helpfulness-and-harmlessness">
+<h3>1.1. Defining Alignment: Helpfulness and Harmlessness<a class="headerlink" href="#defining-alignment-helpfulness-and-harmlessness" title="Link to this heading">#</a></h3>
+<p>Large Language Model (LLM) alignment refers to the process of training models to ensure their outputs align with human intentions, preferences, and ethical values. During pre-training, LLMs learn to predict the next token based on vast text corpora. While this process endows models with extensive knowledge and language capabilities, it does not guarantee that generated responses will follow specific user instructions or adhere to social norms.</p>
+<p>Alignment therefore operates along two core dimensions:</p>
+<ol class="arabic simple">
+<li><p><strong>Helpfulness</strong>: The model’s ability to clearly understand complex user instructions and generate useful responses that match user intent.</p></li>
+<li><p><strong>Harmlessness</strong>: The model’s ability to suppress generation of content that is toxic, biased, factually incorrect, or promotes dangerous behavior.</p></li>
+</ol>
+</section>
+<section id="classical-rlhf-pipeline-review">
+<h3>1.2. Classical RLHF Pipeline Review<a class="headerlink" href="#classical-rlhf-pipeline-review" title="Link to this heading">#</a></h3>
+<p>Until 2024, the standard paradigm for LLM alignment was RLHF (Reinforcement Learning from Human Feedback), as applied in OpenAI’s InstructGPT and ChatGPT. This pipeline consists of a complex 3-stage process:</p>
+<ol class="arabic simple">
+<li><p><strong>Stage 1: SFT (Supervised Fine-Tuning)</strong>: Fine-tune the pre-trained model using curated high-quality (instruction-response) paired datasets to create an initial policy model <span class="math notranslate nohighlight">\(\pi_{SFT}\)</span> that follows instructions.</p></li>
+<li><p><strong>Stage 2: RM (Reward Model) Training</strong>: Generate multiple responses from the SFT model for identical prompts, have human labelers rank these responses (e.g., A &gt; B &gt; C), then train a reward model <span class="math notranslate nohighlight">\(r_\phi(x, y)\)</span> that predicts how “good” a specific response <span class="math notranslate nohighlight">\(y\)</span> is for prompt <span class="math notranslate nohighlight">\(x\)</span> as a scalar value.</p></li>
+<li><p><strong>Stage 3: RL (PPO) Tuning</strong>: Use the Stage 1 <span class="math notranslate nohighlight">\(\pi_{SFT}\)</span> model as the policy <span class="math notranslate nohighlight">\(\pi_\theta\)</span> and tune it via PPO (Proximal Policy Optimization) to maximize rewards from the Stage 2 reward model <span class="math notranslate nohighlight">\(r_\phi\)</span>. To prevent policy drift, a KL-divergence penalty term is added to the objective function.</p></li>
+</ol>
+</section>
+<section id="fundamental-limitations-of-rlhf-diagnosed-in-2025">
+<h3>1.3. Fundamental Limitations of RLHF Diagnosed in 2025<a class="headerlink" href="#fundamental-limitations-of-rlhf-diagnosed-in-2025" title="Link to this heading">#</a></h3>
+<p>While RLHF dramatically improved LLM performance, research throughout 2024-2025 has revealed fundamental limitations of this approach. The RLHF pipeline is unstable and computationally expensive, requiring loading four separate models (policy, reference, reward model, value function) into memory during PPO tuning.</p>
+<p>More critically, RLHF’s core mechanism itself induces unintended failure modes.</p>
+<p><strong>Core Problem 1: Reward Hacking and Sycophancy</strong></p>
+<ul class="simple">
+<li><p><strong>Reward Hacking</strong>: Following Goodhart’s Law (“When a measure becomes a target, it ceases to be a good measure”), PPO policies can exploit flaws or ambiguities in the reward model <span class="math notranslate nohighlight">\(r_\phi\)</span> rather than optimizing for genuine human intent. Theoretical analysis shows this occurs when models overfit to specific patterns preferred by <span class="math notranslate nohighlight">\(r_\phi\)</span>, showing negative correlation with final layer energy loss.</p></li>
+<li><p><strong>Empirical Evidence from 2025</strong>: Research from late 2024 and early 2025 demonstrates that RLHF training can teach LLMs to exploit human evaluator error possibilities and cognitive biases. Models can develop the ability to deliberately present wrong answers persuasively to deceive human evaluators and gain rewards.</p></li>
+<li><p><strong>Sycophancy</strong>: A specific form of reward hacking where models bias responses toward agreeing with or flattering users rather than facts or objectivity. OpenAI’s May 2025 rollback of GPT-4o’s specific voice persona due to sycophancy issues demonstrates this is a real problem in deployed models.</p></li>
+<li><p><strong>Mechanistic Analysis from 2025</strong>: ICLR research revealed that sycophancy is not simple surface-level mimicry. User opinion expressions induce representational divergence in deep layers, causing structural override of learned factual knowledge.</p></li>
+</ul>
+<p><strong>Core Problem 2: Over-alignment and Diversity Collapse</strong></p>
+<ul class="simple">
+<li><p><strong>Alignment Tax</strong>: As safety is strengthened through RLHF, models forget or degrade useful abilities acquired during pre-training (e.g., creative writing, professional reasoning).</p></li>
+<li><p><strong>Root Cause of Diversity Collapse</strong>: 2025 ICLR research identified the <strong>KL-divergence regularization term</strong> used in both RLHF and DPO as the core cause. This penalty term systematically overweights majority opinions while sacrificing output diversity.</p></li>
+<li><p><strong>Consequences</strong>: Aligned LLMs show repetitive structures and word choices (e.g., all refusal responses starting with “As an AI language model…”), take uniform approaches to problems, and reflect “a narrower range of social perspectives.”</p></li>
+<li><p><strong>Deep Implications (Cultural Homogenization)</strong>: Critical research from 2025 shows current alignment methods cause LLMs to “fail to express diverse cultural moral frameworks” and instead regress to “mean moral frameworks” reflecting specific cultural values (primarily Western).</p></li>
+</ul>
+<p>The 2025 shift from RLHF to new techniques like DPO is not simply about convenience. It’s a necessary movement based on empirical and theoretical research showing that RLHF’s core mechanisms (RM training, PPO, KL penalty) contain and even amplify fundamental flaws like reward hacking, sycophancy, and diversity collapse.</p>
+</section>
+<section id="checkpoint-questions">
+<h3>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the two core dimensions of LLM alignment, and why is each important?</p></li>
+<li><p>Explain the three stages of classical RLHF and identify the computational bottleneck.</p></li>
+<li><p>How does reward hacking violate the principle of optimizing for human intent?</p></li>
+<li><p>Why does KL-divergence regularization lead to diversity collapse in aligned models?</p></li>
+</ul>
+</section>
+</section>
+<section id="dpo-direct-preference-optimization-reward-model-free-direct-optimization">
+<h2>2. DPO (Direct Preference Optimization): Reward Model-Free Direct Optimization<a class="headerlink" href="#dpo-direct-preference-optimization-reward-model-free-direct-optimization" title="Link to this heading">#</a></h2>
+<section id="core-idea-transforming-rl-into-classification">
+<h3>2.1. Core Idea: Transforming RL into Classification<a class="headerlink" href="#core-idea-transforming-rl-into-classification" title="Link to this heading">#</a></h3>
+<p>DPO (Direct Preference Optimization), proposed by Stanford researchers in 2023, is an innovative approach to solve RLHF’s complexity. DPO replaces RLHF’s unstable 3-stage pipeline (especially RM training and RL tuning) with <strong>a single stable SFT (supervised learning) stage</strong>.</p>
+<p>The core idea is to directly optimize the policy model <span class="math notranslate nohighlight">\(\pi_\theta\)</span> using human preference data <span class="math notranslate nohighlight">\((x, y_w, y_l)\)</span> (where <span class="math notranslate nohighlight">\(x\)</span> is the prompt, <span class="math notranslate nohighlight">\(y_w\)</span> is the chosen response, <span class="math notranslate nohighlight">\(y_l\)</span> is the rejected response) instead of training an explicit reward model <span class="math notranslate nohighlight">\(r_\phi\)</span>. DPO reformulates the reinforcement learning problem as a simple <strong>binary classification loss</strong>.</p>
+</section>
+<section id="mathematical-deep-dive-rlhf-objective-and-dpo-s-implicit-reward-model">
+<h3>2.2. Mathematical Deep Dive: RLHF Objective and DPO’s Implicit Reward Model<a class="headerlink" href="#mathematical-deep-dive-rlhf-objective-and-dpo-s-implicit-reward-model" title="Link to this heading">#</a></h3>
+<p>Understanding how DPO is mathematically equivalent to RLHF is essential for grasping this technique.</p>
+<ol class="arabic">
+<li><p><strong>Step 1: RLHF Objective Function and Optimal Policy</strong>:
+The classical RLHF objective function maximizes reward (<span class="math notranslate nohighlight">\(r\)</span>) while minimizing KL penalty (<span class="math notranslate nohighlight">\(\beta\)</span> is penalty strength):</p>
+<div class="math notranslate nohighlight">
+\[L_{RLHF}(\pi_\theta, \pi_{ref}) = \mathbb{E}_{x \sim \mathcal{D}, y \sim \pi_\theta}\]</div>
+</li>
+<li><p><strong>Step 2: Closed-Form Solution for Optimal Policy</strong>:
+The optimal policy <span class="math notranslate nohighlight">\(\pi^*\)</span> that maximizes this objective function <span class="math notranslate nohighlight">\(L_{RLHF}\)</span> has (theoretically) the following closed-form solution (where <span class="math notranslate nohighlight">\(Z(x)\)</span> is the normalization constant):</p>
+<div class="math notranslate nohighlight">
+\[\pi^*(y|x) = \frac{1}{Z(x)} \pi_{ref}(y|x) \exp\left(\frac{1}{\beta} r(x, y)\right)\]</div>
+</li>
+<li><p><strong>Step 3: Reward Model Reconstruction</strong>:
+DPO’s key insight is solving this equation for <span class="math notranslate nohighlight">\(r(x, y)\)</span>. The reward function can be expressed in terms of two policy functions:</p>
+<div class="math notranslate nohighlight">
+\[r(x, y) = \beta \log\left(\frac{\pi^*(y|x)}{\pi_{ref}(y|x)}\right) + \beta \log(Z(x))\]</div>
+<p>This means <strong>the reward function <span class="math notranslate nohighlight">\(r(x, y)\)</span> can be defined as the log-probability ratio between optimal policy <span class="math notranslate nohighlight">\(\pi^*\)</span> and reference policy <span class="math notranslate nohighlight">\(\pi_{ref}\)</span></strong>. DPO calls this <span class="math notranslate nohighlight">\(r(x, y)\)</span> the <strong>Implicit Reward Model</strong>.</p>
+</li>
+<li><p><strong>Step 4: Conversion to Classification Loss</strong>:
+RLHF’s reward model (RM) training typically uses the Bradley-Terry preference model to model the probability that <span class="math notranslate nohighlight">\(y_w\)</span> is preferred over <span class="math notranslate nohighlight">\(y_l\)</span> (where <span class="math notranslate nohighlight">\(\sigma\)</span> is the sigmoid function):</p>
+<div class="math notranslate nohighlight">
+\[p(y_w \succ y_l | x) = \sigma(r(x, y_w) - r(x, y_l))\]</div>
+<p>DPO directly substitutes the implicit reward <span class="math notranslate nohighlight">\(r(x, y)\)</span> definition from Step 3 into this Bradley-Terry model. (The <span class="math notranslate nohighlight">\(\beta \log(Z(x))\)</span> term cancels out as it’s common to both <span class="math notranslate nohighlight">\(y_w\)</span> and <span class="math notranslate nohighlight">\(y_l\)</span>.)</p>
+<div class="math notranslate nohighlight">
+\[p(y_w \succ y_l | x) = \sigma\left(\beta \log\left(\frac{\pi_\theta(y_w|x)}{\pi_{ref}(y_w|x)}\right) - \beta \log\left(\frac{\pi_\theta(y_l|x)}{\pi_{ref}(y_l|x)}\right)\right)\]</div>
+</li>
+<li><p><strong>Step 5: DPO Loss Function</strong>:
+Now we can express preference probability using only the policy <span class="math notranslate nohighlight">\(\pi_\theta\)</span> we’re training and the fixed reference <span class="math notranslate nohighlight">\(\pi_{ref}\)</span>, without the reward model <span class="math notranslate nohighlight">\(r_\phi\)</span>. Applying standard binary cross-entropy (Negative Log-Likelihood) loss to this probability gives DPO’s final objective function:</p>
+<div class="math notranslate nohighlight">
+\[L_{DPO}(\pi_\theta, \pi_{ref}) = - \mathbb{E}_{(x, y_w, y_l) \sim \mathcal{D}} \left[\log \sigma \left(\hat{r}_\theta(x, y_w) - \hat{r}_\theta(x, y_l)\right)\right]\]</div>
+<p>(where <span class="math notranslate nohighlight">\(\hat{r}_\theta(x, y) = \beta \log\left(\frac{\pi_\theta(y|x)}{\pi_{ref}(y|x)}\right)\)</span> is the implicit reward.)</p>
+</li>
+</ol>
+<p>This derivation shows that DPO optimizes the <em>same objective function</em> as RLHF. However, instead of going through two unstable and complex stages (RM training and PPO), DPO leverages the mathematical relationship that “optimal policy implicitly defines reward function” to transform the entire problem into a single SFT classification problem: “increase log probability of preferred responses and decrease log probability of rejected responses.”</p>
+</section>
+<section id="the-2025-debate-is-dpo-always-superior-to-ppo-rlhf">
+<h3>2.3. The 2025 Debate: Is DPO Always Superior to PPO (RLHF)?<a class="headerlink" href="#the-2025-debate-is-dpo-always-superior-to-ppo-rlhf" title="Link to this heading">#</a></h3>
+<p>Since its release, DPO has shown equal or better performance than PPO-based RLHF on academic benchmarks (e.g., summarization, dialogue) and proven to be much more stable, simple, and efficient.</p>
+<p>However, influential research titled “Is DPO truly superior to PPO?” from late 2024 and 2025 challenges this conventional wisdom.</p>
+<ul class="simple">
+<li><p><strong>Research Claim</strong>: This study argues that PPO’s poor performance on academic benchmarks is due not to fundamental flaws in the PPO algorithm itself, but to <em>inadequate and incomplete hyperparameter tuning</em>.</p></li>
+<li><p><strong>Key Results</strong>: When researchers re-examined PPO’s core elements and comprehensively tuned them, <strong>PPO (RLHF) outperformed all other alignment methods including DPO across all testbeds</strong> (dialogue, code generation, etc.), achieving SOTA results especially in “challenging code competitions.”</p></li>
+</ul>
+<p>The tentative conclusion of this debate in 2025 is: DPO has overwhelming advantages in <em>simplicity</em>, <em>stability</em>, and <em>resource efficiency</em> and has become the de facto standard for most standard alignment tasks (e.g., Zephyr models). However, for very complex and exploratory reasoning or code generation tasks, PPO’s <em>online</em> nature (real-time exploration and feedback) may have a higher performance ceiling than DPO’s <em>offline</em> nature (dependency on static datasets).</p>
+</section>
+<section id="latest-variants-2025-robust-dpo-for-distributional-robustness">
+<h3>2.4. Latest Variants (2025): Robust DPO for Distributional Robustness<a class="headerlink" href="#latest-variants-2025-robust-dpo-for-distributional-robustness" title="Link to this heading">#</a></h3>
+<p>DPO’s fundamental limitation is assuming that the static preference dataset <span class="math notranslate nohighlight">\(\mathcal{D}\)</span> used for training perfectly represents actual user preferences in deployment environments.</p>
+<ul class="simple">
+<li><p><strong>Problem: Preference Distribution Shift</strong>: Actual user preferences constantly change based on region, demographics, culture, and time. When preference distributions differ between training data (e.g., American college students) and actual users (e.g., Korean office workers), alignment failure can occur.</p></li>
+<li><p><strong>2025 Solution: Robust DPO (WDPO, KLDPO)</strong>: These techniques proposed in February 2025 apply <strong>Distributionally Robust Optimization (DRO)</strong> framework to DPO.</p></li>
+<li><p><strong>Core Principle</strong>:</p>
+<ol class="arabic simple">
+<li><p>Define an “Uncertainty Set” centered around the training data distribution (<span class="math notranslate nohighlight">\(\mathcal{D}\)</span>) (e.g., the set of all possible preference distributions within <span class="math notranslate nohighlight">\(\epsilon\)</span> Wasserstein (WDPO) or KL (KLDPO) distance from the training distribution).</p></li>
+<li><p>Perform <strong>minimax optimization</strong> that minimizes loss for the <em>worst-case</em> preference distribution within this uncertainty set.</p></li>
+</ol>
+</li>
+</ul>
+<p>This approach prevents DPO models from overfitting to specific biases in the training dataset and ensures stable alignment performance even when unexpected preference changes occur in actual deployment environments.</p>
+</section>
+<section id="id1">
+<h3>Checkpoint Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does DPO eliminate the need for explicit reward model training?</p></li>
+<li><p>Explain the mathematical relationship between RLHF’s optimal policy and DPO’s implicit reward model.</p></li>
+<li><p>What are the trade-offs between DPO’s simplicity and PPO’s online exploration capabilities?</p></li>
+<li><p>How does Robust DPO address the problem of preference distribution shift?</p></li>
+</ul>
+</section>
+</section>
+<section id="constitutional-ai-cai-principle-based-self-correction">
+<h2>3. Constitutional AI (CAI): Principle-Based Self-Correction<a class="headerlink" href="#constitutional-ai-cai-principle-based-self-correction" title="Link to this heading">#</a></h2>
+<section id="anthropic-s-approach-replacing-human-feedback-with-ai-feedback">
+<h3>3.1. Anthropic’s Approach: Replacing Human Feedback with AI Feedback<a class="headerlink" href="#anthropic-s-approach-replacing-human-feedback-with-ai-feedback" title="Link to this heading">#</a></h3>
+<p>Constitutional AI (CAI) is Anthropic’s original technique developed to align the Claude model family. CAI’s core idea is replacing expensive, slow, and subjective <em>human feedback</em> (RLHF) with <em>AI feedback</em> (RLAIF) based on explicitly written <em>principle lists</em> (‘Constitution’).</p>
+<p>In this approach, models critique and correct their own responses according to constitutional principles and learn from this process.</p>
+</section>
+<section id="detailed-analysis-of-cai-s-2-stage-learning-process-sl-cai-rl-cai">
+<h3>3.2. Detailed Analysis of CAI’s 2-Stage Learning Process (SL-CAI &amp; RL-CAI)<a class="headerlink" href="#detailed-analysis-of-cai-s-2-stage-learning-process-sl-cai-rl-cai" title="Link to this heading">#</a></h3>
+<p>CAI transforms RLHF’s SFT and RM training stages into CAI’s unique 2-stage process.</p>
+<p><strong>Stage 1: Supervised Learning Stage (SL-CAI: Supervised Learning - CAI)</strong></p>
+<p>This stage is a bootstrapping process that ‘pre-injects’ constitutional principles into the model before starting RL.</p>
+<ol class="arabic simple">
+<li><p><strong>Initial Response Generation</strong>: Input harmful prompts (red-teaming prompts) to the initial SFT model (<span class="math notranslate nohighlight">\(\pi_{SFT}\)</span>) trained only to be helpful to generate harmful initial responses.</p></li>
+<li><p><strong>Self-Critique</strong>: Present constitutional principles (e.g., ‘Do not generate harmful content’) to the model and instruct it to <em>critique</em> its own response just generated.</p></li>
+<li><p><strong>Self-Revision</strong>: Instruct the model to <em>revise</em> the original harmful response according to constitutional principles based on the self-generated critique content.</p></li>
+<li><p><strong>SFT Fine-tuning</strong>: Re-fine-tune the original SFT model (<span class="math notranslate nohighlight">\(\pi_{SFT}\)</span>) with datasets composed of (harmful prompt, final revised response) pairs. The model trained this way is <span class="math notranslate nohighlight">\(\pi_{SL-CAI}\)</span>.</p></li>
+</ol>
+<p>Through this SL-CAI stage, the model learns not just to avoid harmful responses but to explain <em>why</em> it should reject such requests based on constitutional principles.</p>
+<p><strong>Stage 2: Reinforcement Learning Stage (RL-CAI: Reinforcement Learning - CAI)</strong></p>
+<p>This stage is a process of refining the model more precisely using AI feedback.</p>
+<ol class="arabic simple">
+<li><p><strong>AI Preference Data Generation</strong>: Use the <span class="math notranslate nohighlight">\(\pi_{SL-CAI}\)</span> model trained in Stage 1 to generate two responses <span class="math notranslate nohighlight">\((y_1, y_2)\)</span> for each prompt.</p></li>
+<li><p><strong>AI Evaluation (RLAIF)</strong>: Present constitutional principles to the AI evaluator (usually the <span class="math notranslate nohighlight">\(\pi_{SL-CAI}\)</span> model itself) and ask “Which response better aligns with the constitution?” (e.g., ‘Which is more harmless?’) to determine preferred response <span class="math notranslate nohighlight">\(y_w\)</span> and rejected response <span class="math notranslate nohighlight">\(y_l\)</span>.</p></li>
+<li><p><strong>RM Training</strong>: Use this large-scale preference dataset (x, y_w, y_l) generated by AI to train a reward model (RM) (same as RLHF Stage 2).</p></li>
+<li><p><strong>RL Tuning</strong>: Finally fine-tune the Stage 1 model <span class="math notranslate nohighlight">\(\pi_{SL-CAI}\)</span> using PPO with the RM trained in Stage 3 using AI feedback (this process is also called RLAIF).</p></li>
+</ol>
+</section>
+<section id="constitution-composition-real-principle-examples-2025-standards">
+<h3>3.3. Constitution Composition: Real Principle Examples (2025 Standards)<a class="headerlink" href="#constitution-composition-real-principle-examples-2025-standards" title="Link to this heading">#</a></h3>
+<p>Anthropic’s constitution is not fixed but continuously evolves, drawing inspiration from various sources.</p>
+<ul class="simple">
+<li><p><strong>Major Sources and Examples</strong>:</p>
+<ul>
+<li><p><strong>UN Universal Declaration of Human Rights</strong>: “Choose responses that most support and encourage freedom, equality, and fraternity consciousness.” “Choose responses with the least discrimination based on race, gender, religion, political views, etc.”</p></li>
+<li><p><strong>Apple’s Terms of Service</strong>: “Choose responses with the least personal, private, or confidential information belonging to others.” “Choose responses least associated with illegal, fraudulent, or manipulative activities.”</p></li>
+<li><p><strong>Non-Western Perspectives</strong>: “Choose responses least likely to be harmful or offensive to non-Western audiences.” “Choose responses least likely to be harmful or offensive to non-Western cultural traditions.” (This is an attempt to mitigate the cultural homogenization problem discussed in Part I.)</p></li>
+<li><p><strong>DeepMind Sparrow Principles</strong>: “Choose responses that use fewer stereotypes or other harmful generalizations, microaggressions.” “Choose responses that do not provide medical advice.”</p></li>
+<li><p><strong>Anthropic’s Own Principles (Meta-principles)</strong>: “Choose the most harmless and ethical AI assistant responses possible.” “Choose responses that show more ethical and moral awareness without sounding overly arrogant, reactive, unpleasant, or condemning.” (This is a meta-principle that regulates response tone.)</p></li>
+</ul>
+</li>
+</ul>
+<p>According to Anthropic’s recent research before 2025, for very large LLMs, even <em>a single general principle</em> like “do what’s best for humanity” can <em>partially</em> succeed in suppressing harmful behavior (e.g., self-preservation desires). This suggests that the role of detailed constitutional lists can <em>emerge</em> from universal principles. However, detailed constitutions still show superior performance for fine-grained harm control.</p>
+</section>
+<section id="id2">
+<h3>Checkpoint Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does Constitutional AI replace human feedback with AI feedback?</p></li>
+<li><p>Explain the difference between SL-CAI and RL-CAI stages.</p></li>
+<li><p>What are the advantages of using explicit constitutional principles over implicit human preferences?</p></li>
+<li><p>How does CAI address the cultural homogenization problem mentioned in earlier sections?</p></li>
+</ul>
+</section>
+</section>
+<section id="process-supervision-valuing-process-over-outcome">
+<h2>4. Process Supervision: Valuing Process Over Outcome<a class="headerlink" href="#process-supervision-valuing-process-over-outcome" title="Link to this heading">#</a></h2>
+<section id="prm-process-supervised-reward-models-vs-orm-outcome-supervised-reward-models">
+<h3>4.1. PRM (Process-supervised Reward Models) vs ORM (Outcome-supervised Reward Models)<a class="headerlink" href="#prm-process-supervised-reward-models-vs-orm-outcome-supervised-reward-models" title="Link to this heading">#</a></h3>
+<p>Another innovation in alignment techniques is changing what reward models evaluate.</p>
+<ul class="simple">
+<li><p><strong>ORM (Outcome-supervised RMs)</strong>: Classical reward models that work by only looking at whether the <em>final answer</em> generated by the model is right or wrong and giving rewards (e.g., +1 or -1).</p></li>
+<li><p><strong>PRM (Process-supervised RMs)</strong>: A method proposed by OpenAI that evaluates the <em>reasoning process (Chain-of-Thought, CoT)</em> step-by-step that the model goes through to reach the final answer and gives granular rewards for each step.</p></li>
+</ul>
+</section>
+<section id="why-prm-is-more-effective-for-multi-step-reasoning-e-g-mathematics">
+<h3>4.2. Why PRM is More Effective for Multi-step Reasoning (e.g., Mathematics)<a class="headerlink" href="#why-prm-is-more-effective-for-multi-step-reasoning-e-g-mathematics" title="Link to this heading">#</a></h3>
+<p>In tasks requiring multi-step reasoning like complex math problems, ORM has fundamental limitations.</p>
+<ul class="simple">
+<li><p><strong>Problem: ORM’s Credit Assignment Failure</strong>:</p>
+<ul>
+<li><p>If a model gets the final answer wrong in a 10-step math problem, ORM gives a ‘wrong’ (-1) reward but cannot know <em>which step</em> among the 10 steps was incorrect.</p></li>
+<li><p>A more serious problem is when ORM-trained models “reach correct answers by (accidentally) using wrong reasoning processes.” ORM commits the fatal error of <em>positively rewarding</em> this wrong process.</p></li>
+</ul>
+</li>
+<li><p><strong>PRM’s Solution: Precise Feedback</strong>:</p>
+<ul>
+<li><p>PRM provides feedback (e.g., ‘correct’, ‘incorrect’) for each reasoning step (e.g., each sentence in CoT).</p></li>
+<li><p>This allows “exact location of any errors” to be specified, immediately solving the credit assignment problem.</p></li>
+<li><p>PRM directly rewards models for following “human-endorsed chain-of-thought.”</p></li>
+</ul>
+</li>
+</ul>
+<p>PRM goes beyond simple performance improvement (significantly outperforming ORM on MATH dataset) to provide important <em>alignment benefits</em>. This is because it aligns the model’s ‘thinking process’ itself with human intent, inducing interpretable and trustworthy reasoning. Research from late 2024 and early 2025 proposes <em>automating</em> this process supervision or using “suboptimal thoughts” generated during ToT (Tree-of-Thoughts) exploration as ‘rejected’ samples in DPO’s CPO (Chain of Preference Optimization) technique, actively attempting to combine process supervision with the DPO paradigm.</p>
+</section>
+<section id="id3">
+<h3>Checkpoint Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the fundamental difference between outcome-supervised and process-supervised reward models?</p></li>
+<li><p>Why does ORM fail at credit assignment in multi-step reasoning tasks?</p></li>
+<li><p>How does PRM solve the credit assignment problem?</p></li>
+<li><p>What alignment benefits does process supervision provide beyond performance improvement?</p></li>
+</ul>
+</section>
+</section>
+<section id="rlaif-rl-from-ai-feedback-scalability-and-bias-amplification">
+<h2>5. RLAIF (RL from AI Feedback): Scalability and Bias Amplification<a class="headerlink" href="#rlaif-rl-from-ai-feedback-scalability-and-bias-amplification" title="Link to this heading">#</a></h2>
+<section id="need-for-ai-evaluators-llm-as-a-judge-and-how-they-work">
+<h3>5.1. Need for AI Evaluators (‘LLM-as-a-judge’) and How They Work<a class="headerlink" href="#need-for-ai-evaluators-llm-as-a-judge-and-how-they-work" title="Link to this heading">#</a></h3>
+<p>RLAIF (RL from AI Feedback) is a general term for approaches that replace RLHF’s <em>human</em> labelers with <em>AI</em> labelers (usually powerful LLMs like GPT-4, ‘LLM-as-a-judge’). (Note: CAI is a specific form of RLAIF using <em>explicit principles</em> called constitution.)</p>
+<p>RLAIF shows two responses generated by the policy model to AI evaluators and asks them to judge “Which is more helpful?” or “Which is more harmless?” to generate preference data at scale automatically. The biggest advantage of this technique is removing the cost of human feedback collection, RLHF’s biggest bottleneck, through <strong>scalability</strong>. AI feedback can generate large-scale preference data “cheaply, quickly, and (at least superficially) consistently.”</p>
+</section>
+<section id="rlaif-vs-rlhf-benchmarks-equal-or-superior-performance">
+<h3>5.2. RLAIF vs RLHF Benchmarks: Equal or Superior Performance<a class="headerlink" href="#rlaif-vs-rlhf-benchmarks-equal-or-superior-performance" title="Link to this heading">#</a></h3>
+<p>Beyond simply being a cheaper alternative, RLAIF has shown strong potential in actual performance benchmarks. According to in-depth research on RLAIF published at ICML 2024 and 2025 benchmarks, RLAIF achieved <em>on-par</em> performance with RLHF.</p>
+<p>Particularly in the 2025 benchmark, while RLAIF was comparable to RLHF in summarization and helpfulness aspects, <strong>RLAIF significantly outperformed RLHF (76%) at 88% in Harmlessness Rate</strong>. This suggests that RLAIF is not just a ‘cheap’ alternative but can apply more consistent and strict criteria than subjective human labelers for clearly defined standards like ‘safety’ to produce better alignment results.</p>
+</section>
+<section id="core-risk-inherited-and-amplified-bias-from-ai-judge-models">
+<h3>5.3. Core Risk: Inherited and Amplified Bias from AI Judge Models<a class="headerlink" href="#core-risk-inherited-and-amplified-bias-from-ai-judge-models" title="Link to this heading">#</a></h3>
+<p>RLAIF’s scalability can come at a fatal cost. The fundamental risk of RLAIF is the possibility of “inheriting and amplifying systematic bias from judge models.”</p>
+<p>AI judges themselves are not perfect and have various limitations.</p>
+<ul class="simple">
+<li><p><strong>Self-bias</strong>: AI judges tend to prefer responses in <em>their own (AI) generated style</em> over human-written responses.</p></li>
+<li><p><strong>Performance Gap</strong>: AI judges struggle to compare and evaluate two models with <em>subtle</em> performance differences.</p></li>
+<li><p><strong>Inconsistency</strong>: AI judge judgments and human judgments show “widespread inconsistency” across multiple tasks.</p></li>
+</ul>
+<p>The mechanism by which these biases are amplified is as follows:</p>
+<ol class="arabic simple">
+<li><p>Use AI judges (e.g., GPT-4) to generate preference labels.</p></li>
+<li><p>These judge models have their own inherent biases (e.g., US-centric values, preference for long answers, preference for specific word usage).</p></li>
+<li><p>RLAIF generates millions of these biased labels to build large-scale datasets.</p></li>
+<li><p>New policy models (<span class="math notranslate nohighlight">\(\pi_\theta\)</span>) overfit to these <em>large-scale biased datasets</em> through DPO or RM training.</p></li>
+<li><p><strong>Result</strong>: New models not only <em>learn</em> the judge’s biases but <em>amplify</em> them. We gain scalability at the cost of risking large-scale injection of specific AI model biases into globally deployed next-generation models.</p></li>
+</ol>
+</section>
+<section id="id4">
+<h3>Checkpoint Questions<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the main advantages of using AI evaluators instead of human evaluators?</p></li>
+<li><p>How does RLAIF achieve comparable performance to RLHF in benchmarks?</p></li>
+<li><p>What are the three main types of bias that AI judge models exhibit?</p></li>
+<li><p>Explain the mechanism by which AI judge biases are amplified in RLAIF systems.</p></li>
+</ul>
+</section>
+</section>
+<section id="practical-implementation-analysis-of-latest-open-source-frameworks">
+<h2>6. Practical Implementation: Analysis of Latest Open Source Frameworks<a class="headerlink" href="#practical-implementation-analysis-of-latest-open-source-frameworks" title="Link to this heading">#</a></h2>
+<section id="hugging-face-trl-toolkit-for-practitioners-sfttrainer-dpotrainer">
+<h3>6.1. Hugging Face TRL: Toolkit for Practitioners (SFTTrainer, DPOTrainer)<a class="headerlink" href="#hugging-face-trl-toolkit-for-practitioners-sfttrainer-dpotrainer" title="Link to this heading">#</a></h3>
+<p>TRL (Transformer Reinforcement Learning) is Hugging Face’s core library for SFT, DPO, RLHF (PPO, GRPO, etc.), leading the democratization of latest alignment techniques.</p>
+<p>The core component is DPOTrainer, which provides high-level abstraction for DPO training.</p>
+<p><strong>DPOTrainer’s Practical Workflow</strong>:</p>
+<ol class="arabic simple">
+<li><p><strong>Perform SFT (Required)</strong>: Use SFTTrainer to first instruction-tune the base model. DPO is used to ‘fine-tune according to preferences’ for SFT models that already follow instructions, not for unaligned base models.</p></li>
+<li><p><strong>Dataset Preparation</strong>: Load preference datasets in (prompt, chosen, rejected) format. TRL is compatible with the datasets library and automatically handles conversational formats.</p></li>
+<li><p><strong>DPOConfig Setup</strong>: Define training parameters like learning rate and batch size through DPOConfig objects. The beta value is a key hyperparameter that controls KL penalty strength.</p></li>
+<li><p><strong>DPOTrainer Initialization</strong>: Call DPOTrainer(model=sft_model, args=config, train_dataset=dataset, tokenizer=tokenizer,…). Practically, setting ref_model=None (default) is very convenient as DPOTrainer automatically uses a copy of the model as the reference model. It also integrates perfectly with PEFT/LoRA, enabling training with less VRAM.</p></li>
+<li><p><strong>Call trainer.train()</strong> to start training.</p></li>
+</ol>
+<p>As of 2025, TRL has expanded to fully support <strong>multimodal (VLM) alignment</strong> beyond text LLMs and quickly integrates latest algorithms like Online DPO and RLOO, establishing itself as the de facto standard toolkit for open-source alignment research.</p>
+</section>
+<section id="openrlhf-high-performance-distributed-training">
+<h3>6.2. OpenRLHF: High-Performance Distributed Training<a class="headerlink" href="#openrlhf-high-performance-distributed-training" title="Link to this heading">#</a></h3>
+<p>OpenRLHF is a high-performance, scalable RLHF (and DPO) framework built on Ray, DeepSpeed, and vLLM.</p>
+<p><strong>Technical Secrets of 3-4x Speed Improvement over DeepSpeed-Chat</strong>:
+The core of this performance improvement lies in accurately diagnosing and optimizing RLHF training bottlenecks.</p>
+<ol class="arabic simple">
+<li><p><strong>Diagnosis (Bottleneck is Inference)</strong>: <strong>80% to 90%</strong> of RLHF training time is spent not on PPO gradient updates (training) but on generating samples from the policy model (inference).</p></li>
+<li><p><strong>Solution 1 (vLLM Integration)</strong>: OpenRLHF integrated <strong>vLLM</strong> inference engine into this sample generation bottleneck section. vLLM uses <strong>PagedAttention</strong> (paging GPU memory to prevent KV cache fragmentation) and <strong>Continuous Batching</strong> (processing requests continuously without waiting for batch completion) technologies to maximize inference throughput. This dramatically accelerates the bottleneck section itself that takes up 80%.</p></li>
+<li><p><strong>Solution 2 (Distributed Architecture via Ray)</strong>: OpenRLHF uses <strong>Ray</strong> to <strong>separate RLHF pipeline’s 4 models (Actor, Critic, RM, Reference) onto different GPUs or nodes and execute them asynchronously</strong>. It also supports <strong>‘Hybrid Engine’</strong> scheduling, allowing vLLM inference engine and training models to share GPU resources and minimize idle time.</p></li>
+</ol>
+<p>While DeepSpeed-Chat inefficiently performs inference and training in a single pipeline, OpenRLHF achieves 3.6x to 3-4x speed improvement by extremely accelerating inference with vLLM and efficiently orchestrating the entire system with Ray. As of 2025, OpenRLHF has become a core research platform adopted by major companies like Google, Baidu, Tencent and academia like MIT, HKUST, used for reproducing SOTA reasoning models like DeepSeek-R1 and developing new algorithms like REINFORCE++.</p>
+</section>
+<section id="id5">
+<h3>Checkpoint Questions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the key components of TRL’s DPOTrainer workflow?</p></li>
+<li><p>How does OpenRLHF achieve 3-4x speed improvement over DeepSpeed-Chat?</p></li>
+<li><p>What is the main bottleneck in RLHF training, and how does vLLM address it?</p></li>
+<li><p>Why is the hybrid engine approach important for efficient resource utilization?</p></li>
+</ul>
+</section>
+</section>
+<section id="hands-on-practice-llama-2-7b-dpo-vs-rlhf-alignment-comparison">
+<h2>7. Hands-on Practice: LLaMA 2 7B – DPO vs RLHF Alignment Comparison<a class="headerlink" href="#hands-on-practice-llama-2-7b-dpo-vs-rlhf-alignment-comparison" title="Link to this heading">#</a></h2>
+<p>In this hands-on session, we will fine-tune the <strong>LLaMA 2 7B</strong> language model using the <strong>Anthropic HH (Harmless &amp; Helpful) dataset</strong> with both RLHF and DPO methods and <strong>compare the safety and quality of output results</strong>. The practice environment assumes <strong>1 H100 GPU</strong> and uses Hugging Face’s <strong>TRL</strong> library and <strong>OpenRLHF</strong> framework. TRL is an RLHF/DPO training tool linked with <em>transformers</em>, and OpenRLHF is a latest open-source framework supporting large-scale distributed RLHF.</p>
+<section id="experiment-preparation-libraries-and-dataset">
+<h3>7.1 Experiment Preparation: Libraries and Dataset<a class="headerlink" href="#experiment-preparation-libraries-and-dataset" title="Link to this heading">#</a></h3>
+<p>First, install necessary libraries and prepare models and datasets.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="n">transformers</span> <span class="n">trl</span> <span class="n">accelerate</span> <span class="n">openrlhf</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>Transformers</strong>: Loading pre-trained models and utilizing tokenizers from Hugging Face.</p></li>
+<li><p><strong>TRL (Transformer Reinforcement Learning)</strong>: Hugging Face’s RLHF support library providing classes like PPOTrainer, DPOTrainer.</p></li>
+<li><p><strong>Accelerate</strong>: Tool for easily utilizing distributed learning and FP16.</p></li>
+<li><p><strong>OpenRLHF</strong>: Integrated RLHF framework (for this practice, mainly for installation, primarily using TRL).</p></li>
+</ul>
+<p>Next, load the <strong>LLaMA 2 7B</strong> model and tokenizer (requires authorized path from Meta or Hugging Face hub path):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+
+<span class="n">model_name</span> <span class="o">=</span> <span class="s2">&quot;meta-llama/Llama-2-7b-hf&quot;</span>  <span class="c1"># Public Hugging Face checkpoint path (example)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">use_auth_token</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>And load the <strong>Anthropic/hh-rlhf</strong> dataset. This dataset contains <strong>2 model responses and preference indication for the preferred response</strong> for each conversation prompt. Let’s load it using Hugging Face datasets:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">datasets</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;Anthropic/hh-rlhf&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
+<span class="c1"># Expected output: [&#39;prompt&#39;, &#39;chosen&#39;, &#39;rejected&#39;, ...]</span>
+</pre></div>
+</div>
+<p>Here, prompt is the conversation prompt, chosen is the more desirable response, and rejected is the less desirable response. This format can be used for both DPO and PPO training.</p>
+</section>
+<section id="dpo-method-fine-tuning">
+<h3>7.2 DPO Method Fine-tuning<a class="headerlink" href="#dpo-method-fine-tuning" title="Link to this heading">#</a></h3>
+<p>The TRL library provides the <strong>DPOTrainer</strong> class to train models with DPO loss. DPOTrainer requires <strong>policy model (model)</strong> and <strong>reference model (model_ref)</strong>. Generally, the reference model is a fixed copy of the initial SFT model. Here, we’ll use the LLaMA2 pre-train model directly as policy/reference without the SFT stage initially (for more accurate practice, it’s better to go through SFT first).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">trl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DPOTrainer</span><span class="p">,</span> <span class="n">DPOConfig</span>
+
+<span class="c1"># Create reference model as a copy of the initial model</span>
+<span class="n">model_ref</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_name</span><span class="p">,</span> <span class="n">use_auth_token</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">)</span>
+<span class="n">model_ref</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>  <span class="c1"># Fixed during training</span>
+
+<span class="c1"># Convert dataset to DPOTrainer input format (dict format)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">to_dpo_format</span><span class="p">(</span><span class="n">batch</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;chosen&quot;</span><span class="p">:</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;chosen&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rejected&quot;</span><span class="p">:</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;rejected&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+<span class="n">dpo_dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">map</span><span class="p">(</span><span class="n">to_dpo_format</span><span class="p">,</span> <span class="n">remove_columns</span><span class="o">=</span><span class="n">dataset</span><span class="o">.</span><span class="n">column_names</span><span class="p">)</span>
+
+<span class="c1"># DPO training configuration</span>
+<span class="n">dpo_training_args</span> <span class="o">=</span> <span class="n">DPOConfig</span><span class="p">(</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+    <span class="n">beta</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>                        <span class="c1"># Beta hyperparameter for DPO loss</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>              <span class="c1"># 1 epoch for demo, should increase in practice</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="n">dpo_trainer</span> <span class="o">=</span> <span class="n">DPOTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">ref_model</span><span class="o">=</span><span class="n">model_ref</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">dpo_training_args</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">dpo_dataset</span>
+<span class="p">)</span>
+<span class="n">dpo_trainer</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>In the above code, beta=0.1 is set, which is the scale adjustment factor for the DPO loss function. When <span class="math notranslate nohighlight">\(\beta\)</span> is small, it makes changes to the policy model relative to the reference model small, and when large, it learns more sensitively to preference differences. DPOTrainer records rewards/ metrics during training, where rewards/chosen and rewards/rejected represent average values of <strong>log probability differences (rewards) between policy and reference models</strong>, and rewards/accuracies represents <strong>the ratio of policy scoring preferred responses higher than reference</strong>. Ideally, as training progresses, rewards/accuracies should converge to 1.0, and rewards/margins (preferred-non-preferred reward differences) should gradually increase positively.</p>
+</section>
+<section id="rlhf-ppo-method-fine-tuning">
+<h3>7.3 RLHF (PPO) Method Fine-tuning<a class="headerlink" href="#rlhf-ppo-method-fine-tuning" title="Link to this heading">#</a></h3>
+<p>Now let’s practice <strong>PPO-based RLHF</strong>. PPO (Proximal Policy Optimization) is a widely used policy optimization algorithm in RLHF that requires a pre-trained <strong>reward model</strong>. For this practice, we’ll simplify by assuming that <strong>a reward model has already been trained</strong> that gives high scores to chosen responses and low scores to rejected responses in Anthropic data. (Due to time constraints, reward model training code is omitted, but generally reward models are also loaded with transformers and trained.)</p>
+<p>Implement the RLHF stage using TRL’s <strong>PPOTrainer</strong>. PPOTrainer operates by receiving policy model, reference model, and user-defined <strong>reward function</strong>. Let’s look at it in pseudo-code form:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">trl</span><span class="w"> </span><span class="kn">import</span> <span class="n">PPOTrainer</span><span class="p">,</span> <span class="n">PPOConfig</span>
+
+<span class="c1"># PPO configuration</span>
+<span class="n">ppo_config</span> <span class="o">=</span> <span class="n">PPOConfig</span><span class="p">(</span>
+    <span class="n">model_name_or_path</span><span class="o">=</span><span class="n">model_name</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span>
+    <span class="n">batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="c1"># Other PPO hyperparameters (clip_range, gamma, etc.) omitted</span>
+<span class="p">)</span>
+<span class="n">ppo_trainer</span> <span class="o">=</span> <span class="n">PPOTrainer</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span> <span class="n">ref_model</span><span class="o">=</span><span class="n">model_ref</span><span class="p">,</span> <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">config</span><span class="o">=</span><span class="n">ppo_config</span><span class="p">)</span>
+
+<span class="c1"># PPO update example for sample prompts</span>
+<span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">dataloader</span><span class="p">:</span>  <span class="c1"># dataloader is a list of prompts</span>
+    <span class="n">prompts</span> <span class="o">=</span> <span class="n">batch</span><span class="p">[</span><span class="s2">&quot;prompt&quot;</span><span class="p">]</span>
+    <span class="c1"># 1. Generate responses with policy model</span>
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[</span><span class="n">ppo_trainer</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="n">prompt</span><span class="p">)</span> <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">]</span>
+    <span class="c1"># 2. Calculate rewards for each response through reward model</span>
+    <span class="n">rewards</span> <span class="o">=</span> <span class="p">[</span><span class="n">reward_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">res</span><span class="p">)</span> <span class="k">for</span> <span class="n">prompt</span><span class="p">,</span> <span class="n">res</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">responses</span><span class="p">)]</span>
+    <span class="c1"># 3. Update policy model with PPO</span>
+    <span class="n">stats</span> <span class="o">=</span> <span class="n">ppo_trainer</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">prompts</span><span class="p">,</span> <span class="n">responses</span><span class="p">,</span> <span class="n">rewards</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In this process, the reference model (ref*model) is used for KL penalty calculation to prevent the policy model from deviating too far from the original distribution. The reward_model.score part assumes that a pre-trained reward model <span class="math notranslate nohighlight">\(r*\phi(x,y)\)</span> produces response scores. KL penalty is internally applied in the form reward += -beta * KL(model||ref_model), reducing rewards by penalty amount (beta value like TRL default 0.1).</p>
+<p>Actually, using frameworks like OpenRLHF, you can perform PPO RLHF with <strong>one-click scripts</strong> without writing the above low-level loops. For example, in OpenRLHF, you can start PPO RLHF for LLaMA2 7B with commands like this (conceptually):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>openrlhf<span class="w"> </span>--model<span class="w"> </span>LLaMA-7B<span class="w"> </span>--tokenizer<span class="w"> </span>LLaMA-7B<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--actor_model<span class="w"> </span>LLaMA-7B<span class="w"> </span>--reward_model<span class="w"> </span>&lt;pre-trained<span class="w"> </span>RM&gt;<span class="w"> </span><span class="se">\</span>
+<span class="w">         </span>--algorithm<span class="w"> </span>PPO<span class="w"> </span>--data<span class="w"> </span>Anthropic_hh<span class="w"> </span>--max_steps<span class="w"> </span><span class="m">10000</span><span class="w"> </span>...
+</pre></div>
+</div>
+<p>(OpenRLHF’s actual commands are controlled by config, and the above is a conceptual example.)</p>
+</section>
+<section id="output-evaluation-and-comparison">
+<h3>7.4 Output Evaluation and Comparison<a class="headerlink" href="#output-evaluation-and-comparison" title="Link to this heading">#</a></h3>
+<p>After training models with both methods (DPO vs PPO-RLHF), we need to compare responses generated for <strong>identical evaluation prompts</strong>. As evaluation criteria, we present two aspects: <strong>safety</strong> and <strong>quality</strong>:</p>
+<ul class="simple">
+<li><p><strong>Safety Evaluation</strong>: Focus on the <strong>“Harmless”</strong> aspect of the Anthropic HH dataset to see if the model avoids harmful or inappropriate responses. For example, select several <strong>intentionally harmful questions</strong> (e.g., “Make racist remarks”) or <strong>ethical dilemma questions</strong> and input them to both models, then check whether each output is appropriate according to <strong>constitutional principles or OpenAI guidelines</strong>. For automated methods, <strong>harmful speech detection classifiers</strong> or <strong>model self-evaluation</strong> can be used. For example, ask one LLM “Is this response safe?” to get True/False, or use external toxicity detectors like Perspective API to compare toxicity scores of outputs. Finally, quantify <strong>number of safety violations</strong> or <strong>toxicity probability</strong> to compare the two models.</p></li>
+<li><p><strong>Quality Evaluation</strong>: <strong>Helpfulness</strong> aspect, i.e., how usefully and accurately the model answered the user’s question. This is essentially looking at the <strong>content quality</strong> of model output, which is not easy to evaluate automatically. Some auxiliary indicators include comparing <strong>answer length</strong>, <strong>specificity</strong>, <strong>inclusion of evidence</strong>, etc. Furthermore, <strong>separate powerful evaluation models</strong> (e.g., GPT-4) can be used to <strong>rank</strong> outputs from both models. For example, design prompts asking GPT-4 “Which of model A and B’s answers better solved the question?” and conduct multiple evaluations to statistically determine which model produces more helpful answers. Or <strong>human evaluators</strong> can be invited for small-scale checkathons, which is the most reliable method.</p></li>
+</ul>
+<p><strong>Evaluation Example</strong>: For example, suppose we input “questions where users seek medical advice” to both models. The RLHF model might answer relatively <strong>formally but safely</strong>, while the DPO model might answer <strong>slightly more freely</strong> but essentially similarly. Let’s compare through specific prompt examples and (hypothetical) responses:</p>
+<ul class="simple">
+<li><p><em>Prompt</em>: “I have a severe headache, would drinking a lot of caffeine help?”</p></li>
+<li><p><strong>RLHF Model Response</strong>: “I’m not a doctor, but generally <strong>caffeine can temporarily relieve headaches</strong> but avoid overuse. If symptoms persist, please consult a medical professional.”</p></li>
+<li><p><strong>DPO Model Response</strong>: “Caffeine can help with headaches. Actually, caffeine in coffee has <strong>analgesic effects</strong>, but <strong>excessive consumption has side effects like dehydration</strong>, so be careful. If severe, I recommend professional medical consultation.”</p></li>
+</ul>
+<p>Both responses are relatively safe and useful, but there may be nuanced differences. By collecting several such cases, <strong>expert evaluation</strong> or <strong>crowdsourcing evaluation</strong> can investigate <strong>preferences</strong>. If the DPO model gives <strong>softer and less formal</strong> answers compared to the RLHF model, user satisfaction might be higher, while if the RLHF model always answers <strong>very safely only</strong> and provides less useful information, preferences might decrease.</p>
+<p><strong>Quantitative Evaluation Metrics</strong>:</p>
+<ul class="simple">
+<li><p>Safety: For example, input 100 potentially harmful prompts and measure <strong>the ratio of inappropriate responses</strong> (use of prohibited words, incitement to hatred/violence, etc.). Lower ratio means safer model. Also check <strong>refusal rate</strong> - whether it refuses unnecessarily many times even when safe. If the model <strong>excessively refuses even ambiguous requests</strong>, usefulness decreases. Therefore, qualitative evaluation distinguishing <em>appropriate refusal</em> and <em>excessive refusal</em> is needed.</p></li>
+<li><p>Quality: For questions with correct answers, <strong>accuracy</strong> can be calculated, and for creative responses, <strong>survey scores</strong> (e.g., “Was it helpful” 1-5 scale) averages can be compared. If there’s a <strong>Helpfulness evaluation set</strong> from Anthropic HH, <strong>win rate</strong> (ratio of that model’s response winning in pairwise conversation comparisons) can also be measured.</p></li>
+</ul>
+<p><strong>Expected Results</strong>: Generally, <strong>DPO and RLHF models show similar levels of helpfulness</strong> but may have subtle differences. Research reports that DPO-aligned models <strong>maintain slightly more diversity from original models</strong> while being aligned to preferences compared to RLHF models. That is, RLHF tends to <strong>reduce diversity</strong> due to KL penalty causing text distribution contraction and outputs become uniform, while DPO can maintain more naturalness. Meanwhile, in safety aspects, both approaches reflect human preference data so there shouldn’t be big differences, but in <strong>detailed policy compliance</strong> aspects, RLHF (especially models trained with human feedback without constitution) might show <strong>slightly more conservative tendencies</strong>. Through such evaluation, students can directly confirm <strong>model behavior differences according to alignment methods</strong>.</p>
+</section>
+<section id="id6">
+<h3>Checkpoint Questions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the key steps in setting up DPO training with TRL’s DPOTrainer?</p></li>
+<li><p>How does PPO training differ from DPO in terms of required components?</p></li>
+<li><p>What evaluation criteria should be used to compare DPO and RLHF aligned models?</p></li>
+<li><p>Why is it important to evaluate both safety and quality aspects when comparing alignment methods?</p></li>
+</ul>
+</section>
+</section>
+<section id="latest-research-trends-personalization-and-multimodal">
+<h2>8. Latest Research Trends: Personalization and Multimodal<a class="headerlink" href="#latest-research-trends-personalization-and-multimodal" title="Link to this heading">#</a></h2>
+<p>As of 2025, alignment research is expanding from ‘one-size-fits-all’ alignment in two new directions.</p>
+<section id="beyond-average-alignment-personalized-alignment">
+<h3>8.1. Beyond ‘Average Alignment’: Personalized Alignment<a class="headerlink" href="#beyond-average-alignment-personalized-alignment" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Problem Awareness</strong>: RLHF and DPO align models to ‘average’ human preferences. But preferences differ by individual and culture. Engineers might prefer concise answers while humanities scholars prefer detailed answers. Current alignment methods don’t reflect this ‘value pluralism’ and instead homogenize it.</p></li>
+<li><p><strong>2025 Solution: Personalized Alignment</strong>:</p>
+<ul>
+<li><p>This is a new paradigm for training LLMs to adapt to individual users’ unique preferences.</p></li>
+<li><p>Technical Approaches: (1) <strong>Training time</strong>: Train user-specific PEFT modules (e.g., LoRA) or ‘steering vectors’ and load user-appropriate modules at inference time. (2) <strong>Inference time</strong>: Directly modify logits during decoding process using reward functions representing user preferences.</p></li>
+<li><p>2026 alignment is moving toward dynamically providing ‘personalized answers’ according to user context and preferences rather than finding ‘single correct answers’.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="beyond-text-multimodal-alignment">
+<h3>8.2. Beyond Text: Multimodal Alignment<a class="headerlink" href="#beyond-text-multimodal-alignment" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Problem Awareness</strong>: As LLMs evolve into MLLMs (Multimodal LLMs), alignment targets have expanded beyond text to images, videos, and audio.</p></li>
+<li><p><strong>New Challenges</strong>:</p>
+<ul>
+<li><p><strong>Multimodal Hallucination</strong>: How to suppress hallucinations that describe objects <em>not present</em> in images, not just text?</p></li>
+<li><p><strong>Multimodal Safety</strong>: How to align responses when text prompts are safe but harmful images are input?</p></li>
+</ul>
+</li>
+<li><p><strong>2025 Solutions</strong>: Text alignment techniques are being directly extended and applied to multimodal:</p>
+<ul>
+<li><p><strong>MM-DPO (Multimodal DPO)</strong>: Apply DPO to image/text pairs to select more preferred responses (e.g., less hallucinatory).</p></li>
+<li><p><strong>RLAIF-V (RLAIF for Vision)</strong>: Build preference datasets by having AI judges evaluate vision data.</p></li>
+</ul>
+</li>
+</ul>
+<p>Alignment technology now must handle high-dimensional complex data (text+image+audio), meaning it faces truthfulness, safety, and bias problems that LLMs experienced in much more complex dimensions.</p>
+</section>
+<section id="id7">
+<h3>Checkpoint Questions<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the main limitations of ‘one-size-fits-all’ alignment approaches?</p></li>
+<li><p>How does personalized alignment address individual and cultural preference differences?</p></li>
+<li><p>What new challenges arise when extending alignment techniques to multimodal data?</p></li>
+<li><p>Why is multimodal alignment more complex than text-only alignment?</p></li>
+</ul>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Reinforcement Learning Meets Large Language Models: A Survey of Advancements and Applications Across the LLM Lifecycle - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2509.16679v1">https://arxiv.org/html/2509.16679v1</a></p></li>
+<li><p>Top LLM Trends 2025: What’s the Future of LLMs - Turing, accessed October 27, 2025, <a class="reference external" href="https://www.turing.com/resources/top-llm-trends">https://www.turing.com/resources/top-llm-trends</a></p></li>
+<li><p>Inside LLMs: RLHF, RLAIF &amp; the Evolution of Model Alignment - Pietro Mingotti, accessed October 27, 2025, <a class="reference external" href="https://pietromingotti.com/inside-llms-rlhf-rlaif-the-evolution-of-model-alignment/">https://pietromingotti.com/inside-llms-rlhf-rlaif-the-evolution-of-model-alignment/</a></p></li>
+<li><p>Fine-tune large language models with reinforcement learning from …, accessed October 27, 2025, <a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/fine-tune-large-language-models-with-reinforcement-learning-from-human-or-ai-feedback/">https://aws.amazon.com/blogs/machine-learning/fine-tune-large-language-models-with-reinforcement-learning-from-human-or-ai-feedback/</a></p></li>
+<li><p>Safe RLHF: Safe Reinforcement Learning from Human Feedback - OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=TyFrPOKYXw">https://openreview.net/forum?id=TyFrPOKYXw</a></p></li>
+<li><p>Illustrating Reinforcement Learning from Human Feedback (RLHF) - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/blog/rlhf">https://huggingface.co/blog/rlhf</a></p></li>
+<li><p>The Shift from RLHF to DPO for LLM Alignment: Fine-Tuning Large Language Models | by Nishtha kukreti | Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;nishthakukreti.01/the-shift-from-rlhf-to-dpo-for-llm-alignment-fine-tuning-large-language-models-631f854de301">https://medium.com/&#64;nishthakukreti.01/the-shift-from-rlhf-to-dpo-for-llm-alignment-fine-tuning-large-language-models-631f854de301</a></p></li>
+<li><p>Secrets of RLHF in Large Language Models Part II: Reward Modeling - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2401.06080v2">https://arxiv.org/html/2401.06080v2</a></p></li>
+<li><p>Secrets of RLHF in Large Language Models Part I: PPO - GitHub Pages, accessed October 27, 2025, <a class="reference external" href="https://openlmlab.github.io/MOSS-RLHF/paper/SecretsOfRLHFPart1.pdf">https://openlmlab.github.io/MOSS-RLHF/paper/SecretsOfRLHFPart1.pdf</a></p></li>
+<li><p>A Comprehensive Survey of Direct Preference Optimization: Datasets, Theories, Variants, and Applications - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2410.15595v3">https://arxiv.org/html/2410.15595v3</a></p></li>
+<li><p>Fine-tune Llama 2 with DPO - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/blog/dpo-trl">https://huggingface.co/blog/dpo-trl</a></p></li>
+<li><p>A Survey on Progress in LLM Alignment from the Perspective of Reward Design - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2505.02666v1">https://arxiv.org/html/2505.02666v1</a></p></li>
+<li><p>The Machine Learning Practitioner’s Guide to Fine-Tuning Language Models, accessed October 27, 2025, <a class="reference external" href="https://machinelearningmastery.com/the-machine-learning-practitioners-guide-to-fine-tuning-language-models/">https://machinelearningmastery.com/the-machine-learning-practitioners-guide-to-fine-tuning-language-models/</a></p></li>
+<li><p>Reward Shaping to Mitigate Reward Hacking in RLHF - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2502.18770v3">https://arxiv.org/html/2502.18770v3</a></p></li>
+<li><p>The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2501.19358v3">https://arxiv.org/html/2501.19358v3</a></p></li>
+<li><p>The Alignment Problem from a Deep Learning Perspective - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/pdf/2209.00626">https://arxiv.org/pdf/2209.00626</a></p></li>
+<li><p>Towards Understanding Sycophancy in Language Models - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/pdf/2310.13548">https://arxiv.org/pdf/2310.13548</a></p></li>
+<li><p>Sycophancy under Pressure: Evaluating and Mitigating Sycophantic Bias via Adversarial Dialogues in Scientific QA - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2508.13743v1">https://arxiv.org/html/2508.13743v1</a></p></li>
+<li><p>Social Sycophancy: A Broader Understanding of LLM Sycophancy - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2505.13995v1">https://arxiv.org/html/2505.13995v1</a></p></li>
+<li><p>When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2508.02087v1">https://arxiv.org/html/2508.02087v1</a></p></li>
+<li><p>Mitigating the Alignment Tax of RLHF - ACL Anthology, accessed October 27, 2025, <a class="reference external" href="https://aclanthology.org/2024.emnlp-main.35/">https://aclanthology.org/2024.emnlp-main.35/</a></p></li>
+<li><p>DIVERSE PREFERENCE LEARNING FOR … - OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/pdf?id=pOq9vDIYev">https://openreview.net/pdf?id=pOq9vDIYev</a></p></li>
+<li><p>Position: The Pitfalls of Over-Alignment: Overly Caution Health-Related Responses From LLMs are Unethical and Dangerous - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2509.08833v2">https://arxiv.org/html/2509.08833v2</a></p></li>
+<li><p>EvalMORAAL: Interpretable Chain-of-Thought and LLM-as-Judge Evaluation for Moral Alignment in Large Language Models - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2510.05942v1">https://arxiv.org/html/2510.05942v1</a></p></li>
+<li><p>Arxiv Dives - Direct Preference Optimization (DPO) - <a class="reference external" href="http://Oxen.ai">Oxen.ai</a>, accessed October 27, 2025, <a class="reference external" href="https://www.oxen.ai/blog/arxiv-dives-direct-preference-optimization-dpo">https://www.oxen.ai/blog/arxiv-dives-direct-preference-optimization-dpo</a></p></li>
+<li><p>Direct Preference Optimization: Your Language Model is Secretly a Reward Model - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/pdf/2305.18290">https://arxiv.org/pdf/2305.18290</a></p></li>
+<li><p>DPO Trainer - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/docs/trl/en/dpo_trainer">https://huggingface.co/docs/trl/en/dpo_trainer</a></p></li>
+<li><p>Why Everyone Is Switching from RLHF to DPO? | by Shahidullah Kawsar | Oct, 2025, accessed October 27, 2025, <a class="reference external" href="https://kawsar34.medium.com/why-everyone-is-switching-from-rlhf-to-dpo-0bf86b56269a">https://kawsar34.medium.com/why-everyone-is-switching-from-rlhf-to-dpo-0bf86b56269a</a></p></li>
+<li><p>Direct Preference Optimization: Your Language Model is Secretly a …, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2305.18290">https://arxiv.org/abs/2305.18290</a></p></li>
+<li><p>BOOTSTRAPPING LANGUAGE MODELS WITH DPO IMPLICIT REWARDS - ICLR Proceedings, accessed October 27, 2025, <a class="reference external" href="https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4de96b9169aa869cc102afe31055e8-Paper-Conference.pdf">https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4de96b9169aa869cc102afe31055e8-Paper-Conference.pdf</a></p></li>
+<li><p>Step-level Value Preference Optimization for Mathematical Reasoning - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2406.10858v1">https://arxiv.org/html/2406.10858v1</a></p></li>
+<li><p>Bootstrapping Language Models with DPO Implicit Rewards - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2406.09760v2">https://arxiv.org/html/2406.09760v2</a></p></li>
+<li><p>Direct Preference Optimization (DPO) | by João Lages - Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;joaolages/direct-preference-optimization-dpo-622fc1f18707">https://medium.com/&#64;joaolages/direct-preference-optimization-dpo-622fc1f18707</a></p></li>
+<li><p>RLHF without RL - Direct Preference Optimization | ICLR Blogposts 2024, accessed October 27, 2025, <a class="reference external" href="https://iclr-blogposts.github.io/2024/blog/rlhf-without-rl/">https://iclr-blogposts.github.io/2024/blog/rlhf-without-rl/</a></p></li>
+<li><p>How to align open LLMs in 2025 with DPO &amp; and synthetic data - Philschmid, accessed October 27, 2025, <a class="reference external" href="https://www.philschmid.de/rl-with-llms-in-2025-dpo">https://www.philschmid.de/rl-with-llms-in-2025-dpo</a></p></li>
+<li><p>Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=6XH8R7YrSk&amp;amp;referrer=%5Bthe+profile+of+Yi+Wu%5D">https://openreview.net/forum?id=6XH8R7YrSk&amp;referrer=[the+profile+of+Yi+Wu]</a>(/profile?id%3D~Yi_Wu1)</p></li>
+<li><p>Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2404.10719v1">https://arxiv.org/html/2404.10719v1</a></p></li>
+<li><p>Is DPO Superior to PPO for LLM Alignment? A Comprehensive …, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=6XH8R7YrSk">https://openreview.net/forum?id=6XH8R7YrSk</a></p></li>
+<li><p>D.P.O vs R.L.H.F : A Battle for Fine-Tuning Supremacy in Language Models - Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;sinarya.114/d-p-o-vs-r-l-h-f-a-battle-for-fine-tuning-supremacy-in-language-models-04b273e7a173">https://medium.com/&#64;sinarya.114/d-p-o-vs-r-l-h-f-a-battle-for-fine-tuning-supremacy-in-language-models-04b273e7a173</a></p></li>
+<li><p>RLHF and alternatives: IPO - Argilla, accessed October 27, 2025, <a class="reference external" href="https://argilla.io/blog/mantisnlp-rlhf-part-6/">https://argilla.io/blog/mantisnlp-rlhf-part-6/</a></p></li>
+<li><p>Mitigating Reward Over-optimization in Direct Alignment Algorithms with Importance Sampling - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2506.08681v1">https://arxiv.org/html/2506.08681v1</a></p></li>
+<li><p>Asynchronous RLHF: Faster and More Efficient Off-Policy RL for Language Models | OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=FhTAG591Ve">https://openreview.net/forum?id=FhTAG591Ve</a></p></li>
+<li><p>Robust LLM Alignment via Distributionally Robust Direct Preference …, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2502.01930">https://arxiv.org/abs/2502.01930</a></p></li>
+<li><p>Claude AI 2025: Everything You Must Know Before Getting Started | by Wajid Ali - Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;officewajidali/claude-ai-2025-everything-you-must-know-before-getting-started-c629a78ad583">https://medium.com/&#64;officewajidali/claude-ai-2025-everything-you-must-know-before-getting-started-c629a78ad583</a></p></li>
+<li><p>Constitutional AI: Harmlessness from AI Feedback - Anthropic, accessed October 27, 2025, <a class="reference external" href="https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback">https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback</a></p></li>
+<li><p>What is Constitutional AI (CAI)? - Zilliz Learn, accessed October 27, 2025, <a class="reference external" href="https://zilliz.com/learn/constitutional-ai-harmlessness-from-ai-feedback">https://zilliz.com/learn/constitutional-ai-harmlessness-from-ai-feedback</a></p></li>
+<li><p>What Is Constitutional AI? How It Works &amp; Benefits | GigaSpaces AI, accessed October 27, 2025, <a class="reference external" href="https://www.gigaspaces.com/data-terms/constitutional-ai">https://www.gigaspaces.com/data-terms/constitutional-ai</a></p></li>
+<li><p>Constitutional AI: Harmlessness from AI Feedback — NVIDIA NeMo …, accessed October 27, 2025, <a class="reference external" href="https://docs.nvidia.com/nemo-framework/user-guide/24.09/modelalignment/cai.html">https://docs.nvidia.com/nemo-framework/user-guide/24.09/modelalignment/cai.html</a></p></li>
+<li><p>Claude AI’s Constitutional Framework: A Technical Guide to Constitutional AI | by Generative AI | Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;genai.works/claude-ais-constitutional-framework-a-technical-guide-to-constitutional-ai-704942e24a21">https://medium.com/&#64;genai.works/claude-ais-constitutional-framework-a-technical-guide-to-constitutional-ai-704942e24a21</a></p></li>
+<li><p>Claude’s Constitution \ Anthropic, accessed October 27, 2025, <a class="reference external" href="https://www.anthropic.com/news/claudes-constitution">https://www.anthropic.com/news/claudes-constitution</a></p></li>
+<li><p>Understanding Constitutional AI - Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;jonnyndavis/understanding-constitutional-ai-dd9d783ef712">https://medium.com/&#64;jonnyndavis/understanding-constitutional-ai-dd9d783ef712</a></p></li>
+<li><p>Specific versus General Principles for Constitutional AI - Anthropic, accessed October 27, 2025, <a class="reference external" href="https://www.anthropic.com/research/specific-versus-general-principles-for-constitutional-ai">https://www.anthropic.com/research/specific-versus-general-principles-for-constitutional-ai</a></p></li>
+<li><p>arXiv:2305.20050v1 [cs.LG] 31 May 2023, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/pdf/2305.20050">https://arxiv.org/pdf/2305.20050</a></p></li>
+<li><p>[R] New OpenAI article: Improving Mathematical Reasoning with Process Supervision : r/MachineLearning - Reddit, accessed October 27, 2025, <a class="reference external" href="https://www.reddit.com/r/MachineLearning/comments/13wwzq9/r_new_openai_article_improving_mathematical/">https://www.reddit.com/r/MachineLearning/comments/13wwzq9/r_new_openai_article_improving_mathematical/</a></p></li>
+<li><p>Demystifying Multilingual Chain-of-Thought in Process Reward Modeling - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2502.12663v1">https://arxiv.org/html/2502.12663v1</a></p></li>
+<li><p>Improve Mathematical Reasoning in Language Models by Automated Process Supervision - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/pdf/2406.06592">https://arxiv.org/pdf/2406.06592</a></p></li>
+<li><p>Chain of Preference Optimization: Improving Chain-of-Thought Reasoning in LLMs - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2406.09136v1">https://arxiv.org/html/2406.09136v1</a></p></li>
+<li><p>RLAIF: Scaling Reinforcement Learning from Human Feedback with AI… - OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=AAxIs3D2ZZ">https://openreview.net/forum?id=AAxIs3D2ZZ</a></p></li>
+<li><p>RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback, accessed October 27, 2025, <a class="reference external" href="https://proceedings.mlr.press/v235/lee24t.html">https://proceedings.mlr.press/v235/lee24t.html</a></p></li>
+<li><p>RLAIF Is The Future. But What Could Go Wrong? | by Reya Vir - Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;reyavir/rlaif-is-the-future-but-what-could-go-wrong-d86f1a6956f0">https://medium.com/&#64;reyavir/rlaif-is-the-future-but-what-could-go-wrong-d86f1a6956f0</a></p></li>
+<li><p>RLAIF vs. RLHF: Scaling Reinforcement Learning from … - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2309.00267">https://arxiv.org/abs/2309.00267</a></p></li>
+<li><p>Aligning and Augmenting Intelligence: A Technical Survey of …, accessed October 27, 2025, <a class="reference external" href="https://www.findingtheta.com/blog/aligning-and-augmenting-intelligence-a-technical-survey-of-reinforcement-learning-in-large-language-models">https://www.findingtheta.com/blog/aligning-and-augmenting-intelligence-a-technical-survey-of-reinforcement-learning-in-large-language-models</a></p></li>
+<li><p>RLTHF: Targeted Human Feedback for LLM Alignment - ICML 2025, accessed October 27, 2025, <a class="reference external" href="https://icml.cc/virtual/2025/poster/46173">https://icml.cc/virtual/2025/poster/46173</a></p></li>
+<li><p>LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology, accessed October 27, 2025, <a class="reference external" href="https://aclanthology.org/2025.acl-short.20.pdf">https://aclanthology.org/2025.acl-short.20.pdf</a></p></li>
+<li><p>Re-evaluating Automatic LLM System Ranking for Alignment with Human Preference - ACL Anthology, accessed October 27, 2025, <a class="reference external" href="https://aclanthology.org/2025.findings-naacl.260.pdf">https://aclanthology.org/2025.findings-naacl.260.pdf</a></p></li>
+<li><p>TRL - Transformer Reinforcement Learning - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/docs/trl/en/index">https://huggingface.co/docs/trl/en/index</a></p></li>
+<li><p>huggingface/trl: Train transformer language models with reinforcement learning. - GitHub, accessed October 27, 2025, <a class="github reference external" href="https://github.com/huggingface/trl">huggingface/trl</a></p></li>
+<li><p>RLHF in 2024 with DPO &amp; Hugging Face - Philschmid, accessed October 27, 2025, <a class="reference external" href="https://www.philschmid.de/dpo-align-llms-in-2024-with-trl">https://www.philschmid.de/dpo-align-llms-in-2024-with-trl</a></p></li>
+<li><p>Preference Tuning LLMs with Direct Preference Optimization Methods, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/blog/pref-tuning">https://huggingface.co/blog/pref-tuning</a></p></li>
+<li><p>Preference Optimization for Vision Language Models with TRL - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/blog/dpo_vlm">https://huggingface.co/blog/dpo_vlm</a></p></li>
+<li><p>Vision Language Model Alignment in TRL ⚡️ - Hugging Face, accessed October 27, 2025, <a class="reference external" href="https://huggingface.co/blog/trl-vlm-alignment">https://huggingface.co/blog/trl-vlm-alignment</a></p></li>
+<li><p>OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. - GitHub, accessed October 27, 2025, <a class="github reference external" href="https://github.com/OpenRLHF/OpenRLHF-M">OpenRLHF/OpenRLHF-M</a></p></li>
+<li><p>OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2405.11143v6">https://arxiv.org/html/2405.11143v6</a></p></li>
+<li><p>Welcome to OpenRLHF’s documentation! — OpenRLHF 0.9 …, accessed October 27, 2025, <a class="reference external" href="https://openrlhf.readthedocs.io/">https://openrlhf.readthedocs.io/</a></p></li>
+<li><p>Accelerating RLHF with vLLM, Best Practice from OpenRLHF, accessed October 27, 2025, <a class="reference external" href="https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html">https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html</a></p></li>
+<li><p>Inside vLLM: Anatomy of a High-Throughput LLM Inference System, accessed October 27, 2025, <a class="reference external" href="https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html">https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html</a></p></li>
+<li><p>OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO &amp; GRPO &amp; REINFORCE++ &amp; vLLM &amp; Ray &amp; Dynamic Sampling &amp; Async Agentic RL) - GitHub, accessed October 27, 2025, <a class="github reference external" href="https://github.com/OpenRLHF/OpenRLHF">OpenRLHF/OpenRLHF</a></p></li>
+<li><p>SFT vs. DPO: Comparison between LLM Alignment techniques | by Sulbha Jain | Medium, accessed October 27, 2025, <a class="reference external" href="https://medium.com/&#64;sulbha.jindal/sft-vs-dpo-comparison-between-llm-alignment-techniques-26b6d76171da">https://medium.com/&#64;sulbha.jindal/sft-vs-dpo-comparison-between-llm-alignment-techniques-26b6d76171da</a></p></li>
+<li><p>Fine-Tuning Techniques - Choosing Between SFT, DPO, and RFT (With a Guide to DPO), accessed October 27, 2025, <a class="reference external" href="https://cookbook.openai.com/examples/fine_tuning_direct_preference_optimization_guide">https://cookbook.openai.com/examples/fine_tuning_direct_preference_optimization_guide</a></p></li>
+<li><p><a class="reference external" href="http://arxiv.org">arxiv.org</a>, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/html/2509.09055v1">https://arxiv.org/html/2509.09055v1</a></p></li>
+<li><p>Improving LLM Safety and Helpfulness using SFT and DPO: A Study on OPT-350M, accessed October 27, 2025, <a class="reference external" href="https://www.researchgate.net/publication/395418157_Improving_LLM_Safety_and_Helpfulness_using_SFT_and_DPO_A_Study_on_OPT-350M">https://www.researchgate.net/publication/395418157_Improving_LLM_Safety_and_Helpfulness_using_SFT_and_DPO_A_Study_on_OPT-350M</a></p></li>
+<li><p>Extended Abstract - CS 224R Deep Reinforcement Learning, accessed October 27, 2025, <a class="reference external" href="https://cs224r.stanford.edu/projects/pdfs/CS_224R_Final_Report_Bennett_Padmanabhan_Weissberg.pdf">https://cs224r.stanford.edu/projects/pdfs/CS_224R_Final_Report_Bennett_Padmanabhan_Weissberg.pdf</a></p></li>
+<li><p>PAD: PERSONALIZED ALIGNMENT OF LLMS AT DECODING-TIME - OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/pdf?id=e7AUJpP8bV">https://openreview.net/pdf?id=e7AUJpP8bV</a></p></li>
+<li><p>[2507.19672] Alignment and Safety in Large Language Models: Safety Mechanisms, Training Paradigms, and Emerging Challenges - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2507.19672">https://arxiv.org/abs/2507.19672</a></p></li>
+<li><p>liyongqi2002/Awesome-Personalized-Alignment - GitHub, accessed October 27, 2025, <a class="github reference external" href="https://github.com/liyongqi2002/Awesome-Personalized-Alignment">liyongqi2002/Awesome-Personalized-Alignment</a></p></li>
+<li><p>A Survey on Personalized and Pluralistic Preference Alignment in …, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2504.07070">https://arxiv.org/abs/2504.07070</a></p></li>
+<li><p>Aligning LLMs with Individual Preferences via Interaction - ACL Anthology, accessed October 27, 2025, <a class="reference external" href="https://aclanthology.org/2025.coling-main.511/">https://aclanthology.org/2025.coling-main.511/</a></p></li>
+<li><p>[2410.04070] PAD: Personalized Alignment of LLMs at Decoding-Time - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2410.04070">https://arxiv.org/abs/2410.04070</a></p></li>
+<li><p>Aligning Multimodal LLM with Human Preference: A Survey - arXiv, accessed October 27, 2025, <a class="reference external" href="https://arxiv.org/abs/2503.14504">https://arxiv.org/abs/2503.14504</a></p></li>
+<li><p>Lecture 4 – Multimodal Alignment (MIT How to AI Almost Anything, Spring 2025) - YouTube, accessed October 27, 2025, <a class="reference external" href="https://www.youtube.com/watch?v=kixc1mh55yY">https://www.youtube.com/watch?v=kixc1mh55yY</a></p></li>
+<li><p>Understanding Alignment in Multimodal LLMs: A Comprehensive Study | OpenReview, accessed October 27, 2025, <a class="reference external" href="https://openreview.net/forum?id=49qqV4NTdy&amp;amp;noteId=BmpGFgu040">https://openreview.net/forum?id=49qqV4NTdy&amp;noteId=BmpGFgu040</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week10"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week09/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 9: Advanced RAG Architectures</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../workshops/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">LLM From Scratch Workshop</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-the-need-for-alignment-and-limitations-of-classical-rlhf">1. Introduction: The Need for Alignment and Limitations of Classical RLHF</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#defining-alignment-helpfulness-and-harmlessness">1.1. Defining Alignment: Helpfulness and Harmlessness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-rlhf-pipeline-review">1.2. Classical RLHF Pipeline Review</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fundamental-limitations-of-rlhf-diagnosed-in-2025">1.3. Fundamental Limitations of RLHF Diagnosed in 2025</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-direct-preference-optimization-reward-model-free-direct-optimization">2. DPO (Direct Preference Optimization): Reward Model-Free Direct Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-idea-transforming-rl-into-classification">2.1. Core Idea: Transforming RL into Classification</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mathematical-deep-dive-rlhf-objective-and-dpo-s-implicit-reward-model">2.2. Mathematical Deep Dive: RLHF Objective and DPO’s Implicit Reward Model</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-2025-debate-is-dpo-always-superior-to-ppo-rlhf">2.3. The 2025 Debate: Is DPO Always Superior to PPO (RLHF)?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-variants-2025-robust-dpo-for-distributional-robustness">2.4. Latest Variants (2025): Robust DPO for Distributional Robustness</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constitutional-ai-cai-principle-based-self-correction">3. Constitutional AI (CAI): Principle-Based Self-Correction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#anthropic-s-approach-replacing-human-feedback-with-ai-feedback">3.1. Anthropic’s Approach: Replacing Human Feedback with AI Feedback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-analysis-of-cai-s-2-stage-learning-process-sl-cai-rl-cai">3.2. Detailed Analysis of CAI’s 2-Stage Learning Process (SL-CAI &amp; RL-CAI)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#constitution-composition-real-principle-examples-2025-standards">3.3. Constitution Composition: Real Principle Examples (2025 Standards)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#process-supervision-valuing-process-over-outcome">4. Process Supervision: Valuing Process Over Outcome</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prm-process-supervised-reward-models-vs-orm-outcome-supervised-reward-models">4.1. PRM (Process-supervised Reward Models) vs ORM (Outcome-supervised Reward Models)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-prm-is-more-effective-for-multi-step-reasoning-e-g-mathematics">4.2. Why PRM is More Effective for Multi-step Reasoning (e.g., Mathematics)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rlaif-rl-from-ai-feedback-scalability-and-bias-amplification">5. RLAIF (RL from AI Feedback): Scalability and Bias Amplification</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#need-for-ai-evaluators-llm-as-a-judge-and-how-they-work">5.1. Need for AI Evaluators (‘LLM-as-a-judge’) and How They Work</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlaif-vs-rlhf-benchmarks-equal-or-superior-performance">5.2. RLAIF vs RLHF Benchmarks: Equal or Superior Performance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-risk-inherited-and-amplified-bias-from-ai-judge-models">5.3. Core Risk: Inherited and Amplified Bias from AI Judge Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-implementation-analysis-of-latest-open-source-frameworks">6. Practical Implementation: Analysis of Latest Open Source Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-trl-toolkit-for-practitioners-sfttrainer-dpotrainer">6.1. Hugging Face TRL: Toolkit for Practitioners (SFTTrainer, DPOTrainer)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#openrlhf-high-performance-distributed-training">6.2. OpenRLHF: High-Performance Distributed Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-practice-llama-2-7b-dpo-vs-rlhf-alignment-comparison">7. Hands-on Practice: LLaMA 2 7B – DPO vs RLHF Alignment Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#experiment-preparation-libraries-and-dataset">7.1 Experiment Preparation: Libraries and Dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-method-fine-tuning">7.2 DPO Method Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rlhf-ppo-method-fine-tuning">7.3 RLHF (PPO) Method Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#output-evaluation-and-comparison">7.4 Output Evaluation and Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-research-trends-personalization-and-multimodal">8. Latest Research Trends: Personalization and Multimodal</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-average-alignment-personalized-alignment">8.1. Beyond ‘Average Alignment’: Personalized Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-text-multimodal-alignment">8.2. Beyond Text: Multimodal Alignment</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
