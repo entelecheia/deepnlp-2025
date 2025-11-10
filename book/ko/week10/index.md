@@ -293,7 +293,7 @@ DeepSpeed-Chat이 추론과 훈련을 단일 파이프라인에서 비효율적�
 먼저 필요한 라이브러리를 설치하고 모델과 데이터셋을 준비한다.
 
 ```python
-!pip install transformers trl accelerate openrlhf
+%pip install transformers trl accelerate openrlhf
 ```
 
 - **Transformers**: Hugging Face에서 사전 훈련된 모델을 로드하고 토크나이저를 활용한다.

@@ -293,7 +293,7 @@ In this hands-on session, we will fine-tune the **LLaMA 2 7B** language model us
 First, install necessary libraries and prepare models and datasets.
 
 ```python
-!pip install transformers trl accelerate openrlhf
+%pip install transformers trl accelerate openrlhf
 ```
 
 - **Transformers**: Loading pre-trained models and utilizing tokenizers from Hugging Face.

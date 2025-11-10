@@ -318,7 +318,7 @@ DSPy's core concepts are divided into three: **LM**, **Signature**, **Module**:
 Users combine these three to create **AI programs**, then can optimize by automatically improving module prompts or adding few-shot examples through **Optimizer** built into DSPy. For example, you can make simple combinations like below:
 
 ```python
-!pip install dspy # Install required library (Databricks DSPy)
+%pip install dspy # Install required library (Databricks DSPy)
 import dspy
 
 # 1) LM setup (example: using local Llama2 model API)
@@ -436,7 +436,7 @@ The core of LangGraph usage is defining a graph object called _StateGraph_ and, 
 Let's examine the concept through a simple LangGraph example. The code below creates a React-style agent with one tool and processes user questions on the graph (assuming Anthropic Claude model):
 
 ```python
-!pip install langgraph # Install LangGraph library
+%pip install langgraph # Install LangGraph library
 from langgraph.prebuilt import create_react_agent
 
 # Define a simple tool function
@@ -476,8 +476,8 @@ Due to the absence of publicly available Korean (NSMC) Mamba classification mode
 
 ```bash
 # GPU recommended. Colab/CUDA environment recommended
-!pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-!pip -q install transformers datasets accelerate
+%pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+%pip -q install transformers datasets accelerate
 ```
 
 ### 5.2 Dataset Loading (IMDB)

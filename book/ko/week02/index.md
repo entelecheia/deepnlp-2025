@@ -325,7 +325,7 @@ DSPy의 핵심 개념은 **LM**, **Signature**, **Module** 세 가지로 나뉜�
 사용자는 이 세 가지를 조합하여 **AI 프로그램**을 만든 뒤, DSPy에 내장된 **Optimizer**를 통해 모듈의 프롬프트를 자동으로 개선하거나 few-shot 예시를 추가하는 등의 최적화를 할 수 있다. 예를 들어, 아래처럼 간단한 조합을 만들어볼 수 있다:
 
 ```python
-!pip install dspy # 필요한 라이브러리 설치 (Databricks DSPy)
+%pip install dspy # 필요한 라이브러리 설치 (Databricks DSPy)
 import dspy
 
 # 1) LM 설정 (예: 로컬 Llama2 모델 API 사용)
@@ -366,7 +366,7 @@ Haystack의 주요 컴포넌트는 아래와 같습니다:
 Haystack을 이용한 **간단 실습 예시**를 들어보겠습니다. 가령 FAQ 문서 모음을 이용해 질문에 답변하는 QA 시스템을 만든다고 하면:
 
 ```python
-!pip install farm-haystack[faiss] # Haystack 설치 및 FAISS 등 옵션 (필요시)
+%pip install farm-haystack[faiss] # Haystack 설치 및 FAISS 등 옵션 (필요시)
 
 from haystack.document_stores import InMemoryDocumentStore
 from haystack.nodes import BM25Retriever, FARMReader
@@ -415,7 +415,7 @@ CrewAI의 개념을 주요 구성 요소별로 정리하면 다음과 같습니�
 CrewAI를 사용하면 개발자는 각 에이전트의 역할과 사용 도구를 정의하고, `Crew`를 생성해 실행함으로써 **복잡한 작업을 자동화**할 수 있습니다. 간단한 사용 예를 들어보겠습니다. 가령 \*"주어진 주제에 대해 자료를 찾아 요약한 보고서를 작성하라"\*는 복잡한 과제를 두 에이전트에게 협업시키는 경우:
 
 ```python
-!pip install crewai # CrewAI 프레임워크 설치 (가상 가정)
+%pip install crewai # CrewAI 프레임워크 설치 (가상 가정)
 from crewai import Crew, Agent, tool
 
 # 에이전트 정의: 검색 담당자와 작성 담당자
@@ -450,7 +450,7 @@ LangGraph 사용의 핵심은 *StateGraph*라는 그래프 객체를 정의하�
 간단한 LangGraph 예제를 통해 개념을 살펴보겠습니다. 아래 코드에서는 하나의 툴(tool)을 가진 React 스타일 에이전트를 생성하고, 그래프 상에서 사용자의 질문을 처리합니다 (Anthropic Claude 모델을 가정):
 
 ```python
-!pip install langgraph # LangGraph 라이브러리 설치
+%pip install langgraph # LangGraph 라이브러리 설치
 from langgraph.prebuilt import create_react_agent
 
 # 간단한 툴 함수 정의
@@ -492,8 +492,8 @@ LangGraph를 활용하면 이러한 **에이전트 워크플로우**를 더욱 �
 
 ```bash
 # GPU 권장. Colab/쿠다 환경 권장
-!pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-!pip -q install transformers datasets accelerate
+%pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+%pip -q install transformers datasets accelerate
 ```
 
 ### 5.2 데이터셋 로드 (IMDB)
@@ -635,8 +635,8 @@ print("BERT results:", res_bert)
 
 ```python
 # 0) 설치
-!pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
-!pip -q install transformers datasets accelerate
+%pip -q install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu121
+%pip -q install transformers datasets accelerate
 
 # 1) 데이터
 from datasets import load_dataset
@@ -707,7 +707,7 @@ print("BERT :", res_bert)
 
 **BERT vs Mamba 비교 실험**을 통해 두 아키텍처의 특성과 장단점을 실증적으로 살펴보았다. 이 실험은 단순히 두 모델의 우열을 가리는 것을 넘어, 시퀀스 모델링의 현재와 미래를 조망하는 중요한 시사점을 제공한다.
 
-#### 어떤 모델이 어떤 상황에 적합한가?
+### 어떤 모델이 어떤 상황에 적합한가?
 
 - **짧은 시퀀스 및 검증된 성능: BERT (Transformer)**
 
@@ -719,7 +719,7 @@ print("BERT :", res_bert)
   - 수천에서 수만 토큰에 이르는 긴 문서 단위의 작업(장문서 요약, 소설 감정 분석, 코드 생성 등)에서 Mamba의 진가가 드러난다. Transformer의 $O(N^2)$ 복잡도는 이러한 작업에서 계산량과 메모리 사용량을 폭발적으로 증가시켜 사실상 처리가 불가능하지만, Mamba의 $O(N)$ 선형 복잡도는 시퀀스 길이에 따른 성능 저하 없이 효율적인 처리를 가능하게 한다.
   - Mamba는 **최대 100만 토큰**까지 처리 가능함을 시연하며, 초장문맥 LLM 시대를 열 핵심 기술로 주목받고 있다.
 
-#### 서비스/프로덕션 적용 시사점
+### 서비스/프로덕션 적용 시사점
 
 - **현재의 안정성 vs. 미래의 가능성**
 
@@ -730,7 +730,7 @@ print("BERT :", res_bert)
 
   - Mamba와 같은 SSM 아키텍처는 기존에 메모리나 속도 한계로 불가능했던 서비스에 돌파구를 제공할 수 있다. 예를 들어, **긴 법률/의료 문서를 분석하고 질의응답하는 서비스**나 **수십 페이지에 달하는 대화 히스토리를 모두 기억하는 챗봇** 등에서 Mamba는 *게임 체인저*가 될 잠재력이 충분하다.
 
-#### 미래 전망: 하이브리드와 상호보완
+### 미래 전망: 하이브리드와 상호보완
 
 향후에는 **하이브리드 모델**(예: _Jamba_ - Transformer와 Mamba의 장점을 결합한 구조)이나 다른 선형 시간 아키텍처와의 경쟁을 통해 기술이 더욱 발전할 것이다. 현재로서는 **Transformer의 범용성 vs. Mamba의 특수성** 구도로 볼 수 있으며, 실제 프로덕션 환경에서는 두 접근법을 **상호보완적으로 활용**하는 방안이 유력하다. 예를 들어, 일반적인 짧은 대화는 Transformer로 처리하다가, 사용자가 긴 문서를 첨부하며 질문하는 특정 상황에서는 Mamba 모드로 전환하여 처리하는 지능형 시스템을 구상할 수 있다.
 
