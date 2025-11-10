@@ -1,0 +1,54 @@
+version: 1
+project:
+  title: Deep Learning for NLP 2025
+  authors:
+    - name: Young Joon Lee
+  copyright: '2025'
+  github: entelecheia/deepnlp-2025
+  thebe:
+    binder:
+      repo: entelecheia/deepnlp-2025
+      provider: github
+      ref: main
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  toc:
+    - file: index.md
+    - title: Lecture Notes
+      children:
+        - file: week01/index.md
+          children:
+            - file: week01/qna.md
+        - file: week02/index.md
+        - file: week03/index.md
+        - file: week04/index.md
+        - file: week05/index.md
+        - file: week06/index.md
+        - file: week07/index.md
+        - file: week08/index.md
+        - file: week09/index.md
+        - file: week10/index.md
+        - file: week11/index.md
+        - file: week12/index.md
+    - title: Workshops
+      children:
+        - file: workshops/index.md
+        - file: workshops/week01.md
+    - title: Projects
+      children:
+        - file: projects/index.md
+    - title: About
+      children:
+        - file: syllabus/index.md
+        - file: about/index.md
+site:
+  options:
+    favicon: https://assets.entelecheia.ai/favicon.png
+    analytics_google: G-BQJE5V9RK2
+    folders: true
+    github_edit: true
+    github_issues: true
+    github_repository: true
+  template: book-theme
