@@ -481,84 +481,84 @@ openrlhf --model LLaMA-7B --tokenizer LLaMA-7B \
 8. Secrets of RLHF in Large Language Models Part II: Reward Modeling - arXiv, 2025년 10월 27일 접근, https://arxiv.org/html/2401.06080v2
 9. Secrets of RLHF in Large Language Models Part I: PPO - GitHub Pages, 2025년 10월 27일 접근, https://openlmlab.github.io/MOSS-RLHF/paper/SecretsOfRLHFPart1.pdf
 10. A Comprehensive Survey of Direct Preference Optimization: Datasets, Theories, Variants, and Applications - arXiv, 2025년 10월 27일 접근, https://arxiv.org/html/2410.15595v3
-11. Fine-tune Llama 2 with DPO - Hugging Face, accessed October 27, 2025, https://huggingface.co/blog/dpo-trl
-12. A Survey on Progress in LLM Alignment from the Perspective of Reward Design - arXiv, accessed October 27, 2025, https://arxiv.org/html/2505.02666v1
-13. The Machine Learning Practitioner's Guide to Fine-Tuning Language Models, accessed October 27, 2025, https://machinelearningmastery.com/the-machine-learning-practitioners-guide-to-fine-tuning-language-models/
-14. Reward Shaping to Mitigate Reward Hacking in RLHF - arXiv, accessed October 27, 2025, https://arxiv.org/html/2502.18770v3
-15. The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking, accessed October 27, 2025, https://arxiv.org/html/2501.19358v3
-16. The Alignment Problem from a Deep Learning Perspective - arXiv, accessed October 27, 2025, https://arxiv.org/pdf/2209.00626
-17. Towards Understanding Sycophancy in Language Models - arXiv, accessed October 27, 2025, https://arxiv.org/pdf/2310.13548
-18. Sycophancy under Pressure: Evaluating and Mitigating Sycophantic Bias via Adversarial Dialogues in Scientific QA - arXiv, accessed October 27, 2025, https://arxiv.org/html/2508.13743v1
-19. Social Sycophancy: A Broader Understanding of LLM Sycophancy - arXiv, accessed October 27, 2025, https://arxiv.org/html/2505.13995v1
-20. When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models - arXiv, accessed October 27, 2025, https://arxiv.org/html/2508.02087v1
-21. Mitigating the Alignment Tax of RLHF - ACL Anthology, accessed October 27, 2025, https://aclanthology.org/2024.emnlp-main.35/
-22. DIVERSE PREFERENCE LEARNING FOR ... - OpenReview, accessed October 27, 2025, https://openreview.net/pdf?id=pOq9vDIYev
-23. Position: The Pitfalls of Over-Alignment: Overly Caution Health-Related Responses From LLMs are Unethical and Dangerous - arXiv, accessed October 27, 2025, https://arxiv.org/html/2509.08833v2
-24. EvalMORAAL: Interpretable Chain-of-Thought and LLM-as-Judge Evaluation for Moral Alignment in Large Language Models - arXiv, accessed October 27, 2025, https://arxiv.org/html/2510.05942v1
-25. Arxiv Dives - Direct Preference Optimization (DPO) - Oxen.ai, accessed October 27, 2025, https://www.oxen.ai/blog/arxiv-dives-direct-preference-optimization-dpo
-26. Direct Preference Optimization: Your Language Model is Secretly a Reward Model - arXiv, accessed October 27, 2025, https://arxiv.org/pdf/2305.18290
-27. DPO Trainer - Hugging Face, accessed October 27, 2025, https://huggingface.co/docs/trl/en/dpo_trainer
-28. Why Everyone Is Switching from RLHF to DPO? | by Shahidullah Kawsar | Oct, 2025, accessed October 27, 2025, https://kawsar34.medium.com/why-everyone-is-switching-from-rlhf-to-dpo-0bf86b56269a
-29. Direct Preference Optimization: Your Language Model is Secretly a ..., accessed October 27, 2025, https://arxiv.org/abs/2305.18290
-30. BOOTSTRAPPING LANGUAGE MODELS WITH DPO IMPLICIT REWARDS - ICLR Proceedings, accessed October 27, 2025, https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4de96b9169aa869cc102afe31055e8-Paper-Conference.pdf
-31. Step-level Value Preference Optimization for Mathematical Reasoning - arXiv, accessed October 27, 2025, https://arxiv.org/html/2406.10858v1
-32. Bootstrapping Language Models with DPO Implicit Rewards - arXiv, accessed October 27, 2025, https://arxiv.org/html/2406.09760v2
-33. Direct Preference Optimization (DPO) | by João Lages - Medium, accessed October 27, 2025, https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707
-34. RLHF without RL - Direct Preference Optimization | ICLR Blogposts 2024, accessed October 27, 2025, https://iclr-blogposts.github.io/2024/blog/rlhf-without-rl/
-35. How to align open LLMs in 2025 with DPO & and synthetic data - Philschmid, accessed October 27, 2025, https://www.philschmid.de/rl-with-llms-in-2025-dpo
-36. Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - OpenReview, accessed October 27, 2025, https://openreview.net/forum?id=6XH8R7YrSk&referrer=%5Bthe+profile+of+Yi+Wu%5D\(/profile?id%3D~Yi_Wu1\)
-37. Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - arXiv, accessed October 27, 2025, https://arxiv.org/html/2404.10719v1
-38. Is DPO Superior to PPO for LLM Alignment? A Comprehensive ..., accessed October 27, 2025, https://openreview.net/forum?id=6XH8R7YrSk
-39. D.P.O vs R.L.H.F : A Battle for Fine-Tuning Supremacy in Language Models - Medium, accessed October 27, 2025, https://medium.com/@sinarya.114/d-p-o-vs-r-l-h-f-a-battle-for-fine-tuning-supremacy-in-language-models-04b273e7a173
-40. RLHF and alternatives: IPO - Argilla, accessed October 27, 2025, https://argilla.io/blog/mantisnlp-rlhf-part-6/
-41. Mitigating Reward Over-optimization in Direct Alignment Algorithms with Importance Sampling - arXiv, accessed October 27, 2025, https://arxiv.org/html/2506.08681v1
-42. Asynchronous RLHF: Faster and More Efficient Off-Policy RL for Language Models | OpenReview, accessed October 27, 2025, https://openreview.net/forum?id=FhTAG591Ve
-43. Robust LLM Alignment via Distributionally Robust Direct Preference ..., accessed October 27, 2025, https://arxiv.org/abs/2502.01930
-44. Claude AI 2025: Everything You Must Know Before Getting Started | by Wajid Ali - Medium, accessed October 27, 2025, https://medium.com/@officewajidali/claude-ai-2025-everything-you-must-know-before-getting-started-c629a78ad583
-45. Constitutional AI: Harmlessness from AI Feedback - Anthropic, accessed October 27, 2025, https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback
-46. What is Constitutional AI (CAI)? - Zilliz Learn, accessed October 27, 2025, https://zilliz.com/learn/constitutional-ai-harmlessness-from-ai-feedback
-47. What Is Constitutional AI? How It Works & Benefits | GigaSpaces AI, accessed October 27, 2025, https://www.gigaspaces.com/data-terms/constitutional-ai
-48. Constitutional AI: Harmlessness from AI Feedback — NVIDIA NeMo ..., accessed October 27, 2025, https://docs.nvidia.com/nemo-framework/user-guide/24.09/modelalignment/cai.html
-49. Claude AI's Constitutional Framework: A Technical Guide to Constitutional AI | by Generative AI | Medium, accessed October 27, 2025, https://medium.com/@genai.works/claude-ais-constitutional-framework-a-technical-guide-to-constitutional-ai-704942e24a21
-50. Claude's Constitution \ Anthropic, accessed October 27, 2025, https://www.anthropic.com/news/claudes-constitution
-51. Understanding Constitutional AI - Medium, accessed October 27, 2025, https://medium.com/@jonnyndavis/understanding-constitutional-ai-dd9d783ef712
-52. Specific versus General Principles for Constitutional AI - Anthropic, accessed October 27, 2025, https://www.anthropic.com/research/specific-versus-general-principles-for-constitutional-ai
-53. arXiv:2305.20050v1 [cs.LG] 31 May 2023, accessed October 27, 2025, https://arxiv.org/pdf/2305.20050
-54. [R] New OpenAI article: Improving Mathematical Reasoning with Process Supervision : r/MachineLearning - Reddit, accessed October 27, 2025, https://www.reddit.com/r/MachineLearning/comments/13wwzq9/r_new_openai_article_improving_mathematical/
-55. Demystifying Multilingual Chain-of-Thought in Process Reward Modeling - arXiv, accessed October 27, 2025, https://arxiv.org/html/2502.12663v1
-56. Improve Mathematical Reasoning in Language Models by Automated Process Supervision - arXiv, accessed October 27, 2025, https://arxiv.org/pdf/2406.06592
-57. Chain of Preference Optimization: Improving Chain-of-Thought Reasoning in LLMs - arXiv, accessed October 27, 2025, https://arxiv.org/html/2406.09136v1
-58. RLAIF: Scaling Reinforcement Learning from Human Feedback with AI... - OpenReview, accessed October 27, 2025, https://openreview.net/forum?id=AAxIs3D2ZZ
-59. RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback, accessed October 27, 2025, https://proceedings.mlr.press/v235/lee24t.html
-60. RLAIF Is The Future. But What Could Go Wrong? | by Reya Vir - Medium, accessed October 27, 2025, https://medium.com/@reyavir/rlaif-is-the-future-but-what-could-go-wrong-d86f1a6956f0
-61. RLAIF vs. RLHF: Scaling Reinforcement Learning from ... - arXiv, accessed October 27, 2025, https://arxiv.org/abs/2309.00267
-62. Aligning and Augmenting Intelligence: A Technical Survey of ..., accessed October 27, 2025, https://www.findingtheta.com/blog/aligning-and-augmenting-intelligence-a-technical-survey-of-reinforcement-learning-in-large-language-models
-63. RLTHF: Targeted Human Feedback for LLM Alignment - ICML 2025, accessed October 27, 2025, https://icml.cc/virtual/2025/poster/46173
-64. LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology, accessed October 27, 2025, https://aclanthology.org/2025.acl-short.20.pdf
-65. Re-evaluating Automatic LLM System Ranking for Alignment with Human Preference - ACL Anthology, accessed October 27, 2025, https://aclanthology.org/2025.findings-naacl.260.pdf
-66. TRL - Transformer Reinforcement Learning - Hugging Face, accessed October 27, 2025, https://huggingface.co/docs/trl/en/index
-67. huggingface/trl: Train transformer language models with reinforcement learning. - GitHub, accessed October 27, 2025, https://github.com/huggingface/trl
-68. RLHF in 2024 with DPO & Hugging Face - Philschmid, accessed October 27, 2025, https://www.philschmid.de/dpo-align-llms-in-2024-with-trl
-69. Preference Tuning LLMs with Direct Preference Optimization Methods, accessed October 27, 2025, https://huggingface.co/blog/pref-tuning
-70. Preference Optimization for Vision Language Models with TRL - Hugging Face, accessed October 27, 2025, https://huggingface.co/blog/dpo_vlm
-71. Vision Language Model Alignment in TRL ⚡️ - Hugging Face, accessed October 27, 2025, https://huggingface.co/blog/trl-vlm-alignment
-72. OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. - GitHub, accessed October 27, 2025, https://github.com/OpenRLHF/OpenRLHF-M
-73. OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework - arXiv, accessed October 27, 2025, https://arxiv.org/html/2405.11143v6
-74. Welcome to OpenRLHF's documentation! — OpenRLHF 0.9 ..., accessed October 27, 2025, https://openrlhf.readthedocs.io/
-75. Accelerating RLHF with vLLM, Best Practice from OpenRLHF, accessed October 27, 2025, https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html
-76. Inside vLLM: Anatomy of a High-Throughput LLM Inference System, accessed October 27, 2025, https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html
-77. OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL) - GitHub, accessed October 27, 2025, https://github.com/OpenRLHF/OpenRLHF
-78. SFT vs. DPO: Comparison between LLM Alignment techniques | by Sulbha Jain | Medium, accessed October 27, 2025, https://medium.com/@sulbha.jindal/sft-vs-dpo-comparison-between-llm-alignment-techniques-26b6d76171da
-79. Fine-Tuning Techniques - Choosing Between SFT, DPO, and RFT (With a Guide to DPO), accessed October 27, 2025, https://cookbook.openai.com/examples/fine_tuning_direct_preference_optimization_guide
-80. arxiv.org, accessed October 27, 2025, https://arxiv.org/html/2509.09055v1
-81. Improving LLM Safety and Helpfulness using SFT and DPO: A Study on OPT-350M, accessed October 27, 2025, https://www.researchgate.net/publication/395418157_Improving_LLM_Safety_and_Helpfulness_using_SFT_and_DPO_A_Study_on_OPT-350M
-82. Extended Abstract - CS 224R Deep Reinforcement Learning, accessed October 27, 2025, https://cs224r.stanford.edu/projects/pdfs/CS_224R_Final_Report_Bennett_Padmanabhan_Weissberg.pdf
-83. PAD: PERSONALIZED ALIGNMENT OF LLMS AT DECODING-TIME - OpenReview, accessed October 27, 2025, https://openreview.net/pdf?id=e7AUJpP8bV
-84. [2507.19672] Alignment and Safety in Large Language Models: Safety Mechanisms, Training Paradigms, and Emerging Challenges - arXiv, accessed October 27, 2025, https://arxiv.org/abs/2507.19672
-85. liyongqi2002/Awesome-Personalized-Alignment - GitHub, accessed October 27, 2025, https://github.com/liyongqi2002/Awesome-Personalized-Alignment
-86. A Survey on Personalized and Pluralistic Preference Alignment in ..., accessed October 27, 2025, https://arxiv.org/abs/2504.07070
-87. Aligning LLMs with Individual Preferences via Interaction - ACL Anthology, accessed October 27, 2025, https://aclanthology.org/2025.coling-main.511/
-88. [2410.04070] PAD: Personalized Alignment of LLMs at Decoding-Time - arXiv, accessed October 27, 2025, https://arxiv.org/abs/2410.04070
-89. Aligning Multimodal LLM with Human Preference: A Survey - arXiv, accessed October 27, 2025, https://arxiv.org/abs/2503.14504
-90. Lecture 4 – Multimodal Alignment (MIT How to AI Almost Anything, Spring 2025) - YouTube, accessed October 27, 2025, https://www.youtube.com/watch?v=kixc1mh55yY
-91. Understanding Alignment in Multimodal LLMs: A Comprehensive Study | OpenReview, accessed October 27, 2025, https://openreview.net/forum?id=49qqV4NTdy&noteId=BmpGFgu040
+11. Fine-tune Llama 2 with DPO - Hugging Face, https://huggingface.co/blog/dpo-trl
+12. A Survey on Progress in LLM Alignment from the Perspective of Reward Design - arXiv, https://arxiv.org/html/2505.02666v1
+13. The Machine Learning Practitioner's Guide to Fine-Tuning Language Models, https://machinelearningmastery.com/the-machine-learning-practitioners-guide-to-fine-tuning-language-models/
+14. Reward Shaping to Mitigate Reward Hacking in RLHF - arXiv, https://arxiv.org/html/2502.18770v3
+15. The Energy Loss Phenomenon in RLHF: A New Perspective on Mitigating Reward Hacking, https://arxiv.org/html/2501.19358v3
+16. The Alignment Problem from a Deep Learning Perspective - arXiv, https://arxiv.org/pdf/2209.00626
+17. Towards Understanding Sycophancy in Language Models - arXiv, https://arxiv.org/pdf/2310.13548
+18. Sycophancy under Pressure: Evaluating and Mitigating Sycophantic Bias via Adversarial Dialogues in Scientific QA - arXiv, https://arxiv.org/html/2508.13743v1
+19. Social Sycophancy: A Broader Understanding of LLM Sycophancy - arXiv, https://arxiv.org/html/2505.13995v1
+20. When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models - arXiv, https://arxiv.org/html/2508.02087v1
+21. Mitigating the Alignment Tax of RLHF - ACL Anthology, https://aclanthology.org/2024.emnlp-main.35/
+22. DIVERSE PREFERENCE LEARNING FOR ... - OpenReview, https://openreview.net/pdf?id=pOq9vDIYev
+23. Position: The Pitfalls of Over-Alignment: Overly Caution Health-Related Responses From LLMs are Unethical and Dangerous - arXiv, https://arxiv.org/html/2509.08833v2
+24. EvalMORAAL: Interpretable Chain-of-Thought and LLM-as-Judge Evaluation for Moral Alignment in Large Language Models - arXiv, https://arxiv.org/html/2510.05942v1
+25. Arxiv Dives - Direct Preference Optimization (DPO) - Oxen.ai, https://www.oxen.ai/blog/arxiv-dives-direct-preference-optimization-dpo
+26. Direct Preference Optimization: Your Language Model is Secretly a Reward Model - arXiv, https://arxiv.org/pdf/2305.18290
+27. DPO Trainer - Hugging Face, https://huggingface.co/docs/trl/en/dpo_trainer
+28. Why Everyone Is Switching from RLHF to DPO? | by Shahidullah Kawsar | Oct, 2025, https://kawsar34.medium.com/why-everyone-is-switching-from-rlhf-to-dpo-0bf86b56269a
+29. Direct Preference Optimization: Your Language Model is Secretly a ..., https://arxiv.org/abs/2305.18290
+30. BOOTSTRAPPING LANGUAGE MODELS WITH DPO IMPLICIT REWARDS - ICLR Proceedings, https://proceedings.iclr.cc/paper_files/paper/2025/file/8c4de96b9169aa869cc102afe31055e8-Paper-Conference.pdf
+31. Step-level Value Preference Optimization for Mathematical Reasoning - arXiv, https://arxiv.org/html/2406.10858v1
+32. Bootstrapping Language Models with DPO Implicit Rewards - arXiv, https://arxiv.org/html/2406.09760v2
+33. Direct Preference Optimization (DPO) | by João Lages - Medium, https://medium.com/@joaolages/direct-preference-optimization-dpo-622fc1f18707
+34. RLHF without RL - Direct Preference Optimization | ICLR Blogposts 2024, https://iclr-blogposts.github.io/2024/blog/rlhf-without-rl/
+35. How to align open LLMs in 2025 with DPO & and synthetic data - Philschmid, https://www.philschmid.de/rl-with-llms-in-2025-dpo
+36. Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - OpenReview, https://openreview.net/forum?id=6XH8R7YrSk&referrer=%5Bthe+profile+of+Yi+Wu%5D\(/profile?id%3D~Yi_Wu1\)
+37. Is DPO Superior to PPO for LLM Alignment? A Comprehensive Study - arXiv, https://arxiv.org/html/2404.10719v1
+38. Is DPO Superior to PPO for LLM Alignment? A Comprehensive ..., https://openreview.net/forum?id=6XH8R7YrSk
+39. D.P.O vs R.L.H.F : A Battle for Fine-Tuning Supremacy in Language Models - Medium, https://medium.com/@sinarya.114/d-p-o-vs-r-l-h-f-a-battle-for-fine-tuning-supremacy-in-language-models-04b273e7a173
+40. RLHF and alternatives: IPO - Argilla, https://argilla.io/blog/mantisnlp-rlhf-part-6/
+41. Mitigating Reward Over-optimization in Direct Alignment Algorithms with Importance Sampling - arXiv, https://arxiv.org/html/2506.08681v1
+42. Asynchronous RLHF: Faster and More Efficient Off-Policy RL for Language Models | OpenReview, https://openreview.net/forum?id=FhTAG591Ve
+43. Robust LLM Alignment via Distributionally Robust Direct Preference ..., https://arxiv.org/abs/2502.01930
+44. Claude AI 2025: Everything You Must Know Before Getting Started | by Wajid Ali - Medium, https://medium.com/@officewajidali/claude-ai-2025-everything-you-must-know-before-getting-started-c629a78ad583
+45. Constitutional AI: Harmlessness from AI Feedback - Anthropic, https://www.anthropic.com/research/constitutional-ai-harmlessness-from-ai-feedback
+46. What is Constitutional AI (CAI)? - Zilliz Learn, https://zilliz.com/learn/constitutional-ai-harmlessness-from-ai-feedback
+47. What Is Constitutional AI? How It Works & Benefits | GigaSpaces AI, https://www.gigaspaces.com/data-terms/constitutional-ai
+48. Constitutional AI: Harmlessness from AI Feedback — NVIDIA NeMo ..., https://docs.nvidia.com/nemo-framework/user-guide/24.09/modelalignment/cai.html
+49. Claude AI's Constitutional Framework: A Technical Guide to Constitutional AI | by Generative AI | Medium, https://medium.com/@genai.works/claude-ais-constitutional-framework-a-technical-guide-to-constitutional-ai-704942e24a21
+50. Claude's Constitution \ Anthropic, https://www.anthropic.com/news/claudes-constitution
+51. Understanding Constitutional AI - Medium, https://medium.com/@jonnyndavis/understanding-constitutional-ai-dd9d783ef712
+52. Specific versus General Principles for Constitutional AI - Anthropic, https://www.anthropic.com/research/specific-versus-general-principles-for-constitutional-ai
+53. arXiv:2305.20050v1 [cs.LG] 31 May 2023, https://arxiv.org/pdf/2305.20050
+54. [R] New OpenAI article: Improving Mathematical Reasoning with Process Supervision : r/MachineLearning - Reddit, https://www.reddit.com/r/MachineLearning/comments/13wwzq9/r_new_openai_article_improving_mathematical/
+55. Demystifying Multilingual Chain-of-Thought in Process Reward Modeling - arXiv, https://arxiv.org/html/2502.12663v1
+56. Improve Mathematical Reasoning in Language Models by Automated Process Supervision - arXiv, https://arxiv.org/pdf/2406.06592
+57. Chain of Preference Optimization: Improving Chain-of-Thought Reasoning in LLMs - arXiv, https://arxiv.org/html/2406.09136v1
+58. RLAIF: Scaling Reinforcement Learning from Human Feedback with AI... - OpenReview, https://openreview.net/forum?id=AAxIs3D2ZZ
+59. RLAIF vs. RLHF: Scaling Reinforcement Learning from Human Feedback with AI Feedback, https://proceedings.mlr.press/v235/lee24t.html
+60. RLAIF Is The Future. But What Could Go Wrong? | by Reya Vir - Medium, https://medium.com/@reyavir/rlaif-is-the-future-but-what-could-go-wrong-d86f1a6956f0
+61. RLAIF vs. RLHF: Scaling Reinforcement Learning from ... - arXiv, https://arxiv.org/abs/2309.00267
+62. Aligning and Augmenting Intelligence: A Technical Survey of ..., https://www.findingtheta.com/blog/aligning-and-augmenting-intelligence-a-technical-survey-of-reinforcement-learning-in-large-language-models
+63. RLTHF: Targeted Human Feedback for LLM Alignment - ICML 2025, https://icml.cc/virtual/2025/poster/46173
+64. LLMs instead of Human Judges? A Large Scale Empirical Study across 20 NLP Evaluation Tasks - ACL Anthology, https://aclanthology.org/2025.acl-short.20.pdf
+65. Re-evaluating Automatic LLM System Ranking for Alignment with Human Preference - ACL Anthology, https://aclanthology.org/2025.findings-naacl.260.pdf
+66. TRL - Transformer Reinforcement Learning - Hugging Face, https://huggingface.co/docs/trl/en/index
+67. huggingface/trl: Train transformer language models with reinforcement learning. - GitHub, https://github.com/huggingface/trl
+68. RLHF in 2024 with DPO & Hugging Face - Philschmid, https://www.philschmid.de/dpo-align-llms-in-2024-with-trl
+69. Preference Tuning LLMs with Direct Preference Optimization Methods, https://huggingface.co/blog/pref-tuning
+70. Preference Optimization for Vision Language Models with TRL - Hugging Face, https://huggingface.co/blog/dpo_vlm
+71. Vision Language Model Alignment in TRL ⚡️ - Hugging Face, https://huggingface.co/blog/trl-vlm-alignment
+72. OpenRLHF/OpenRLHF-M: An Easy-to-use, Scalable and High-performance RLHF Framework designed for Multimodal Models. - GitHub, https://github.com/OpenRLHF/OpenRLHF-M
+73. OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework - arXiv, https://arxiv.org/html/2405.11143v6
+74. Welcome to OpenRLHF's documentation! — OpenRLHF 0.9 ..., https://openrlhf.readthedocs.io/
+75. Accelerating RLHF with vLLM, Best Practice from OpenRLHF, https://blog.vllm.ai/2025/04/23/openrlhf-vllm.html
+76. Inside vLLM: Anatomy of a High-Throughput LLM Inference System, https://blog.vllm.ai/2025/09/05/anatomy-of-vllm.html
+77. OpenRLHF/OpenRLHF: An Easy-to-use, Scalable and High-performance RLHF Framework based on Ray (PPO & GRPO & REINFORCE++ & vLLM & Ray & Dynamic Sampling & Async Agentic RL) - GitHub, https://github.com/OpenRLHF/OpenRLHF
+78. SFT vs. DPO: Comparison between LLM Alignment techniques | by Sulbha Jain | Medium, https://medium.com/@sulbha.jindal/sft-vs-dpo-comparison-between-llm-alignment-techniques-26b6d76171da
+79. Fine-Tuning Techniques - Choosing Between SFT, DPO, and RFT (With a Guide to DPO), https://cookbook.openai.com/examples/fine_tuning_direct_preference_optimization_guide
+80. arxiv.org, https://arxiv.org/html/2509.09055v1
+81. Improving LLM Safety and Helpfulness using SFT and DPO: A Study on OPT-350M, https://www.researchgate.net/publication/395418157_Improving_LLM_Safety_and_Helpfulness_using_SFT_and_DPO_A_Study_on_OPT-350M
+82. Extended Abstract - CS 224R Deep Reinforcement Learning, https://cs224r.stanford.edu/projects/pdfs/CS_224R_Final_Report_Bennett_Padmanabhan_Weissberg.pdf
+83. PAD: PERSONALIZED ALIGNMENT OF LLMS AT DECODING-TIME - OpenReview, https://openreview.net/pdf?id=e7AUJpP8bV
+84. [2507.19672] Alignment and Safety in Large Language Models: Safety Mechanisms, Training Paradigms, and Emerging Challenges - arXiv, https://arxiv.org/abs/2507.19672
+85. liyongqi2002/Awesome-Personalized-Alignment - GitHub, https://github.com/liyongqi2002/Awesome-Personalized-Alignment
+86. A Survey on Personalized and Pluralistic Preference Alignment in ..., https://arxiv.org/abs/2504.07070
+87. Aligning LLMs with Individual Preferences via Interaction - ACL Anthology, https://aclanthology.org/2025.coling-main.511/
+88. [2410.04070] PAD: Personalized Alignment of LLMs at Decoding-Time - arXiv, https://arxiv.org/abs/2410.04070
+89. Aligning Multimodal LLM with Human Preference: A Survey - arXiv, https://arxiv.org/abs/2503.14504
+90. Lecture 4 – Multimodal Alignment (MIT How to AI Almost Anything, Spring 2025) - YouTube, https://www.youtube.com/watch?v=kixc1mh55yY
+91. Understanding Alignment in Multimodal LLMs: A Comprehensive Study | OpenReview, https://openreview.net/forum?id=49qqV4NTdy&noteId=BmpGFgu040

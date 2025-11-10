@@ -530,51 +530,51 @@ triage_crew = Crew(
 
 ## 참고자료
 
-1. What's next for AI? - Deloitte, accessed November 10, 2025, https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2025/tech-trends-ai-agents-and-autonomous-ai.html
-2. LLMs for Multi-Agent Cooperation | Xueguang Lyu, accessed November 10, 2025, https://xue-guang.com/post/llm-marl/
-3. LangChain State of AI Agents Report, accessed November 10, 2025, https://www.langchain.com/stateofaiagents
-4. 2025 Mid-Year LLM Market Update: Foundation Model Landscape + Economics, accessed November 10, 2025, https://menlovc.com/perspective/2025-mid-year-llm-market-update/
-5. AI Agents in 2025: Expectations vs. Reality - IBM, accessed November 10, 2025, https://www.ibm.com/think/insights/ai-agents-2025-expectations-vs-reality
-6. Multi-Agent and Multi-LLM Architecture: Complete Guide for 2025 ..., accessed November 10, 2025, https://collabnix.com/multi-agent-and-multi-llm-architecture-complete-guide-for-2025/
-7. Designing Cooperative Agent Architectures in 2025 | Samira ..., accessed November 10, 2025, https://samiranama.com/posts/Designing-Cooperative-Agent-Architectures-in-2025/
-8. Hierarchical Multi-Agent Systems: Concepts and Operational Considerations - Over Coffee, accessed November 10, 2025, https://overcoffee.medium.com/hierarchical-multi-agent-systems-concepts-and-operational-considerations-e06fff0bea8c
-9. #11: AIAgents -CrewAI: How Role-Based Agents Work Together | by Jayakrishnan M | Oct, 2025 | Medium, accessed November 10, 2025, https://medium.com/@jmelethil/11-aiagents-crewai-how-role-based-agents-work-together-87662ad25f33
-10. CrewAI Guide: Build Multi-Agent AI Teams in October 2025, accessed November 10, 2025, https://mem0.ai/blog/crewai-guide-multi-agent-ai-teams
-11. Building Your First AI Customer Support System with CrewAI: A ..., accessed November 10, 2025, https://medium.com/@tahaML/building-your-first-ai-customer-support-system-with-crewai-a-beginners-guide-f6a41f04fd2e
-12. Introduction - CrewAI, accessed November 10, 2025, https://docs.crewai.com/en/introduction
-13. Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. - GitHub, accessed November 10, 2025, https://github.com/crewAIInc/crewAI
-14. Crewai vs LangGraph: Know The Differences - TrueFoundry, accessed November 10, 2025, https://www.truefoundry.com/blog/crewai-vs-langgraph
-15. Mastering Flow State Management - CrewAI, accessed November 10, 2025, https://docs.crewai.com/en/guides/flows/mastering-flow-state
-16. Crew AI, accessed November 10, 2025, https://www.crewai.com/
-17. Why Do Multi-Agent LLM Systems Fail? | by Anna Alexandra ..., accessed November 10, 2025, https://thegrigorian.medium.com/why-do-multi-agent-llm-systems-fail-14dc34e0f3cb
-18. Why Multi-Agent LLM Systems Fail: Key Issues Explained ... - Orq.ai, accessed November 10, 2025, https://orq.ai/blog/why-do-multi-agent-llm-systems-fail
-19. Mirascope - LLMs Text Viewer | Mirascope, accessed November 10, 2025, https://mirascope.com/docs/mirascope/llms-full
-20. Response Models | Mirascope, accessed November 10, 2025, https://mirascope.com/docs/mirascope/learn/response_models
-21. Welcome - Mirascope, accessed November 10, 2025, https://mirascope.com/docs/mirascope
-22. Structured Outputs - Mirascope, accessed November 10, 2025, https://mirascope.com/docs/mirascope/guides/getting-started/structured-outputs
-23. Haystack Documentation, accessed November 10, 2025, https://docs.haystack.deepset.ai/docs/intro
-24. Haystack vs. FlowiseAI: Comparing AI-Powered Development Platforms - SmythOS, accessed November 10, 2025, https://smythos.com/developers/agent-comparisons/haystack-vs-flowiseai/
-25. Agents - Haystack Documentation, accessed November 10, 2025, https://docs.haystack.deepset.ai/docs/agents
-26. Build an Agentic RAG Pipeline in deepset Studio - Haystack, accessed November 10, 2025, https://haystack.deepset.ai/blog/agentic-rag-in-deepset-studio
-27. Building an Agentic RAG with Fallback to Websearch | Haystack, accessed November 10, 2025, https://haystack.deepset.ai/tutorials/36_building_fallbacks_with_conditional_routing
-28. Why Do Multi-Agent LLM Systems Fail? - arXiv, accessed November 10, 2025, https://arxiv.org/pdf/2503.13657
-29. Langflow | Low-code AI builder for agentic and RAG applications, accessed November 10, 2025, https://www.langflow.org/
-30. Dify: Leading Agentic Workflow Builder, accessed November 10, 2025, https://dify.ai/
-31. FlowiseAI vs. Langflow: Compare top AI agent builders - SmythOS, accessed November 10, 2025, https://smythos.com/developers/agent-comparisons/flowiseai-vs-langflow/
-32. AI Agent Orchestration Frameworks: Which One Works Best for You ..., accessed November 10, 2025, https://blog.n8n.io/ai-agent-orchestration-frameworks/
-33. CrewAI vs LangGraph vs AutoGen: Choosing the Right Multi-Agent AI Framework, accessed November 10, 2025, https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen
-34. 9 AI Agent Frameworks Battle: Why Developers Prefer n8n, accessed November 10, 2025, https://blog.n8n.io/ai-agent-frameworks/
-35. We Tried and Tested 8 Langflow Alternatives for Production-Ready AI Workflows - ZenML, accessed November 10, 2025, https://www.zenml.io/blog/langflow-alternatives
-36. LangFlow vs Flowise vs n8n vs Make - Reddit, accessed November 10, 2025, https://www.reddit.com/r/langflow/comments/1ij66dl/langflow_vs_flowise_vs_n8n_vs_make/
-37. We Tried and Tested 8 Langflow Alternatives for Production-Ready ..., accessed November 10, 2025, https://zenml.io/blog/langflow-alternatives
-38. The Best Langflow vs Flowise Comparison to Guide Your AI Tool Decision - Lamatic.ai Labs, accessed November 10, 2025, https://blog.lamatic.ai/guides/langflow-vs-flowise/
-39. Toolformer: Language Models Can Teach Themselves to Use Tools | Research - AI at Meta, accessed November 10, 2025, https://ai.meta.com/research/publications/toolformer-language-models-can-teach-themselves-to-use-tools/
-40. Toolformer: How Language Models Learn to Use Tools by ... - Medium, accessed November 10, 2025, https://medium.com/@darshantank_55417/toolformer-how-language-models-learn-to-use-tools-by-themselves-9724fb64ed0e
-41. Improving Large Language Models Function Calling and Interpretability via Guided-Structured Templates - arXiv, accessed November 10, 2025, https://arxiv.org/html/2509.18076v1
-42. FunReason: Enhancing Large Language Models' Function Calling via Self-Refinement Multiscale Loss and Automated Data Refinement - arXiv, accessed November 10, 2025, https://arxiv.org/html/2505.20192v1
-43. [2305.15334] Gorilla: Large Language Model Connected with Massive APIs - arXiv, accessed November 10, 2025, https://arxiv.org/abs/2305.15334
-44. Gorilla, accessed November 10, 2025, https://gorilla.cs.berkeley.edu/
-45. Why Do Multi-Agent LLM Systems Fail? - arXiv, accessed November 10, 2025, https://arxiv.org/html/2503.13657v2
-46. [2503.13657] Why Do Multi-Agent LLM Systems Fail? - arXiv, accessed November 10, 2025, https://arxiv.org/abs/2503.13657
-47. WHY DO MULTI-AGENT LLM SYSTEMS FAIL? - OpenReview, accessed November 10, 2025, https://openreview.net/pdf?id=wM521FqPvI
-48. AutoGen vs CrewAI vs LangGraph: AI Framework Comparison 2025 - JetThoughts, accessed November 10, 2025, https://jetthoughts.com/blog/autogen-crewai-langgraph-ai-agent-frameworks-2025/
+1. What's next for AI? - Deloitte, https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2025/tech-trends-ai-agents-and-autonomous-ai.html
+2. LLMs for Multi-Agent Cooperation | Xueguang Lyu, https://xue-guang.com/post/llm-marl/
+3. LangChain State of AI Agents Report, https://www.langchain.com/stateofaiagents
+4. 2025 Mid-Year LLM Market Update: Foundation Model Landscape + Economics, https://menlovc.com/perspective/2025-mid-year-llm-market-update/
+5. AI Agents in 2025: Expectations vs. Reality - IBM, https://www.ibm.com/think/insights/ai-agents-2025-expectations-vs-reality
+6. Multi-Agent and Multi-LLM Architecture: Complete Guide for 2025 ..., https://collabnix.com/multi-agent-and-multi-llm-architecture-complete-guide-for-2025/
+7. Designing Cooperative Agent Architectures in 2025 | Samira ..., https://samiranama.com/posts/Designing-Cooperative-Agent-Architectures-in-2025/
+8. Hierarchical Multi-Agent Systems: Concepts and Operational Considerations - Over Coffee, https://overcoffee.medium.com/hierarchical-multi-agent-systems-concepts-and-operational-considerations-e06fff0bea8c
+9. #11: AIAgents -CrewAI: How Role-Based Agents Work Together | by Jayakrishnan M | Oct, 2025 | Medium, https://medium.com/@jmelethil/11-aiagents-crewai-how-role-based-agents-work-together-87662ad25f33
+10. CrewAI Guide: Build Multi-Agent AI Teams in October 2025, https://mem0.ai/blog/crewai-guide-multi-agent-ai-teams
+11. Building Your First AI Customer Support System with CrewAI: A ..., https://medium.com/@tahaML/building-your-first-ai-customer-support-system-with-crewai-a-beginners-guide-f6a41f04fd2e
+12. Introduction - CrewAI, https://docs.crewai.com/en/introduction
+13. Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. - GitHub, https://github.com/crewAIInc/crewAI
+14. Crewai vs LangGraph: Know The Differences - TrueFoundry, https://www.truefoundry.com/blog/crewai-vs-langgraph
+15. Mastering Flow State Management - CrewAI, https://docs.crewai.com/en/guides/flows/mastering-flow-state
+16. Crew AI, https://www.crewai.com/
+17. Why Do Multi-Agent LLM Systems Fail? | by Anna Alexandra ..., https://thegrigorian.medium.com/why-do-multi-agent-llm-systems-fail-14dc34e0f3cb
+18. Why Multi-Agent LLM Systems Fail: Key Issues Explained ... - Orq.ai, https://orq.ai/blog/why-do-multi-agent-llm-systems-fail
+19. Mirascope - LLMs Text Viewer | Mirascope, https://mirascope.com/docs/mirascope/llms-full
+20. Response Models | Mirascope, https://mirascope.com/docs/mirascope/learn/response_models
+21. Welcome - Mirascope, https://mirascope.com/docs/mirascope
+22. Structured Outputs - Mirascope, https://mirascope.com/docs/mirascope/guides/getting-started/structured-outputs
+23. Haystack Documentation, https://docs.haystack.deepset.ai/docs/intro
+24. Haystack vs. FlowiseAI: Comparing AI-Powered Development Platforms - SmythOS, https://smythos.com/developers/agent-comparisons/haystack-vs-flowiseai/
+25. Agents - Haystack Documentation, https://docs.haystack.deepset.ai/docs/agents
+26. Build an Agentic RAG Pipeline in deepset Studio - Haystack, https://haystack.deepset.ai/blog/agentic-rag-in-deepset-studio
+27. Building an Agentic RAG with Fallback to Websearch | Haystack, https://haystack.deepset.ai/tutorials/36_building_fallbacks_with_conditional_routing
+28. Why Do Multi-Agent LLM Systems Fail? - arXiv, https://arxiv.org/pdf/2503.13657
+29. Langflow | Low-code AI builder for agentic and RAG applications, https://www.langflow.org/
+30. Dify: Leading Agentic Workflow Builder, https://dify.ai/
+31. FlowiseAI vs. Langflow: Compare top AI agent builders - SmythOS, https://smythos.com/developers/agent-comparisons/flowiseai-vs-langflow/
+32. AI Agent Orchestration Frameworks: Which One Works Best for You ..., https://blog.n8n.io/ai-agent-orchestration-frameworks/
+33. CrewAI vs LangGraph vs AutoGen: Choosing the Right Multi-Agent AI Framework, https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen
+34. 9 AI Agent Frameworks Battle: Why Developers Prefer n8n, https://blog.n8n.io/ai-agent-frameworks/
+35. We Tried and Tested 8 Langflow Alternatives for Production-Ready AI Workflows - ZenML, https://www.zenml.io/blog/langflow-alternatives
+36. LangFlow vs Flowise vs n8n vs Make - Reddit, https://www.reddit.com/r/langflow/comments/1ij66dl/langflow_vs_flowise_vs_n8n_vs_make/
+37. We Tried and Tested 8 Langflow Alternatives for Production-Ready ..., https://zenml.io/blog/langflow-alternatives
+38. The Best Langflow vs Flowise Comparison to Guide Your AI Tool Decision - Lamatic.ai Labs, https://blog.lamatic.ai/guides/langflow-vs-flowise/
+39. Toolformer: Language Models Can Teach Themselves to Use Tools | Research - AI at Meta, https://ai.meta.com/research/publications/toolformer-language-models-can-teach-themselves-to-use-tools/
+40. Toolformer: How Language Models Learn to Use Tools by ... - Medium, https://medium.com/@darshantank_55417/toolformer-how-language-models-learn-to-use-tools-by-themselves-9724fb64ed0e
+41. Improving Large Language Models Function Calling and Interpretability via Guided-Structured Templates - arXiv, https://arxiv.org/html/2509.18076v1
+42. FunReason: Enhancing Large Language Models' Function Calling via Self-Refinement Multiscale Loss and Automated Data Refinement - arXiv, https://arxiv.org/html/2505.20192v1
+43. [2305.15334] Gorilla: Large Language Model Connected with Massive APIs - arXiv, https://arxiv.org/abs/2305.15334
+44. Gorilla, https://gorilla.cs.berkeley.edu/
+45. Why Do Multi-Agent LLM Systems Fail? - arXiv, https://arxiv.org/html/2503.13657v2
+46. [2503.13657] Why Do Multi-Agent LLM Systems Fail? - arXiv, https://arxiv.org/abs/2503.13657
+47. WHY DO MULTI-AGENT LLM SYSTEMS FAIL? - OpenReview, https://openreview.net/pdf?id=wM521FqPvI
+48. AutoGen vs CrewAI vs LangGraph: AI Framework Comparison 2025 - JetThoughts, https://jetthoughts.com/blog/autogen-crewai-langgraph-ai-agent-frameworks-2025/
