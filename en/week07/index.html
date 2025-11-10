@@ -1,0 +1,1129 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 7: Ultra-Long Context Processing and Efficient Inference &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 8: Core Review and Latest Trends" href="../week08/index.html" />
+    <link rel="prev" title="Week 6: Advances in Multimodal NLP" href="../week06/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: Revolutionary Alignment Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: Production Agent Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI Regulation and Responsible AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week07/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek07/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week07/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 7: Ultra-Long Context Processing and Efficient Inference</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-in-context-windows">1. Paradigm Shift in Context Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-kilobytes-to-megabytes-quantitative-leap-in-context">1.1 From Kilobytes to Megabytes – Quantitative Leap in Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capabilities-of-2025-flagship-models">1.2 Capabilities of 2025 Flagship Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-developer-paradigms-beyond-simple-q-a">1.3 New Developer Paradigms: Beyond Simple Q&amp;A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-costs-inevitable-trade-offs">1.4 Hidden Costs – Inevitable Trade-offs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-technology-i-reimagining-attention-mechanisms">2. Core Technology I: Reimagining Attention Mechanisms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-o-n-2-bottleneck-of-standard-self-attention">2.1 The <span class="math notranslate nohighlight">\(O(n^2)\)</span> Bottleneck of Standard Self-Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-optimization-flashattention-s-i-o-bottleneck-optimization">2.2 Engineering Optimization: FlashAttention’s I/O Bottleneck Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-enabling-flashattention-in-hugging-face-transformers">2.2.1 Hands-on: Enabling FlashAttention in Hugging Face Transformers</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions"><strong>Checkpoint Questions</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmic-optimization-linear-time-approximation-linear-attention">2.3 Algorithmic Optimization: Linear Time Approximation (Linear Attention)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#systemic-optimization-distributed-attention-with-ring-attention">2.4 Systemic Optimization: Distributed Attention with Ring Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architectural-innovation-magic-s-sequence-dimension-algorithm">2.5 Architectural Innovation: Magic’s Sequence-Dimension Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-technology-ii-extending-positional-encoding">3. Core Technology II: Extending Positional Encoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope-s-limitations-the-extrapolation-problem">3.1 RoPE’s Limitations – The ‘Extrapolation’ Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longrope-sophisticated-scaling-solution">3.2 LongRoPE – Sophisticated Scaling Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-1-leveraging-non-uniformity">3.2.1 Mechanism 1 – Leveraging Non-Uniformity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-2-progressive-extension-strategy">3.2.2 Mechanism 2 – Progressive Extension Strategy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-3-short-context-performance-restoration">3.2.3 Mechanism 3 – Short Context Performance Restoration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-context-extension-example-using-longrope">3.3 Hands-on: Context Extension Example Using LongRoPE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-vs-ultra-long-context-2025-s-debate-and-integration">4. RAG vs Ultra-Long Context: 2025’s Debate and Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-beginning-of-the-debate-is-rag-a-relic-of-the-past">4.1 The Beginning of the Debate – “Is RAG a Relic of the Past?”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-necessity-of-rag-limitations-of-naive-ultra-long-context">4.2 The Necessity of RAG – Limitations of Naive Ultra-Long Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-rag-based-qa-pipeline-using-haystack">4.2.1 Hands-on: RAG-based QA Pipeline Using Haystack</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s-integration-rag-as-ai-agent-memory">4.3 2025’s Integration – RAG as AI Agent Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolved-rag-architecture-the-rise-of-graph-based-reasoning">4.4 Evolved RAG Architecture: The Rise of Graph-Based Reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations-the-gap-between-benchmarks-and-reality">5. Practical Considerations: The Gap Between Benchmarks and Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversification-of-the-2025-llm-ecosystem">5.1 Diversification of the 2025 LLM Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-better-evaluation-emergence-of-long-context-benchmarks">5.2 The Need for Better Evaluation – Emergence of Long-Context Benchmarks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reality-check-findings-from-the-longcodeu-benchmark">5.3 Reality Check – Findings from the LONGCODEU Benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-strategic-recommendations-for-industry-developers">5.4 Conclusion – Strategic Recommendations for Industry Developers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-7-ultra-long-context-processing-and-efficient-inference">
+<h1>Week 7: Ultra-Long Context Processing and Efficient Inference<a class="headerlink" href="#week-7-ultra-long-context-processing-and-efficient-inference" title="Link to this heading">#</a></h1>
+<section id="paradigm-shift-in-context-windows">
+<h2>1. Paradigm Shift in Context Windows<a class="headerlink" href="#paradigm-shift-in-context-windows" title="Link to this heading">#</a></h2>
+<p>Over the past few years, the field of Natural Language Processing (NLP) has undergone dramatic changes driven by the advancement of Large Language Models (LLMs). At the center of this development lies the expansion of the ‘context window’—the amount of information a model can process and reference at once. <strong>As of 2025, we have entered an era of ‘ultra-long context revolution’ that goes beyond mere incremental improvements to redefine how LLMs are utilized.</strong> This lecture will explore in depth the core technologies driving this revolution, the latest flagship models, and the new paradigms and practical challenges that emerge from this transformation.</p>
+<section id="from-kilobytes-to-megabytes-quantitative-leap-in-context">
+<h3>1.1 From Kilobytes to Megabytes – Quantitative Leap in Context<a class="headerlink" href="#from-kilobytes-to-megabytes-quantitative-leap-in-context" title="Link to this heading">#</a></h3>
+<p>In the early stages of LLM development, the context window was one of the model’s biggest constraints. Models from 2018 and 2019 had maximum context sizes of only 512 and 1,024 tokens respectively. This meant that the information a model could reference at once was limited to a few paragraphs, showing clear limitations in understanding long conversations or complex documents.</p>
+<p>However, by 2024 and into 2025, these limitations have been dramatically overcome. <strong>Google’s Gemini</strong> and other latest models have begun offering context windows of hundreds of thousands to <strong>over 1 million tokens</strong>, suggesting that LLMs’ ‘working memory’ has expanded to the level of a book, or even a small library. To put 1 million tokens in perspective:</p>
+<ul class="simple">
+<li><p>Approximately 50,000 lines of code (assuming 80 characters per line)</p></li>
+<li><p>8 average-length English novels</p></li>
+<li><p>Scripts from over 200 average-length podcast episodes</p></li>
+</ul>
+<p>Furthermore, Meta’s <strong>Llama 4</strong> handles 10 million tokens, while innovative models like Magic’s <strong>LTM-2-Mini</strong> demonstrate the ability to process an astonishing <strong>100 million tokens</strong> (equivalent to 10 million lines of code), showing that the pace of technological advancement exceeds our imagination. This explosive growth in context windows is fundamentally changing <strong>how</strong> LLMs process information. While it was important to ‘compress’ knowledge within model parameters in the past, the core capability now lies in <strong>directly providing vast amounts of information within the context</strong> and enabling the model to <strong>search and reason</strong> through that information in real-time. In other words, the model’s role is transitioning from a knowledge repository to a ‘<strong>context-based information processing and reasoning engine</strong>’.</p>
+</section>
+<section id="capabilities-of-2025-flagship-models">
+<h3>1.2 Capabilities of 2025 Flagship Models<a class="headerlink" href="#capabilities-of-2025-flagship-models" title="Link to this heading">#</a></h3>
+<p>As of 2025, various technology companies are competitively launching flagship LLMs that support ultra-long context, leading the technological frontier. Representative models and their characteristics are as follows:</p>
+<ul class="simple">
+<li><p><strong>OpenAI GPT-5</strong>: A model that achieves a <strong>dramatic leap in intelligence</strong> beyond the previous generation GPT-4o, featuring a dedicated ‘<strong>reasoning</strong>’ module for solving complex problems. It demonstrates cutting-edge performance across various domains including coding, mathematics, and writing, with enhanced multimodal processing capabilities.</p></li>
+<li><p><strong>Google Gemini 2.5 Pro</strong>: A model that embodies the concept of a ‘thinking model,’ equipped with the ability to improve accuracy through <strong>internal reasoning processes</strong> before generating responses. It supports a <strong>1 million token context window</strong> by default and is planned to expand to 2 million tokens soon. It records top performance in reasoning and coding benchmarks along with <strong>native multimodality</strong> capabilities that process text, code, images, audio, and video.</p></li>
+<li><p><strong>Anthropic Claude Sonnet 4</strong>: Supports a 1 million token context window and provides powerful performance that can process entire codebases consisting of over 75,000 lines of code or dozens of research papers in a single request. This opens up <strong>new possibilities</strong> particularly in software development and academic research fields.</p></li>
+<li><p><strong>Magic LTM-2-Mini</strong>: An innovative model that processes an astonishing <strong>100 million tokens</strong> through an approach different from existing attention-based architectures. It has become a topic of discussion by claiming to show <strong>over 1000x efficiency</strong> compared to Llama series at the same performance level, heralding the emergence of <strong>fundamentally more efficient architectures</strong> beyond simple quantitative expansion.</p></li>
+</ul>
+<p>The emergence of these models provides developers and users with powerful tools to handle unprecedented scales of data at once. The table below summarizes the key characteristics of these major models.</p>
+<p><strong>Table 1: Comparison of Major LLM Context Windows (2025)</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Model Name</p></th>
+<th class="head text-left"><p>Company</p></th>
+<th class="head text-left"><p>Maximum Context Window</p></th>
+<th class="head text-left"><p>Key Features</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>GPT-5</p></td>
+<td class="text-left"><p>OpenAI</p></td>
+<td class="text-left"><p>Undisclosed (millions+)</p></td>
+<td class="text-left"><p>Dedicated reasoning module, enhanced multimodality</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Gemini 2.5 Pro</p></td>
+<td class="text-left"><p>Google</p></td>
+<td class="text-left"><p>1,000,000 (soon 2,000,000)</p></td>
+<td class="text-left"><p>Thinking model, native multimodality</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Claude Sonnet 4</p></td>
+<td class="text-left"><p>Anthropic</p></td>
+<td class="text-left"><p>1,000,000</p></td>
+<td class="text-left"><p>Optimized for large codebases and document analysis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Llama 4</p></td>
+<td class="text-left"><p>Meta</p></td>
+<td class="text-left"><p>10,000,000 (estimated)</p></td>
+<td class="text-left"><p>Open source ecosystem-based scalability</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>LTM-2-Mini</p></td>
+<td class="text-left"><p>Magic</p></td>
+<td class="text-left"><p>100,000,000</p></td>
+<td class="text-left"><p>Sequence-dimension algorithm, ultra-efficient architecture</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="new-developer-paradigms-beyond-simple-q-a">
+<h3>1.3 New Developer Paradigms: Beyond Simple Q&amp;A<a class="headerlink" href="#new-developer-paradigms-beyond-simple-q-a" title="Link to this heading">#</a></h3>
+<p>The expansion of context windows goes beyond simply summarizing longer texts, enabling completely new application types and development paradigms. Some examples include:</p>
+<ul class="simple">
+<li><p><strong>Comprehensive Document Analysis</strong>: Models can now receive entire research papers, technical manuals, legal contracts, etc., as input at once, understanding the full context of documents and performing in-depth analysis. This can dramatically reduce the time for experts in legal, financial, and medical fields to review vast amounts of material.</p></li>
+<li><p><strong>Extended Conversational History</strong>: Chatbots or AI agents can now remember entire conversations spanning hours or even days. This solves the ‘memory loss’ problem of losing context in user interactions and provides a much more <strong>personalized and consistent conversational experience</strong>.</p></li>
+<li><p><strong>Repository-Level Code Understanding</strong>: By including entire code repositories in the context, models can support <strong>high-level development tasks</strong> such as complex bug fixes, large-scale refactoring, and code dependency analysis. This becomes an opportunity to elevate the capabilities of AI-based development tools like GitHub Copilot to the next level.</p></li>
+<li><p><strong>Cache Augmented Generation (CAG)</strong>: A new paradigm that pre-computes frequently used documents or information and caches them as part of the prompt. This has the advantage of shorter latency compared to RAG (Retrieval-Augmented Generation) approaches that search external databases. Thanks to massive context windows, it has become possible to directly include such large-scale caches in prompts.</p></li>
+</ul>
+</section>
+<section id="hidden-costs-inevitable-trade-offs">
+<h3>1.4 Hidden Costs – Inevitable Trade-offs<a class="headerlink" href="#hidden-costs-inevitable-trade-offs" title="Link to this heading">#</a></h3>
+<p>It is important to clearly recognize that these remarkable advances are not a <strong>‘silver bullet’</strong>. Ultra-long context comes with clear costs and trade-offs proportional to its power.</p>
+<ul class="simple">
+<li><p><strong>Increased Financial Costs</strong>: Most commercial LLM APIs charge based on the number of input tokens. Therefore, as context length increases, API call costs increase directly. For example, Anthropic’s Claude Sonnet 4 <strong>doubles the input token cost</strong> for prompts exceeding 200,000 tokens, reflecting the increased computational costs of large-scale context usage in their pricing policy.</p></li>
+<li><p><strong>Increased Response Latency</strong>: As the amount of input tokens increases, the speed of output token generation tends to slow down. This can be a critical disadvantage in applications where real-time interaction is important.</p></li>
+</ul>
+<p>In conclusion, <strong>developers in 2025 face a new ‘context-computing-cost optimization’ problem</strong>. While providing more context can improve model accuracy and reasoning ability, this means accepting higher costs and slower response speeds. Therefore, a strategic approach to finding the <strong>optimal context size for specific tasks</strong> rather than ‘<strong>unconditionally large</strong>’ has become important. This opens the era of ‘<strong>context engineering</strong>’ that considers both cost and performance, beyond simple prompt engineering.</p>
+</section>
+</section>
+<section id="core-technology-i-reimagining-attention-mechanisms">
+<h2>2. Core Technology I: Reimagining Attention Mechanisms<a class="headerlink" href="#core-technology-i-reimagining-attention-mechanisms" title="Link to this heading">#</a></h2>
+<p>The heart of the transformer architecture and the biggest obstacle to realizing ultra-long context was the computational complexity problem of the <strong>self-attention</strong> mechanism. To solve this problem, innovative research has been conducted at all levels of the computing stack, from hardware, algorithms, distributed systems, to model architecture. We will see that the current technological leap was achieved not by a single technology, but by the <strong>combination of multi-faceted approaches</strong>.</p>
+<section id="the-o-n-2-bottleneck-of-standard-self-attention">
+<h3>2.1 The <span class="math notranslate nohighlight">\(O(n^2)\)</span> Bottleneck of Standard Self-Attention<a class="headerlink" href="#the-o-n-2-bottleneck-of-standard-self-attention" title="Link to this heading">#</a></h3>
+<p>The core of the standard self-attention mechanism is calculating the <strong>relationships between all token pairs</strong> within a sequence. When the sequence length is <span class="math notranslate nohighlight">\(n\)</span>, this means generating and computing an attention score matrix of size <span class="math notranslate nohighlight">\(n \times n\)</span>. This causes both <strong>computational complexity and memory requirements</strong> to increase quadratically (<span class="math notranslate nohighlight">\(O(n^2)\)</span>) with respect to sequence length.</p>
+<p>This <strong>quadratic complexity</strong> causes a bottleneck phenomenon where computational load and memory usage explode exponentially even with sequences of just a few thousand tokens. This was the fundamental reason why past LLMs’ context windows remained at the level of hundreds to thousands of tokens. In short, <strong>the shorter the context window, the more controllable the model operation costs</strong> were.</p>
+</section>
+<section id="engineering-optimization-flashattention-s-i-o-bottleneck-optimization">
+<h3>2.2 Engineering Optimization: FlashAttention’s I/O Bottleneck Optimization<a class="headerlink" href="#engineering-optimization-flashattention-s-i-o-bottleneck-optimization" title="Link to this heading">#</a></h3>
+<p><strong>FlashAttention</strong> is a landmark technology that produces <strong>exactly the same values</strong> as standard attention while maximizing <strong>speed and memory efficiency</strong> through engineering optimization. FlashAttention’s key insight is recognizing that <strong>the actual bottleneck in attention computation lies in data movement (I/O) between GPU memory hierarchies rather than the computation itself</strong>.</p>
+<p>Specifically, instead of generating the entire <span class="math notranslate nohighlight">\(n \times n\)</span> attention matrix in HBM (High Bandwidth Memory) and reading it back, FlashAttention uses a <strong>tiling</strong> technique that divides the input into small blocks. Computation for each block is performed within the GPU’s fast on-chip memory (SRAM), and HBM access is minimized through <strong>kernel fusion</strong> that combines multiple computation steps into one. Thanks to this approach, FlashAttention achieves <strong>up to 2x faster speed</strong> and <strong>reduced memory usage</strong> while computing accurate attention results without approximation.</p>
+<p>The important point is that FlashAttention <strong>does not change the fundamental <span class="math notranslate nohighlight">\(O(n^2)\)</span> complexity of attention</strong>. Instead, it is an engineering innovation that makes quadratic complexity computation <strong>much more efficient</strong> by maximizing the characteristics of hardware. This opened the path to practically using standard attention even in sequences of tens of thousands of tokens, which was unrealistic in the past.</p>
+<section id="hands-on-enabling-flashattention-in-hugging-face-transformers">
+<h4>2.2.1 Hands-on: Enabling FlashAttention in Hugging Face Transformers<a class="headerlink" href="#hands-on-enabling-flashattention-in-hugging-face-transformers" title="Link to this heading">#</a></h4>
+<p>Hugging Face’s 🤗 Transformers library tightly integrates FlashAttention, allowing it to be easily activated with just the <strong>attn_implementation parameter when loading a model</strong>. This enables <strong>significant improvements in inference speed and memory efficiency</strong> with minimal changes to existing code. Below is how to selectively use standard attention and FlashAttention when loading an example model that supports FlashAttention-3:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+
+<span class="c1"># Assuming GPU is Hopper architecture or above, and flash-attn library is installed</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+<span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;openai/gpt-oss-20b&quot;</span> <span class="c1"># Example model ID supporting FlashAttention-3</span>
+
+<span class="c1"># 1. Load model with default attention implementation</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="n">model_eager</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_id</span><span class="p">,</span>
+    <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with standard attention loaded.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Load model with FlashAttention-3 implementation</span>
+
+<span class="c1"># Internally uses vLLM&#39;s FlashAttention-3 kernel,</span>
+<span class="c1"># which is automatically downloaded from the hub via the &#39;kernels&#39; package.</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">model_flash</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+        <span class="n">model_id</span><span class="p">,</span>
+        <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+        <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+        <span class="n">attn_implementation</span><span class="o">=</span><span class="s2">&quot;kernels-community/vllm-flash-attn3&quot;</span> <span class="c1"># Enable FlashAttention-3</span>
+    <span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with FlashAttention-3 loaded successfully.&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FlashAttention is not installed or the environment does not support it.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred while loading with FlashAttention: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Example execution results:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="k">with</span> <span class="n">standard</span> <span class="n">attention</span> <span class="n">loaded</span><span class="o">.</span>
+<span class="n">Model</span> <span class="k">with</span> <span class="n">FlashAttention</span><span class="o">-</span><span class="mi">3</span> <span class="n">loaded</span> <span class="n">successfully</span><span class="o">.</span>
+<span class="n">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">compatible</span> <span class="n">GPU</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">NVIDIA</span> <span class="n">Hopper</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<section id="checkpoint-questions">
+<h5><strong>Checkpoint Questions</strong><a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>What problems does FlashAttention solve in existing attention mechanisms, and how does the tiling technique work?</p></li>
+<li><p>What are the main hardware acceleration features of the NVIDIA Hopper architecture utilized in FlashAttention-3?</p></li>
+<li><p>What are the required conditions for using the attn_implementation=”kernels-community/vllm-flash-attn3” option, and what happens when these conditions are not met?</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="algorithmic-optimization-linear-time-approximation-linear-attention">
+<h3>2.3 Algorithmic Optimization: Linear Time Approximation (Linear Attention)<a class="headerlink" href="#algorithmic-optimization-linear-time-approximation-linear-attention" title="Link to this heading">#</a></h3>
+<p>Attempts to fundamentally lighten attention computation itself have also been actively pursued. A representative example is <strong>Linear Attention</strong> techniques, which aim to approximate the attention mechanism to reduce complexity from <span class="math notranslate nohighlight">\(O(n^2)\)</span> to <strong><span class="math notranslate nohighlight">\(O(n)\)</span> (linear)</strong>.</p>
+<p>The core idea is to replace the <strong>softmax</strong> function with a specific kernel function, changing the order of matrix multiplication computation. This allows achieving the same effect without directly computing the massive <span class="math notranslate nohighlight">\(n \times n\)</span> attention matrix. For example, by applying specific <strong>feature functions</strong> to Queries and Keys, attention score computation can be decomposed into <strong>two small matrix multiplications</strong>. This makes the total computational load <strong>linearly</strong> proportional to sequence length.</p>
+<p>However, this efficiency improvement comes with a <strong>trade-off with accuracy</strong>. Since linear attention is an approximation technique, it does not guarantee exactly the same results as standard attention, and the resulting <strong>approximation error</strong> may partially degrade model performance. <strong>Flash Linear Attention (FLA)</strong>, proposed in a similar context to FlashAttention, is an example that implements this linear attention concept as a hardware-friendly <strong>‘chunkwise parallel algorithm’</strong> to maximize efficiency.</p>
+</section>
+<section id="systemic-optimization-distributed-attention-with-ring-attention">
+<h3>2.4 Systemic Optimization: Distributed Attention with Ring Attention<a class="headerlink" href="#systemic-optimization-distributed-attention-with-ring-attention" title="Link to this heading">#</a></h3>
+<p><strong>Ring Attention</strong> is a <strong>system-level innovation</strong> that distributes attention computation for long sequences across multiple devices (GPU/TPU), overcoming the limitations of single devices. Unlike common parallelization techniques used in large-scale model training such as <strong>model parallelism, data parallelism, and pipeline parallelism</strong>, Ring Attention corresponds to <strong>sequence parallelism</strong>. It divides long input sequences into multiple pieces and assigns each piece to different devices to perform attention in parallel.</p>
+<p>Ring Attention’s operation mechanism is as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>Sequence Partitioning and Distribution</strong>: Very long input sequences are divided into multiple blocks, with each block assigned to different devices.</p></li>
+<li><p><strong>Conceptual Ring Formation</strong>: All devices participating in computation form a logical ring-shaped connection structure.</p></li>
+<li><p><strong>Block-wise Computation and Communication Overlap</strong>: Each device begins attention computation for its assigned Query block. When Key and Value blocks stored on other devices are needed, it receives the necessary KV blocks <strong>from the next device in the ring</strong> while <strong>simultaneously sending</strong> its own KV blocks <strong>to the previous device in the ring</strong>. This communication is designed to occur <strong>simultaneously (overlapped)</strong> with each device’s attention computation.</p></li>
+<li><p><strong>Communication Overhead Elimination</strong>: When each device finishes its computation, it immediately receives new KV blocks from the next device and continues computation. Since <strong>computation and communication proceed completely overlapped</strong>, almost no additional communication delay occurs within the ring.</p></li>
+</ol>
+<p>Thanks to this structure, Ring Attention enables <strong>linear scaling of context size proportional to the number of devices</strong>. For example, using 1024 TPUs has been demonstrated to process <strong>over 10 million tokens of context</strong> with Llama 2 models. This is a victory of system architecture that opens the path to processing virtually ‘<strong>near-infinite</strong>’ context without approximating attention computation.</p>
+</section>
+<section id="architectural-innovation-magic-s-sequence-dimension-algorithm">
+<h3>2.5 Architectural Innovation: Magic’s Sequence-Dimension Algorithm<a class="headerlink" href="#architectural-innovation-magic-s-sequence-dimension-algorithm" title="Link to this heading">#</a></h3>
+<p>Magic’s <strong>LTM-2-Mini</strong> model presents the possibility of <strong>fundamental architectural changes</strong> beyond existing transformer-based attention. The ‘<strong>sequence-dimension algorithm</strong>’ used by this model boasts remarkable efficiency, being reportedly <strong>about 1000x cheaper</strong> in terms of computational load (FLOPs) compared to Llama 3.1’s attention mechanism for <strong>100 million token</strong> context.</p>
+<p>However, the most shocking innovation lies in <strong>memory usage</strong>, particularly the solution to the <strong>KV cache</strong> problem. In standard transformer models, KV cache is the space for storing <strong>Key and Value vectors of all previous tokens</strong> for attention computation. For large Llama models with 100 million token context, storing this KV cache alone requires <strong>approximately 51TB of VRAM</strong>, which translates to needing about <strong>638 H100 GPUs per user</strong>. This commonsensically impossible requirement was a new barrier blocking the practical implementation of ultra-long context.</p>
+<p>In contrast, LTM-2-Mini claims to operate with <strong>only a tiny fraction</strong> of a single H100 GPU’s memory for the same 100 million token context. This suggests that LTM-2-Mini processes sequence information in a <strong>completely new way</strong>, departing entirely from existing KV cache mechanisms. Overcoming the ‘memory barrier’ of KV cache is the next core challenge of the ultra-long context era, and LTM-2-Mini’s approach presents one solution to this.</p>
+<p>Meanwhile, a new evaluation method called <strong>‘HashHop’</strong> has also been proposed to accurately assess the performance of such innovative models. While existing ‘<strong>Needle in a Haystack</strong>’ tests may rely on semantic hints, HashHop uses <strong>random and incompressible hash values</strong> to force models to accurately store and retrieve necessary information from the entire context without semantic clues. This allows for more rigorous measurement of models’ <strong>actual information processing capabilities</strong>.</p>
+<p>The table below compares the technical characteristics of various attention mechanisms discussed in this section.</p>
+<p><strong>Table 2: Comparison of Long-Context Attention Mechanisms</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Mechanism</p></th>
+<th class="head text-left"><p>Computational Complexity</p></th>
+<th class="head text-left"><p>Memory Complexity</p></th>
+<th class="head text-left"><p>Accuracy</p></th>
+<th class="head text-left"><p>Core Principle</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>Standard Attention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p>Exact</p></td>
+<td class="text-left"><p>Direct computation of relationships between all token pairs</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>FlashAttention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span> (practical)</p></td>
+<td class="text-left"><p>Exact</p></td>
+<td class="text-left"><p>I/O-aware optimization (tiling, kernel fusion)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Linear Attention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span></p></td>
+<td class="text-left"><p>Approximate</p></td>
+<td class="text-left"><p>Softmax approximation through kernel functions</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Ring Attention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2/N)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n/N)\)</span></p></td>
+<td class="text-left"><p>Exact</p></td>
+<td class="text-left"><p>Sequence parallelism + communication-computation overlap (<span class="math notranslate nohighlight">\(N\)</span> devices)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="core-technology-ii-extending-positional-encoding">
+<h2>3. Core Technology II: Extending Positional Encoding<a class="headerlink" href="#core-technology-ii-extending-positional-encoding" title="Link to this heading">#</a></h2>
+<p>Since transformers cannot inherently understand the order or relative positions of tokens, <strong>separate positional encoding</strong> is needed to provide this information. <strong>Rotary Positional Embeddings (RoPE)</strong> is widely used as an effective method for encoding such positional information, but it has an <strong>‘extrapolation’ problem where performance degrades for long sequences not seen during training</strong>. Solving this positional extrapolation problem is also a core challenge for realizing ultra-long context.</p>
+<section id="rope-s-limitations-the-extrapolation-problem">
+<h3>3.1 RoPE’s Limitations – The ‘Extrapolation’ Problem<a class="headerlink" href="#rope-s-limitations-the-extrapolation-problem" title="Link to this heading">#</a></h3>
+<p>RoPE multiplies rotation matrices generated from each token’s absolute position with Query and Key vectors to <strong>reflect relative positional information between tokens in attention computation</strong>. This approach is very effective within the sequence length range that the model encountered during training.</p>
+<p>However, problems occur when the model processes attention for positions beyond the <strong>maximum length experienced during training</strong> (e.g., 4096 tokens), such as the 10,000th token. For <strong>positions the model has ‘never seen’</strong>, it cannot properly interpret the corresponding positional embeddings, causing token distance information to become scrambled or attention scores to become unstable. This results in a sharp degradation in model performance, which is exactly RoPE’s <strong>extrapolation problem</strong>.</p>
+</section>
+<section id="longrope-sophisticated-scaling-solution">
+<h3>3.2 LongRoPE – Sophisticated Scaling Solution<a class="headerlink" href="#longrope-sophisticated-scaling-solution" title="Link to this heading">#</a></h3>
+<p><strong>LongRoPE</strong> is a cutting-edge technology that can extend the context window of existing pre-trained LLMs to <strong>over 2 million tokens</strong> with minimal fine-tuning. LongRoPE’s success is based on <strong>three core mechanisms that deeply understand the characteristics of positional information and handle it with sophistication</strong>, going beyond naive approaches that simply mathematically increase positional values.</p>
+<section id="mechanism-1-leveraging-non-uniformity">
+<h4>3.2.1 Mechanism 1 – Leveraging Non-Uniformity<a class="headerlink" href="#mechanism-1-leveraging-non-uniformity" title="Link to this heading">#</a></h4>
+<p>LongRoPE’s important insight is that <strong>uniform interpolation treating all positions and all RoPE dimensions equally is not optimal</strong>. Instead, it actively leverages two forms of <strong>‘non-uniformity’</strong>:</p>
+<ul class="simple">
+<li><p><strong>Variable Scaling by RoPE Dimension</strong>: Each dimension of RoPE embeddings rotates at different frequencies. LongRoPE recognizes that some dimensions are more important for preserving positional information and applies <strong>different scaling factors for each dimension</strong>. Methods like <strong>evolutionary search algorithms</strong> are used to find optimal non-uniform scaling combinations.</p></li>
+<li><p><strong>Differential Application by Token Position</strong>: <strong>Early tokens</strong> in the sequence play a very important role in setting the overall context (this is also called the ‘<strong>attention sink</strong>’ phenomenon). LongRoPE takes a differentiated strategy of applying less interpolation or no interpolation at all to these sections to <strong>maximally preserve the positional information of early tokens</strong>.</p></li>
+</ul>
+<p>Through such sophisticated and non-uniform approaches, LongRoPE achieved remarkable results of <strong>extending context windows up to 8x without separate fine-tuning</strong>.</p>
+</section>
+<section id="mechanism-2-progressive-extension-strategy">
+<h4>3.2.2 Mechanism 2 – Progressive Extension Strategy<a class="headerlink" href="#mechanism-2-progressive-extension-strategy" title="Link to this heading">#</a></h4>
+<p>To reach millions of tokens in length, <strong>direct fine-tuning from the beginning to that length</strong> brings two problems. First, <strong>computational costs increase astronomically</strong>. Second, <strong>obtaining such long, high-quality training data</strong> is very difficult.</p>
+<p>LongRoPE uses an <strong>efficient 2-stage progressive extension strategy</strong> to solve these problems. Like a kind of <strong>curriculum learning</strong>, it guides the model to gradually adapt to long contexts:</p>
+<ol class="arabic simple">
+<li><p><strong>Stage 1 – Intermediate Length Fine-tuning</strong>: First, fine-tune the model to a manageable <strong>intermediate length</strong> context (e.g., 256k tokens). This allows the model to develop a basic sense of ‘long context’.</p></li>
+<li><p><strong>Stage 2 – Interpolation to Final Length</strong>: Apply positional interpolation once more to the model adapted to 256k to extend to the <strong>final target length</strong> (e.g., 2048k tokens). Since some experience with long context has already been accumulated, additional interpolation is much more stable and effective.</p></li>
+</ol>
+<p>This <strong>progressive approach</strong> shows that <strong>carefully designed training strategies along with architectural innovations are essential</strong>. In other words, the success of ultra-long context models depends on the <strong>close interaction between architecture and training process</strong>.</p>
+</section>
+<section id="mechanism-3-short-context-performance-restoration">
+<h4>3.2.3 Mechanism 3 – Short Context Performance Restoration<a class="headerlink" href="#mechanism-3-short-context-performance-restoration" title="Link to this heading">#</a></h4>
+<p>In the process of extremely extending the context window, side effects may occur where the model’s performance in originally short contexts (e.g., 4k, 8k) degrades. LongRoPE goes through a <strong>final adjustment stage</strong> to prevent this. By <strong>re-searching and applying scaling factors optimized for short context lengths</strong> to the extended model, it ensures that the model maintains <strong>both long context processing capability and existing short context performance</strong>.</p>
+</section>
+</section>
+<section id="hands-on-context-extension-example-using-longrope">
+<h3>3.3 Hands-on: Context Extension Example Using LongRoPE<a class="headerlink" href="#hands-on-context-extension-example-using-longrope" title="Link to this heading">#</a></h3>
+<p>Open source implementations of the LongRoPE methodology are available, allowing <strong>easy extension of existing pre-trained LLM context windows</strong>. The example below shows the process of extending a model with base 4k context using LongRoPE to <strong>2048k (approximately 2.1 million) token context</strong>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. Setup: Define model dimensions and target context length</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/dataset&quot;</span>
+<span class="n">d_model</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">n_heads</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">base_length</span> <span class="o">=</span> <span class="mi">4096</span> <span class="c1"># Original model&#39;s maximum context length (4k)</span>
+<span class="n">target_length</span> <span class="o">=</span> <span class="mi">2048</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1"># Target context length (2048k, approximately 2.1M tokens)</span>
+
+<span class="c1"># 2. Data loading and LongRoPE model initialization</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LongRoPEModel</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_heads</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">base_length</span><span class="p">)</span>
+
+<span class="c1"># 3. Context window extension through LongRoPE</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">extend_context</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_length</span><span class="p">)</span>
+
+<span class="c1"># 4. Extended model testing: Process random input of target_length</span>
+
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">target_length</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># Expected output shape: (batch_size, target_length, d_model)</span>
+</pre></div>
+</div>
+<p>In the above code, LongRoPEModel is initialized and the context window is extended through the extend_context() method, which <strong>fine-tunes the pre-trained model using progressive interpolation strategy</strong>. For example, a model that originally had base_length=4096 can now process up to target_length=2097152 (2,097,152) tokens after going through LongRoPE. Printing the final output shape shows that it successfully processed a sequence of approximately 2.1 million length with batch size 2.</p>
+<p><strong>Note:</strong> Applying LongRoPE requires considerable computational resources, time, and appropriate data curriculum. However, this technology has significant practical value in that it enables utilization of ultra-long context <strong>without increasing the model’s parameter count</strong>.</p>
+</section>
+</section>
+<section id="rag-vs-ultra-long-context-2025-s-debate-and-integration">
+<h2>4. RAG vs Ultra-Long Context: 2025’s Debate and Integration<a class="headerlink" href="#rag-vs-ultra-long-context-2025-s-debate-and-integration" title="Link to this heading">#</a></h2>
+<p>With the opening of the <strong>1 million token era</strong>, heated debates arose in the NLP community. <strong>If models can put entire vast knowledge bases into their context windows, wouldn’t RAG (Retrieval-Augmented Generation) approaches that search and add external information to prompts become unnecessary?</strong> The discourse was whether ultra-long context LLMs, if sufficiently intelligent, could solve problems by reading all necessary knowledge at once. Particularly with the rise of AI agents, expectations even emerged that “agents would replace RAG”.</p>
+<section id="the-beginning-of-the-debate-is-rag-a-relic-of-the-past">
+<h3>4.1 The Beginning of the Debate – “Is RAG a Relic of the Past?”<a class="headerlink" href="#the-beginning-of-the-debate-is-rag-a-relic-of-the-past" title="Link to this heading">#</a></h3>
+<p>The dramatic expansion of context windows seemed to herald the end of RAG. RAG’s core role was to find and provide <strong>latest information or internal documents that models don’t know</strong> to the context through external search. However, now that models can ‘read’ entire documents spanning hundreds of pages, arguments emerged questioning whether there’s still a need to search for information externally. In some corners of the industry, views even appeared that <strong>“ultra-long context + agent combinations would replace RAG”</strong>.</p>
+</section>
+<section id="the-necessity-of-rag-limitations-of-naive-ultra-long-context">
+<h3>4.2 The Necessity of RAG – Limitations of Naive Ultra-Long Context<a class="headerlink" href="#the-necessity-of-rag-limitations-of-naive-ultra-long-context" title="Link to this heading">#</a></h3>
+<p>However, the claim that <strong>“RAG is dead”</strong> overlooks <strong>various problems that occur when using ultra-long context without any strategy</strong>. Latest research has revealed the following limitations:</p>
+<ul class="simple">
+<li><p><strong>‘Lost in the Middle’ Problem</strong>: Models tend to <strong>remember information at the beginning and end of long contexts relatively well</strong>, but <strong>miss or ignore information in the middle</strong>. This phenomenon where model performance on long inputs forms a U-shaped curve shows that simply throwing information into the context doesn’t guarantee that the model will effectively utilize all that information.</p></li>
+<li><p><strong>‘Hard Negatives’ Problem</strong>: In RAG pipelines, performance improves as the number of retrieved documents increases, but beyond a certain point, it actually decreases. This is because documents in search results that are <strong>superficially similar to the question but irrelevant to the actual answer</strong> (hard negatives) confuse the model and degrade answer quality. This is an example showing that unconditionally adding many documents is not the answer.</p></li>
+<li><p><strong>Cost and Latency</strong>: As mentioned earlier, putting millions of tokens of context into the model for every query is <strong>very expensive and causes significant response delays</strong>. In contrast, RAG is much more efficient in most cases because it <strong>selects only necessary information and provides it to the model in a much smaller context</strong>.</p></li>
+<li><p><strong>Boundaries of Knowledge</strong>: Even if 10 million tokens of context can be included, it can still only contain <strong>finite scope</strong> of information. RAG has the fundamental advantage of being able to access <strong>virtually infinite external knowledge bases</strong> (e.g., the entire internet, all internal company documents).</p></li>
+</ul>
+<p>In summary, <strong>even ultra-long context models “don’t know what they don’t know”</strong>. Latest knowledge or specialized expert information not embedded in model parameters must still be brought from external sources. Additionally, the <strong>structural limitations and cost problems</strong> inherent in long contexts cannot be overlooked.</p>
+<section id="hands-on-rag-based-qa-pipeline-using-haystack">
+<h4>4.2.1 Hands-on: RAG-based QA Pipeline Using Haystack<a class="headerlink" href="#hands-on-rag-based-qa-pipeline-using-haystack" title="Link to this heading">#</a></h4>
+<p>In industry, open-source frameworks like <strong>Haystack</strong> are widely used to implement RAG. Haystack enables easy construction of <strong>end-to-end QA systems</strong> consisting of <strong>document store + retriever + reader/generator models</strong> through <strong>flexible pipeline configuration</strong>. Below is a simple document-based QA pipeline example. It shows the process of putting one document into an in-memory document store and extracting answers using a BM25-based <strong>Retriever</strong> and pre-trained <strong>Reader</strong> model.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Retriever&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Query&quot;</span><span class="p">])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reader&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retriever&quot;</span><span class="p">])</span>
+
+<span class="c1"># 4) QA execution</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;Who is the director of Squid Game?&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Retriever&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;Reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;answers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>In the above code, a simple pipeline was built by putting one document into an <strong>in-memory document store</strong> and combining a BM25-based <strong>Retriever</strong> with an Electra <strong>Reader</strong> trained on Korean KorQuAD data. When a query is input to pipeline.run(), the Retriever finds the top 5 documents, and the Reader extracts and returns the answer from among them. For example, the above question would yield the correct answer “Hwang Dong-hyuk”.</p>
+<p>Haystack’s strength lies in how easily <strong>components can be replaced or extended</strong>. It’s possible to switch to a Dense Retriever or attach a generation model like GPT-3 as a Generator instead of a Reader. It can also support <strong>complex reasoning scenarios</strong> by configuring multiple nodes sequentially/parallelly in the middle, like multi-hop QA.</p>
+<p>In actual industrial settings, there are many cases of using Haystack to construct <strong>RAG pipelines</strong> for <strong>domain document search + QA</strong> services or injecting external knowledge into <strong>chatbots</strong>. In summary, Haystack is a <strong>framework that ties together search engines and NLP models</strong>, providing a tool that enables construction of powerful <strong>document-based QA systems</strong> with relatively little code.</p>
+<p><strong>Exercise Questions:</strong> What changes would be needed to use a <strong>Dense Retriever</strong> (e.g., DensePassageRetriever) instead of BM25Retriever in the above Haystack example? Also, think about what advantages and disadvantages there would be in attaching a GPT-series generation model as a Generator instead of a Reader. Finally, experimentally explain what effect adjusting the top_k values passed to params during pipeline.run() calls would have on the results.</p>
+</section>
+</section>
+<section id="s-integration-rag-as-ai-agent-memory">
+<h3>4.3 2025’s Integration – RAG as AI Agent Memory<a class="headerlink" href="#s-integration-rag-as-ai-agent-memory" title="Link to this heading">#</a></h3>
+<p>Ultimately, the framework of “<strong>RAG vs long context</strong>” was a false dichotomy. <strong>The latest 2025 paradigm integrates the two technologies not as opposing forces, but as mutually complementary components of AI agent cognitive architecture</strong>.</p>
+<ul class="simple">
+<li><p><strong>Ultra-Long Context = Short-Term Working Memory</strong>: A space where agents temporarily store and process vast amounts of information <strong>directly related to currently performed tasks</strong>.</p></li>
+<li><p><strong>RAG = Structured Long-Term Memory</strong>: A systematic memory that agents <strong>persistently accumulate and manage</strong> as a knowledge repository, searchable and retrievable whenever needed.</p></li>
+</ul>
+<p>Particularly, <strong>RAG as a ‘long-term memory system’</strong> is evolving beyond simple information retrieval to integrate more complex functions <strong>like human memory</strong>:</p>
+<ul class="simple">
+<li><p><strong>Indexing</strong>: Beyond vector DB-based similarity search, it features advanced indexing structures that enable <strong>multi-dimensional search</strong> by topic, time, etc.</p></li>
+<li><p><strong>Forgetting</strong>: It <strong>intentionally deletes</strong> old or invalid information to secure memory capacity and reduce noise during search.</p></li>
+<li><p><strong>Consolidation and Refinement</strong>: It restructures stored information by summarizing or organizing related knowledge into <strong>knowledge graph</strong> forms. This aids information retrieval and enables <strong>deeper semantic understanding</strong>.</p></li>
+</ul>
+</section>
+<section id="evolved-rag-architecture-the-rise-of-graph-based-reasoning">
+<h3>4.4 Evolved RAG Architecture: The Rise of Graph-Based Reasoning<a class="headerlink" href="#evolved-rag-architecture-the-rise-of-graph-based-reasoning" title="Link to this heading">#</a></h3>
+<p><strong>HippoRAG</strong> is an example of the latest RAG framework implementing such long-term memory system concepts. This framework, inspired by the memory formation principles of the human <strong>hippocampus</strong>, shows new possibilities for RAG.</p>
+<ul class="simple">
+<li><p><strong>HippoRAG’s Architecture</strong>:</p></li>
+<li><p><strong>Offline Knowledge Graph Construction</strong> – It uses LLMs to analyze entire document corpora and pre-builds a <strong>Knowledge Graph (KG)</strong> representing relationships between documents. This is similar to the process where the human brain’s neocortex stores information and the hippocampus manages its index.</p></li>
+<li><p><strong>Online Search and Reasoning</strong> – When a user’s question comes in, it uses the question’s core concepts as <strong>seeds</strong> to perform a <strong>Personalized PageRank</strong> algorithm on the knowledge graph. Through a single graph traversal, it <strong>integrates and reasons</strong> about related information scattered across multiple documents to find the core content needed for the query.</p></li>
+<li><p><strong>HippoRAG’s Advantages</strong>: This approach demonstrates excellent performance even on complex questions that require multiple steps to reach answers, like <strong>multi-hop question answering</strong>. Also, compared to the <strong>iterative search (Query Rewriting)</strong> methods commonly used in RAG, it derives answers through <strong>single LLM calls</strong>, making it much faster and cheaper. The follow-up research <strong>HippoRAG 2</strong> further enhances <strong>associative reasoning</strong> and <strong>sense-making</strong> capabilities and is being applied to complex knowledge integration scenarios.</p></li>
+</ul>
+<p>Such developments show that we are moving away from viewing LLMs as simple input-output functions toward building <strong>sophisticated cognitive architectures</strong> around them. With ultra-long context handling <strong>‘working memory’</strong> and evolved RAG handling <strong>‘long-term memory’</strong>, how to design the organic interaction between these two has emerged as a <strong>core challenge in AI agent development</strong>. This signifies the arrival of an era of <strong>designing AI’s memory systems and thinking structures</strong>, beyond simple information provision problems.</p>
+</section>
+</section>
+<section id="practical-considerations-the-gap-between-benchmarks-and-reality">
+<h2>5. Practical Considerations: The Gap Between Benchmarks and Reality<a class="headerlink" href="#practical-considerations-the-gap-between-benchmarks-and-reality" title="Link to this heading">#</a></h2>
+<p>While ultra-long context technology is rapidly advancing, to <strong>apply it to actual applications</strong>, we must clearly understand the gap between advertised specifications and realistic limitations. Latest benchmarks play an important role in measuring this gap and providing practical guidelines to developers.</p>
+<section id="diversification-of-the-2025-llm-ecosystem">
+<h3>5.1 Diversification of the 2025 LLM Ecosystem<a class="headerlink" href="#diversification-of-the-2025-llm-ecosystem" title="Link to this heading">#</a></h3>
+<p>While ultra-long context is clearly the most prominent trend in 2025 LLM technology, it is not the only direction. The LLM ecosystem is <strong>developing in multiple branches</strong> to meet diverse requirements and coexisting with other major trends:</p>
+<ul class="simple">
+<li><p><strong>Multimodality</strong>: Latest models like Google’s Gemini 2.5 Pro <strong>natively understand and process</strong> various forms of data including images, audio, and video, not just text. This means the ability to integrate and reason with visual and auditory information, beyond text understanding capabilities.</p></li>
+<li><p><strong>Smaller, Specialized Models</strong>: As an opposite flow to large models, <strong>small and efficient models</strong> optimized for specific domains or tasks are gaining attention. These models have the advantages of fast response speed, low operational costs, and <strong>edge deployment</strong> capability on smartphones or IoT devices.</p></li>
+<li><p><strong>Agentic Workflows</strong>: <strong>Autonomous AI agent</strong> technology that uses LLMs as core engines to plan complex tasks and solve problems through multiple steps is spreading. OpenAI’s GPT-5 is also enhanced in <strong>tool usage and logical planning execution</strong> compared to GPT-4, effectively supporting such workflows.</p></li>
+</ul>
+</section>
+<section id="the-need-for-better-evaluation-emergence-of-long-context-benchmarks">
+<h3>5.2 The Need for Better Evaluation – Emergence of Long-Context Benchmarks<a class="headerlink" href="#the-need-for-better-evaluation-emergence-of-long-context-benchmarks" title="Link to this heading">#</a></h3>
+<p>As models’ context processing capabilities have dramatically improved, existing benchmarks have become insufficient to adequately evaluate them. This has led to the emergence of new evaluation frameworks specialized for <strong>long context</strong>.</p>
+<ul class="simple">
+<li><p><strong>LongBench v2</strong>: A benchmark composed of challenging problems including vast contexts up to <strong>2 million words</strong>, evaluating models’ ability to perform <strong>deep understanding and reasoning</strong> within long contexts. Tasks include answering comprehensive questions after being given multiple long papers, or summarizing plot after reading an entire novel.</p></li>
+<li><p><strong>SWE-Bench</strong>: Utilizing <strong>software issues</strong> from actual GitHub repositories, it measures models’ ability to solve problems within <strong>complex and long code contexts</strong> similar to realistic development environments. This provides practical indicators for examining models’ long code understanding and debugging capabilities.</p></li>
+</ul>
+</section>
+<section id="reality-check-findings-from-the-longcodeu-benchmark">
+<h3>5.3 Reality Check – Findings from the LONGCODEU Benchmark<a class="headerlink" href="#reality-check-findings-from-the-longcodeu-benchmark" title="Link to this heading">#</a></h3>
+<p>The <strong>LONGCODEU</strong> benchmark published in 2025 is an important study that reveals the realistic limitations of current long-context LLMs, particularly focusing on <strong>‘long code understanding’</strong> capabilities.</p>
+<ul class="simple">
+<li><p><strong>Key Finding</strong>: LONGCODEU experimental results showed that <strong>even the most advanced LLMs experience sharp performance degradation when code length exceeds 32,000 tokens</strong>. This means that even though models have advertised context windows of 128k~1M tokens, they <strong>cannot function properly in complex reasoning beyond approximately 32k</strong>.</p></li>
+<li><p><strong>Most Difficult Task</strong>: Particularly, <strong>inter-code unit relation understanding</strong> was found to be the most difficult for LLMs. This means models are weak at understanding how different functions, classes, and files interact within large codebases.</p></li>
+</ul>
+<p>These findings reveal the <strong>core challenge of the ultra-long context era</strong>. There is a clear difference between <strong>‘advertised context windows’ and ‘actually reasoning-capable windows’</strong>. While current technology has secured the ability to receive vast amounts of information as input, the ability to perform <strong>deep and consistent reasoning</strong> across all that information is still limited. In short, while models’ ability to simply <strong>find</strong> information may have improved through context expansion, their ability to <strong>think</strong> like humans within that context has not yet caught up with that speed. Bridging this gap will be an important direction for next-generation LLM research.</p>
+</section>
+<section id="conclusion-strategic-recommendations-for-industry-developers">
+<h3>5.4 Conclusion – Strategic Recommendations for Industry Developers<a class="headerlink" href="#conclusion-strategic-recommendations-for-industry-developers" title="Link to this heading">#</a></h3>
+<p>Integrating 2025’s cutting-edge technology trends and realistic limitations, I will conclude this lecture by presenting <strong>strategic recommendations for industry developers to effectively utilize ultra-long context technology</strong>.</p>
+<ul class="simple">
+<li><p><strong>Be Selective</strong>: There’s no need to unconditionally use the entire maximum context window just because it’s large. It’s important to select only information truly necessary for the task to include in the context and reduce unnecessary token waste.</p></li>
+<li><p><strong>Structure Intelligently</strong>: To mitigate the ‘lost in the middle’ problem, it’s advantageous to place the most important information at the <strong>beginning or end</strong> of the context. Also, using document section divisions or summaries to <strong>arouse the model’s attention</strong> is another method.</p></li>
+<li><p><strong>Monitor and Benchmark</strong>: During application development, continuously measure <strong>response speed</strong>, <strong>output quality</strong>, <strong>token costs</strong>, etc., to find the <strong>optimized context length</strong> for the specific task. In some cases, 16k or 32k may be sufficient, and anything beyond that may be over-specification.</p></li>
+<li><p><strong>Embrace Hybrid Approaches</strong>: Rather than going all-in on one technology paradigm, consider <strong>hybrid architectures</strong> that combine the advantages of each technique. For example, use <strong>ultra-long context</strong> as the agent’s ‘working memory’, <strong>Cache Augmented Generation (CAG)</strong> as ‘high-speed cache’ for frequently used data, and <strong>evolved RAG (HippoRAG, etc.)</strong> as ‘long-term memory that searches and reasons’ necessary information from vast external knowledge. Such configurations can provide balanced solutions in terms of performance, cost, and response speed.</p></li>
+</ul>
+<p>The ultra-long context revolution has elevated LLM capabilities to new dimensions, but it also demands <strong>more sophisticated and strategic utilization methods</strong> from us. Maximizing the potential of technology while clearly recognizing its limitations and the wisdom to complement them will determine the success or failure of future AI application development.</p>
+</section>
+</section>
+<section id="id1">
+<h2>Checkpoint Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>Meaning of Context Window Expansion</strong>: What fundamental changes has the possibility of context windows over 1 million tokens brought to LLM utilization methods? What are the differences between the past ‘knowledge compression’ approach and the current ‘context-based information processing’ approach?</p></li>
+<li><p><strong>Core of FlashAttention</strong>: What is the core principle that allows FlashAttention to improve performance while producing the same results as standard attention? How do tiling and kernel fusion techniques solve I/O bottlenecks?</p></li>
+<li><p><strong>LongRoPE’s Innovation</strong>: What are the three core mechanisms that LongRoPE used to solve RoPE’s extrapolation problem? Why is the progressive extension strategy important?</p></li>
+<li><p><strong>RAG vs Ultra-Long Context</strong>: Why is RAG still necessary despite the possibility of ultra-long context? What are the ‘lost in the middle’ problem and ‘Hard Negatives’ problem?</p></li>
+<li><p><strong>Realistic Limitations</strong>: What are the realistic limitations of ultra-long context models revealed by the LONGCODEU benchmark? Why does the gap between advertised context windows and actually reasoning-capable windows occur?</p></li>
+<li><p><strong>Strategic Utilization</strong>: What are the four strategic recommendations for effectively utilizing ultra-long context technology? What problems does each one aim to solve?</p></li>
+</ol>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Meibel (2025). <em>Understanding the Impact of Increasing LLM Context Windows</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google AI Developers. <em>Long context – Gemini API Docs</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p><a class="reference external" href="http://Lablab.ai">Lablab.ai</a>. <em>LTM-2-mini AI technology page</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Shakudo (2025). <em>Top 9 Large Language Models as of September 2025</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google Cloud. <em>Generative AI on Vertex AI – Gemini 2.5 Pro</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google DeepMind (2025). <em>Gemini 2.5: Our most intelligent AI model – The Keyword</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google I/O 2025 – <em>Updates to Gemini 2.5</em> (Accessed Sep. 30, 2025)</p></li>
+<li><p>Anthropic (2025). <em>Claude Sonnet 4 now supports 1M tokens of context</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p><a class="reference external" href="http://Lablab.ai">Lablab.ai</a> (2025). <em>How Magic.dev’s LTM-2-mini is Redefining AI’s Ability to Handle Vast Contexts</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Elinext (2025). <em>The Future of Large Language Models – Trends</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>GoPenAI (2024). <em>A Visual Guide to FlashAttention, Linear Attention, and Efficient Transformers</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Hailey Schoelkopf (2024). <em>Linear Attention Fundamentals</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Dao et al. (2024). <em>The I/O Complexity of Attention, or How Optimal is FlashAttention?</em> arXiv:2402.07443</p></li>
+<li><p>Li et al. (2025). <em>LONGCODEU: Benchmarking Long-Context Language Models on Long Code Understanding</em>. arXiv:2503.04359</p></li>
+<li><p>Aussie AI (2025). <em>Ring Attention</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>OpenReview (2025). <em>RingAttention with Blockwise Transformers for Near-Infinite Context</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Wang et al. (2023). <em>Ring Attention with Blockwise Transformers for Near-Infinite Context</em>. arXiv:2310.01889</p></li>
+<li><p>Magic.dev (2025). <em>100M Token Context Windows</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Hopsworks (2025). <em>What is RoPE Scaling</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Ding et al. (2024). <em>LongRoPE: Extending LLM Context Window Beyond 2 Million Tokens</em>. arXiv:2402.13753</p></li>
+<li><p>LongRoPE GitHub Repository – <em>Implementation of LongRoPE</em> (2024)</p></li>
+<li><p>Reddit (2025). <em>What are your thoughts on the ‘RAG is dead’ debate?</em> (Accessed Sep. 30, 2025)</p></li>
+<li><p>Wu et al. (2025). <em>U-NIAH: Unified RAG and LLM Evaluation for Long Context Needle-In-A-Haystack</em>. arXiv:2503.00353</p></li>
+<li><p>OpenReview (2025). <em>Long-Context LLMs Meet RAG: Overcoming Challenges…</em></p></li>
+<li><p>Su et al. (2024). <em>HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs</em>. arXiv:2405.14831</p></li>
+<li><p>OSU-NLP-Group (2024). <em>HippoRAG GitHub Repository</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>PrajnaAI (2025). <em>LLM Trends 2025: A Deep Dive into the Future</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>LongBench v2 (2025). <em>LongBench v2 Benchmark Suite</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Evidently AI (2025). <em>10 LLM coding benchmarks</em>. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Li et al. (2025). <em>LONGCODEU: Benchmarking Long-Context LMs on Long Code Understanding</em>. ACL Anthology</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week07"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week06/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 6: Advances in Multimodal NLP</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../week08/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 8: Core Review and Latest Trends</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-in-context-windows">1. Paradigm Shift in Context Windows</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-kilobytes-to-megabytes-quantitative-leap-in-context">1.1 From Kilobytes to Megabytes – Quantitative Leap in Context</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#capabilities-of-2025-flagship-models">1.2 Capabilities of 2025 Flagship Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#new-developer-paradigms-beyond-simple-q-a">1.3 New Developer Paradigms: Beyond Simple Q&amp;A</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hidden-costs-inevitable-trade-offs">1.4 Hidden Costs – Inevitable Trade-offs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-technology-i-reimagining-attention-mechanisms">2. Core Technology I: Reimagining Attention Mechanisms</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-o-n-2-bottleneck-of-standard-self-attention">2.1 The <span class="math notranslate nohighlight">\(O(n^2)\)</span> Bottleneck of Standard Self-Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#engineering-optimization-flashattention-s-i-o-bottleneck-optimization">2.2 Engineering Optimization: FlashAttention’s I/O Bottleneck Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-enabling-flashattention-in-hugging-face-transformers">2.2.1 Hands-on: Enabling FlashAttention in Hugging Face Transformers</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions"><strong>Checkpoint Questions</strong></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#algorithmic-optimization-linear-time-approximation-linear-attention">2.3 Algorithmic Optimization: Linear Time Approximation (Linear Attention)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#systemic-optimization-distributed-attention-with-ring-attention">2.4 Systemic Optimization: Distributed Attention with Ring Attention</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architectural-innovation-magic-s-sequence-dimension-algorithm">2.5 Architectural Innovation: Magic’s Sequence-Dimension Algorithm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#core-technology-ii-extending-positional-encoding">3. Core Technology II: Extending Positional Encoding</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope-s-limitations-the-extrapolation-problem">3.1 RoPE’s Limitations – The ‘Extrapolation’ Problem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longrope-sophisticated-scaling-solution">3.2 LongRoPE – Sophisticated Scaling Solution</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-1-leveraging-non-uniformity">3.2.1 Mechanism 1 – Leveraging Non-Uniformity</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-2-progressive-extension-strategy">3.2.2 Mechanism 2 – Progressive Extension Strategy</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#mechanism-3-short-context-performance-restoration">3.2.3 Mechanism 3 – Short Context Performance Restoration</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-context-extension-example-using-longrope">3.3 Hands-on: Context Extension Example Using LongRoPE</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-vs-ultra-long-context-2025-s-debate-and-integration">4. RAG vs Ultra-Long Context: 2025’s Debate and Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-beginning-of-the-debate-is-rag-a-relic-of-the-past">4.1 The Beginning of the Debate – “Is RAG a Relic of the Past?”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-necessity-of-rag-limitations-of-naive-ultra-long-context">4.2 The Necessity of RAG – Limitations of Naive Ultra-Long Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-rag-based-qa-pipeline-using-haystack">4.2.1 Hands-on: RAG-based QA Pipeline Using Haystack</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#s-integration-rag-as-ai-agent-memory">4.3 2025’s Integration – RAG as AI Agent Memory</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#evolved-rag-architecture-the-rise-of-graph-based-reasoning">4.4 Evolved RAG Architecture: The Rise of Graph-Based Reasoning</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#practical-considerations-the-gap-between-benchmarks-and-reality">5. Practical Considerations: The Gap Between Benchmarks and Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#diversification-of-the-2025-llm-ecosystem">5.1 Diversification of the 2025 LLM Ecosystem</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-need-for-better-evaluation-emergence-of-long-context-benchmarks">5.2 The Need for Better Evaluation – Emergence of Long-Context Benchmarks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#reality-check-findings-from-the-longcodeu-benchmark">5.3 Reality Check – Findings from the LONGCODEU Benchmark</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-strategic-recommendations-for-industry-developers">5.4 Conclusion – Strategic Recommendations for Industry Developers</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

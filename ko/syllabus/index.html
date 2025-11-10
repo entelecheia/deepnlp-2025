@@ -1,0 +1,1364 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>강의계획서 &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Who made this book?" href="../about/index.html" />
+    <link rel="prev" title="프로젝트 운영 가이드라인" href="../projects/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    딥러닝자연어처리 (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer 및 차세대 아키텍처</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x와 최신 딥러닝 프레임워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: 고급 프롬프트 기법과 최적화</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM 평가 패러다임과 벤치마크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: 멀티모달 NLP의 발전</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: 초장문맥 처리와 효율적 추론</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: 핵심 복습 및 최신 동향</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: 고급 RAG 아키텍처</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: 정렬 기법의 발전</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: 프로덕션 에이전트 시스템</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI 규제와 책임 있는 AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch 워크숍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">1주차 워크숍: LLM 개요 및 개발 환경 구축</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 운영 가이드라인</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">강의계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/ko/syllabus/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fsyllabus/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/syllabus/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>강의계획서</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">교육 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">강의 계획</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주차별 교육 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-ai">1주차 – Generative AI 최신 동향</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">2주차 – 딥러닝 NLP를 위한 도구 학습</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft">3주차 – 효율적 미세조정 (PEFT) 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4주차 – 프롬프트 엔지니어링의 과학화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">5주차 – LLM 평가 패러다임과 벤치마크</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">6주차 – 멀티모달 NLP의 발전</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">7주차 – 초장문맥 처리와 효율적 추론</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">8주차 – 핵심 복습 및 최신 동향</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">9주차 – 고급 RAG 아키텍처</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment">10주차 – 정렬(Alignment) 기법의 혁신</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">11주차 – 프로덕션 에이전트 시스템</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-ai">12주차 – AI 규제와 책임있는 AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">14주차 – 최종 프로젝트 개발 및 MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">15주차 – 산업 응용 사례 분석 및 최종 발표</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">실습/활동</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">참고자료 (선정된 최신 논문 및 자료)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">최신 아키텍처 및 모델</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">파라미터 효율적 미세조정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">프롬프트 엔지니어링 및 평가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">지식 통합 및 RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-ai">정렬(Alignment)과 책임 AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">산업 응용 및 MLOps</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>강의계획서<a class="headerlink" href="#id1" title="Link to this heading">#</a></h1>
+<section id="id2">
+<h2>개요<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<p>최근 몇 년간 자연어 처리(NLP) 연구는 거대한 전환을 겪었다. 대규모 언어 모델(LLM)의 등장으로 텍스트 생성과 이해 능력이 극적으로 향상되어 번역, 질의응답, 요약 등 다양한 응용 분야의 판도를 바꾸어 놓았다. 2024~2025년에는 GPT-4 기반 모델을 넘어 GPT-5와 <strong>Gemini 2.5 Pro</strong>처럼 텍스트·이미지·음성까지 동시에 처리하는 멀티모달 LLM이 등장하여 활용 범위를 더욱 확장하였다. 특히 <strong>Transformer</strong>를 넘어서는 새로운 아키텍처의 등장이 주목된다. 예를 들어 <strong>Mamba</strong>와 같은 상태공간 모델(SSM)은 선형 O(n) 복잡도로 최대 수백만 토큰까지 효율적으로 처리하며, <strong>RWKV</strong>는 대화 메시지를 기존 대비 10배 이상 저렴한 비용으로 실시간 처리할 수 있다.</p>
+<p>이 강의는 이러한 최신 발전을 반영하여 <strong>실습 중심</strong>으로 심층 학습 기반 NLP 기법을 다룬다. 학생들은 초반에 PyTorch와 Hugging Face 사용법 등 <strong>핵심 도구 활용법</strong>을 익히고, 이후 <strong>Transformer 기반 모델 및 최신 SSM 아키텍처</strong>의 파인튜닝, <strong>프롬프트 엔지니어링(prompt engineering)</strong>, <strong>검색 증강 생성(RAG)</strong>, <strong>인간 피드백 강화 학습(RLHF)</strong>, <strong>에이전트 프레임워크</strong> 구현 등을 직접 경험한다. 아울러 최신 <strong>파라미터 효율적 미세조정(PEFT)</strong> 기법들(WaveFT, DoRA, VB-LoRA 등)과 고급 <strong>RAG 아키텍처</strong>(HippoRAG, GraphRAG)를 다루며, <strong>멀티모달 LLM</strong>과 <strong>초장문맥 처리</strong> 같은 최첨단 개념도 실습한다. 마지막으로 팀 프로젝트를 통해 배운 내용을 통합하여 실제 문제를 해결하는 <strong>완성형 모델 및 애플리케이션</strong>을 구현한다.</p>
+<p>본 과목은 학부 3학년 수준으로 설계되었으며 선수과목으로 <em>언어모형과 자연어처리</em> (131107967A) 이수를 전제로 한다. 팀 프로젝트를 통해 한국어 코퍼스를 활용한 실제 문제 해결에 도전하며, 최종 프로젝트 단계에서는 <strong>산학 협력</strong>을 고려하여 산업 데이터셋을 다루고 업계 전문가로부터 피드백을 받을 기회를 제공한다.</p>
+</section>
+<section id="id3">
+<h2>교육 목표<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>현대 NLP에서 <strong>대규모 언어 모델의 역할과 한계</strong>를 이해하고 PyTorch, Hugging Face 등 관련 도구를 활용할 수 있다.</p></li>
+<li><p>Transformer와 더불어 <strong>State Space Model</strong>(예: Mamba, RWKV) 등 <strong>최신 아키텍처</strong>의 원리와 장단점을 이해한다.</p></li>
+<li><p>사전학습 모델을 <strong>fine-tuning</strong>하거나 WaveFT, DoRA, VB-LoRA 같은 최신 <strong>매개변수 효율적 미세조정 방법</strong>을 적용할 수 있다.</p></li>
+<li><p><strong>프롬프트 엔지니어링</strong> 기법과 DSPy 프레임워크를 활용하여 프롬프트를 체계적으로 최적화하는 방법을 익힌다.</p></li>
+<li><p><strong>평가 지표의 발전</strong>(예: G-Eval, LiveCodeBench 등)과 인간 평가의 중요성을 이해하고, DPO(Direct Preference Optimization) 등 RLHF의 최신 대안을 학습한다.</p></li>
+<li><p><strong>HippoRAG, GraphRAG 등 고급 RAG</strong>(Retrieval-Augmented Generation) 아키텍처와 하이브리드 검색 전략을 설계·구현한다.</p></li>
+<li><p><strong>EU AI Act</strong> 등 AI 규제 프레임워크를 이해하고, 책임있는 AI 시스템 구현 방법론을 습득한다.</p></li>
+<li><p>최신 연구 동향을 추적하여 <strong>멀티모달 LLM</strong>, <strong>소형 언어 모델(SLM)</strong>, <strong>상태공간 모델(SSM)</strong>, <strong>멀티에이전트 시스템</strong>, <strong>혼합 전문가(MoE)</strong> 등 다양한 최신 기술의 장단점을 토의한다.</p></li>
+<li><p>한국어 말뭉치를 활용한 실습을 통해 <strong>한국어 NLP의 특성과 과제</strong>를 이해하고 적용 능력을 기른다.</p></li>
+<li><p>팀 프로젝트를 통해 <strong>협업 및 실전 문제 해결 역량</strong>을 강화하며, 산업 현장과 연계한 프로젝트 경험을 쌓는다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h2>강의 계획<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>주차</p></th>
+<th class="head text-left"><p>주요 주제 및 키워드</p></th>
+<th class="head text-left"><p>핵심 실습/과제</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>Transformer 및 차세대 아키텍처<br/>• Self-Attention 메커니즘과 한계<br/>• Mamba (SSM), RWKV, Jamba</p></td>
+<td class="text-left"><p>Transformer 컴포넌트 구현<br/>Mamba vs Transformer 성능 비교<br/>아키텍처 복잡도 분석</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>PyTorch 2.x와 최신 딥러닝 프레임워크<br/>• torch.compile 컴파일러 혁명<br/>• FlashAttention-3 하드웨어 가속<br/>• AI 에이전트 프레임워크</p></td>
+<td class="text-left"><p>torch.compile 성능 최적화<br/>FlashAttention-3 구현<br/>AI 에이전트 프레임워크 비교</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>현대적 PEFT 기법을 활용한 효율적 파인튜닝<br/>• LoRA, DoRA, QLoRA<br/>• 고급 PEFT 기법</p></td>
+<td class="text-left"><p>PEFT 방법 비교 실험<br/>LoRA/DoRA/QLoRA 성능 평가<br/>메모리 효율성 분석</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>고급 프롬프트 기법과 최적화<br/>• 프롬프트 엔지니어링 기초<br/>• Self-Consistency, Tree of Thoughts<br/>• DSPy 프레임워크</p></td>
+<td class="text-left"><p>DSPy 기반 자동 프롬프트 최적화<br/>Self-Consistency 구현<br/>Tree of Thoughts 문제 해결</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p>LLM 평가 패러다임과 벤치마크<br/>• 평가 패러다임 진화<br/>• LLM-as-a-Judge (GPTScore, G-Eval, FLASK)<br/>• 특수 목적 및 도메인 특화 벤치마크</p></td>
+<td class="text-left"><p>G-Eval 구현<br/>벤치마크 비교 실험<br/>평가 편향 분석</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p>멀티모달 NLP 발전<br/>• 비전-언어 모델 (LLaVA, MiniGPT-4, Qwen-2.5-Omni)<br/>• 시각적 추론 (QVQ-Max)<br/>• 음성 통합</p></td>
+<td class="text-left"><p>멀티모달 QA 애플리케이션 개발<br/>비전-언어 모델 비교<br/>엔드투엔드 멀티모달 시스템</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p>초장문맥 처리와 효율적 추론<br/>• 문맥 윈도우 혁명 (100만+ 토큰)<br/>• 어텐션 메커니즘 최적화<br/>• LongRoPE 및 RAG 통합</p></td>
+<td class="text-left"><p>FlashAttention-3 통합<br/>장문맥 처리 비교<br/>성능 분석</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p>핵심 복습 및 최신 동향<br/>• 아키텍처 복습<br/>• 최신 모델 동향 (GPT-5, Gemini 2.5 Pro, Claude 4.1)<br/>• 산업 응용</p></td>
+<td class="text-left"><p>종합 복습<br/>모델 비교<br/>산업 사례 분석</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p>고급 RAG 시스템 – HippoRAG, GraphRAG, 하이브리드 검색 전략</p></td>
+<td class="text-left"><p>과제 3: GraphRAG 기반 한국어 엔터프라이즈 검색 시스템 구축</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p>정렬 기법의 혁신 – DPO, Constitutional AI, Process Reward Models</p></td>
+<td class="text-left"><p>DPO와 기존 RLHF 기법 비교 실습</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p>프로덕션 에이전트 시스템 – CrewAI, Mirascope, 타입-세이프티 개발</p></td>
+<td class="text-left"><p>멀티에이전트 오케스트레이션 구현</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p>AI 규제와 책임 있는 AI – EU AI Act, 차등 프라이버시, 연합 학습</p></td>
+<td class="text-left"><p>규제 준수 AI 시스템 설계 과제</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p>최신 연구 동향 – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)</p></td>
+<td class="text-left"><p>학생별 최신 논문 발표 및 종합 토론</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p>최종 프로젝트 개발 및 MLOps</p></td>
+<td class="text-left"><p>팀별 프로토타입 구현 및 피드백 세션 (산업 멘토 참여)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p>프로젝트 최종 발표 및 종합 평가</p></td>
+<td class="text-left"><p>팀별 발표, 강의 내용 총정리 및 미래 전망 토론</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id5">
+<h2>주차별 교육 내용<a class="headerlink" href="#id5" title="Link to this heading">#</a></h2>
+<section id="generative-ai">
+<h3>1주차 – Generative AI 최신 동향<a class="headerlink" href="#generative-ai" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h4>핵심 주제<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>LLM의 발전사와 최신 모델 소개</strong>: GPT-5, Gemini 2.5 Pro, Claude 4.1 Opus 등 최신 모델들의 특징과 성능 비교</p></li>
+<li><p><strong>Transformer 구조의 한계</strong>: <span class="math notranslate nohighlight">\(O(n^2)\)</span> 복잡도 문제와 긴 시퀀스 처리의 어려움</p></li>
+<li><p><strong>새로운 아키텍처 개요</strong>: Mamba, RWKV 등 Transformer를 대체하는 혁신적 접근법</p></li>
+</ul>
+</section>
+<section id="id7">
+<h4>실습/활동<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>환경 설정</strong>: PyTorch/Conda 개발환경 구성, Hugging Face Transformers 설치</p></li>
+<li><p><strong>핵심 실습</strong>: Hugging Face 파이프라인을 이용한 질의응답 간단 데모 구축</p></li>
+<li><p><strong>비교 실험</strong>: Transformer 기반 모델과 최신 모델의 응답 품질 및 속도 비교</p></li>
+</ul>
+</section>
+</section>
+<section id="nlp">
+<h3>2주차 – 딥러닝 NLP를 위한 도구 학습<a class="headerlink" href="#nlp" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h4>핵심 주제<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>PyTorch 기초</strong>: 텐서 연산, 자동 미분 등 딥러닝 프레임워크 핵심 개념</p></li>
+<li><p><strong>Hugging Face Transformers</strong>: 사전학습 모델 활용법과 파이프라인 사용법</p></li>
+<li><p><strong>FlashAttention-3</strong>: 대용량 배치 처리 가속 기법 (H100 GPU에서 ~2× 속도 향상)</p></li>
+<li><p><strong>NLP 생태계 도구</strong>: DSPy, Haystack, CrewAI 등 특화된 프레임워크 소개</p></li>
+</ul>
+</section>
+<section id="id9">
+<h4>실습/활동<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: 사전학습 언어모델(BERT)과 최신 SSM(Mamba) 모델을 각각 로드하여 한국어 분류 작업에 적용</p></li>
+<li><p><strong>성능 비교</strong>: 동일한 한국어 데이터셋에서 성능과 효율성 비교 분석</p></li>
+</ul>
+</section>
+</section>
+<section id="peft">
+<h3>3주차 – 효율적 미세조정 (PEFT) 기법<a class="headerlink" href="#peft" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h4>핵심 주제<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>파라미터 효율적 파인튜닝</strong>: 전체 파인튜닝 대비 &lt;1% 미만 파라미터만으로 95% 이상의 성능을 달성하는 경량화 기법</p></li>
+<li><p><strong>최신 PEFT 방법론</strong>:</p>
+<ul>
+<li><p><em>WaveFT</em>: 파라미터 업데이트를 **주파수 영역(Wavelet)**에서 희소화하여 효율 향상</p></li>
+<li><p><em>DoRA</em>: <strong>가중치 분해</strong>를 통한 적응형 미세조정 (미세 표현 학습)</p></li>
+<li><p><em>VB-LoRA</em>: 다중 사용자·태스크 환경을 위한 <strong>벡터 뱅크 기반 LoRA</strong> 확장</p></li>
+<li><p><em>QR-Adaptor</em>: <strong>양자화(Q)</strong> 비트폭과 LoRA 랭크(R)를 동시 최적화하는 어댑터 기법</p></li>
+</ul>
+</li>
+<li><p><strong>모델 경량화 추세</strong>: 4-bit 양자화 포맷 NF4(NormalFloat4)가 QLoRA의 사실상 표준이 되어 7B 모델을 메모리 10GB→1.5GB로 줄임</p></li>
+</ul>
+</section>
+<section id="id11">
+<h4>실습/과제<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>프로그래밍 과제 1</strong>: 동일한 한국어 데이터셋을 대상으로 LoRA, DoRA, WaveFT 방법으로 각각 미세조정 실험을 수행하고, 파인튜닝 효율 및 성능 유지율을 비교 분석</p></li>
+</ul>
+</section>
+</section>
+<section id="id12">
+<h3>4주차 – 프롬프트 엔지니어링의 과학화<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h4>핵심 주제<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>체계적 프롬프트 설계</strong>: 효과적인 프롬프트 설계 기법들을 체계적으로 학습</p></li>
+<li><p><strong>다양한 프롬프트 전략</strong>: 역할 지시, 단계적 질문 등 성능 향상에 기여한 핵심 기법들</p></li>
+<li><p><strong>핵심 기법 심화</strong>:</p>
+<ul>
+<li><p><em>Self-Consistency</em>: 수학 문제 풀이에서 <strong>다중 해답 경로 탐색</strong>으로 정답률 개선 (GSM8K 벤치마크 +17%p 향상)</p></li>
+<li><p><em>Tree-of-Thoughts</em>: <strong>사고의 확장</strong>을 통해 난제 해결 (24 게임 성공률 9%→74%)</p></li>
+<li><p><em>DSPy 프레임워크</em>: “프롬프트를 <strong>프로그래밍</strong>하듯” 최적 프롬프트를 자동 생성/조합하는 방법론</p></li>
+<li><p><em>Automatic Prompt Engineering (APE)</em>: 프롬프트를 알고리즘적으로 최적화하여 GSM8K에서 <strong>93% 정답률</strong> 달성</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id14">
+<h4>실습/활동<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: <strong>DSPy</strong>를 활용한 프롬프트 최적화 파이프라인 구축</p></li>
+<li><p><strong>비교 분석</strong>: 주어진 문제에 대해 DSPy로 다양한 프롬프트를 자동 생성하고, 성능을 수작업 프롬프트와 비교</p></li>
+</ul>
+</section>
+</section>
+<section id="llm">
+<h3>5주차 – LLM 평가 패러다임과 벤치마크<a class="headerlink" href="#llm" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h4>핵심 주제<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>평가의 지형 변화</strong>: 전통 지표의 한계와 의미 기반 평가 필요성</p>
+<ul>
+<li><p>BLEU, ROUGE 등의 전통적 평가 지표의 한계 (의미적 이해 부족, 창의성 평가 불가, 사실성 무시)</p></li>
+<li><p>의미 기반 평가의 등장 (BERTScore, SentenceMover, BLEURT)</p></li>
+<li><p>LLM-as-a-Judge 패러다임의 등장 (복잡한 의미 파악, 개방형 생성 과제, 주관적 기준 반영)</p></li>
+</ul>
+</li>
+<li><p><strong>LLM 기반 평가 패러다임</strong>:</p>
+<ul>
+<li><p><strong>GPTScore</strong>: 확률 기반 평가 프레임워크로 모델의 내재적 지식을 활용</p></li>
+<li><p><strong>G-Eval</strong>: Chain-of-Thought 기반 체계적 평가로 인간 판단과의 높은 상관관계 달성</p></li>
+<li><p><strong>FLASK</strong>: 미세 능력 세트 기반 다차원 평가로 텍스트 품질의 세부적 분석 가능</p></li>
+</ul>
+</li>
+<li><p><strong>특수 목적 벤치마크</strong>:</p>
+<ul>
+<li><p><strong>LiveCodeBench</strong>: 데이터 오염 방지형 코드 생성 평가 (실시간 문제 수집, Holistic 평가)</p></li>
+<li><p><strong>EvalPlus</strong>: 테스트케이스 보강을 통한 더 엄격한 코드 평가 (Mutation-based Input Generation)</p></li>
+<li><p><strong>HELM-Code</strong>: 투명성과 커뮤니티 협업 중심의 종합적 평가</p></li>
+<li><p><strong>MMLU-Pro</strong>: 10지선다 고난도 지식/추론 벤치마크 (선택지 확장, 문제 복잡도 증가)</p></li>
+<li><p><strong>GPQA와 BBH</strong>: 지식/추론 강화 평가 세트 (Google-Proof 질문, 고난도 추론 문제)</p></li>
+</ul>
+</li>
+<li><p><strong>도메인 특화 벤치마크</strong>:</p>
+<ul>
+<li><p><strong>FinBen</strong>: 금융 도메인 종합 벤치마크 (24개 과제, 42개 데이터셋, 8가지 능력 영역)</p></li>
+<li><p><strong>AgentHarm</strong>: AI 에이전트 유해성 평가 벤치마크 (110개 악의적 시나리오, 11가지 유해 범주)</p></li>
+<li><p><strong>LEXam</strong>: 법률 시험 기반 LLM 평가 (4,886개 문항, 116개 과목, 고차원 추론 평가)</p></li>
+<li><p><strong>CSEDB</strong>: 의료 LLM 안전성/효과성 이중 평가 (30개 평가 기준, 2,069개 문항)</p></li>
+<li><p><strong>MATH 및 GSM8K</strong>: 수학 능력 평가 (다단계 추론, Self-Consistency 기법)</p></li>
+</ul>
+</li>
+<li><p><strong>평가의 편향과 한계</strong>:</p>
+<ul>
+<li><p>주요 편향: 자기애적 편향, 장황성 편향, 일관성 부족</p></li>
+<li><p>평가의 한계: 인간 평가와의 차이, 도메인 특화 지식 부족, 평가 기준의 주관성</p></li>
+</ul>
+</li>
+<li><p><strong>RLAIF와 미래 평가 패러다임</strong>:</p>
+<ul>
+<li><p><strong>RLAIF</strong>: AI 피드백을 통한 강화학습으로 더 효율적이고 확장 가능한 학습</p></li>
+<li><p><strong>미래 평가 패러다임</strong>: 멀티모달 LLM 평가, 에이전트 평가, Green AI 평가, 인간-AI 협업 평가</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id16">
+<h4>실습/활동<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: BLEU/ROUGE vs G-Eval 비교 실험, GPTScore 구현 및 실험, FLASK 평가 시스템 구현</p></li>
+<li><p><strong>실습 결과 분석</strong>: 다양한 평가 방법의 장단점 비교 및 실제 적용 시 고려사항 도출</p></li>
+</ul>
+</section>
+</section>
+<section id="id17">
+<h3>6주차 – 멀티모달 NLP의 발전<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h4>핵심 주제<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>“Any-to-Any” 멀티모달 모델</strong>: 여러 종류의 입력을 받아 다양한 형태의 출력까지 생성하는 범용 모델</p>
+<ul>
+<li><p><strong>SmolVLM2</strong> (256M–2.2B): 경량 멀티모달 모델로 1GB 미만 VRAM으로도 구동 가능한 효율적 VLM</p></li>
+<li><p><strong>Qwen 2.5 Omni</strong>: Thinker–Talker 이원화 구조로 텍스트+음성 동시 출력을 지원하는 통합 멀티모달 모델</p></li>
+<li><p><strong>QVQ-72B (프리뷰 → QVQ-Max)</strong>: 시각적 추론에 특화된 72B 규모의 초거대 비주얼 추론 모델</p></li>
+<li><p><strong>OpenAI GPT-5</strong>: Unified Thinking System으로 빠른 응답과 심층 추론을 동시에 지원하는 차세대 모델</p></li>
+<li><p><strong>Google Gemini 2.5 Pro</strong>: 100만 토큰 컨텍스트와 네이티브 멀티모달리티를 지원하는 최고급 모델</p></li>
+<li><p><strong>Anthropic Claude 4.1</strong>: 코딩 및 에이전트 작업에 특화된 200k+ 토큰 컨텍스트 지원 모델</p></li>
+</ul>
+</li>
+<li><p><strong>음성 통합 기술</strong>:</p>
+<ul>
+<li><p><strong>Voxtral</strong>: Whisper를 능가하는 오픈소스 음성 인식 모델 (2.4B/3B 파라미터, 멀티모달 통합 설계)</p></li>
+<li><p><strong>Orpheus</strong>: 제로샷 화자 클로닝을 지원하는 고품질 TTS (3B 파라미터, 실시간 합성 가능)</p></li>
+</ul>
+</li>
+<li><p><strong>응용 사례 및 실습</strong>: 멀티모달 QA 애플리케이션</p>
+<ul>
+<li><p>음성으로 질문하고, 이미지와 텍스트로 응답하는 시스템 구현</p></li>
+<li><p>Hugging Face Transformers와 Diffusers를 활용한 파이프라인 구축</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id19">
+<h4>실습/과제<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>프로그래밍 과제 2</strong>: 멀티모달 QA 애플리케이션 개발</p>
+<ul>
+<li><p>음성 인식 (Whisper/Voxtral) → 자연어 질문 응답 (LLM) → 이미지 생성 (Stable Diffusion) 파이프라인 구현</p></li>
+<li><p>Hugging Face 파이프라인을 활용한 모듈 간 연계 및 결과 시각화</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="id20">
+<h3>7주차 – 초장문맥 처리와 효율적 추론<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h4>핵심 주제<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>컨텍스트 창(Context Window)의 패러다임 전환</strong>: 킬로바이트에서 메가바이트로의 양적 도약</p>
+<ul>
+<li><p>2025년 플래그십 모델들의 역량 (GPT-5, Gemini 2.5 Pro, Claude Sonnet 4, Llama 4, Magic LTM-2-Mini)</p></li>
+<li><p>새로운 개발자 패러다임: 단순 질의응답을 넘어선 포괄적 문서 분석, 확장된 대화 기록, 저장소 수준의 코드 이해</p></li>
+<li><p>숨겨진 비용: 재정적 비용 증가, 응답 지연 시간 증가, 컨텍스트-컴퓨팅-비용 최적화 문제</p></li>
+</ul>
+</li>
+<li><p><strong>핵심 기술 I: 어텐션 메커니즘의 재창조</strong>:</p>
+<ul>
+<li><p>표준 셀프 어텐션의 O(n²) 병목 현상</p></li>
+<li><p><strong>FlashAttention</strong>: I/O 병목 최적화를 통한 공학적 효율화 (타일링, 커널 퓨전)</p></li>
+<li><p><strong>선형 시간 근사</strong>: Linear Attention을 통한 알고리즘적 효율화 (O(n) 복잡도)</p></li>
+<li><p><strong>Ring Attention</strong>: 분산 어텐션을 통한 시스템적 효율화 (시퀀스 병렬화)</p></li>
+<li><p><strong>Magic의 시퀀스-차원 알고리즘</strong>: 아키텍처 혁신 (1억 토큰, 1000배 효율성)</p></li>
+</ul>
+</li>
+<li><p><strong>핵심 기술 II: 위치 정보(Positional Encoding)의 확장</strong>:</p>
+<ul>
+<li><p>RoPE의 한계: “외삽” 문제</p></li>
+<li><p><strong>LongRoPE</strong>: 정교한 스케일링 솔루션 (불균일성 활용, 점진적 확장 전략, 단문 컨텍스트 성능 복원)</p></li>
+</ul>
+</li>
+<li><p><strong>RAG vs 초장문 컨텍스트</strong>: 2025년의 논쟁과 통합</p>
+<ul>
+<li><p>RAG의 필요성: “중간 정보 손실”, “Hard Negatives” 문제, 비용 및 지연 시간, 지식의 경계</p></li>
+<li><p>2025년의 통합: AI 에이전트 메모리로서의 RAG (단기 작업 기억 vs 구조화된 장기 기억)</p></li>
+<li><p>진화된 RAG 아키텍처: HippoRAG 등 그래프 기반 추론의 부상</p></li>
+</ul>
+</li>
+<li><p><strong>실용적 고려사항</strong>: 벤치마크와 현실의 격차</p>
+<ul>
+<li><p>2025년 LLM 생태계의 다각화 (멀티모달리티, 소형 특화 모델, 에이전틱 워크플로우)</p></li>
+<li><p>더 나은 평가의 필요성: LongBench v2, SWE-Bench 등 장문 컨텍스트 벤치마크</p></li>
+<li><p>현실 점검: LONGCODEU 벤치마크의 발견 (32,000 토큰 초과 시 성능 급격 저하)</p></li>
+<li><p>현업 개발자를 위한 전략적 권고 (선택적 사용, 지능적 구조화, 성능과 비용 모니터링, 하이브리드 접근)</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id22">
+<h4>실습/활동<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: FlashAttention 활성화 및 성능 비교, LongRoPE를 활용한 컨텍스트 확장, Haystack을 활용한 RAG 기반 QA 파이프라인</p></li>
+<li><p><strong>실용적 고려사항</strong>: 벤치마크와 현실의 격차 분석 및 전략적 활용 방안 도출</p></li>
+</ul>
+</section>
+</section>
+<section id="id23">
+<h3>8주차 – 핵심 복습 및 최신 동향<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h4>핵심 주제<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Transformer와 SSM 아키텍처</strong>: 기본적인 Transformer 인코더-디코더 구조와 상태 공간 모델(S4)의 선형 시간 복잡도</p></li>
+<li><p><strong>FlashAttention 최적화</strong>: I/O 병목 최적화를 통한 어텐션 연산의 효율성 향상 (타일링, 커널 퓨전)</p></li>
+<li><p><strong>최신 PEFT 기법</strong>: LoRA, QLoRA를 통한 파라미터 효율적 파인튜닝 (전체 파라미터의 0.1% 이하로 95% 이상 성능 달성)</p></li>
+<li><p><strong>프롬프트 엔지니어링</strong>: Chain-of-Thought, Few-shot/Zero-shot 프롬프트, DSPy 프레임워크를 통한 자동 프롬프트 최적화</p></li>
+<li><p><strong>LLM 평가 방법</strong>: 전통적 자동 메트릭의 한계, LLM-as-a-judge 접근법, GPT-4 기반 평가의 장단점</p></li>
+<li><p><strong>멀티모달 모델</strong>: LLaVA, MiniGPT-4, Qwen-2.5 Omni 등의 비전-언어 통합 아키텍처</p></li>
+<li><p><strong>긴 맥락 처리 기술</strong>: Longformer, BigBird의 희소 어텐션, RAG 접근법, 현재 상용화된 LLM의 맥락 지원 범위</p></li>
+<li><p><strong>최신 초대규모 및 전문 모델 동향 (2025)</strong>:</p>
+<ul>
+<li><p><strong>GPT-5</strong>: Unified Thinking System으로 빠른 응답과 심층 추론을 동시에 지원</p></li>
+<li><p><strong>Google Gemini 2.5 Pro</strong>: 100만 토큰 컨텍스트와 네이티브 멀티모달리티 지원</p></li>
+<li><p><strong>Anthropic Claude 4.1</strong>: 코딩 및 에이전트 작업에 특화된 200k+ 토큰 컨텍스트 지원</p></li>
+<li><p><strong>Alibaba Qwen 2.5 Series</strong>: 여러 전문 모델을 보유하는 전략 (Qwen-2.5-Max, Qwen-2.5-Omni, QVQ-Max)</p></li>
+</ul>
+</li>
+<li><p><strong>팀 프로젝트 참고 사례</strong>: PEFT 파인튜닝, 멀티모달 응용, 긴 맥락 활용, 에이전트 시스템 구축</p></li>
+<li><p><strong>실제 산업 현장 응용</strong>: 의료, 법률, 금융 분야의 LLM 기술 활용 사례</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>실습/활동<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: 팀별로 주요 주제를 분담하여 발표 형식으로 정리, 퀴즈 리그를 통한 복습, 미니 프로젝트 재설계</p></li>
+<li><p><strong>중간고사 성적 피드백</strong> 및 향후 학습 방향 점검</p></li>
+</ul>
+</section>
+</section>
+<section id="rag">
+<h3>9주차 – 고급 RAG 아키텍처<a class="headerlink" href="#rag" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h4>핵심 주제<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>차세대 Retrieval-Augmented Generation</strong>: 대용량 지식을 통합하여 응답 정확도를 높이는 고급 RAG 시스템의 구조</p></li>
+<li><p><strong>주요 내용</strong>:</p>
+<ul>
+<li><p><em>HippoRAG</em>: 인간 **해마(hippocampus)**의 작동 원리를 모방하여 벡터 DB 저장공간을 25% 절감하고 <strong>장기 메모리</strong>를 향상시킨 RAG (정보망 속 지속적 기억 강화)</p></li>
+<li><p><em>GraphRAG</em>: <strong>지식 그래프</strong>를 활용해 문맥 간 <strong>연관성</strong>을 명시적으로 모델링함으로써 질의 응답 정밀도를 99%까지 향상</p></li>
+<li><p><em>하이브리드 검색</em>: 최신 <strong>밀집 임베딩</strong> 기법(NV-Embed-v2 등)과 <strong>희소 검색 기법</strong>(SPLADE) 및 그래프 탐색을 조합한 다중 전략 검색으로, 대규모 지식베이스에서 <strong>정확도와 속도</strong>를 모두 확보하는 방법</p></li>
+</ul>
+</li>
+<li><p><strong>프로덕션 사례 연구</strong>: 일일 수천만 토큰의 쿼리를 처리하면서 P95 응답 지연을 100ms 이내로 유지한 <strong>대규모 RAG 시스템</strong>의 아키텍처를 분석</p></li>
+</ul>
+</section>
+<section id="id27">
+<h4>실습/과제<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>과제 3</strong>: GraphRAG 기반의 <strong>한국어 엔터프라이즈 검색 시스템</strong> 구축. 주어진 사내 위키/문서 데이터베이스에 질의응답 RAG 시스템을 만들고, 검색 정확도와 응답 속도를 평가</p></li>
+</ul>
+</section>
+</section>
+<section id="alignment">
+<h3>10주차 – 정렬(Alignment) 기법의 혁신<a class="headerlink" href="#alignment" title="Link to this heading">#</a></h3>
+<section id="id28">
+<h4>핵심 주제<a class="headerlink" href="#id28" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>RLHF 이후 등장한 LLM 출력 제어</strong>: LLM의 유용성과 안전성을 높이기 위한 새로운 기법들</p></li>
+<li><p><strong>다양한 접근법</strong>:</p>
+<ul>
+<li><p><em>DPO (Direct Preference Optimization)</em>: 별도 <strong>보상 모델</strong> 없이도 사용자 선호도를 직접 학습하는 방법 (RLHF 대비 간소화된 파이프라인)</p></li>
+<li><p><em>Constitutional AI</em>: AI 스스로 약 75개의 <strong>헌법 원칙</strong>에 따라 응답을 교정하여 유해한 콘텐츠 생성을 억제하는 기법 (Anthropic Claude 모델에 적용)</p></li>
+<li><p><em>Process Supervision</em>: 최종 답변의 품질 대신 <strong>문제 해결 과정</strong>(Chain-of-Thought)에 세분화된 피드백을 주어 올바른 추론 과정을 강화하는 보상모델 기법</p></li>
+<li><p><em>RLAIF (RL from AI Feedback)</em>: 인간 대신 AI 평가자를 활용하여 <strong>AI가 AI를 평가</strong>하며 학습하는 접근 (인간 수준의 평가를 모방)</p></li>
+</ul>
+</li>
+<li><p><strong>오픈소스 구현 동향</strong>: TRL (Transformer Reinforcement Learning) 라이브러리, OpenRLHF 프로젝트 등 공개 구현체들이 등장하여 누구나 최신 정렬 기법을 실험해볼 수 있게 됨 (기존 DeepSpeed-Chat 대비 3~4× 학습속도 개선 사례)</p></li>
+</ul>
+</section>
+<section id="id29">
+<h4>실습/활동<a class="headerlink" href="#id29" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: 동일한 프롬프트/명령에 대해 DPO로 미세조정된 모델과 기존 <strong>RLHF</strong>로 미세조정된 모델의 응답을 비교 평가 (안전성, 내용 품질 등의 측면 비교)</p></li>
+</ul>
+</section>
+</section>
+<section id="id30">
+<h3>11주차 – 프로덕션 에이전트 시스템<a class="headerlink" href="#id30" title="Link to this heading">#</a></h3>
+<section id="id31">
+<h4>핵심 주제<a class="headerlink" href="#id31" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>에이전트 프레임워크와 멀티에이전트 시스템</strong>: 실제 서비스에 활용되는 기술로, LLM을 단일 QA봇이 아닌 여러 개체로 활용하여 복잡한 작업을 처리</p></li>
+<li><p><strong>주요 내용</strong>:</p>
+<ul>
+<li><p><em>CrewAI</em>: 역할 기반 <strong>다중 에이전트 협업</strong> 프레임워크 – 여러 LLM에게 각기 다른 전문 역할을 부여하여 <strong>팀처럼 문제 해결</strong>을 수행</p></li>
+<li><p><em>Mirascope</em>: <strong>타입-안전성</strong>을 보장하는 에이전트 개발 도구 – Pydantic 데이터 검증을 통해 프롬프트 I/O의 형식과 타입을 엄격히 관리</p></li>
+<li><p><em>Haystack Agents</em>: 문서 RAG 파이프라인에 특화된 오픈소스 에이전트 프레임워크 – 검색-독해 체인을 손쉽게 구성하여 도메인 지식에 특화된 에이전트를 구현</p></li>
+<li><p><em>저코드 통합 플랫폼</em>: Flowise AI, LangFlow, n8n 등 <strong>GUI 기반</strong>으로 프롬프트 워크플로우를 설계하고 여러 도구를 시각적으로 통합할 수 있는 환경</p></li>
+</ul>
+</li>
+<li><p><strong>Toolformer 등 LLM 자체에 외부 도구 사용 능력을 내재화하는 접근</strong>: 사전에 API 호출 시그널을 삽입해 훈련함으로써, 모델이 답변 중 필요한 시점에 계산기나 검색 등의 <strong>툴 사용</strong>을 결정하도록 하는 기법</p></li>
+</ul>
+</section>
+<section id="id32">
+<h4>실습/활동<a class="headerlink" href="#id32" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: 멀티에이전트 프레임워크를 활용하여 <strong>자동화 고객 상담 시스템</strong> 프로토타입을 구현. 예를 들어 한 에이전트는 <strong>FAQ 질의응답</strong>을, 다른 에이전트는 <strong>데이터베이스 조회</strong> 또는 <strong>티켓 발행</strong>을 담당하게 하여 협업으로 사용자의 복잡한 요구를 처리하는 <strong>오케스트레이션</strong>을 실습</p></li>
+</ul>
+</section>
+</section>
+<section id="ai-ai">
+<h3>12주차 – AI 규제와 책임있는 AI<a class="headerlink" href="#ai-ai" title="Link to this heading">#</a></h3>
+<section id="id33">
+<h4>핵심 주제<a class="headerlink" href="#id33" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>AI 거버넌스와 윤리적 문제</strong>: 2024년 8월 시행된 <strong>EU AI Act</strong>를 비롯하여 세계 최초의 포괄적 AI 법규들이 산업에 미칠 영향과 개발자 준수 사항을 학습</p></li>
+<li><p><strong>프라이버시 및 안전성 강화 기술</strong>: LLM 서비스를 실제 배포할 때 책임있고 법규 준수하는 방법론</p>
+<ul>
+<li><p><em>차등 프라이버시</em>: 텍스트 임베딩 등에 Differential Privacy를 도입하여 <strong>개인정보 노출을 방지</strong></p></li>
+<li><p><em>연합학습 (Federated Learning)</em>: 사용자 데이터가 중앙 서버에 모이지 않도록, <strong>로컬에서 공동 학습</strong>하는 프레임워크를 활용</p></li>
+<li><p><em>동형암호화 학습</em>: 데이터 자체를 암호화한 상태로 모델 학습을 수행하여 민감 정보 보호</p></li>
+</ul>
+</li>
+<li><p><strong>산업별 규제 대응 사례</strong>: 의료 분야 HIPAA 준수 챗봇, 금융 분야 GDPR 대응 예시, 교육 분야 FERPA 준수 튜터 AI 등 <strong>도메인별 NLP 솔루션 설계</strong> 사례 소개</p></li>
+</ul>
+</section>
+<section id="id34">
+<h4>실습/과제<a class="headerlink" href="#id34" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습/과제</strong>: 주어진 시나리오에 대해 EU AI Act 등 관련 법규에 <strong>적합한 LLM 서비스 설계안</strong>을 작성. 모델 개발부터 배포까지 어떤 조치를 취해야 하는지 체크리스트를 만들고, <strong>법규 준수 여부</strong>를 팀별로 발표</p></li>
+</ul>
+</section>
+</section>
+<section id="id35">
+<h3>13주차 – 최신 연구 동향 및 논문 리뷰<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<section id="id36">
+<h4>핵심 주제<a class="headerlink" href="#id36" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>급변하는 NLP 분야의 최신 연구 결과</strong>: 현재 공개된 최신 모델 및 기법들을 살펴보며 미래 방향을 토론</p></li>
+<li><p><strong>주요 토픽</strong>:</p>
+<ul>
+<li><p><strong>초거대 멀티모달 LLM의 발전</strong>: GPT-5, <strong>Claude 4.1 Opus</strong>, <strong>Qwen 2.5 Omni</strong>, <strong>QVQ-Max</strong> 등 최첨단 모델들의 혁신 특징을 분석. 예를 들어 GPT-5는 <strong>추론 능력과 컨텍스트 확장</strong>에서 GPT-4를 뛰어넘는 성능을 보이며, Claude 4.1은 <strong>헌법적 AI 원칙</strong>을 적용해 응답의 일관성과 안전성을 강화. Qwen 2.5 Omni와 QVQ-Max는 멀티모달 <strong>시각-언어 추론</strong>에서 새로운 경지를 개척하여, 이미지 해석과 복잡한 추론을 동시에 수행하는 능력을 선보임</p></li>
+<li><p><strong>소형 언어 모델의 르네상스</strong>: 경량화된 **소형 모델(SLM)**들의 약진. <em>Gemma 3</em> (1B~4B 규모) 시리즈는 소비자 기기에서도 원활히 동작하도록 최적화된 초경량 LLM으로 주목받고 있고, <em>Mistral NeMo 12B</em>는 NVIDIA NeMo 최적화를 통해 <strong>128K 토큰</strong>의 긴 문맥창을 지원하는 등 특화된 성능을 보임. <em>MathΣtral 7B</em>와 같이 특정 영역(수학)에 특화되어 GPT-4에 필적하는 결과를 내는 사례도 소개. 이러한 작은 모델들은 전문화와 경량화 측면에서 <strong>대규모 모델의 대안</strong>으로 연구되고 있음</p></li>
+<li><p><strong>추론 능력의 진화</strong>: 복잡한 문제 해결을 위한 LLM의 새로운 시도들. <em>Long CoT</em>는 매우 긴 <strong>Chain-of-Thought</strong>로 추론하며 필요 시 <strong>백트래킹</strong>과 오류 수정을 수행하고, *PAL (Program-Aided LM)*은 코드 실행 능력을 결합하여 수치 계산이나 논리 추론 정확도를 높임. <em>ReAct</em>는 <strong>외부 도구 활용</strong>(계산기, 웹검색 등)을 병행하여 더 정확하고 사실적인 답변을 생성하는 전략. 추가로, <em>Thinking Mode</em> 개념을 소개 – 예를 들어 Qwen 시리즈는 enable_thinking 모드를 통해 <strong>모델 내부에 자체 추론 단계를 수행</strong>하도록 하여 복잡한 수학·코드 문제에서 성능을 크게 향상시킴. 또한 Meta의 <em>Toolformer</em>처럼 <strong>사전학습 단계에서 모델에 툴 사용 능력을 내장</strong>시켜, 모델이 답변 중 필요한 시점에 외부 API를 호출해 문제를 푸는 최첨단 접근도 다룸</p></li>
+<li><p><strong>배포 및 최적화 프레임워크</strong>: 실제 서비스 환경에서 LLM을 효율적으로 <strong>배포</strong>하기 위한 도구들도 발전. 예를 들어 <em>llama.cpp</em>는 단일 파일 C++ 구현으로 CPU 상에서 대형 모델을 실행 가능케 했고, <em>MLC-LLM</em>은 WebGPU를 활용하여 <strong>모바일/브라우저에서 LLM 추론</strong>을 지원. <em>PowerInfer-2</em>는 대규모 모델 분산 추론 시 <strong>전력 효율을 극대화</strong>하는 프레임워크로, 운영 비용 절감에 기여</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id37">
+<h4>실습/활동<a class="headerlink" href="#id37" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>학생 최신 논문 발표</strong>: 조별로 선정한 <strong>최신 NLP 논문</strong>을 리뷰하여 발표하고, 해당 연구의 의의와 한계, 응용 가능성을 토론. 예를 들어 위에서 언급된 새로운 벤치마크(MMMU, HLE 등) 논문이나 최신 모델 기법들을 선정하여 토의함으로써, <strong>최신 기술 동향을 종합적으로 정리</strong> <em>(산업체 멘토 또는 초청 연구자가 피드백 참여)</em></p></li>
+</ul>
+</section>
+</section>
+<section id="mlops">
+<h3>14주차 – 최종 프로젝트 개발 및 MLOps<a class="headerlink" href="#mlops" title="Link to this heading">#</a></h3>
+<section id="id38">
+<h4>핵심 주제<a class="headerlink" href="#id38" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>팀 프로젝트의 프로토타입 구현 완성</strong>: MLOps 개념을 적용하여 실제 서비스 수준의 NLP 모델을 배포하기 위해 고려해야 할 요소들을 다루며, 각 팀의 진행 상황을 점검</p></li>
+<li><p><strong>NLP 모델 MLOps 개념</strong>: 모델 <strong>버전 관리</strong> 전략, A/B 테스트 기법, <strong>배포 파이프라인</strong> 설계 등을 소개. 사용자 피드백을 지속적으로 학습에 반영하는 <strong>온라인 러닝 파이프라인</strong>, 실시간 <strong>모니터링 및 성능 드리프트 감지</strong> 시스템 구축 방법도 다룸</p></li>
+<li><p><strong>팀별 프로토타입 개발</strong>: 각 팀은 선정된 프로젝트 주제에 대한 <strong>최종 모델과 애플리케이션 프로토타입</strong>을 구현. 산업 데이터셋이나 실제 사용자 시나리오를 반영하여 완성도를 높이고, 이번 주차에 중간 결과를 시연</p></li>
+<li><p><strong>멘토 리뷰 세션</strong>: 초청된 산업 멘토들과 함께 프로젝트 진행 상황을 검토. 모델 아키텍처의 적절성, 최신 기술 활용 여부(예: 멀티모달 통합, 에이전트 사용 등), 실용성 등을 피드백 받아 최종 개선 방향에 반영</p></li>
+</ul>
+</section>
+<section id="id39">
+<h4>실습/활동<a class="headerlink" href="#id39" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 활동</strong>: 팀별 프로토타입 <strong>데모 발표</strong> (현재까지 성능 및 남은 과제 공유) 및 멘토 피드백 반영 토론</p></li>
+</ul>
+</section>
+</section>
+<section id="id40">
+<h3>15주차 – 산업 응용 사례 분석 및 최종 발표<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<section id="id41">
+<h4>핵심 주제<a class="headerlink" href="#id41" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>강의의 대미를 장식하며, 최신 기술이 적용된 산업 사례를 분석하고 팀 프로젝트 최종 결과를 공유</strong></p></li>
+<li><p><strong>산업별 NLP 성공 사례</strong>: 의료, 금융, 교육 등 각 분야에서 <strong>LLM 및 NLP 기술의 최신 적용 사례</strong>를 소개</p>
+<ul>
+<li><p>의료 분야: 임상 기록 자동화 NLP로 의사 문서작성 부담을 49%에서 27%로 감소시킨 사례</p></li>
+<li><p>금융 분야: Morgan Stanley의 계약서 분석 봇 도입으로 연간 36만 시간을 절감한 사례</p></li>
+<li><p>교육 분야: 다국어 대응 <strong>맞춤형 튜터 AI</strong>로 학습 효율을 향상시켜 학생 참여도가 30% 증가한 사례</p></li>
+<li><p>이러한 사례들을 통해 <strong>최신 NLP 기술의 실무 영향</strong>을 파악</p></li>
+</ul>
+</li>
+<li><p><strong>최종 프로젝트 결과 발표</strong>: 팀별로 프로젝트 최종 산출물을 발표하고 데모를 시연. 각 팀은 개발한 <strong>모델 아키텍처</strong>, 핵심 기술 적용 내용(예: 초장문맥 지원, 멀티모달 입력, 에이전트 협업 등), 성능 평가 결과와 한계를 공유. 산업 멘토 및 수강생들의 질의응답을 통해 실용성 및 개선점에 대한 피드백을 받음</p></li>
+<li><p><strong>강좌 종합 토의</strong>: 마지막으로 강의에서 다룬 내용들을 <strong>종합적으로 정리</strong>하고 자유 토론을 진행. 학생들은 1주차부터 15주차까지의 <strong>학습 내용을 돌이켜보고</strong>, 가장 인상 깊었던 기술이나 앞으로 더 공부하고 싶은 주제에 대해 의견을 나눔. 교수진은 <strong>미래 전망</strong>을 제시하며 (예: GPT-5 이후 예상되는 발전, AI와 인간 협업의 방향 등), 수강생들이 이후에도 최신 NLP 동향을 추적하고 활용할 수 있도록 조언 <em>(설문을 통한 강의 피드백 수렴)</em></p></li>
+</ul>
+</section>
+<section id="id42">
+<h4>실습/활동<a class="headerlink" href="#id42" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>최종 발표</strong>: 팀별 프로젝트 결과 발표 및 데모 시연</p></li>
+<li><p><strong>강좌 종합 토의</strong>: 강의 내용 전체 요약 및 질의응답, 미래 전망 브레인스토밍</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="id43">
+<h2>참고자료 (선정된 최신 논문 및 자료)<a class="headerlink" href="#id43" title="Link to this heading">#</a></h2>
+<section id="id44">
+<h3>최신 아키텍처 및 모델<a class="headerlink" href="#id44" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gu &amp; Dao (2023), <em>Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</em></p></li>
+<li><p>Peng et al. (2023), <em>RWKV: Reinventing RNNs for the Transformer Era.</em></p></li>
+<li><p>Lieber et al. (2024), <em>Jamba: A Hybrid Transformer-Mamba Language Model.</em></p></li>
+<li><p><strong>(멀티모달 LLM)</strong> OpenAI (2025), <em>GPT-4 Technical Report (Augmentations for GPT-5 Preview).</em></p></li>
+<li><p>Anthropic (2025), <em>Claude 4.1 Opus System Card.</em></p></li>
+</ul>
+</section>
+<section id="id45">
+<h3>파라미터 효율적 미세조정<a class="headerlink" href="#id45" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Zhang et al. (2024), <em>WaveFT: Wavelet-based Parameter-Efficient Fine-Tuning.</em></p></li>
+<li><p>Liu et al. (2024), <em>DoRA: Weight-Decomposed Low-Rank Adaptation.</em></p></li>
+<li><p>Chen et al. (2024), <em>VB-LoRA: Vector Bank for Efficient Multi-Task Adaptation.</em></p></li>
+<li><p>Dettmers et al. (2023), <em>QLoRA: Efficient Finetuning of Quantized LLMs.</em></p></li>
+</ul>
+</section>
+<section id="id46">
+<h3>프롬프트 엔지니어링 및 평가<a class="headerlink" href="#id46" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Khattab et al. (2023), <em>DSPy: Compiling Declarative Language Model Calls.</em></p></li>
+<li><p>Zhou et al. (2023), <em>Self-Consistency for Chain-of-Thought.</em></p></li>
+<li><p>Yao et al. (2023), <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models.</em></p></li>
+<li><p>Liu et al. (2023), <em>G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment.</em></p></li>
+<li><p>Jain et al. (2024), <em>LiveCodeBench: Holistic and Contamination-Free Code Evaluation.</em></p></li>
+</ul>
+</section>
+<section id="id47">
+<h3>지식 통합 및 RAG<a class="headerlink" href="#id47" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Zhang et al. (2024), <em>HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs.</em></p></li>
+<li><p>Edge et al. (2024), <em>GraphRAG: A Modular Graph-Based RAG Approach.</em></p></li>
+<li><p>Chen et al. (2024), <em>Hybrid Retrieval-Augmented Generation: Best Practices.</em></p></li>
+</ul>
+</section>
+<section id="alignment-ai">
+<h3>정렬(Alignment)과 책임 AI<a class="headerlink" href="#alignment-ai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Rafailov et al. (2023), <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model.</em></p></li>
+<li><p>Bai et al. (2022), <em>Constitutional AI: Harmlessness from AI Feedback.</em></p></li>
+<li><p>OpenAI (2024), <em>SWE-bench Verified: Real-world Software Engineering Benchmark.</em></p></li>
+<li><p>Phan et al. (2025), <em>Humanity’s Last Exam: The Ultimate Multimodal Benchmark at the Frontier of Knowledge.</em></p></li>
+<li><p>EU Commission (2024), <em>EU AI Act: Implementation Guidelines.</em></p></li>
+</ul>
+</section>
+<section id="id48">
+<h3>산업 응용 및 MLOps<a class="headerlink" href="#id48" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Healthcare NLP</strong> Market Report 2024–2028 (Markets&amp;Markets).</p></li>
+<li><p><strong>Financial Services AI</strong> Applications 2025 (McKinsey Global Institute).</p></li>
+<li><p><strong>State of AI in Education 2025</strong> (Stanford HAI).</p></li>
+<li><p>Cremer &amp; Liu (2025), <em>PowerInfer-2: Energy-Efficient LLM Inference at Scale.</em></p></li>
+<li><p><strong>개발 도구:</strong> CrewAI Documentation – <em>멀티에이전트 시나리오 구현 가이드</em></p></li>
+<li><p>DSPy Official Guide – <em>프롬프트 DSL 활용법</em></p></li>
+<li><p>OpenRLHF Project – <em>오픈소스 RLHF 구현체</em></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./syllabus"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../projects/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">프로젝트 운영 가이드라인</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../about/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Who made this book?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">개요</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">교육 목표</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">강의 계획</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">주차별 교육 내용</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#generative-ai">1주차 – Generative AI 최신 동향</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nlp">2주차 – 딥러닝 NLP를 위한 도구 학습</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#peft">3주차 – 효율적 미세조정 (PEFT) 기법</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">4주차 – 프롬프트 엔지니어링의 과학화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">5주차 – LLM 평가 패러다임과 벤치마크</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">6주차 – 멀티모달 NLP의 발전</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">7주차 – 초장문맥 처리와 효율적 추론</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">8주차 – 핵심 복습 및 최신 동향</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">9주차 – 고급 RAG 아키텍처</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment">10주차 – 정렬(Alignment) 기법의 혁신</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id28">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id29">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id30">11주차 – 프로덕션 에이전트 시스템</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id31">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id32">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-ai">12주차 – AI 규제와 책임있는 AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id33">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">실습/과제</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">14주차 – 최종 프로젝트 개발 및 MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">실습/활동</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">15주차 – 산업 응용 사례 분석 및 최종 발표</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">실습/활동</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id43">참고자료 (선정된 최신 논문 및 자료)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id44">최신 아키텍처 및 모델</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id45">파라미터 효율적 미세조정</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id46">프롬프트 엔지니어링 및 평가</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id47">지식 통합 및 RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-ai">정렬(Alignment)과 책임 AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id48">산업 응용 및 MLOps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

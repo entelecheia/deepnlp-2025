@@ -1,0 +1,1393 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 11: Production Agent Systems &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week11/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 12: AI Regulation and Responsible AI" href="../week12/index.html" />
+    <link rel="prev" title="Week 10: Revolutionary Alignment Techniques" href="../week10/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: Revolutionary Alignment Techniques</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 11: Production Agent Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI Regulation and Responsible AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week11/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek11/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week11/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 11: Production Agent Systems</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-2025-the-dawn-of-production-agent-systems">1. Introduction: 2025, The Dawn of Production Agent Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-from-single-qa-bots-to-multi-agent-systems-llm-mas">1.1. Paradigm Shift: From Single QA Bots to Multi-Agent Systems (LLM-MAS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-trend-the-rise-of-agent-first-llms">1.2. 2025 Market Trend: The Rise of “Agent-first” LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-true-meaning-of-production-the-battle-with-trust">1.3. The True Meaning of “Production”: The Battle with “Trust”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-foundations-of-multi-agent-collaboration-architectures">2. Theoretical Foundations of Multi-Agent Collaboration Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-analysis-of-key-architectural-patterns">2.1. Detailed Analysis of Key Architectural Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai-role-based-collaborative-orchestration">3. CrewAI: Role-Based Collaborative Orchestration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-philosophy-role-based-autonomy">3.1. Core Philosophy: Role-Based Autonomy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-architecture-crews-vs-flows">3.2. 2025 Core Architecture: “Crews” vs “Flows”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-state-management">3.3. The Importance of State Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enterprise-trend-crewai-amp-agent-management-platform">3.4. Enterprise Trend: CrewAI AMP (Agent Management Platform)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mirascope-type-safety-through-pydantic">4. Mirascope: Type-Safety through Pydantic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-bottleneck-reliability-issues-with-unstructured-llm-outputs">4.1. The Production Bottleneck: Reliability Issues with Unstructured LLM Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mirascope-s-solution-structured-i-o-with-pydantic">4.2. Mirascope’s Solution: Structured I/O with Pydantic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overwhelming-simplicity-compared-to-native-sdks">4.3. Overwhelming Simplicity Compared to Native SDKs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-agents-domain-specific-agentic-rag">5. Haystack Agents: Domain-Specific “Agentic RAG”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-rag-from-passive-rag-to-active-agentic-rag">5.1. The Evolution of RAG: From Passive RAG to Active “Agentic RAG”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-component-conditionalrouter">5.2. Core Component: ConditionalRouter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-code-integration-platforms-and-the-prototyping-trap">6. Low-Code Integration Platforms and the “Prototyping Trap”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-workflow-builders-flowise-langflow-n8n">6.1. Visual Workflow Builders (Flowise, LangFlow, n8n)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harsh-reality-of-2025-the-prototyping-trap">6.2. The Harsh Reality of 2025: The “Prototyping Trap”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-llm-intrinsic-capabilities-from-toolformer-to-next-generation-function-calling">7. The Evolution of LLM-Intrinsic Capabilities: From Toolformer to Next-Generation Function Calling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-approaches-extrinsic-frameworks-vs-intrinsic-capabilities">7.1. Two Approaches: Extrinsic Frameworks vs. Intrinsic Capabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundational-research-toolformer-and-self-supervised-learning">7.2. Foundational Research: Toolformer and Self-Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#status-gorilla-llm-and-the-berkeley-function-calling-leaderboard-bfcl">7.3. 2025 Status: Gorilla LLM and the Berkeley Function Calling Leaderboard (BFCL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-production-agents-fail-the-mast-failure-taxonomy-2025">8. Why Do Production Agents Fail? - The MAST Failure Taxonomy (2025)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mast-the-3-major-failure-categories-and-real-world-examples">8.1. MAST: The 3 Major Failure Categories and Real-World Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-mast-multi-agent-system-failure-taxonomy-2025">8.2. Core Table: MAST - Multi-Agent System Failure Taxonomy (2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-designing-an-automated-customer-support-system-prototype">9. [Lab] Designing an Automated Customer Support System Prototype</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">9.1. Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-blueprint-a-flow-calls-rag-calls-crew-hybrid">9.2. Architecture Blueprint: A “Flow-calls-RAG-calls-Crew” Hybrid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-defining-data-integrity-mirascope-pydantic">9.3. Step 1: Defining Data Integrity (Mirascope + Pydantic)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overall-orchestration-crewai-flows">9.4. Step 2: Overall Orchestration (CrewAI Flows)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-1-first-level-response-faq-bot-haystack-agentic-rag">9.5. Step 3.1: First-Level Response - FAQ Bot (Haystack Agentic RAG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-2-second-level-response-ticketing-crew-crewai-crew">9.6. Step 3.2: Second-Level Response - Ticketing Crew (CrewAI Crew)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-architecture-summary">9.7. Lab Architecture Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-core-framework-and-platform-comparison">10. Appendix: Core Framework and Platform Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-2-2025-multi-agent-framework-comparison">10.1. Core Table 2: 2025 Multi-Agent Framework Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-3-low-code-platform-production-readiness-assessment">10.2. Core Table 3: Low-Code Platform Production Readiness Assessment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-11-production-agent-systems">
+<h1>Week 11: Production Agent Systems<a class="headerlink" href="#week-11-production-agent-systems" title="Link to this heading">#</a></h1>
+<section id="introduction-2025-the-dawn-of-production-agent-systems">
+<h2>1. Introduction: 2025, The Dawn of Production Agent Systems<a class="headerlink" href="#introduction-2025-the-dawn-of-production-agent-systems" title="Link to this heading">#</a></h2>
+<section id="paradigm-shift-from-single-qa-bots-to-multi-agent-systems-llm-mas">
+<h3>1.1. Paradigm Shift: From Single QA Bots to Multi-Agent Systems (LLM-MAS)<a class="headerlink" href="#paradigm-shift-from-single-qa-bots-to-multi-agent-systems-llm-mas" title="Link to this heading">#</a></h3>
+<p>If 2023 and 2024 were the “information retrieval” era, focusing on “what LLMs know” through RAG (Retrieval-Augmented Generation), then 2025 is defined as the “task execution” era, concentrating on “what LLMs can do”. Companies are no longer satisfied with using LLMs as simple Q&amp;A chatbots. They are moving towards LLM-based Multi-Agent Systems (LLM-MAS), where multiple LLM agents collaborate to automate complex business processes.</p>
+<p>This change is not just a trend; it is being practically applied in production environments. According to LangChain’s “State of AI Agents” report, 51% of industry experts are already using AI agents in production as of 2025. In particular, 63% of mid-sized companies (between 100 and 2000 employees) are aggressively adopting agents, proving that agent systems are no longer just laboratory toys.</p>
+</section>
+<section id="market-trend-the-rise-of-agent-first-llms">
+<h3>1.2. 2025 Market Trend: The Rise of “Agent-first” LLMs<a class="headerlink" href="#market-trend-the-rise-of-agent-first-llms" title="Link to this heading">#</a></h3>
+<p>These industrial demands are driving the evolution of LLM models themselves. In early 2025, the release of Anthropic’s Claude 3.7 Sonnet and Opus 4 models introduced the new concept of “agent-first” to the market. This signifies that LLMs are moving beyond simply generating text and are now being developed from the initial design phase with the premise of using external tools, performing autonomous actions, and generating complex code.</p>
+<p>Notably, the Claude Code model has captured 42% of the market share for code generation tasks among developers, more than double that of OpenAI (21%). This clearly shows that the “first killer app” for agent systems is code generation and automation tasks.</p>
+</section>
+<section id="the-true-meaning-of-production-the-battle-with-trust">
+<h3>1.3. The True Meaning of “Production”: The Battle with “Trust”<a class="headerlink" href="#the-true-meaning-of-production-the-battle-with-trust" title="Link to this heading">#</a></h3>
+<p>However, behind the push for production adoption lies a serious problem of trust. While about 70% of organizations are actively exploring or implementing LLM use cases, deploying an actual agent requires a level of risk management similar to putting a self-driving car on the road.</p>
+<p>IBM expert Ashoori emphasizes, “Using an agent today is basically grabbing an LLM and allowing it to take actions on your behalf,” stressing that systems must be built to be “trustworthy and auditable” from day one. Deloitte’s 2025 Technology Trends report also warns that the proliferation of agents with system access rights demands a fundamental paradigm shift in “cybersecurity” and “risk”.</p>
+<p>Therefore, the core challenge for production agent systems in 2025 is not “performance” but “control” and “trust”. The fact that 51% of companies are using agents does not signify success, but rather “the beginning of the challenge”. Many of them are hitting real-world problems like the “prototyping trap” or the “MAST failure taxonomy” that will be discussed later in this lecture. The ultimate goal of this course is not simply to build an agent that “works”, but to learn the engineering methodology for building a “trustworthy and controllable” production system.</p>
+</section>
+<section id="checkpoint-questions">
+<h3>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What distinguishes the 2025 “task execution” era from the previous “information retrieval” era?</p></li>
+<li><p>Why is trust and control more critical than performance for production agent systems?</p></li>
+<li><p>What does “agent-first” mean in the context of LLM development, and why is it significant?</p></li>
+</ul>
+</section>
+</section>
+<section id="theoretical-foundations-of-multi-agent-collaboration-architectures">
+<h2>2. Theoretical Foundations of Multi-Agent Collaboration Architectures<a class="headerlink" href="#theoretical-foundations-of-multi-agent-collaboration-architectures" title="Link to this heading">#</a></h2>
+<p>Before learning frameworks like CrewAI or LangGraph, it is crucial to understand the fundamental collaboration architecture patterns they aim to implement. The choice of architecture determines the fundamental trade-off between “Flexibility” and “Control/Debuggability”.</p>
+<p>In 2025, production environments prioritize predictability and auditability above all else. Therefore, “Supervisor” or “Hierarchical” patterns are overwhelmingly preferred over “Network” patterns, which offer high flexibility but are difficult to control.</p>
+<section id="detailed-analysis-of-key-architectural-patterns">
+<h3>2.1. Detailed Analysis of Key Architectural Patterns<a class="headerlink" href="#detailed-analysis-of-key-architectural-patterns" title="Link to this heading">#</a></h3>
+<p><strong>1. Supervisor/Manager → Workers Pattern</strong></p>
+<ul class="simple">
+<li><p><strong>Structure</strong>: A central “Supervisor” agent coordinates all other agents, managing task distribution and routing decisions.</p></li>
+<li><p><strong>Core</strong>: Shows excellent performance in “Task Decomposition”. It breaks down a complex task into parallelizable chunks, assigns them to specialized “Worker” agents, and then aggregates the results.</p></li>
+<li><p><strong>Application</strong>: Optimal for scenarios where task decomposition is clear, such as large-scale document processing pipelines, web scraping, and OCR workflows. Frameworks like MetaGPT have refined this approach.</p></li>
+</ul>
+<p><strong>2. Hierarchical Pattern</strong></p>
+<ul class="simple">
+<li><p><strong>Structure</strong>: Goes beyond a manager managing workers; it has a tree structure where managers manage other sub-managers. Recent 2025 research like “HALO” has demonstrated the efficiency of this structure.</p></li>
+<li><p><strong>Core</strong>: Can scale complex, multi-layered tasks to a large group of agents and allows for clear delegation of responsibility.</p></li>
+<li><p><strong>Application</strong>: Suitable for complex software development projects or automating multi-departmental business processes.</p></li>
+</ul>
+<p><strong>3. Network and Custom Workflow Patterns</strong></p>
+<ul class="simple">
+<li><p><strong>Network</strong>: All agents can communicate freely with each other. This maximizes flexibility and can be useful for creative brainstorming, but as the number of agents increases, coordination complexity explodes, making it unsuitable for production control.</p></li>
+<li><p><strong>Custom Workflow</strong>: Agents communicate only with a specific subset of other agents according to predefined rules. Used in specific, performance-critical domain workflows where predictability must be guaranteed, such as financial trading systems.</p></li>
+</ul>
+</section>
+<section id="id1">
+<h3>Checkpoint Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the fundamental trade-off between different multi-agent architecture patterns?</p></li>
+<li><p>Why are Supervisor and Hierarchical patterns preferred over Network patterns in production environments?</p></li>
+<li><p>When would a Custom Workflow pattern be more appropriate than a Supervisor pattern?</p></li>
+</ul>
+</section>
+</section>
+<section id="crewai-role-based-collaborative-orchestration">
+<h2>3. CrewAI: Role-Based Collaborative Orchestration<a class="headerlink" href="#crewai-role-based-collaborative-orchestration" title="Link to this heading">#</a></h2>
+<section id="core-philosophy-role-based-autonomy">
+<h3>3.1. Core Philosophy: Role-Based Autonomy<a class="headerlink" href="#core-philosophy-role-based-autonomy" title="Link to this heading">#</a></h3>
+<p>CrewAI uses the metaphor of organizing a multi-agent system as a “team”. It is designed to have agents collaborate autonomously by assigning each a clear role. Every agent has three core attributes:</p>
+<ol class="arabic simple">
+<li><p><strong>role</strong>: “What do you do?” (e.g., Senior Researcher)</p></li>
+<li><p><strong>goal</strong>: “What must you achieve?” (e.g., Collect the latest information on a specific topic)</p></li>
+<li><p><strong>backstory</strong>: “What experience do you have?” (e.g., A veteran analyst with 20 years of experience)</p></li>
+</ol>
+<p>This backstory is not just flavor text; it is a powerful prompt engineering technique that guides the LLM to immerse itself more deeply into that persona, generating consistent, high-quality responses. The system is composed of four core components: “Crew” (team), “Agents” (team members), “Tasks” (assignments), and “Process” (work procedure).</p>
+</section>
+<section id="core-architecture-crews-vs-flows">
+<h3>3.2. 2025 Core Architecture: “Crews” vs “Flows”<a class="headerlink" href="#core-architecture-crews-vs-flows" title="Link to this heading">#</a></h3>
+<p>As of 2025, CrewAI has evolved beyond a simple “Crew” framework to offer a dual architecture that addresses the diverse needs of production environments.</p>
+<p><strong>CrewAI Crews:</strong></p>
+<ul class="simple">
+<li><p><strong>Concept</strong>: A “team” optimized for autonomy and collaborative intelligence.</p></li>
+<li><p><strong>Features</strong>: Agents decide for themselves what to do next and interact dynamically (e.g., hierarchical process).</p></li>
+<li><p><strong>Suited for</strong>: <em>Fluid and exploratory</em> tasks like creative content generation, open-ended research, and strategy development.</p></li>
+</ul>
+<p><strong>CrewAI Flows:</strong></p>
+<ul class="simple">
+<li><p><strong>Concept</strong>: A “workflow” that provides granular, event-driven control.</p></li>
+<li><p><strong>Features</strong>: The order of tasks and state transitions are explicitly defined and executed deterministically. “Crews” can be called as one step within these “Flows” for complex, hybrid use.</p></li>
+<li><p><strong>Suited for</strong>: <em>Clearly defined and predictable</em> tasks that require auditing, such as API orchestration and data processing pipelines.</p></li>
+</ul>
+<p>The emergence of “Flows” is a critical indicator of CrewAI’s maturation from a “prototype” level to a “production” level. Early agent systems focused on autonomy, but this led to fatal flaws of “unpredictability” and “difficulty in debugging”. As frameworks like LangGraph gained popularity by offering a controllable alternative with “stateful graphs”, CrewAI responded to market demands for deterministic workflows by introducing “Flows”. This means developers can now flexibly choose the level of “autonomy” vs. “control” based on the nature of the task.</p>
+</section>
+<section id="the-importance-of-state-management">
+<h3>3.3. The Importance of State Management<a class="headerlink" href="#the-importance-of-state-management" title="Link to this heading">#</a></h3>
+<p>In a multi-agent system, “State” is the core “shared memory” that transfers information and maintains context between agents. “CrewAI Flows” explicitly manage this state through Pydantic models (structured state) or dictionaries (unstructured state).</p>
+<p>For example, if the result of one agent’s task (e.g., an FAQ bot) changes a specific field in the state object to <code class="docutils literal notranslate"><span class="pre">status=&quot;escalated&quot;</span></code>, this state change acts as a trigger, allowing the next agent (e.g., a ticket-issuing bot) to begin its task. This enables production-level orchestration.</p>
+</section>
+<section id="enterprise-trend-crewai-amp-agent-management-platform">
+<h3>3.4. Enterprise Trend: CrewAI AMP (Agent Management Platform)<a class="headerlink" href="#enterprise-trend-crewai-amp-agent-management-platform" title="Link to this heading">#</a></h3>
+<p>CrewAI is expanding beyond open-source (OSS) to offer an enterprise commercial platform called “AMP”. AMP provides a GUI environment where users can build agent crews without writing code (No-Code) using a “visual editor” and “AI copilot”. This aims to accelerate AI adoption within companies by allowing not only skilled developers but also subject-matter experts (SMEs) to participate directly in building agent workflows.</p>
+</section>
+<section id="id2">
+<h3>Checkpoint Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the three core attributes of a CrewAI agent, and how does the backstory attribute function as a prompt engineering technique?</p></li>
+<li><p>What is the key difference between CrewAI Crews and Flows, and when should each be used?</p></li>
+<li><p>How does state management enable production-level orchestration in multi-agent systems?</p></li>
+</ul>
+</section>
+</section>
+<section id="mirascope-type-safety-through-pydantic">
+<h2>4. Mirascope: Type-Safety through Pydantic<a class="headerlink" href="#mirascope-type-safety-through-pydantic" title="Link to this heading">#</a></h2>
+<section id="the-production-bottleneck-reliability-issues-with-unstructured-llm-outputs">
+<h3>4.1. The Production Bottleneck: Reliability Issues with Unstructured LLM Outputs<a class="headerlink" href="#the-production-bottleneck-reliability-issues-with-unstructured-llm-outputs" title="Link to this heading">#</a></h3>
+<p>The fundamental output of an LLM is a “string”. In a production system, parsing this unpredictable string to execute the next step of logic is extremely unstable and a core cause of system failure.</p>
+<p>This is directly linked to the “Inter-Agent Misalignment” problem. For example, if one agent returns a response in YAML format and the next agent expects JSON format, this small format discrepancy will cause the entire workflow to fail immediately.</p>
+</section>
+<section id="mirascope-s-solution-structured-i-o-with-pydantic">
+<h3>4.2. Mirascope’s Solution: Structured I/O with Pydantic<a class="headerlink" href="#mirascope-s-solution-structured-i-o-with-pydantic" title="Link to this heading">#</a></h3>
+<p>Mirascope directly tackles this chronic problem through “Type-Safety”.</p>
+<p>The core mechanism involves the <code class="docutils literal notranslate"><span class="pre">&#64;llm.call</span></code> decorator and the <code class="docutils literal notranslate"><span class="pre">response_model</span></code> argument. The developer first defines the desired output format from the LLM as a Pydantic BaseModel.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Book</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+    <span class="n">title</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">author</span><span class="p">:</span> <span class="nb">str</span>
+
+<span class="nd">@llm</span><span class="o">.</span><span class="n">call</span><span class="p">(</span><span class="n">provider</span><span class="o">=</span><span class="s2">&quot;openai&quot;</span><span class="p">,</span> <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span> <span class="n">response_model</span><span class="o">=</span><span class="n">Book</span><span class="p">)</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">extract_book</span><span class="p">(</span><span class="n">text</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s2">&quot;Extract </span><span class="si">{</span><span class="n">text</span><span class="si">}</span><span class="s2">&quot;</span>
+
+<span class="c1"># This function returns a &#39;Book&#39; object instance, not a string.</span>
+<span class="n">book_object</span><span class="p">:</span> <span class="n">Book</span> <span class="o">=</span> <span class="n">extract_book</span><span class="p">(</span><span class="s2">&quot;The Name of the Wind by Patrick Rothfuss&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When this code executes, Mirascope automatically performs two key tasks in the background:</p>
+<ol class="arabic simple">
+<li><p><strong>Automatic Schema Injection</strong>: It converts the Book Pydantic model into a JSON schema that the LLM understands and automatically injects it into the prompt, much like OpenAI’s “tools” parameter.</p></li>
+<li><p><strong>Automatic Validation and Parsing</strong>: It <em>validates and parses</em> the JSON-formatted response returned by the LLM back into a Book Pydantic object instance, returning it as a type-guaranteed object.</p></li>
+</ol>
+</section>
+<section id="overwhelming-simplicity-compared-to-native-sdks">
+<h3>4.3. Overwhelming Simplicity Compared to Native SDKs<a class="headerlink" href="#overwhelming-simplicity-compared-to-native-sdks" title="Link to this heading">#</a></h3>
+<p>Using Mirascope allows you to treat LLM calls just like “type-safe Python functions”. <em>All the boilerplate code</em> required when using native SDKs—such as complex “tools” definitions, “tool_choice” settings, <code class="docutils literal notranslate"><span class="pre">client.chat.completions.create</span></code> calls, and response <code class="docutils literal notranslate"><span class="pre">message.content</span></code> parsing—is abstracted away. This allows the developer to focus solely on the business logic (defining the Pydantic model).</p>
+<p>Mirascope elevates the LLM from an “unreliable text generator” to a “reliable Object Instantiator”. A multi-agent system is essentially software, and software operates on predictable interfaces (APIs). An LLM, returning unpredictable text, cannot be a stable API. However, Mirascope applies a “mandatory schema” (Pydantic) to the LLM’s output, ensuring the LLM call returns a validated Book object rather than a <code class="docutils literal notranslate"><span class="pre">str</span></code>. This serves as a critical bridge, incorporating LLMs into the realm of traditional software engineering and providing the most robust method for preventing “Inter-Agent Misalignment” failures at their source.</p>
+</section>
+<section id="id3">
+<h3>Checkpoint Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why are unstructured LLM outputs a production bottleneck in multi-agent systems?</p></li>
+<li><p>How does Mirascope’s <code class="docutils literal notranslate"><span class="pre">response_model</span></code> parameter solve the Inter-Agent Misalignment problem?</p></li>
+<li><p>What are the two automatic processes that Mirascope performs when using Pydantic models with LLM calls?</p></li>
+</ul>
+</section>
+</section>
+<section id="haystack-agents-domain-specific-agentic-rag">
+<h2>5. Haystack Agents: Domain-Specific “Agentic RAG”<a class="headerlink" href="#haystack-agents-domain-specific-agentic-rag" title="Link to this heading">#</a></h2>
+<section id="the-evolution-of-rag-from-passive-rag-to-active-agentic-rag">
+<h3>5.1. The Evolution of RAG: From Passive RAG to Active “Agentic RAG”<a class="headerlink" href="#the-evolution-of-rag-from-passive-rag-to-active-agentic-rag" title="Link to this heading">#</a></h3>
+<p>Haystack is a leading open-source framework specialized in building RAG (Retrieval-Augmented Generation) pipelines. Haystack’s definition of an agent’s components follows the standard definition: LLM (brain), Tools (interaction), Memory (context), and Reasoning (planning).</p>
+<p>Haystack’s core concept in 2025 is “Agentic RAG”. This means moving beyond a simple linear “Retrieve-Augment-Generate” pipeline to imbuing the RAG pipeline itself with <em>active decision-making capabilities</em>.</p>
+</section>
+<section id="core-component-conditionalrouter">
+<h3>5.2. Core Component: ConditionalRouter<a class="headerlink" href="#core-component-conditionalrouter" title="Link to this heading">#</a></h3>
+<p>The key technology for implementing “Agentic RAG” is “Conditional Routing” within the pipeline. Haystack’s ConditionalRouter component performs this role.</p>
+<p><strong>Case Study: “Fallback to Websearch” Architecture</strong></p>
+<p>The most representative implementation pattern of Agentic RAG is the “Fallback to Websearch”.</p>
+<ol class="arabic simple">
+<li><p><strong>Initial RAG</strong>: Takes the user’s query (<span class="math notranslate nohighlight">\(Query\)</span>) and retrieves relevant documents from the internal corporate document store.</p></li>
+<li><p><strong>Decision Prompt</strong>: The LLM is explicitly instructed, “If you cannot answer with the provided documents, do not say anything else and return <em>only</em> the keyword ‘no_answer’.”</p></li>
+<li><p><strong>Router (Core)</strong>: The ConditionalRouter component intercepts the LLM’s response.</p></li>
+<li><p><strong>Branching</strong>:</p>
+<ul class="simple">
+<li><p><strong>IF (Answer Successful)</strong>: If the LLM generates a valid answer (not “no_answer”), the ConditionalRouter passes this answer to the user and terminates the pipeline normally.</p></li>
+<li><p><strong>IF (Answer Failed, “no_answer” returned)</strong>: The ConditionalRouter detects this keyword and routes the user’s <em>original query</em> (<span class="math notranslate nohighlight">\(Query\)</span>) to a <em>different tool (web search)</em>, such as SerperDevWebSearch.</p></li>
+</ul>
+</li>
+<li><p><strong>Secondary RAG</strong>: A new answer is generated based on the web search results and delivered to the user.</p></li>
+</ol>
+<p>This Agentic RAG architecture is the production standard for solving RAG’s chronic problem of “hallucination upon retrieval failure”. Traditional RAG lacks a “task verification” step, so even if the retrieved documents are low-quality, the LLM will generate a plausible-sounding lie based on them. This is a classic example of a “shallow check failure” that is difficult for users to detect.</p>
+<p>Haystack’s “Agentic RAG” embeds a <em>verification step</em> into the pipeline using the explicit “no_answer” signal. The ConditionalRouter acts as a “Judge” agent that behaves according to this verification result. This elevates the RAG system’s reliability from a passive attitude of “it’s good if it’s found, oh well if not” to an <em>active problem-solving</em> approach: “If it’s not found, execute Plan B (web search)”.</p>
+</section>
+<section id="id4">
+<h3>Checkpoint Questions<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the key difference between traditional RAG and Agentic RAG?</p></li>
+<li><p>How does the ConditionalRouter component enable active decision-making in RAG pipelines?</p></li>
+<li><p>Why is the “no_answer” verification step critical for preventing hallucination in RAG systems?</p></li>
+</ul>
+</section>
+</section>
+<section id="low-code-integration-platforms-and-the-prototyping-trap">
+<h2>6. Low-Code Integration Platforms and the “Prototyping Trap”<a class="headerlink" href="#low-code-integration-platforms-and-the-prototyping-trap" title="Link to this heading">#</a></h2>
+<section id="visual-workflow-builders-flowise-langflow-n8n">
+<h3>6.1. Visual Workflow Builders (Flowise, LangFlow, n8n)<a class="headerlink" href="#visual-workflow-builders-flowise-langflow-n8n" title="Link to this heading">#</a></h3>
+<p>Platforms like Flowise AI, LangFlow, and n8n allow users to visually design agent workflows using a “drag-and-drop” GUI (Graphical User Interface).</p>
+<p>This has a significantly lower barrier to entry compared to code-centric frameworks like CrewAI or LangGraph, offering a powerful advantage for “rapid prototyping” to quickly validate ideas.</p>
+<ul class="simple">
+<li><p><strong>n8n</strong>: Its unique strength lies in combining AI agent features with over 1000 traditional business automation integrations (CRM, email, Slack, etc.).</p></li>
+<li><p><strong>Flowise/LangFlow</strong>: Focus on visually implementing the LangChain ecosystem.</p></li>
+</ul>
+</section>
+<section id="the-harsh-reality-of-2025-the-prototyping-trap">
+<h3>6.2. The Harsh Reality of 2025: The “Prototyping Trap”<a class="headerlink" href="#the-harsh-reality-of-2025-the-prototyping-trap" title="Link to this heading">#</a></h3>
+<p>However, field data from 2025 warns that these tools hit severe limitations when applied to production environments. A report from ZenML and feedback from the developer community call this the “Prototyping Trap”.</p>
+<p><strong>Case Study: LangFlow’s Production Limitations</strong></p>
+<ol class="arabic simple">
+<li><p><strong>Memory Leak</strong>: LangFlow’s caching mechanism has a known memory leak issue. When files are repeatedly uploaded or components are rebuilt, memory usage doubles, causing frequent application crashes in RAG pipelines that handle large documents.</p></li>
+<li><p><strong>Scalability and Concurrency Issues</strong>: When handling multiple concurrent LLM queries, it exhibits severe latency and 100% CPU usage, revealing its inability to handle real service traffic.</p></li>
+<li><p><strong>File Upload Limits</strong>: The file upload capacity, essential for RAG systems, is limited to 100MB by default, making it difficult to build large-scale knowledge bases.</p></li>
+</ol>
+<p>Due to these limitations, experienced developers are using platforms like LangFlow only as a “visual demonstrator for prototyping and showing logic to other teams,” and then following a workflow of “rewriting everything in Python code” for production deployment.</p>
+<p>Ultimately, the value of low-code platforms like LangFlow lies in “design” and “communication”, not “deployment”. One must recognize that the “convenience” of a GUI is in a trade-off relationship with production “reliability”, “scalability”, and “maintainability”.</p>
+</section>
+<section id="id5">
+<h3>Checkpoint Questions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the main advantages of low-code visual workflow builders for prototyping?</p></li>
+<li><p>What is the “Prototyping Trap” and why does it occur with platforms like LangFlow?</p></li>
+<li><p>Why do experienced developers typically rewrite low-code prototypes in Python for production?</p></li>
+</ul>
+</section>
+</section>
+<section id="the-evolution-of-llm-intrinsic-capabilities-from-toolformer-to-next-generation-function-calling">
+<h2>7. The Evolution of LLM-Intrinsic Capabilities: From Toolformer to Next-Generation Function Calling<a class="headerlink" href="#the-evolution-of-llm-intrinsic-capabilities-from-toolformer-to-next-generation-function-calling" title="Link to this heading">#</a></h2>
+<section id="two-approaches-extrinsic-frameworks-vs-intrinsic-capabilities">
+<h3>7.1. Two Approaches: Extrinsic Frameworks vs. Intrinsic Capabilities<a class="headerlink" href="#two-approaches-extrinsic-frameworks-vs-intrinsic-capabilities" title="Link to this heading">#</a></h3>
+<p>The frameworks discussed so far (CrewAI, Haystack) are “extrinsic” frameworks that control agent logic from “outside” the LLM. In contrast, research to “internalize” (intrinsic) tool-using capabilities <em>within the LLM itself</em> has been actively underway, starting with Toolformer.</p>
+</section>
+<section id="foundational-research-toolformer-and-self-supervised-learning">
+<h3>7.2. Foundational Research: Toolformer and Self-Supervised Learning<a class="headerlink" href="#foundational-research-toolformer-and-self-supervised-learning" title="Link to this heading">#</a></h3>
+<p>Toolformer’s goal was to have the LLM learn <em>by itself</em> when to call an API (tool) without human intervention. Its core idea was an ingenious self-supervised learning method called “Loss-Based Filtering”.</p>
+<ol class="arabic simple">
+<li><p>Start with a huge plain text corpus (<span class="math notranslate nohighlight">\(C\)</span>).</p></li>
+<li><p>The model itself samples random [API Call] candidates, wondering, “What if I called an API (e.g., a calculator) at this position?”</p></li>
+<li><p>It <em>actually executes</em> the API to get the <span class="math notranslate nohighlight">\(Result\)</span>.</p></li>
+<li><p><strong>Filtering (The Core)</strong>: It checks if inserting the `` text snippet into the original text <em>significantly reduces the prediction loss</em> for the <em>original text</em> (<span class="math notranslate nohighlight">\(C\)</span>) that comes <em>after</em> it.</p></li>
+<li><p><strong>Meaning</strong>: This is a process where the model <em>verifies for itself</em> whether the API call and its result are <em>useful</em> hints for predicting future text.</p></li>
+<li><p>Only the API calls deemed useful (loss was reduced) are kept, creating a new dataset (<span class="math notranslate nohighlight">\(C^*\)</span>). The model is then fine-tuned on this dataset.</p></li>
+</ol>
+</section>
+<section id="status-gorilla-llm-and-the-berkeley-function-calling-leaderboard-bfcl">
+<h3>7.3. 2025 Status: Gorilla LLM and the Berkeley Function Calling Leaderboard (BFCL)<a class="headerlink" href="#status-gorilla-llm-and-the-berkeley-function-calling-leaderboard-bfcl" title="Link to this heading">#</a></h3>
+<p>Toolformer’s idea has been commercialized and advanced in 2025 under the name “Function Calling”.</p>
+<ul class="simple">
+<li><p><strong>Gorilla LLM</strong>: A LLaMA-based model fine-tuned <em>exclusively</em> for writing API calls. In benchmarks, it demonstrated the ability to generate API calls more accurately than GPT-4.</p></li>
+<li><p><strong>BFCL (Berkeley Function Calling Leaderboard)</strong>: The industry-standard benchmark for evaluating which LLM generates function calls most accurately and reliably.</p></li>
+<li><p><strong>Latest Technology (OpenFunctions-v2)</strong>: State-of-the-art function calling in 2025 goes beyond calling a single function. Gorilla’s OpenFunctions-v2 supports complex scenarios like “calling multiple functions in parallel for a single prompt” or “selecting multiple appropriate functions from a provided list.” It also natively supports various languages, including Python, Java, and REST APIs.</p></li>
+</ul>
+<p>The development of these “intrinsic” capabilities suggests that in the future (like Anthropic’s “agent-first” models), “extrinsic” orchestration frameworks like CrewAI will become thinner, and we will rely more on the LLM’s own intrinsic function-calling abilities. However, as of 2025, intrinsic function calling still lacks “explainability” as to “why it chose that tool”, leaving debugging and reliability in complex production environments as an ongoing challenge.</p>
+</section>
+<section id="id6">
+<h3>Checkpoint Questions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the fundamental difference between extrinsic and intrinsic approaches to agent capabilities?</p></li>
+<li><p>How does Toolformer’s “Loss-Based Filtering” method enable self-supervised learning of tool usage?</p></li>
+<li><p>What are the current limitations of intrinsic function calling in production environments?</p></li>
+</ul>
+</section>
+</section>
+<section id="why-do-production-agents-fail-the-mast-failure-taxonomy-2025">
+<h2>8. Why Do Production Agents Fail? - The MAST Failure Taxonomy (2025)<a class="headerlink" href="#why-do-production-agents-fail-the-mast-failure-taxonomy-2025" title="Link to this heading">#</a></h2>
+<p>When agent systems are deployed to production, they frequently don’t just “perform poorly” — they <em>collapse</em>. An arXiv paper (arXiv:2503.13657), with versions published in March (v1) and October (v3) 2025, presents a systematic analysis of these failure causes: the MAST (Multi-Agent System Failure Taxonomy).</p>
+<p>The most important lesson from this research is that agent systems do not fail because “the LLM (e.g., GPT-4) isn’t smart enough.” The fundamental cause of failure is a “flawed organization structure”—that is, the <em>system design</em>.</p>
+<section id="mast-the-3-major-failure-categories-and-real-world-examples">
+<h3>8.1. MAST: The 3 Major Failure Categories and Real-World Examples<a class="headerlink" href="#mast-the-3-major-failure-categories-and-real-world-examples" title="Link to this heading">#</a></h3>
+<p>MAST classifies 14 unique failure modes into 3 high-level categories:</p>
+<p><strong>1. Specification Issues (41.8% of failures)</strong></p>
+<ul class="simple">
+<li><p><strong>Cause</strong>: Flawed initial setup.</p></li>
+<li><p><strong>Detailed Modes</strong>: Disobeying task specification, missing role constraints, lack of termination criteria, or poor task decomposition.</p></li>
+<li><p><strong>Production Solution</strong>: CrewAI’s explicit role, goal, and backstory definitions and the deterministic workflows of “Flows” mitigate this problem.</p></li>
+</ul>
+<p><strong>2. Inter-Agent Misalignment (36.9%)</strong></p>
+<ul class="simple">
+<li><p><strong>Cause</strong>: Miscommunication that occurs during execution.</p></li>
+<li><p><strong>Detailed Modes</strong>: Ignoring other agents’ input, failure to propagate context.</p></li>
+<li><p><strong>Critical Example</strong>: “The planner agent assigned the task in YAML format, but the executor agent expected JSON format.” This small discrepancy halts the entire workflow.</p></li>
+<li><p><strong>Production Solution</strong>: Mirascope’s <code class="docutils literal notranslate"><span class="pre">response_model=PydanticModel</span></code> forces all inter-agent I/O to be <em>type-safe objects</em>, preventing such format mismatches.</p></li>
+</ul>
+<p><strong>3. Task Verification Failures (21.3%)</strong></p>
+<ul class="simple">
+<li><p><strong>Cause</strong>: Inadequate quality control.</p></li>
+<li><p><strong>Detailed Modes</strong>: Absence of a “Judge” agent, premature termination, or missing verification steps.</p></li>
+<li><p><strong>Critical Example</strong>: A verification agent only performs <em>shallow checks</em>, such as “does the code compile?” (e.g., a chess program compiles but plays with incorrect game rules).</p></li>
+<li><p><strong>Production Solution</strong>: Haystack’s “Agentic RAG” using a ConditionalRouter to add an explicit verification step (e.g., checking for “no_answer”) is a direct solution to this problem.</p></li>
+</ul>
+</section>
+<section id="core-table-mast-multi-agent-system-failure-taxonomy-2025">
+<h3>8.2. Core Table: MAST - Multi-Agent System Failure Taxonomy (2025)<a class="headerlink" href="#core-table-mast-multi-agent-system-failure-taxonomy-2025" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Failure Category</p></th>
+<th class="head text-left"><p>Occurrence Rate</p></th>
+<th class="head text-left"><p>Description</p></th>
+<th class="head text-left"><p>Production Solution from This Lecture</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1. Specification Issues</p></td>
+<td class="text-left"><p>41.8%</p></td>
+<td class="text-left"><p>Flawed prompts, missing roles/constraints, task decomposition failure.</p></td>
+<td class="text-left"><p>CrewAI: Clear role, goal definition. CrewAI Flows: Forcing “specification” as deterministic code.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2. Inter-Agent Misalignment</p></td>
+<td class="text-left"><p>36.9%</p></td>
+<td class="text-left"><p>Communication failure, context loss, data format mismatch (e.g., YAML vs. JSON).</p></td>
+<td class="text-left"><p>Mirascope: Forcing <code class="docutils literal notranslate"><span class="pre">response_model</span></code> to Pydantic objects, ensuring type-safe I/O between agents.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>3. Task Verification Failures</p></td>
+<td class="text-left"><p>21.3%</p></td>
+<td class="text-left"><p>Absence of a “Judge” agent, shallow checks, premature termination without error recognition.</p></td>
+<td class="text-left"><p>Haystack (Agentic RAG): Using ConditionalRouter as a “verification” step to check context quality and execute a fallback plan.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>This table shows a direct 1:1 mapping between the 3 major production challenges of 2025 (MAST) and the 3 core frameworks we learned (CrewAI, Mirascope, Haystack). This proves that these frameworks are not “trends” but were born from real production “needs”. Therefore, these three frameworks should not be seen as individual competitors, but as a “Solution Stack” to be used together to build a production system.</p>
+</section>
+<section id="id7">
+<h3>Checkpoint Questions<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the MAST failure taxonomy, and why is it significant for understanding production agent failures?</p></li>
+<li><p>Which failure category has the highest occurrence rate, and what are its main causes?</p></li>
+<li><p>How do the three frameworks (CrewAI, Mirascope, Haystack) map to the three MAST failure categories?</p></li>
+</ul>
+</section>
+</section>
+<section id="lab-designing-an-automated-customer-support-system-prototype">
+<h2>9. [Lab] Designing an Automated Customer Support System Prototype<a class="headerlink" href="#lab-designing-an-automated-customer-support-system-prototype" title="Link to this heading">#</a></h2>
+<section id="objective">
+<h3>9.1. Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h3>
+<p>To integrate the strengths of the three core frameworks (CrewAI, Haystack, Mirascope) and the lessons from the MAST failure taxonomy to design a production-grade hybrid architecture for the “Automated Customer Support System” required by the syllabus.</p>
+</section>
+<section id="architecture-blueprint-a-flow-calls-rag-calls-crew-hybrid">
+<h3>9.2. Architecture Blueprint: A “Flow-calls-RAG-calls-Crew” Hybrid<a class="headerlink" href="#architecture-blueprint-a-flow-calls-rag-calls-crew-hybrid" title="Link to this heading">#</a></h3>
+<p>We will go beyond a simple CrewAI script to design a robust system that utilizes the strengths of each framework and avoids the weaknesses identified by MAST.</p>
+</section>
+<section id="step-1-defining-data-integrity-mirascope-pydantic">
+<h3>9.3. Step 1: Defining Data Integrity (Mirascope + Pydantic)<a class="headerlink" href="#step-1-defining-data-integrity-mirascope-pydantic" title="Link to this heading">#</a></h3>
+<p>First, we define the Pydantic model that will serve as the “State” for the entire system. This is the “contract” that prevents “Inter-Agent Misalignment” failures at the source.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pydantic</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseModel</span><span class="p">,</span> <span class="n">Literal</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Optional</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomerTicketState</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The shared state object for the entire system.</span>
+<span class="sd">    Applies Mirascope&#39;s type-safety philosophy.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">original_query</span><span class="p">:</span> <span class="nb">str</span>
+    <span class="n">customer_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">status</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;new&quot;</span><span class="p">,</span> <span class="s2">&quot;faq_answered&quot;</span><span class="p">,</span> <span class="s2">&quot;escalated&quot;</span><span class="p">,</span> <span class="s2">&quot;ticket_created&quot;</span><span class="p">]</span>
+    <span class="n">category</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;billing&quot;</span><span class="p">,</span> <span class="s2">&quot;technical&quot;</span><span class="p">,</span> <span class="s2">&quot;general&quot;</span><span class="p">,</span> <span class="s2">&quot;unknown&quot;</span><span class="p">]</span>
+    <span class="n">priority</span><span class="p">:</span> <span class="n">Literal</span><span class="p">[</span><span class="s2">&quot;low&quot;</span><span class="p">,</span> <span class="s2">&quot;medium&quot;</span><span class="p">,</span> <span class="s2">&quot;high&quot;</span><span class="p">]</span>
+    <span class="n">faq_response</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">final_summary</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">ticket_id</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="step-2-overall-orchestration-crewai-flows">
+<h3>9.4. Step 2: Overall Orchestration (CrewAI Flows)<a class="headerlink" href="#step-2-overall-orchestration-crewai-flows" title="Link to this heading">#</a></h3>
+<p>This acts as the “brain” of the system, managing the CustomerTicketState object. To solve “Specification Issues”, we use the deterministic Flows architecture as the main controller, not an autonomous Crew.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crewai.flow</span><span class="w"> </span><span class="kn">import</span> <span class="n">Flow</span>
+
+<span class="nd">@Flow</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomerSupportFlow</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The main orchestrator.</span>
+<span class="sd">    Manages the &#39;CustomerTicketState&#39; object and advances the steps.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">state_model</span><span class="o">=</span><span class="n">CustomerTicketState</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">state_model</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">start</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="c1"># Initialize state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">original_query</span> <span class="o">=</span> <span class="n">query</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;new&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">category</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+        <span class="c1"># Step 1: Run FAQ Agent</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">start_at</span><span class="o">=</span><span class="s2">&quot;run_faq_agent&quot;</span><span class="p">)</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_faq_agent</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Step 3.1: Call Haystack Agentic RAG</span>
+        <span class="n">response</span><span class="p">,</span> <span class="n">status</span> <span class="o">=</span> <span class="n">faq_rag_agent</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">original_query</span><span class="p">)</span>
+
+        <span class="k">if</span> <span class="n">status</span> <span class="o">==</span> <span class="s2">&quot;answered&quot;</span><span class="p">:</span>
+            <span class="c1"># Solved by FAQ -&gt; End flow</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;faq_answered&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">faq_response</span> <span class="o">=</span> <span class="n">response</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="s2">&quot;end_flow&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># Cannot be solved by FAQ -&gt; Escalate to Step 2 (Ticketing)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">status</span> <span class="o">=</span> <span class="s2">&quot;escalated&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="s2">&quot;run_triage_crew&quot;</span><span class="p">)</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_triage_crew</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Step 3.2: Call CrewAI Crew</span>
+        <span class="c1"># &#39;Flows&#39; calls &#39;Crews&#39; and passes the state object</span>
+        <span class="n">updated_state</span> <span class="o">=</span> <span class="n">triage_crew</span><span class="o">.</span><span class="n">kickoff</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">model_dump</span><span class="p">())</span>  <span class="c1"># Pass as dict</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="n">CustomerTicketState</span><span class="p">(</span><span class="o">**</span><span class="n">updated_state</span><span class="p">)</span>  <span class="c1"># Re-validate with Pydantic</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="nb">next</span><span class="o">=</span><span class="s2">&quot;end_flow&quot;</span><span class="p">)</span>
+
+    <span class="nd">@step</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">end_flow</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Return final state</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">state</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-1-first-level-response-faq-bot-haystack-agentic-rag">
+<h3>9.5. Step 3.1: First-Level Response - FAQ Bot (Haystack Agentic RAG)<a class="headerlink" href="#step-3-1-first-level-response-faq-bot-haystack-agentic-rag" title="Link to this heading">#</a></h3>
+<p>This is the agent called in the <code class="docutils literal notranslate"><span class="pre">run_faq_agent</span></code> step. To perform “Task Verification”, it uses Haystack’s Agentic RAG to search the internal FAQ DB.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># (Pseudo-code - Haystack pipeline configuration)</span>
+
+<span class="c1"># 1. LLM modified with a prompt to return &#39;no_answer&#39;</span>
+<span class="n">qa_llm</span> <span class="o">=</span> <span class="n">OpenAIChatGenerator</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt-4o-mini&quot;</span><span class="p">,</span>
+    <span class="n">prompt_template</span><span class="o">=</span><span class="s2">&quot;...If context is not enough, return &#39;no_answer&#39;.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. Conditional Router (Core of Agentic RAG)</span>
+<span class="n">router</span> <span class="o">=</span> <span class="n">ConditionalRouter</span><span class="p">(</span><span class="n">routes</span><span class="o">=</span><span class="p">[</span>
+    <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;&#39;no_answer&#39; in replies&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;fallback&quot;</span><span class="p">,</span><span class="o">...</span><span class="p">},</span>
+    <span class="p">{</span><span class="s2">&quot;condition&quot;</span><span class="p">:</span> <span class="s2">&quot;&#39;no_answer&#39; not in replies&quot;</span><span class="p">,</span> <span class="s2">&quot;output&quot;</span><span class="p">:</span> <span class="s2">&quot;answer&quot;</span><span class="p">,</span><span class="o">...</span><span class="p">}</span>
+<span class="p">])</span>
+
+<span class="c1"># 3. Pipeline</span>
+<span class="n">rag_pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">rag_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;retriever&quot;</span><span class="p">,</span> <span class="n">InMemoryBM25Retriever</span><span class="p">(</span><span class="n">document_store</span><span class="o">=...</span><span class="p">))</span>
+<span class="n">rag_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;prompt_builder&quot;</span><span class="p">,</span><span class="o">...</span><span class="p">)</span>
+<span class="n">rag_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;qa_llm&quot;</span><span class="p">,</span> <span class="n">qa_llm</span><span class="p">)</span>
+<span class="n">rag_pipeline</span><span class="o">.</span><span class="n">add_component</span><span class="p">(</span><span class="s2">&quot;router&quot;</span><span class="p">,</span> <span class="n">router</span><span class="p">)</span>  <span class="c1"># Verification step</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">FAQAgent</span><span class="p">:</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">rag_pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">({</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">,</span> <span class="s2">&quot;prompt_builder&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;query&quot;</span><span class="p">:</span> <span class="n">query</span><span class="p">}})</span>
+        <span class="k">if</span> <span class="s2">&quot;answer&quot;</span> <span class="ow">in</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;router&quot;</span><span class="p">]:</span>
+            <span class="k">return</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;router&quot;</span><span class="p">][</span><span class="s2">&quot;answer&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">content</span><span class="p">,</span> <span class="s2">&quot;answered&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># &#39;fallback&#39; was triggered (answer not found)</span>
+            <span class="k">return</span> <span class="kc">None</span><span class="p">,</span> <span class="s2">&quot;escalated&quot;</span>
+
+<span class="n">faq_rag_agent</span> <span class="o">=</span> <span class="n">FAQAgent</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="step-3-2-second-level-response-ticketing-crew-crewai-crew">
+<h3>9.6. Step 3.2: Second-Level Response - Ticketing Crew (CrewAI Crew)<a class="headerlink" href="#step-3-2-second-level-response-ticketing-crew-crewai-crew" title="Link to this heading">#</a></h3>
+<p>This is the “expert team (Crew)” called in the <code class="docutils literal notranslate"><span class="pre">run_triage_crew</span></code> step. When the FAQ bot fails, it receives the escalated CustomerTicketState and performs the complex task of issuing a ticket.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">crewai</span><span class="w"> </span><span class="kn">import</span> <span class="n">Agent</span><span class="p">,</span> <span class="n">Task</span><span class="p">,</span> <span class="n">Crew</span><span class="p">,</span> <span class="n">Process</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">crewai_tools</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseTool</span>
+
+<span class="c1"># Define Tools (e.g., DB lookup, Ticket creation)</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">CustomerDBTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Customer Database Lookup&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Looks up customer details by query text.&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+        <span class="c1">#... DB lookup logic...</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;customer_id&quot;</span><span class="p">:</span> <span class="s2">&quot;C-123&quot;</span><span class="p">,</span> <span class="s2">&quot;priority&quot;</span><span class="p">:</span> <span class="s2">&quot;high&quot;</span><span class="p">}</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">JiraTicketTool</span><span class="p">(</span><span class="n">BaseTool</span><span class="p">):</span>
+    <span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Jira Ticket Creator&quot;</span>
+    <span class="n">description</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Creates a new support ticket in Jira.&quot;</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">summary</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">category</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">priority</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+        <span class="c1">#... JIRA API call logic...</span>
+        <span class="k">return</span> <span class="s2">&quot;JIRA-TICKET-567&quot;</span>
+
+<span class="c1"># Agent 1: Classifier (Query + State Context)</span>
+<span class="n">classifier_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;Triage Specialist&quot;</span><span class="p">,</span>
+    <span class="n">goal</span><span class="o">=</span><span class="s2">&quot;Analyze the query and current state to categorize the issue.&quot;</span><span class="p">,</span>
+    <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;Expert in routing complex support issues.&quot;</span><span class="p">,</span>
+    <span class="o">...</span>
+<span class="p">)</span>
+
+<span class="c1"># Agent 2: DB Look-up (Uses Tool)</span>
+<span class="n">db_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;Database Analyst&quot;</span><span class="p">,</span>
+    <span class="n">goal</span><span class="o">=</span><span class="s2">&quot;Find customer ID in query and lookup DB for priority.&quot;</span><span class="p">,</span>
+    <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;Connects to internal systems to fetch customer data.&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">CustomerDBTool</span><span class="p">()]</span>
+<span class="p">)</span>
+
+<span class="c1"># Agent 3: Ticket Creator (Uses Tool + Final Summary)</span>
+<span class="n">ticketing_agent</span> <span class="o">=</span> <span class="n">Agent</span><span class="p">(</span>
+    <span class="n">role</span><span class="o">=</span><span class="s2">&quot;Ticketing Agent&quot;</span><span class="p">,</span>
+    <span class="n">goal</span><span class="o">=</span><span class="s2">&quot;Summarize all info and create a JIRA ticket.&quot;</span><span class="p">,</span>
+    <span class="n">backstory</span><span class="o">=</span><span class="s2">&quot;Formats information for engineers.&quot;</span><span class="p">,</span>
+    <span class="n">tools</span><span class="o">=</span><span class="p">[</span><span class="n">JiraTicketTool</span><span class="p">()]</span>
+<span class="p">)</span>
+
+<span class="c1"># Tasks</span>
+<span class="n">classify_task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Classify query: &#39;</span><span class="si">{original_query}</span><span class="s2">&#39;. Current state: &#39;</span><span class="si">{status}</span><span class="s2">&#39;.&quot;</span><span class="p">,</span>
+    <span class="n">agent</span><span class="o">=</span><span class="n">classifier_agent</span><span class="p">,</span>
+    <span class="n">expected_output</span><span class="o">=</span><span class="s2">&quot;JSON with &#39;category&#39; (billing, technical, general).&quot;</span>
+<span class="p">)</span>
+<span class="n">db_task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Lookup customer details for query: &#39;</span><span class="si">{original_query}</span><span class="s2">&#39;.&quot;</span><span class="p">,</span>
+    <span class="n">agent</span><span class="o">=</span><span class="n">db_agent</span><span class="p">,</span>
+    <span class="n">context</span><span class="o">=</span><span class="p">[</span><span class="n">classify_task</span><span class="p">],</span>  <span class="c1"># Executes after classification</span>
+    <span class="n">expected_output</span><span class="o">=</span><span class="s2">&quot;JSON with &#39;customer_id&#39; and &#39;priority&#39;.&quot;</span>
+<span class="p">)</span>
+<span class="n">ticket_task</span> <span class="o">=</span> <span class="n">Task</span><span class="p">(</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Create a final ticket using all collected information.&quot;</span><span class="p">,</span>
+    <span class="n">agent</span><span class="o">=</span><span class="n">ticketing_agent</span><span class="p">,</span>
+    <span class="n">context</span><span class="o">=</span><span class="p">[</span><span class="n">db_task</span><span class="p">],</span>  <span class="c1"># Executes after DB lookup</span>
+    <span class="n">expected_output</span><span class="o">=</span><span class="s2">&quot;Final JSON state update with &#39;ticket_id&#39;.&quot;</span>
+<span class="p">)</span>
+
+<span class="n">triage_crew</span> <span class="o">=</span> <span class="n">Crew</span><span class="p">(</span>
+    <span class="n">agents</span><span class="o">=</span><span class="p">[</span><span class="n">classifier_agent</span><span class="p">,</span> <span class="n">db_agent</span><span class="p">,</span> <span class="n">ticketing_agent</span><span class="p">],</span>
+    <span class="n">tasks</span><span class="o">=</span><span class="p">[</span><span class="n">classify_task</span><span class="p">,</span> <span class="n">db_task</span><span class="p">,</span> <span class="n">ticket_task</span><span class="p">],</span>
+    <span class="n">process</span><span class="o">=</span><span class="n">Process</span><span class="o">.</span><span class="n">sequential</span>  <span class="c1"># Execute sequentially</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="lab-architecture-summary">
+<h3>9.7. Lab Architecture Summary<a class="headerlink" href="#lab-architecture-summary" title="Link to this heading">#</a></h3>
+<p>This hybrid architecture meets all the requirements of a 2025 production system:</p>
+<ol class="arabic simple">
+<li><p><strong>Mirascope (Pydantic)</strong>: Defines a “data contract”, CustomerTicketState, to prevent “Inter-Agent Misalignment” at the source.</p></li>
+<li><p><strong>CrewAI Flows</strong>: Acts as the main orchestrator, managing the CustomerTicketState object and ensuring a deterministic workflow (solves “Specification Issues”).</p></li>
+<li><p><strong>Haystack Agentic RAG</strong>: Serves as the first line of defense (FAQ), performs “Task Verification” via the ConditionalRouter, and safely passes the flow to the next step upon failure.</p></li>
+<li><p><strong>CrewAI Crew</strong>: Serves as the second line of defense (Ticketing), where specialized agents (classify, DB, create) collaborate to perform complex “Task Decomposition”.</p></li>
+</ol>
+<p>This is a robust architecture that solves all three of the major production challenges (MAST) of 2025.</p>
+</section>
+<section id="id8">
+<h3>Checkpoint Questions<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>How does the hybrid architecture combine the strengths of CrewAI, Mirascope, and Haystack?</p></li>
+<li><p>Why is the Pydantic state model critical for preventing Inter-Agent Misalignment?</p></li>
+<li><p>How does the ConditionalRouter in the FAQ agent implement Task Verification?</p></li>
+</ul>
+</section>
+</section>
+<section id="appendix-core-framework-and-platform-comparison">
+<h2>10. Appendix: Core Framework and Platform Comparison<a class="headerlink" href="#appendix-core-framework-and-platform-comparison" title="Link to this heading">#</a></h2>
+<section id="core-table-2-2025-multi-agent-framework-comparison">
+<h3>10.1. Core Table 2: 2025 Multi-Agent Framework Comparison<a class="headerlink" href="#core-table-2-2025-multi-agent-framework-comparison" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Framework</p></th>
+<th class="head text-left"><p>Core Philosophy</p></th>
+<th class="head text-left"><p>Primary Architecture Model</p></th>
+<th class="head text-left"><p>Production Suitability &amp; 2025 Status</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>CrewAI</p></td>
+<td class="text-left"><p>Role-Based Collaboration</p></td>
+<td class="text-left"><p>Crews: Autonomous Team (Autonomy↑) Flows: Deterministic Workflow (Control↑)</p></td>
+<td class="text-left"><p>High. Production-ready with the “Flows” architecture and AMP platform. Balances autonomy and control.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>LangGraph</p></td>
+<td class="text-left"><p>State-Based Control</p></td>
+<td class="text-left"><p>Cyclical Graph</p></td>
+<td class="text-left"><p>Very High. Explicitly defines and passes “State” between nodes. Optimal for complex, conditional logic and tasks requiring high debuggability.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Haystack</p></td>
+<td class="text-left"><p>Data-Centric</p></td>
+<td class="text-left"><p>Pipelines + Routers</p></td>
+<td class="text-left"><p>High (RAG-Specific). Most powerful for building domain-specific, knowledge-based agents through the “Agentic RAG” concept.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>AutoGen</p></td>
+<td class="text-left"><p>Conversational Collaboration</p></td>
+<td class="text-left"><p>Group Chat</p></td>
+<td class="text-left"><p>Medium (Research). Simulates natural language conversations between agents. Flexible but unpredictable and hard to control. Moved to <em>maintenance mode</em> in Oct 2025 by Microsoft.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="core-table-3-low-code-platform-production-readiness-assessment">
+<h3>10.2. Core Table 3: Low-Code Platform Production Readiness Assessment<a class="headerlink" href="#core-table-3-low-code-platform-production-readiness-assessment" title="Link to this heading">#</a></h3>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Platform</p></th>
+<th class="head text-left"><p>Core Function</p></th>
+<th class="head text-left"><p>Prototyping</p></th>
+<th class="head text-left"><p>Production Readiness (As of 2025)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>LangFlow</p></td>
+<td class="text-left"><p>LangChain Visualization (Python-based)</p></td>
+<td class="text-left"><p>Excellent. Very fast and intuitive.</p></td>
+<td class="text-left"><p>Very Low (Risky). The “Prototyping Trap”. Severe memory leaks, caching, and concurrency issues. Assumes a rewrite.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Flowise AI</p></td>
+<td class="text-left"><p>LangChain Visualization (JS-based)</p></td>
+<td class="text-left"><p>Excellent. Fast and intuitive.</p></td>
+<td class="text-left"><p>Low. Similar scalability limits to LangFlow. Lacks a traditional automation layer.</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>n8n</p></td>
+<td class="text-left"><p>AI + Traditional Automation</p></td>
+<td class="text-left"><p>Good.</p></td>
+<td class="text-left"><p>High. Strength in 1000+ business app integrations. Optimal for linking AI agents to legacy systems.</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>CrewAI AMP</p></td>
+<td class="text-left"><p>Enterprise Agent Management</p></td>
+<td class="text-left"><p>Excellent (No-Code)</p></td>
+<td class="text-left"><p>Very High. Provides a visual builder, monitoring, deployment, and governance based on proven OSS logic.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What’s next for AI? - Deloitte, <a class="reference external" href="https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2025/tech-trends-ai-agents-and-autonomous-ai.html">https://www.deloitte.com/us/en/insights/topics/technology-management/tech-trends/2025/tech-trends-ai-agents-and-autonomous-ai.html</a></p></li>
+<li><p>LLMs for Multi-Agent Cooperation | Xueguang Lyu, <a class="reference external" href="https://xue-guang.com/post/llm-marl/">https://xue-guang.com/post/llm-marl/</a></p></li>
+<li><p>LangChain State of AI Agents Report, <a class="reference external" href="https://www.langchain.com/stateofaiagents">https://www.langchain.com/stateofaiagents</a></p></li>
+<li><p>2025 Mid-Year LLM Market Update: Foundation Model Landscape + Economics, <a class="reference external" href="https://menlovc.com/perspective/2025-mid-year-llm-market-update/">https://menlovc.com/perspective/2025-mid-year-llm-market-update/</a></p></li>
+<li><p>AI Agents in 2025: Expectations vs. Reality - IBM, <a class="reference external" href="https://www.ibm.com/think/insights/ai-agents-2025-expectations-vs-reality">https://www.ibm.com/think/insights/ai-agents-2025-expectations-vs-reality</a></p></li>
+<li><p>Multi-Agent and Multi-LLM Architecture: Complete Guide for 2025 …, <a class="reference external" href="https://collabnix.com/multi-agent-and-multi-llm-architecture-complete-guide-for-2025/">https://collabnix.com/multi-agent-and-multi-llm-architecture-complete-guide-for-2025/</a></p></li>
+<li><p>Designing Cooperative Agent Architectures in 2025 | Samira …, <a class="reference external" href="https://samiranama.com/posts/Designing-Cooperative-Agent-Architectures-in-2025/">https://samiranama.com/posts/Designing-Cooperative-Agent-Architectures-in-2025/</a></p></li>
+<li><p>Hierarchical Multi-Agent Systems: Concepts and Operational Considerations - Over Coffee, <a class="reference external" href="https://overcoffee.medium.com/hierarchical-multi-agent-systems-concepts-and-operational-considerations-e06fff0bea8c">https://overcoffee.medium.com/hierarchical-multi-agent-systems-concepts-and-operational-considerations-e06fff0bea8c</a></p></li>
+<li><p>#11: AIAgents -CrewAI: How Role-Based Agents Work Together | by Jayakrishnan M | Oct, 2025 | Medium, <a class="reference external" href="https://medium.com/&#64;jmelethil/11-aiagents-crewai-how-role-based-agents-work-together-87662ad25f33">https://medium.com/&#64;jmelethil/11-aiagents-crewai-how-role-based-agents-work-together-87662ad25f33</a></p></li>
+<li><p>CrewAI Guide: Build Multi-Agent AI Teams in October 2025, <a class="reference external" href="https://mem0.ai/blog/crewai-guide-multi-agent-ai-teams">https://mem0.ai/blog/crewai-guide-multi-agent-ai-teams</a></p></li>
+<li><p>Building Your First AI Customer Support System with CrewAI: A …, <a class="reference external" href="https://medium.com/&#64;tahaML/building-your-first-ai-customer-support-system-with-crewai-a-beginners-guide-f6a41f04fd2e">https://medium.com/&#64;tahaML/building-your-first-ai-customer-support-system-with-crewai-a-beginners-guide-f6a41f04fd2e</a></p></li>
+<li><p>Introduction - CrewAI, <a class="reference external" href="https://docs.crewai.com/en/introduction">https://docs.crewai.com/en/introduction</a></p></li>
+<li><p>Framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks. - GitHub, <a class="github reference external" href="https://github.com/crewAIInc/crewAI">crewAIInc/crewAI</a></p></li>
+<li><p>Crewai vs LangGraph: Know The Differences - TrueFoundry, <a class="reference external" href="https://www.truefoundry.com/blog/crewai-vs-langgraph">https://www.truefoundry.com/blog/crewai-vs-langgraph</a></p></li>
+<li><p>Mastering Flow State Management - CrewAI, <a class="reference external" href="https://docs.crewai.com/en/guides/flows/mastering-flow-state">https://docs.crewai.com/en/guides/flows/mastering-flow-state</a></p></li>
+<li><p>Crew AI, <a class="reference external" href="https://www.crewai.com/">https://www.crewai.com/</a></p></li>
+<li><p>Why Do Multi-Agent LLM Systems Fail? | by Anna Alexandra …, <a class="reference external" href="https://thegrigorian.medium.com/why-do-multi-agent-llm-systems-fail-14dc34e0f3cb">https://thegrigorian.medium.com/why-do-multi-agent-llm-systems-fail-14dc34e0f3cb</a></p></li>
+<li><p>Why Multi-Agent LLM Systems Fail: Key Issues Explained … - <a class="reference external" href="http://Orq.ai">Orq.ai</a>, <a class="reference external" href="https://orq.ai/blog/why-do-multi-agent-llm-systems-fail">https://orq.ai/blog/why-do-multi-agent-llm-systems-fail</a></p></li>
+<li><p>Mirascope - LLMs Text Viewer | Mirascope, <a class="reference external" href="https://mirascope.com/docs/mirascope/llms-full">https://mirascope.com/docs/mirascope/llms-full</a></p></li>
+<li><p>Response Models | Mirascope, <a class="reference external" href="https://mirascope.com/docs/mirascope/learn/response_models">https://mirascope.com/docs/mirascope/learn/response_models</a></p></li>
+<li><p>Welcome - Mirascope, <a class="reference external" href="https://mirascope.com/docs/mirascope">https://mirascope.com/docs/mirascope</a></p></li>
+<li><p>Structured Outputs - Mirascope, <a class="reference external" href="https://mirascope.com/docs/mirascope/guides/getting-started/structured-outputs">https://mirascope.com/docs/mirascope/guides/getting-started/structured-outputs</a></p></li>
+<li><p>Haystack Documentation, <a class="reference external" href="https://docs.haystack.deepset.ai/docs/intro">https://docs.haystack.deepset.ai/docs/intro</a></p></li>
+<li><p>Haystack vs. FlowiseAI: Comparing AI-Powered Development Platforms - SmythOS, <a class="reference external" href="https://smythos.com/developers/agent-comparisons/haystack-vs-flowiseai/">https://smythos.com/developers/agent-comparisons/haystack-vs-flowiseai/</a></p></li>
+<li><p>Agents - Haystack Documentation, <a class="reference external" href="https://docs.haystack.deepset.ai/docs/agents">https://docs.haystack.deepset.ai/docs/agents</a></p></li>
+<li><p>Build an Agentic RAG Pipeline in deepset Studio - Haystack, <a class="reference external" href="https://haystack.deepset.ai/blog/agentic-rag-in-deepset-studio">https://haystack.deepset.ai/blog/agentic-rag-in-deepset-studio</a></p></li>
+<li><p>Building an Agentic RAG with Fallback to Websearch | Haystack, <a class="reference external" href="https://haystack.deepset.ai/tutorials/36_building_fallbacks_with_conditional_routing">https://haystack.deepset.ai/tutorials/36_building_fallbacks_with_conditional_routing</a></p></li>
+<li><p>Why Do Multi-Agent LLM Systems Fail? - arXiv, <a class="reference external" href="https://arxiv.org/pdf/2503.13657">https://arxiv.org/pdf/2503.13657</a></p></li>
+<li><p>Langflow | Low-code AI builder for agentic and RAG applications, <a class="reference external" href="https://www.langflow.org/">https://www.langflow.org/</a></p></li>
+<li><p>Dify: Leading Agentic Workflow Builder, <a class="reference external" href="https://dify.ai/">https://dify.ai/</a></p></li>
+<li><p>FlowiseAI vs. Langflow: Compare top AI agent builders - SmythOS, <a class="reference external" href="https://smythos.com/developers/agent-comparisons/flowiseai-vs-langflow/">https://smythos.com/developers/agent-comparisons/flowiseai-vs-langflow/</a></p></li>
+<li><p>AI Agent Orchestration Frameworks: Which One Works Best for You …, <a class="reference external" href="https://blog.n8n.io/ai-agent-orchestration-frameworks/">https://blog.n8n.io/ai-agent-orchestration-frameworks/</a></p></li>
+<li><p>CrewAI vs LangGraph vs AutoGen: Choosing the Right Multi-Agent AI Framework, <a class="reference external" href="https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen">https://www.datacamp.com/tutorial/crewai-vs-langgraph-vs-autogen</a></p></li>
+<li><p>9 AI Agent Frameworks Battle: Why Developers Prefer n8n, <a class="reference external" href="https://blog.n8n.io/ai-agent-frameworks/">https://blog.n8n.io/ai-agent-frameworks/</a></p></li>
+<li><p>We Tried and Tested 8 Langflow Alternatives for Production-Ready AI Workflows - ZenML, <a class="reference external" href="https://www.zenml.io/blog/langflow-alternatives">https://www.zenml.io/blog/langflow-alternatives</a></p></li>
+<li><p>LangFlow vs Flowise vs n8n vs Make - Reddit, <a class="reference external" href="https://www.reddit.com/r/langflow/comments/1ij66dl/langflow_vs_flowise_vs_n8n_vs_make/">https://www.reddit.com/r/langflow/comments/1ij66dl/langflow_vs_flowise_vs_n8n_vs_make/</a></p></li>
+<li><p>We Tried and Tested 8 Langflow Alternatives for Production-Ready …, <a class="reference external" href="https://zenml.io/blog/langflow-alternatives">https://zenml.io/blog/langflow-alternatives</a></p></li>
+<li><p>The Best Langflow vs Flowise Comparison to Guide Your AI Tool Decision - <a class="reference external" href="http://Lamatic.ai">Lamatic.ai</a> Labs, <a class="reference external" href="https://blog.lamatic.ai/guides/langflow-vs-flowise/">https://blog.lamatic.ai/guides/langflow-vs-flowise/</a></p></li>
+<li><p>Toolformer: Language Models Can Teach Themselves to Use Tools | Research - AI at Meta, <a class="reference external" href="https://ai.meta.com/research/publications/toolformer-language-models-can-teach-themselves-to-use-tools/">https://ai.meta.com/research/publications/toolformer-language-models-can-teach-themselves-to-use-tools/</a></p></li>
+<li><p>Toolformer: How Language Models Learn to Use Tools by … - Medium, <a class="reference external" href="https://medium.com/&#64;darshantank_55417/toolformer-how-language-models-learn-to-use-tools-by-themselves-9724fb64ed0e">https://medium.com/&#64;darshantank_55417/toolformer-how-language-models-learn-to-use-tools-by-themselves-9724fb64ed0e</a></p></li>
+<li><p>Improving Large Language Models Function Calling and Interpretability via Guided-Structured Templates - arXiv, <a class="reference external" href="https://arxiv.org/html/2509.18076v1">https://arxiv.org/html/2509.18076v1</a></p></li>
+<li><p>FunReason: Enhancing Large Language Models’ Function Calling via Self-Refinement Multiscale Loss and Automated Data Refinement - arXiv, <a class="reference external" href="https://arxiv.org/html/2505.20192v1">https://arxiv.org/html/2505.20192v1</a></p></li>
+<li><p>[2305.15334] Gorilla: Large Language Model Connected with Massive APIs - arXiv, <a class="reference external" href="https://arxiv.org/abs/2305.15334">https://arxiv.org/abs/2305.15334</a></p></li>
+<li><p>Gorilla, <a class="reference external" href="https://gorilla.cs.berkeley.edu/">https://gorilla.cs.berkeley.edu/</a></p></li>
+<li><p>Why Do Multi-Agent LLM Systems Fail? - arXiv, <a class="reference external" href="https://arxiv.org/html/2503.13657v2">https://arxiv.org/html/2503.13657v2</a></p></li>
+<li><p>[2503.13657] Why Do Multi-Agent LLM Systems Fail? - arXiv, <a class="reference external" href="https://arxiv.org/abs/2503.13657">https://arxiv.org/abs/2503.13657</a></p></li>
+<li><p>WHY DO MULTI-AGENT LLM SYSTEMS FAIL? - OpenReview, <a class="reference external" href="https://openreview.net/pdf?id=wM521FqPvI">https://openreview.net/pdf?id=wM521FqPvI</a></p></li>
+<li><p>AutoGen vs CrewAI vs LangGraph: AI Framework Comparison 2025 - JetThoughts, <a class="reference external" href="https://jetthoughts.com/blog/autogen-crewai-langgraph-ai-agent-frameworks-2025/">https://jetthoughts.com/blog/autogen-crewai-langgraph-ai-agent-frameworks-2025/</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week11"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week10/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 10: Revolutionary Alignment Techniques</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../week12/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 12: AI Regulation and Responsible AI</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-2025-the-dawn-of-production-agent-systems">1. Introduction: 2025, The Dawn of Production Agent Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#paradigm-shift-from-single-qa-bots-to-multi-agent-systems-llm-mas">1.1. Paradigm Shift: From Single QA Bots to Multi-Agent Systems (LLM-MAS)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#market-trend-the-rise-of-agent-first-llms">1.2. 2025 Market Trend: The Rise of “Agent-first” LLMs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-true-meaning-of-production-the-battle-with-trust">1.3. The True Meaning of “Production”: The Battle with “Trust”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#theoretical-foundations-of-multi-agent-collaboration-architectures">2. Theoretical Foundations of Multi-Agent Collaboration Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#detailed-analysis-of-key-architectural-patterns">2.1. Detailed Analysis of Key Architectural Patterns</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#crewai-role-based-collaborative-orchestration">3. CrewAI: Role-Based Collaborative Orchestration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-philosophy-role-based-autonomy">3.1. Core Philosophy: Role-Based Autonomy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-architecture-crews-vs-flows">3.2. 2025 Core Architecture: “Crews” vs “Flows”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-state-management">3.3. The Importance of State Management</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#enterprise-trend-crewai-amp-agent-management-platform">3.4. Enterprise Trend: CrewAI AMP (Agent Management Platform)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mirascope-type-safety-through-pydantic">4. Mirascope: Type-Safety through Pydantic</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-production-bottleneck-reliability-issues-with-unstructured-llm-outputs">4.1. The Production Bottleneck: Reliability Issues with Unstructured LLM Outputs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mirascope-s-solution-structured-i-o-with-pydantic">4.2. Mirascope’s Solution: Structured I/O with Pydantic</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#overwhelming-simplicity-compared-to-native-sdks">4.3. Overwhelming Simplicity Compared to Native SDKs</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-agents-domain-specific-agentic-rag">5. Haystack Agents: Domain-Specific “Agentic RAG”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-rag-from-passive-rag-to-active-agentic-rag">5.1. The Evolution of RAG: From Passive RAG to Active “Agentic RAG”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-component-conditionalrouter">5.2. Core Component: ConditionalRouter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#low-code-integration-platforms-and-the-prototyping-trap">6. Low-Code Integration Platforms and the “Prototyping Trap”</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#visual-workflow-builders-flowise-langflow-n8n">6.1. Visual Workflow Builders (Flowise, LangFlow, n8n)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-harsh-reality-of-2025-the-prototyping-trap">6.2. The Harsh Reality of 2025: The “Prototyping Trap”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-evolution-of-llm-intrinsic-capabilities-from-toolformer-to-next-generation-function-calling">7. The Evolution of LLM-Intrinsic Capabilities: From Toolformer to Next-Generation Function Calling</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#two-approaches-extrinsic-frameworks-vs-intrinsic-capabilities">7.1. Two Approaches: Extrinsic Frameworks vs. Intrinsic Capabilities</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#foundational-research-toolformer-and-self-supervised-learning">7.2. Foundational Research: Toolformer and Self-Supervised Learning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#status-gorilla-llm-and-the-berkeley-function-calling-leaderboard-bfcl">7.3. 2025 Status: Gorilla LLM and the Berkeley Function Calling Leaderboard (BFCL)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#why-do-production-agents-fail-the-mast-failure-taxonomy-2025">8. Why Do Production Agents Fail? - The MAST Failure Taxonomy (2025)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mast-the-3-major-failure-categories-and-real-world-examples">8.1. MAST: The 3 Major Failure Categories and Real-World Examples</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-mast-multi-agent-system-failure-taxonomy-2025">8.2. Core Table: MAST - Multi-Agent System Failure Taxonomy (2025)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-designing-an-automated-customer-support-system-prototype">9. [Lab] Designing an Automated Customer Support System Prototype</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">9.1. Objective</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#architecture-blueprint-a-flow-calls-rag-calls-crew-hybrid">9.2. Architecture Blueprint: A “Flow-calls-RAG-calls-Crew” Hybrid</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-1-defining-data-integrity-mirascope-pydantic">9.3. Step 1: Defining Data Integrity (Mirascope + Pydantic)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-2-overall-orchestration-crewai-flows">9.4. Step 2: Overall Orchestration (CrewAI Flows)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-1-first-level-response-faq-bot-haystack-agentic-rag">9.5. Step 3.1: First-Level Response - FAQ Bot (Haystack Agentic RAG)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#step-3-2-second-level-response-ticketing-crew-crewai-crew">9.6. Step 3.2: Second-Level Response - Ticketing Crew (CrewAI Crew)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lab-architecture-summary">9.7. Lab Architecture Summary</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#appendix-core-framework-and-platform-comparison">10. Appendix: Core Framework and Platform Comparison</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-2-2025-multi-agent-framework-comparison">10.1. Core Table 2: 2025 Multi-Agent Framework Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#core-table-3-low-code-platform-production-readiness-assessment">10.2. Core Table 3: Low-Code Platform Production Readiness Assessment</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

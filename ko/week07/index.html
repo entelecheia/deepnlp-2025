@@ -1,0 +1,1132 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 7: 초장문맥 처리와 효율적 추론 &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week07/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 8: 핵심 복습 및 최신 동향" href="../week08/index.html" />
+    <link rel="prev" title="Week 6: 멀티모달 NLP의 발전" href="../week06/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          한국어 <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    딥러닝자연어처리 (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer 및 차세대 아키텍처</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba 아키텍처 Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x와 최신 딥러닝 프레임워크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: 현대적 PEFT 기법을 활용한 효율적 파인튜닝</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: 고급 프롬프트 기법과 최적화</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM 평가 패러다임과 벤치마크</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: 멀티모달 NLP의 발전</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Week 7: 초장문맥 처리와 효율적 추론</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: 핵심 복습 및 최신 동향</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: 고급 RAG 아키텍처</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: 정렬 기법의 발전</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: 프로덕션 에이전트 시스템</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI 규제와 책임 있는 AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch 워크숍</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">1주차 워크숍: LLM 개요 및 개발 환경 구축</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">프로젝트 운영 가이드라인</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">강의계획서</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/ko/week07/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek07/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week07/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 7: 초장문맥 처리와 효율적 추론</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1 킬로바이트에서 메가바이트로 - 컨텍스트의 양적 도약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 2025년 플래그십 모델들의 역량</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 새로운 개발자 패러다임: 단순 질의응답을 넘어서</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.4 숨겨진 비용 - 피할 수 없는 트레이드오프</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i">2. 핵심 기술 I: 어텐션 메커니즘의 재창조</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-n-2">2.1 표준 셀프 어텐션의 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 병목 현상</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-i-o">2.2 공학적 효율화: FlashAttention의 I/O 병목 최적화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers-flashattention">2.2.1 실습: Hugging Face Transformers에서 FlashAttention 활성화</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">체크포인트 질문</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-attention">2.3 알고리즘적 효율화: 선형 시간 근사 (Linear Attention)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ring-attention">2.4 시스템적 효율화: Ring Attention을 이용한 분산 어텐션</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#magic">2.5 아키텍처 혁신: Magic의 시퀀스-차원 알고리즘</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-positional-encoding">3. 핵심 기술 II: 위치 정보(Positional Encoding)의 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope">3.1 RoPE의 한계 - “외삽” 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longrope">3.2 LongRoPE - 정교한 스케일링 솔루션</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-uniformity">3.2.1 메커니즘 1 - 불균일성(Non-Uniformity)의 활용</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-extension">3.2.2 메커니즘 2 - 점진적 확장 전략 (Progressive Extension)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3 메커니즘 3 - 단문 컨텍스트 성능 복원</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.3 실습: LongRoPE를 활용한 컨텍스트 확장 예시</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-vs-2025">4. RAG vs 초장문 컨텍스트: 2025년의 논쟁과 통합</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">4.1 논쟁의 시작 - “RAG는 구시대의 유물인가”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.2 RAG의 필요성 - 순진한 초장문 컨텍스트의 한계</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-rag-qa">4.2.1 실습: Haystack를 활용한 RAG 기반 QA 파이프라인</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-rag">4.3 2025년의 통합 - AI 에이전트 메모리로서의 RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.4 진화된 RAG 아키텍처: 그래프 기반 추론의 부상</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 실용적 고려사항: 벤치마크와 현실의 격차</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">5.1 2025년 LLM 생태계의 다각화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">5.2 더 나은 평가의 필요성 - 장문 컨텍스트 벤치마크의 등장</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longcodeu">5.3 현실 점검 - LONGCODEU 벤치마크의 발견</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5.4 결론 - 현업 개발자를 위한 전략적 권고</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">체크포인트 질문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">참고자료</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-7">
+<h1>Week 7: 초장문맥 처리와 효율적 추론<a class="headerlink" href="#week-7" title="Link to this heading">#</a></h1>
+<section id="context-window">
+<h2>1. 컨텍스트 창(Context Window)의 패러다임 전환<a class="headerlink" href="#context-window" title="Link to this heading">#</a></h2>
+<p>지난 몇 년간 자연어 처리(NLP) 분야는 대규모 언어 모델(Large Language Models, LLMs)의 발전으로 인해 급격한 변화를 겪어왔다. 이러한 발전의 중심에는 모델이 한 번에 처리하고 참조할 수 있는 정보의 양, 즉 “컨텍스트 창”의 확장이 자리하고 있다. <strong>2025년을 기점으로, 우리는 단순히 점진적인 개선을 넘어선, LLM의 활용 방식을 재정의하는 “초장문 컨텍스트 혁명”의 시대에 진입</strong>했다. 본 강의에서는 이 혁명을 이끄는 핵심 기술, 최신 플래그십 모델, 그리고 이로 인해 파생되는 새로운 패러다임과 현실적인 과제들을 심층적으로 탐구한다.</p>
+<section id="id1">
+<h3>1.1 킬로바이트에서 메가바이트로 - 컨텍스트의 양적 도약<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p>LLM의 초기 발전 단계에서 컨텍스트 창은 모델의 가장 큰 제약 조건 중 하나였다. 2018년과 2019년의 모델들은 최대 컨텍스트 크기가 각각 512 토큰과 1,024 토큰에 불과했다. 이는 모델이 한 번에 참조할 수 있는 정보가 몇 단락 수준에 머물렀음을 의미하며, 긴 대화나 복잡한 문서를 이해하는 데 명백한 한계를 보였다.</p>
+<p>그러나 2024년을 지나 2025년에 이르러, 이러한 한계는 극적으로 극복되었다. <strong>Google의 Gemini</strong> 등 최신 모델들이 수십만에서 <strong>100만 토큰 이상의 컨텍스트 창</strong>을 제공하기 시작했으며, 이는 LLM의 “작업 기억(working memory)”이 책 한 권, 나아가 작은 도서관 수준으로 확장되었음을 시사한다. 100만 토큰이라는 규모를 구체적으로 살펴보면 다음과 같다:</p>
+<ul class="simple">
+<li><p>약 50,000줄의 코드 (한 줄당 80자 기준)</p></li>
+<li><p>평균적인 길이의 영어 소설 8권 분량</p></li>
+<li><p>평균 길이의 팟캐스트 에피소드 200개 이상의 스크립트</p></li>
+</ul>
+<p>더 나아가, Meta의 <strong>Llama 4</strong>는 1,000만 토큰, 그리고 Magic사의 <strong>LTM-2-Mini</strong>와 같은 혁신적인 모델은 무려 <strong>1억 토큰</strong>(코드 1,000만 줄에 해당)의 컨텍스트를 처리할 수 있는 능력을 선보이며, 기술 발전 속도가 우리의 상상을 초월하고 있음을 보여준다. 이처럼 컨텍스트 창의 폭발적인 성장은 LLM이 정보를 처리하는 <strong>방식</strong>을 근본적으로 바꾸고 있다. 과거에는 모델의 파라미터 안에 지식을 “압축”하는 것이 중요했다면, 이제는 방대한 양의 정보를 <strong>컨텍스트 내에 직접 제공</strong>하고, 모델이 그 안에서 실시간으로 <strong>정보를 검색하고 추론</strong>하는 능력이 핵심이 되었다. 즉, 모델의 역할이 지식의 저장소에서 “<strong>컨텍스트 내 정보 처리 및 추론 엔진</strong>”으로 전환되고 있다.</p>
+</section>
+<section id="id2">
+<h3>1.2 2025년 플래그십 모델들의 역량<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<p>2025년 현재, 여러 기술 기업들이 초장문 컨텍스트를 지원하는 플래그십 LLM들을 경쟁적으로 출시하며 기술의 최전선을 이끌고 있다. 대표적인 모델과 그 특징은 다음과 같다:</p>
+<ul class="simple">
+<li><p><strong>OpenAI GPT-5</strong>: 이전 세대인 GPT-4o를 뛰어넘는 <strong>지능의 비약적인 도약</strong>을 이룬 모델로, 특히 복잡한 문제를 해결하기 위한 전용 “<strong>추론</strong>(reasoning)” 모듈을 포함하고 있는 것이 특징이다. 코딩, 수학, 작문 등 다양한 분야에서 최첨단 성능을 보이며 멀티모달 처리 능력도 한층 강화되었다.</p></li>
+<li><p><strong>Google Gemini 2.5 Pro</strong>: “생각하는 모델(thinking model)”을 표방하며, 응답 생성 전에 <strong>내부 추론 과정</strong>을 거쳐 정확도를 높이는 능력을 갖춘 모델이다. 기본적으로 <strong>100만 토큰의 컨텍스트 창</strong>을 지원하며 곧 200만 토큰으로 확장될 예정이다. 텍스트, 코드, 이미지, 오디오, 비디오를 모두 처리하는 <strong>네이티브 멀티모달리티</strong>(native multimodality) 역량과 함께 추론 및 코딩 벤치마크에서 최고의 성능을 기록하고 있다.</p></li>
+<li><p><strong>Anthropic Claude Sonnet 4</strong>: 100만 토큰 컨텍스트 창을 지원하며, 약 75,000줄 이상의 코드로 구성된 전체 코드베이스나 수십 편의 연구 논문을 단일 요청으로 처리할 수 있는 강력한 성능을 제공한다. 이는 특히 소프트웨어 개발 및 학술 연구 분야에서 <strong>새로운 가능성</strong>을 열어준다.</p></li>
+<li><p><strong>Magic LTM-2-Mini</strong>: 기존의 어텐션 기반 아키텍처와는 다른 접근 방식을 통해 <strong>1억 토큰</strong>이라는 경이로운 컨텍스트를 처리하는 혁신적인 모델이다. 동일 성능 기준으로 볼 때, Llama 계열 대비 <strong>1000배 이상의 효율</strong>을 보인다는 주장으로 화제가 되었으며, 단순한 양적 확장을 넘어 <strong>근본적으로 더 효율적인 아키텍처의 등장</strong>을 예고한다.</p></li>
+</ul>
+<p>이러한 모델들의 등장은 개발자와 사용자에게 전례 없는 규모의 데이터를 한 번에 다룰 수 있는 강력한 도구를 제공하고 있다. 아래 표는 이들 주요 모델의 핵심 특징을 요약한 것이다.</p>
+<p><strong>표 1: 주요 LLM 컨텍스트 창 비교 (2025년 기준)</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>모델명</p></th>
+<th class="head text-left"><p>개발사</p></th>
+<th class="head text-left"><p>최대 컨텍스트 창</p></th>
+<th class="head text-left"><p>핵심 특징</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>GPT-5</p></td>
+<td class="text-left"><p>OpenAI</p></td>
+<td class="text-left"><p>미공개 (수백만+ 추정)</p></td>
+<td class="text-left"><p>전용 추론 모듈, 멀티모달 강화</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Gemini 2.5 Pro</p></td>
+<td class="text-left"><p>Google</p></td>
+<td class="text-left"><p>1,000,000 (곧 2,000,000)</p></td>
+<td class="text-left"><p>생각하는 모델, 네이티브 멀티모달리티</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>Claude Sonnet 4</p></td>
+<td class="text-left"><p>Anthropic</p></td>
+<td class="text-left"><p>1,000,000</p></td>
+<td class="text-left"><p>대규모 코드베이스 및 문서 분석 최적화</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Llama 4</p></td>
+<td class="text-left"><p>Meta</p></td>
+<td class="text-left"><p>10,000,000 (추정)</p></td>
+<td class="text-left"><p>오픈 소스 생태계 기반 확장성</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>LTM-2-Mini</p></td>
+<td class="text-left"><p>Magic</p></td>
+<td class="text-left"><p>100,000,000</p></td>
+<td class="text-left"><p>시퀀스-차원 알고리즘, 초고효율 구조</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="id3">
+<h3>1.3 새로운 개발자 패러다임: 단순 질의응답을 넘어서<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<p>컨텍스트 창의 확장은 단순히 더 긴 글을 요약하는 수준을 넘어, 완전히 새로운 애플리케이션 유형과 개발 패러다임을 가능하게 한다. 몇 가지 예를 들면 다음과 같다:</p>
+<ul class="simple">
+<li><p><strong>포괄적인 문서 분석 (Comprehensive Document Analysis)</strong>: 모델은 이제 전체 연구 논문, 기술 매뉴얼, 법률 계약서 등을 한 번에 입력받아, 문서 전체의 맥락을 이해하고 깊이 있는 분석을 수행할 수 있다. 이는 법률, 금융, 의료 분야의 전문가들이 방대한 자료를 검토하는 시간을 획기적으로 단축시킬 수 있다.</p></li>
+<li><p><strong>확장된 대화 기록 (Extended Conversational History)</strong>: 챗봇이나 AI 에이전트가 몇 시간, 심지어 며칠에 걸친 대화 내용을 모두 기억할 수 있게 된다. 이를 통해 사용자와의 상호작용에서 맥락을 잃어버리는 “기억 상실” 문제를 해결하고, 훨씬 더 <strong>개인화되고 일관성 있는 대화 경험</strong>을 제공할 수 있다.</p></li>
+<li><p><strong>저장소 수준의 코드 이해 (Repository-Level Code Understanding)</strong>: 전체 코드 저장소를 통째로 컨텍스트에 포함시킴으로써, 모델은 복잡한 버그 수정, 대규모 리팩토링, 코드 종속성 분석 등 <strong>고차원적인 개발 작업</strong>을 지원할 수 있다. 이는 GitHub Copilot과 같은 AI 기반 개발 도구의 능력을 한 차원 끌어올리는 계기가 된다.</p></li>
+<li><p><strong>캐시 증강 생성 (Cache Augmented Generation, CAG)</strong>: 자주 사용되는 문서나 정보를 미리 계산하여 프롬프트의 일부로 캐싱해두는 새로운 패러다임이다. 이는 외부 데이터베이스를 검색하는 RAG(검색 증강 생성) 방식에 비해 지연 시간(latency)이 짧다는 장점이 있다. 거대한 컨텍스트 창 덕분에 이러한 대용량 캐시를 프롬프트에 직접 포함하는 것이 가능해졌다.</p></li>
+</ul>
+</section>
+<section id="id4">
+<h3>1.4 숨겨진 비용 - 피할 수 없는 트레이드오프<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<p>이러한 눈부신 발전이 <strong>“만능 해결책”</strong>(silver bullet)은 아니라는 점도 분명히 인지해야 한다. 초장문 컨텍스트는 강력한 만큼 명확한 비용과 트레이드오프를 동반한다.</p>
+<ul class="simple">
+<li><p><strong>재정적 비용 증가</strong>: 대부분의 상용 LLM API는 입력 토큰 수에 따라 비용을 청구한다. 따라서 컨텍스트가 길어질수록 API 호출 비용은 직접적으로 증가한다. 예를 들어, Anthropic의 Claude Sonnet 4는 20만 토큰을 초과하는 프롬프트에 대해 <strong>입력 토큰 비용을 두 배로 책정</strong>하는 등, 대규모 컨텍스트 사용에 따르는 계산 비용 증가를 가격 정책에 반영하고 있다.</p></li>
+<li><p><strong>응답 지연 시간 증가</strong>: 입력 토큰의 양이 많아질수록 출력 토큰이 생성되는 속도도 느려지는 경향이 있다. 이는 실시간 상호작용이 중요한 애플리케이션에서는 치명적인 단점이 될 수 있다.</p></li>
+</ul>
+<p>결론적으로, <strong>2025년의 개발자들은 새로운 “컨텍스트-컴퓨팅-비용 최적화” 문제에 직면</strong>하게 되었다. 더 많은 컨텍스트를 제공하면 모델의 정확도와 추론 능력이 향상될 수 있지만, 이는 더 높은 비용과 느린 응답 속도를 감수해야 함을 의미한다. 따라서 “<strong>무조건 크게</strong>”가 아닌, <strong>특정 작업에 필요한 최적의 컨텍스트 크기</strong>를 찾는 전략적 접근이 중요해졌다. 이는 단순한 프롬프트 엔지니어링을 넘어, 비용과 성능을 모두 고려하는 “<strong>컨텍스트 엔지니어링</strong>(context engineering)”의 시대를 열고 있다.</p>
+</section>
+</section>
+<section id="i">
+<h2>2. 핵심 기술 I: 어텐션 메커니즘의 재창조<a class="headerlink" href="#i" title="Link to this heading">#</a></h2>
+<p>트랜스포머 아키텍처의 심장이자 초장문 컨텍스트 실현의 가장 큰 걸림돌이었던 것은 바로 <strong>셀프 어텐션</strong>(self-attention) 메커니즘의 계산 복잡도 문제다. 이 문제를 해결하기 위해 하드웨어, 알고리즘, 분산 시스템, 그리고 모델 아키텍처에 이르기까지 컴퓨팅 스택의 모든 수준에서 혁신적인 연구가 진행되었다. 특정 기술 하나가 아닌, <strong>다각적인 접근 방식이 결합</strong>되어 현재의 기술적 도약을 이끌어냈음을 우리가 확인하게 될 것이다.</p>
+<section id="o-n-2">
+<h3>2.1 표준 셀프 어텐션의 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 병목 현상<a class="headerlink" href="#o-n-2" title="Link to this heading">#</a></h3>
+<p>표준 셀프 어텐션 메커니즘의 핵심은 시퀀스 내의 <strong>모든 토큰 쌍 간의 관계</strong>를 계산하는 것이다. 시퀀스 길이가 <span class="math notranslate nohighlight">\(n\)</span>일 때, 이는 <span class="math notranslate nohighlight">\(n times n\)</span> 크기의 어텐션 스코어 행렬을 생성하고 계산해야 함을 의미한다. 이로 인해 <strong>계산 복잡도와 메모리 요구량</strong> 모두 시퀀스 길이에 대해 제곱 비례(<span class="math notranslate nohighlight">\(O(n^2)\)</span>)하여 증가한다.</p>
+<p>이러한 **이차 복잡도(quadratic complexity)**는 시퀀스 길이가 수천 토큰만 되어도 계산량과 메모리 사용량이 기하급수적으로 폭증하는 병목 현상을 유발한다. 이것이 과거 LLM들의 컨텍스트 창이 수백에서 수천 토큰 수준에 머물렀던 근본적인 이유였다. 한 마디로, <strong>컨텍스트 창이 짧으면 짧을수록 모델 운용 비용이 통제 가능</strong>했던 것이다.</p>
+</section>
+<section id="flashattention-i-o">
+<h3>2.2 공학적 효율화: FlashAttention의 I/O 병목 최적화<a class="headerlink" href="#flashattention-i-o" title="Link to this heading">#</a></h3>
+<p><strong>FlashAttention</strong>은 표준 어텐션의 계산 결과와 <strong>완전히 동일한 값</strong>을 내면서도, 공학적인 최적화를 통해 <strong>속도와 메모리 효율을 극대화</strong>한 기념비적인 기술이다. FlashAttention의 핵심 통찰은 <strong>어텐션 계산의 실제 병목이 연산 자체보다도 GPU 메모리 계층 간 데이터 이동(I/O)에 있다는 점</strong>을 간파한 것이다.</p>
+<p>구체적으로, FlashAttention은 전체 <span class="math notranslate nohighlight">\(n times n\)</span> 어텐션 행렬을 HBM(고대역폭 메모리)에 생성하고 다시 읽어오는 대신, 입력을 작은 블록으로 나누는 <strong>타일링(tiling)</strong> 기법을 사용한다. 각 블록에 대한 계산은 GPU의 빠른 온칩 메모리(SRAM) 내에서 수행되고, 여러 계산 단계를 하나로 묶는 **커널 퓨전(kernel fusion)**을 통해 HBM 접근을 최소화한다. 이 접근법 덕분에 FlashAttention은 근사 없이 정확한 어텐션 결과를 계산하면서도 <strong>최대 2배 더 빠른 속도</strong>와 <strong>메모리 사용량 감소</strong>를 달성했다.</p>
+<p>중요한 점은 FlashAttention이 <strong>어텐션의 근본적인 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 복잡도를 바꾸지는 않는다는 것</strong>이다. 대신 하드웨어의 특성을 최대한 활용하여, 이차 복잡도 계산을 <strong>훨씬 더 효율적으로 수행</strong>하게 만든 공학적 혁신이다. 이를 통해 과거에는 비현실적이었던 수만 토큰 길이의 시퀀스에서도 표준 어텐션을 실용적으로 사용할 수 있는 길이 열렸다.</p>
+<section id="hugging-face-transformers-flashattention">
+<h4>2.2.1 실습: Hugging Face Transformers에서 FlashAttention 활성화<a class="headerlink" href="#hugging-face-transformers-flashattention" title="Link to this heading">#</a></h4>
+<p>Hugging Face의 🤗 Transformers 라이브러리는 FlashAttention을 긴밀하게 통합하여, <strong>모델 로드 시 attn_implementation 인자 하나만으로</strong> 간단하게 활성화할 수 있다. 이를 통해 기존 코드를 거의 변경하지 않으면서도 <strong>상당한 추론 속도 및 메모리 효율성 개선</strong>을 얻을 수 있다. 아래는 FlashAttention-3를 지원하는 예시 모델을 로드할 때 표준 어텐션과 FlashAttention을 선택적으로 사용하는 방법이다:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">AutoTokenizer</span>
+
+<span class="c1"># GPU가 Hopper 아키텍처 이상이고, flash-attn 라이브러리가 설치되어 있다고 가정</span>
+
+<span class="n">device</span> <span class="o">=</span> <span class="s2">&quot;cuda&quot;</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">&quot;cpu&quot;</span>
+<span class="n">model_id</span> <span class="o">=</span> <span class="s2">&quot;openai/gpt-oss-20b&quot;</span> <span class="c1"># FlashAttention-3를 지원하는 예시 모델 ID</span>
+
+<span class="c1"># 1. 기본 어텐션 구현으로 모델 로드</span>
+
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="n">model_id</span><span class="p">)</span>
+<span class="n">model_eager</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+ <span class="n">model_id</span><span class="p">,</span>
+ <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+ <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with standard attention loaded.&quot;</span><span class="p">)</span>
+
+<span class="c1"># 2. FlashAttention-3 구현으로 모델 로드</span>
+
+<span class="c1"># 내부적으로 vLLM의 FlashAttention-3 커널을 사용하며,</span>
+
+<span class="c1"># 해당 커널은 &#39;kernels&#39; 패키지를 통해 허브에서 자동 다운로드됩니다.</span>
+
+<span class="k">try</span><span class="p">:</span>
+ <span class="n">model_flash</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+ <span class="n">model_id</span><span class="p">,</span>
+ <span class="n">torch_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bfloat16</span><span class="p">,</span>
+ <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span><span class="p">,</span>
+ <span class="n">attn_implementation</span><span class="o">=</span><span class="s2">&quot;kernels-community/vllm-flash-attn3&quot;</span> <span class="c1"># FlashAttention-3 활성화</span>
+ <span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Model with FlashAttention-3 loaded successfully.&quot;</span><span class="p">)</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Note: This requires a compatible GPU (e.g., NVIDIA Hopper series).&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">ImportError</span><span class="p">:</span>
+ <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;FlashAttention is not installed or the environment does not support it.&quot;</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+ <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;An error occurred while loading with FlashAttention: </span><span class="si">{</span><span class="n">e</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>실행 결과 예시:</strong></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Model</span> <span class="k">with</span> <span class="n">standard</span> <span class="n">attention</span> <span class="n">loaded</span><span class="o">.</span>
+<span class="n">Model</span> <span class="k">with</span> <span class="n">FlashAttention</span><span class="o">-</span><span class="mi">3</span> <span class="n">loaded</span> <span class="n">successfully</span><span class="o">.</span>
+<span class="n">Note</span><span class="p">:</span> <span class="n">This</span> <span class="n">requires</span> <span class="n">a</span> <span class="n">compatible</span> <span class="n">GPU</span> <span class="p">(</span><span class="n">e</span><span class="o">.</span><span class="n">g</span><span class="o">.</span><span class="p">,</span> <span class="n">NVIDIA</span> <span class="n">Hopper</span> <span class="n">series</span><span class="p">)</span><span class="o">.</span>
+</pre></div>
+</div>
+<section id="id5">
+<h5>체크포인트 질문<a class="headerlink" href="#id5" title="Link to this heading">#</a></h5>
+<ul class="simple">
+<li><p>FlashAttention이 기존 어텐션 메커니즘의 어떤 문제를 해결하며, 타일링 기법은 어떻게 작동하나요?</p></li>
+<li><p>FlashAttention-3에서 활용하는 NVIDIA Hopper 아키텍처의 주요 하드웨어 가속 기능들은 무엇인가요?</p></li>
+<li><p>attn_implementation=”kernels-community/vllm-flash-attn3” 옵션을 사용할 때 필요한 조건들은 무엇이며, 조건을 만족하지 않을 경우 어떤 현상이 발생할까요?</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="linear-attention">
+<h3>2.3 알고리즘적 효율화: 선형 시간 근사 (Linear Attention)<a class="headerlink" href="#linear-attention" title="Link to this heading">#</a></h3>
+<p>어텐션 계산 자체를 근본적으로 가볍게 만들려는 시도도 활발히 이루어졌다. 그 대표적인 예가 <strong>선형 어텐션(Linear Attention)</strong> 계열의 기법들로, 어텐션 메커니즘을 근사하여 복잡도를 <span class="math notranslate nohighlight">\(O(n^2)\)</span>에서 **<span class="math notranslate nohighlight">\(O(n)\)</span> (선형)**으로 낮추는 것을 목표로 한다.</p>
+<p>핵심 아이디어는 <strong>소프트맥스(softmax)</strong> 함수를 특정 커널 함수로 대체하여, 행렬 곱셈의 계산 순서를 바꾸는 것이다. 이를 통해 거대한 <span class="math notranslate nohighlight">\(n \times n\)</span> 어텐션 행렬을 직접 계산하지 않고도 동일한 효과를 내도록 한다. 예를 들어, Queries와 Keys에 특정 <strong>특징 함수를 적용</strong>하면 어텐션 스코어 계산을 <strong>두 개의 작은 행렬곱</strong>으로 분해할 수 있다. 결과적으로 전체 계산량이 시퀀스 길이에 <strong>선형적으로</strong> 비례하도록 만든다.</p>
+<p>그러나 이러한 효율성 향상은 <strong>정확성과의 트레이드오프</strong>다. 선형 어텐션은 근사 기법이므로, 표준 어텐션과 완전히 동일한 결과를 보장하지 않으며, 이로 인한 **근사 오차(approximation error)**가 모델의 성능을 일부 저하시킬 수 있다. 실제로 FlashAttention과 유사한 맥락에서 제안된 **Flash Linear Attention (FLA)**은 이러한 선형 어텐션 개념을 하드웨어 친화적인 **”청크 단위 병렬 알고리즘(chunkwise parallel algorithm)”**으로 구현하여 효율성을 극대화한 사례다.</p>
+</section>
+<section id="ring-attention">
+<h3>2.4 시스템적 효율화: Ring Attention을 이용한 분산 어텐션<a class="headerlink" href="#ring-attention" title="Link to this heading">#</a></h3>
+<p><strong>Ring Attention</strong>은 단일 장치의 한계를 넘어, 여러 장치(GPU/TPU)에 걸쳐 긴 시퀀스의 어텐션 계산을 분산시키는 <strong>시스템 수준의 혁신</strong>이다. 대규모 모델 학습에 흔히 쓰이는 병렬화 기법인 <strong>모델 병렬화, 데이터 병렬화, 파이프라인 병렬화</strong> 등과 달리, Ring Attention은 **시퀀스 병렬화(sequence parallelism)**에 해당한다. 긴 입력 시퀀스를 여러 조각으로 나누고, 각 조각을 서로 다른 장치에 할당하여 병렬로 어텐션을 수행하는 방식이다.</p>
+<p>Ring Attention의 작동 메커니즘은 다음과 같다:</p>
+<ol class="arabic simple">
+<li><p><strong>시퀀스 분할 및 분산</strong>: 매우 긴 입력 시퀀스를 여러 블록으로 나누어, 각 블록을 서로 다른 장치에 할당한다.</p></li>
+<li><p><strong>개념적 링(ring) 형성</strong>: 계산에 참여하는 모든 장치들이 논리적인 링 형태의 연결 구조를 갖춘다.</p></li>
+<li><p><strong>블록별 계산 및 통신 오버랩</strong>: 각 장치는 자신이 맡은 쿼리(Query) 블록에 대한 어텐션 계산을 시작한다. 이때 다른 장치에 저장된 키(Key)와 값(Value) 블록이 필요해지면, <strong>링의 다음 장치로부터</strong> 필요한 KV 블록을 전달받고 <strong>동시에 링의 이전 장치로</strong> 자신의 KV 블록을 전송한다. 이 통신은 각 장치의 어텐션 계산과 <strong>동시에(오버랩)</strong> 일어나도록 설계되었다.</p></li>
+<li><p><strong>통신 오버헤드 제거</strong>: 각 장치는 자신의 계산이 끝나면, 곧바로 다음 장치로부터 새로운 KV 블록을 받아 이어서 계산을 진행한다. 이처럼 <strong>계산과 통신이 완전히 겹쳐서 진행</strong>되므로, 링 내에서 추가적인 통신 지연 시간이 거의 발생하지 않는다.</p></li>
+</ol>
+<p>이러한 구조 덕분에, Ring Attention을 이용하면 <strong>장치 수에 비례하여 컨텍스트 크기를 선형 확장</strong>할 수 있다. 예를 들어, 1024개의 TPU를 사용하면 Llama 2 모델에서 <strong>1,000만 토큰 이상의 컨텍스트</strong>를 처리하는 것도 가능함이 시연되었다. 이는 어텐션 계산을 근사하지 않으면서도, 사실상 “<strong>무한대에 가까운</strong>” 컨텍스트를 처리할 수 있는 길을 연 시스템 아키텍처의 승리라 할 수 있다.</p>
+</section>
+<section id="magic">
+<h3>2.5 아키텍처 혁신: Magic의 시퀀스-차원 알고리즘<a class="headerlink" href="#magic" title="Link to this heading">#</a></h3>
+<p>Magic사의 <strong>LTM-2-Mini</strong> 모델은 기존 트랜스포머 기반 어텐션을 넘어서는 <strong>근본적인 아키텍처 변화</strong>의 가능성을 제시한다. 이 모델이 사용하는 “<strong>시퀀스-차원 알고리즘(sequence-dimension algorithm)</strong>”은 놀라운 효율성을 자랑하는데, <strong>1억 토큰</strong> 컨텍스트에 대해 Llama 3.1의 어텐션 메커니즘보다 연산량(FLOPs) 측면에서 <strong>약 1000배 저렴</strong>하다고 알려져 있다.</p>
+<p>그러나 가장 충격적인 혁신은 <strong>메모리 사용량</strong>, 특히 <strong>KV 캐시(KV cache)</strong> 문제의 해결에 있다. 표준 트랜스포머 모델에서 KV 캐시는 어텐션 계산을 위해 <strong>모든 이전 토큰들의 Key와 Value 벡터를 저장</strong>하는 공간이다. 1억 토큰 컨텍스트를 가진 대형 Llama 모델의 경우, 이 KV 캐시를 저장하는 데에만 <strong>약 51TB의 VRAM</strong>이 필요하며, 이는 사용자 한 명당 약 <strong>638개의 H100 GPU</strong>가 필요하다는 계산으로 이어진다. 상식적으로 불가능한 이 요구사항은 초장문 컨텍스트의 실용화를 가로막는 새로운 장벽이었다.</p>
+<p>반면, LTM-2-Mini는 동일한 1억 토큰 컨텍스트에 대해 단일 H100 GPU 메모리의 <strong>극히 일부만으로</strong> 동작한다고 주장한다. 이는 LTM-2-Mini가 기존의 KV 캐시 메커니즘에서 완전히 벗어난, <strong>새로운 방식으로 시퀀스 정보를 처리</strong>하고 있음을 시사한다. KV 캐시라는 “메모리 장벽”을 극복하는 것은 초장문 컨텍스트 시대의 다음 핵심 과제이며, LTM-2-Mini의 접근 방식은 이에 대한 하나의 해법을 제시하고 있다.</p>
+<p>한편 이러한 혁신적인 모델의 성능을 정확히 평가하기 위해 **”HashHop”**이라는 새로운 평가 방법도 제안되었다. 기존의 “<strong>건초더미에서 바늘 찾기(Needle in a Haystack)</strong>” 테스트가 의미론적 힌트에 의존할 수 있는 반면, HashHop은 <strong>무작위적이고 압축 불가능한 해시(hash) 값을 사용</strong>하여 모델이 의미적 단서 없이도 컨텍스트 전역에서 필요한 정보를 정확히 저장하고 검색하도록 강제한다. 이를 통해 모델의 <strong>실제 정보 처리 능력</strong>을 더욱 엄격하게 측정할 수 있다.</p>
+<p>아래 표는 본 절에서 논의된 다양한 어텐션 메커니즘들의 기술적 특징을 비교한 것이다.</p>
+<p><strong>표 2: 장문 컨텍스트 어텐션 메커니즘 비교</strong></p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>메커니즘</p></th>
+<th class="head text-left"><p>계산 복잡도</p></th>
+<th class="head text-left"><p>메모리 복잡도</p></th>
+<th class="head text-left"><p>정확도</p></th>
+<th class="head text-left"><p>핵심 원리</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>표준 어텐션</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p>정확</p></td>
+<td class="text-left"><p>모든 토큰 쌍의 관계를 직접 계산</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>FlashAttention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span> (실질)</p></td>
+<td class="text-left"><p>정확</p></td>
+<td class="text-left"><p>I/O 인식 최적화 (타일링, 커널퓨전)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>선형 어텐션</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n)\)</span></p></td>
+<td class="text-left"><p>근사</p></td>
+<td class="text-left"><p>커널 함수를 통한 소프트맥스 근사</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>Ring Attention</p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n^2/N)\)</span></p></td>
+<td class="text-left"><p><span class="math notranslate nohighlight">\(O(n/N)\)</span></p></td>
+<td class="text-left"><p>정확</p></td>
+<td class="text-left"><p>시퀀스 병렬화 + 통신-계산 오버랩 (장치 <span class="math notranslate nohighlight">\(N\)</span>개)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="ii-positional-encoding">
+<h2>3. 핵심 기술 II: 위치 정보(Positional Encoding)의 확장<a class="headerlink" href="#ii-positional-encoding" title="Link to this heading">#</a></h2>
+<p>트랜스포머는 토큰의 순서나 상대적 위치를 내재적으로 이해하지 못하기 때문에, 이를 알려주기 위한 **별도의 위치 부호화(position encoding)**가 필요하다. **로터리 위치 임베딩(Rotary Positional Embeddings, RoPE)**은 이런 위치 정보를 효과적으로 인코딩하는 방법으로 널리 사용되지만, <strong>훈련 중 보지 못했던 긴 시퀀스에 대해서는 성능이 저하되는 “외삽(extrapolation)” 문제</strong>를 가지고 있다. 초장문 컨텍스트 실현을 위해서는 이 위치 외삽 문제를 해결하는 것 역시 핵심 과제다.</p>
+<section id="rope">
+<h3>3.1 RoPE의 한계 - “외삽” 문제<a class="headerlink" href="#rope" title="Link to this heading">#</a></h3>
+<p>RoPE는 각 토큰의 절대 위치로부터 생성된 회전 행렬을 쿼리(Query)와 키(Key) 벡터에 곱하여, <strong>토큰 간 상대적 위치 정보를 어텐션 계산에 반영</strong>한다. 이 방식은 모델이 훈련 중 접했던 시퀀스 길이 범위 내에서는 매우 효과적이다.</p>
+<p>하지만 모델이 <strong>훈련 시 경험했던 최대 길이</strong>(예컨대 4096 토큰)를 넘어서는 위치(예: 10000번째 토큰)에 대한 어텐션을 처리할 때 문제가 발생한다. <strong>모델이 “본 적 없는” 위치</strong>에 대해서는 해당 위치 임베딩을 제대로 해석하지 못하고, 토큰 간 거리 정보가 뒤섞이거나 어텐션 스코어가 불안정해진다. 그 결과 모델의 성능이 급격히 저하되는데, 이것이 바로 RoPE의 <strong>외삽 문제</strong>다.</p>
+</section>
+<section id="longrope">
+<h3>3.2 LongRoPE - 정교한 스케일링 솔루션<a class="headerlink" href="#longrope" title="Link to this heading">#</a></h3>
+<p><strong>LongRoPE</strong>는 기존에 사전 훈련된 LLM의 컨텍스트 창을 최소한의 파인튜닝만으로 <strong>200만 토큰 이상</strong>으로 확장할 수 있는 최첨단 기술이다. LongRoPE의 성공은 단순히 위치 값을 수학적으로 늘리는 순진한 접근을 넘어, <strong>위치 정보의 특성을 깊이 이해하고 이를 정교하게 다루는 세 가지 핵심 메커니즘</strong>에 기반한다.</p>
+<section id="non-uniformity">
+<h4>3.2.1 메커니즘 1 - 불균일성(Non-Uniformity)의 활용<a class="headerlink" href="#non-uniformity" title="Link to this heading">#</a></h4>
+<p>LongRoPE의 중요한 통찰은 <strong>모든 위치와 모든 RoPE 차원을 동일하게 취급하는 균일한 보간은 최적이 아니라는 점</strong>이다. 대신 두 가지 형태의 **”불균일성”**을 적극 활용한다:</p>
+<ul class="simple">
+<li><p><strong>RoPE 차원별 가변 스케일링</strong>: RoPE 임베딩의 각 차원은 서로 다른 주파수로 회전(rotation)한다. LongRoPE는 일부 차원이 위치 정보를 보존하는 데 더 중요하다는 점에 착안하여, 차원마다 <strong>서로 다른 스케일링 팩터</strong>를 적용한다. 최적의 불균일 스케일링 조합을 찾기 위해 <strong>진화적 탐색 알고리즘</strong>과 같은 방법이 사용된다.</p></li>
+<li><p><strong>토큰 위치에 따른 차등 적용</strong>: 시퀀스의 <strong>초반부 토큰</strong>들은 전체 문맥을 설정하는 데 매우 중요한 역할을 한다 (이를 “<strong>어텐션 싱크(attention sink)</strong>” 현상이라고도 한다). LongRoPE는 이러한 <strong>초반부 토큰들의 위치 정보는 최대한 보존</strong>하기 위해, 해당 구간에는 보간을 덜 적용하거나 아예 적용하지 않는 식의 차별화된 전략을 취한다.</p></li>
+</ul>
+<p>이처럼 정교하고 불균일한 접근 방식을 통해, LongRoPE는 <strong>별도 파인튜닝 없이도 컨텍스트 창을 최대 8배까지 확장</strong>하는 놀라운 성과를 보였다.</p>
+</section>
+<section id="progressive-extension">
+<h4>3.2.2 메커니즘 2 - 점진적 확장 전략 (Progressive Extension)<a class="headerlink" href="#progressive-extension" title="Link to this heading">#</a></h4>
+<p>수백만 토큰 길이에 도달하기 위해 <strong>처음부터 그 길이로 직접 파인튜닝</strong>하는 것은 두 가지 문제를 동반한다. 첫째, <strong>계산 비용이 천문학적</strong>으로 증가한다. 둘째, <strong>그렇게 긴 고품질 훈련 데이터</strong>를 구하기가 매우 어렵다.</p>
+<p>LongRoPE는 이러한 문제를 해결하기 위해 <strong>효율적인 2단계 점진적 확장 전략</strong>을 사용한다. 일종의 **커리큘럼 학습(curriculum learning)**처럼, 모델이 점진적으로 긴 컨텍스트에 적응하도록 유도하는 방식이다:</p>
+<ol class="arabic simple">
+<li><p><strong>1단계 – 중간 길이 파인튜닝</strong>: 먼저 모델을 다루기 용이한 <strong>중간 길이</strong>의 컨텍스트(예: 256k 토큰)로 파인튜닝한다. 이를 통해 모델은 “긴 문맥”에 대한 기본적인 감을 익히게 된다.</p></li>
+<li><p><strong>2단계 – 최종 길이로 보간</strong>: 256k에 적응된 모델에 대해 다시 한 번 위치 보간을 적용하여 <strong>최종 목표 길이</strong>(예: 2048k 토큰)로 확장한다. 이미 어느 정도 긴 문맥 경험이 쌓인 상태이므로, 추가적인 보간이 훨씬 더 안정적이고 효과적으로 이루어진다.</p></li>
+</ol>
+<p>이러한 <strong>점진적 접근</strong>은 <strong>아키텍처적 혁신과 함께 신중히 설계된 훈련 전략이 필수적</strong>임을 보여준다. 즉, 초장문 컨텍스트 모델의 성공은 <strong>아키텍처와 훈련 과정의 긴밀한 상호작용</strong>에 달려있다.</p>
+</section>
+<section id="id6">
+<h4>3.2.3 메커니즘 3 - 단문 컨텍스트 성능 복원<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<p>컨텍스트 창을 극단적으로 늘리는 과정에서, 모델이 원래 짧은 컨텍스트(예: 4k, 8k)에서 발휘하던 성능이 저하되는 부작용이 발생할 수 있다. LongRoPE는 이를 방지하기 위해 <strong>마지막 조정 단계</strong>를 거친다. 확장된 모델에 대해 <strong>짧은 컨텍스트 길이에 최적화된 스케일링 팩터를 다시 탐색</strong>하여 적용함으로써, 모델이 긴 컨텍스트 처리 능력과 동시에 <strong>기존의 짧은 컨텍스트 성능도 유지</strong>하도록 한다.</p>
+</section>
+</section>
+<section id="id7">
+<h3>3.3 실습: LongRoPE를 활용한 컨텍스트 확장 예시<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<p>LongRoPE 방법론의 오픈 소스 구현이 공개되어 있어, 이를 활용하면 <strong>기존 사전학습 LLM의 컨텍스트 창을 손쉽게 확장</strong>해볼 수 있다. 아래 예시는 base 4k 컨텍스트를 가진 모델을 LongRoPE로 확장하여 <strong>2048k (약 210만) 토큰 컨텍스트</strong>로 늘리는 과정을 보여준다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># 1. 설정: 모델 차원 및 목표 컨텍스트 길이 정의</span>
+
+<span class="n">data_path</span> <span class="o">=</span> <span class="s2">&quot;path/to/your/dataset&quot;</span>
+<span class="n">d_model</span> <span class="o">=</span> <span class="mi">512</span>
+<span class="n">n_heads</span> <span class="o">=</span> <span class="mi">8</span>
+<span class="n">num_layers</span> <span class="o">=</span> <span class="mi">6</span>
+<span class="n">base_length</span> <span class="o">=</span> <span class="mi">4096</span> <span class="c1"># 기존 모델의 최대 컨텍스트 길이 (4k)</span>
+<span class="n">target_length</span> <span class="o">=</span> <span class="mi">2048</span> <span class="o">*</span> <span class="mi">1024</span> <span class="c1"># 목표 컨텍스트 길이 (2048k, 약 210만 토큰)</span>
+
+<span class="c1"># 2. 데이터 로드 및 LongRoPE 모델 초기화</span>
+
+<span class="n">data</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">(</span><span class="n">data_path</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">LongRoPEModel</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">n_heads</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">,</span> <span class="n">base_length</span><span class="p">)</span>
+
+<span class="c1"># 3. LongRoPE를 통해 컨텍스트 창 확장</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">extend_context</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target_length</span><span class="p">)</span>
+
+<span class="c1"># 4. 확장된 모델 테스트: target_length 길이의 임의 입력 처리</span>
+
+<span class="n">input_ids</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">target_length</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+<span class="n">output</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># 예상 출력 형태: (batch_size, target_length, d_model)</span>
+</pre></div>
+</div>
+<p>위 코드에서는 LongRoPEModel을 초기화하고 extend_context() 메서드를 통해 <strong>사전 학습된 모델을 점진적 보간 전략으로 파인튜닝</strong>함으로써 컨텍스트 창을 늘리고 있다. 예를 들어 base_length=4096이던 모델이 LongRoPE를 거쳐 target_length=2097152 (2,097,152) 토큰까지 처리가 가능해진 것을 확인할 수 있다. 최종 출력의 shape을 출력하면 배치 크기 2에 약 210만 길이 시퀀스를 문제없이 처리했음을 보여준다.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Note</span><span class="p">:</span> <span class="n">LongRoPE</span> <span class="n">적용에는</span> <span class="n">상당한</span> <span class="n">연산</span> <span class="n">자원과</span> <span class="n">시간</span><span class="p">,</span> <span class="n">그리고</span> <span class="n">적절한</span> <span class="n">데이터</span> <span class="n">커리큘럼이</span> <span class="n">필요하다</span><span class="o">.</span> <span class="n">하지만</span> <span class="n">이</span> <span class="n">기술을</span> <span class="n">통해</span> <span class="n">모델의</span> <span class="n">파라미터</span> <span class="n">수를</span> <span class="n">늘리지</span> <span class="n">않고도</span> <span class="n">초장문의</span> <span class="n">맥락을</span> <span class="n">활용할</span> <span class="n">수</span> <span class="n">있다는</span> <span class="n">점에서</span> <span class="n">실용적인</span> <span class="n">의미가</span> <span class="n">크다</span><span class="o">.</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="rag-vs-2025">
+<h2>4. RAG vs 초장문 컨텍스트: 2025년의 논쟁과 통합<a class="headerlink" href="#rag-vs-2025" title="Link to this heading">#</a></h2>
+<p><strong>100만 토큰 시대</strong>가 열리면서, NLP 커뮤니티에서는 뜨거운 논쟁이 일었다. <strong>모델이 방대한 지식 기반 전체를 컨텍스트 창에 넣을 수 있다면, 외부 정보를 검색하여 프롬프트에 추가하는 RAG(Retrieval-Augmented Generation) 방식이 불필요해지는 것 아닌가?</strong> 즉, 초장문맥 LLM이 충분히 똑똑하다면 모든 필요한 지식을 한 번에 읽히는 것으로 문제를 해결할 수 있지 않을까 하는 담론이었다. 특히 AI 에이전트의 부상과 맞물려 “에이전트가 RAG를 대체할 것”이라는 기대마저 나타났다.</p>
+<section id="rag">
+<h3>4.1 논쟁의 시작 - “RAG는 구시대의 유물인가”<a class="headerlink" href="#rag" title="Link to this heading">#</a></h3>
+<p>컨텍스트 창의 비약적 확장은 겉보기엔 RAG의 종말을 예고하는 듯했다. RAG의 핵심 역할은 <strong>모델이 알지 못하는 최신 정보나 내부 문서</strong>를 외부 검색을 통해 찾아와 컨텍스트에 제공하는 것이었다. 그러나 이제 모델이 수백 페이지 분량의 문서를 통째로 “읽을” 수 있게 되면서, 굳이 외부에서 정보를 검색해 넣어야 할 필요가 있느냐는 주장이 나온다. 실제 산업계 일각에서는 **”초장문맥 + 에이전트 조합이 RAG를 대체한다”**는 견해도 등장했다.</p>
+</section>
+<section id="id8">
+<h3>4.2 RAG의 필요성 - 순진한 초장문 컨텍스트의 한계<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<p>그러나 **”RAG는 죽었다”**는 주장은 <strong>초장문 컨텍스트를 아무 전략 없이 활용했을 때 발생하는 여러 문제점</strong>을 간과한 것이다. 최신 연구들은 다음과 같은 한계들을 밝혀냈다.</p>
+<ul class="simple">
+<li><p><strong>“중간 정보 손실(Lost in the Middle)” 문제</strong>: 모델은 긴 컨텍스트의 <strong>맨 앞과 맨 뒤 정보는 비교적 잘 기억</strong>하지만, <strong>중간에 위치한 정보는 놓치거나 무시</strong>하는 경향이 발견되었다. 긴 입력에 대한 모델 성능이 U자 형태의 곡선을 그리는 이 현상은, 단순히 컨텍스트에 정보를 때려 넣는 것만으로는 모델이 그 정보를 모두 효과적으로 활용하지 못할 수 있음을 보여줍니다.</p></li>
+<li><p><strong>“Hard Negatives” 문제</strong>: RAG 파이프라인에서 검색된 문서의 수를 늘릴수록 성능이 향상되다가, 일정 이상부터는 오히려 감소하는 현상이 관찰되었다. 이는 검색 결과에 포함된, 질문과 <strong>표면적으로 유사하지만 실제 답변과 무관한 문서들</strong>(hard negatives)이 모델을 혼란시켜 답변 질을 떨어뜨리기 때문이다. 무조건 많은 문서를 넣는 것이 답이 아님을 보여주는 예다.</p></li>
+<li><p><strong>비용 및 지연 시간</strong>: 앞서 언급했듯, 매 쿼리마다 수백만 토큰 컨텍스트를 모델에 넣는 것은 <strong>비용이 매우 비싸고 응답 지연도 크다</strong>. 반면 RAG는 <strong>필요한 정보만 선별하여 훨씬 작은 컨텍스트</strong>로 모델에 제공하므로 대부분의 경우 훨씬 효율적이다.</p></li>
+<li><p><strong>지식의 경계</strong>: 설령 1,000만 토큰의 컨텍스트를 넣을 수 있어도, 여전히 <strong>유한한 범위</strong>의 정보만 담을 수 있다. RAG는 사실상 <strong>무한대 크기의 외부 지식 베이스</strong>(예: 전체 인터넷, 기업의 모든 내부 문서)에 접근할 수 있다는 근본적인 이점이 있다.</p></li>
+</ul>
+<p>요약하면, **초장문 컨텍스트 모델이라고 해도 “모르는 건 모른다”**는 것이다. 모델 파라미터에 내장되지 않은 최신 지식이나 특수한 전문 정보는 여전히 외부에서 가져와야 한다. 또한 긴 컨텍스트 자체가 갖는 <strong>구조적 한계와 비용 문제</strong>를 간과할 수 없다.</p>
+<section id="haystack-rag-qa">
+<h4>4.2.1 실습: Haystack를 활용한 RAG 기반 QA 파이프라인<a class="headerlink" href="#haystack-rag-qa" title="Link to this heading">#</a></h4>
+<p>현업에서는 RAG를 구현하기 위해 <strong>Haystack</strong>과 같은 오픈소스 프레임워크를 널리 활용한다. Haystack은 <strong>유연한 파이프라인 구성</strong>을 통해 <strong>문서 저장소 + 검색기 + 읽기/생성 모델</strong>로 이루어진 <strong>엔드투엔드 QA 시스템</strong>을 손쉽게 구축할 수 있게 해줍니다. 아래는 간단한 문서 기반 QA 파이프라인 예제다. 하나의 문서를 인메모리 문서저장소에 넣고, BM25 기반 <strong>Retriever</strong>와 사전학습된 <strong>Reader</strong> 모델로부터 답을 추출하는 과정을 보여줍니다.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">pipeline</span> <span class="o">=</span> <span class="n">Pipeline</span><span class="p">()</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">retriever</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Retriever&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Query&quot;</span><span class="p">])</span>
+<span class="n">pipeline</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="n">component</span><span class="o">=</span><span class="n">reader</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Reader&quot;</span><span class="p">,</span> <span class="n">inputs</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Retriever&quot;</span><span class="p">])</span>
+
+<span class="c1"># 4) QA 실행</span>
+
+<span class="n">query</span> <span class="o">=</span> <span class="s2">&quot;오징어 게임 감독이 누구야?&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">pipeline</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="n">query</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Retriever&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">5</span><span class="p">},</span> <span class="s2">&quot;Reader&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;top_k&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="s1">&#39;answers&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">answer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>위 코드에서는 간단히 <strong>인메모리 문서저장소</strong>에 하나의 문서를 넣고, BM25 기반 <strong>Retriever</strong>와 한국어 KorQuAD 데이터로 학습된 Electra <strong>Reader</strong>를 조합한 파이프라인을 구축했다. pipeline.run()에 질의를 넣으면 Retriever가 상위 5개 문서를 찾고, Reader가 그 중에서 답을 추출하여 반환한다. 예를 들어 위 질문에 대해 “황동혁”이라는 정답을 얻을 수 있을 것이다.</p>
+<p>Haystack의 강력한 점은 이처럼 <strong>구성 요소를 교체하거나 확장하기 용이</strong>하다는 데 있다. Dense Retriever로 바꾸거나, Reader 대신 GPT-3 같은 생성 모델을 Generator로 붙이는 것도 가능하다. 또 멀티홉 QA처럼 중간에 여러 노드를 순차/병렬 구성하여 <strong>복잡한 추론 시나리오</strong>를 지원할 수도 있다.</p>
+<p>실제 산업 현장에서는 Haystack을 활용해 <strong>도메인 문서 검색 + QA</strong> 서비스나, <strong>챗봇</strong>에 외부 지식을 주입하는 <strong>RAG 파이프라인</strong>을 구성하는 사례가 많다. 요약하면, Haystack은 <strong>검색 엔진과 NLP 모델을 하나로 엮는 프레임워크</strong>로, 비교적 적은 코드로도 강력한 <strong>문서 기반 QA 시스템</strong>을 구축할 수 있게 해주는 도구다.</p>
+<p><strong>연습 문제:</strong> 위 Haystack 예시에서 BM25Retriever 대신 <strong>Dense Retriever</strong>(예: DensePassageRetriever)를 사용하려면 어떤 변화가 필요할까요? 또한 Reader를 대신하여 GPT 계열 생성 모델을 Generator로 붙이면 어떤 장단점이 있을지 생각해보세요. 마지막으로, pipeline.run() 호출 시 params에 전달한 top_k 값들을 조절하면 결과에 어떤 영향이 있을지 실험적으로 설명해보세요.</p>
+</section>
+</section>
+<section id="ai-rag">
+<h3>4.3 2025년의 통합 - AI 에이전트 메모리로서의 RAG<a class="headerlink" href="#ai-rag" title="Link to this heading">#</a></h3>
+<p>결국 “<strong>RAG 대 장문 컨텍스트</strong>”라는 구도는 잘못된 이분법이었다. <strong>2025년 최신 패러다임은 두 기술을 대립 관계가 아닌, AI 에이전트 인지 아키텍처의 상호 보완적 구성 요소로 통합</strong>하고 있다.</p>
+<ul class="simple">
+<li><p><strong>초장문 컨텍스트 = 단기 작업 기억(Short-Term Working Memory)</strong>: 에이전트가 <strong>현재 수행 중인 작업과 직접 관련된</strong> 방대한 정보를 일시적으로 저장하고 처리하는 공간이다.</p></li>
+<li><p><strong>RAG = 구조화된 장기 기억(Structured Long-Term Memory)</strong>: 에이전트가 <strong>영속적으로 축적하고 관리</strong>하는 지식 저장소로, 필요 시 언제든 검색 및 인출할 수 있는 체계적 메모리다.</p></li>
+</ul>
+<p>특히 이러한 <strong>“장기 기억 시스템”으로서의 RAG</strong>는 단순한 정보 검색을 넘어, <strong>인간의 기억처럼</strong> 더욱 복잡한 기능들을 통합하는 방향으로 진화하고 있다:</p>
+<ul class="simple">
+<li><p><strong>인덱싱(Indexing)</strong>: 벡터 DB 기반 유사도 검색을 뛰어넘어, <strong>주제별・시간별</strong> 등 다차원적인 검색이 가능한 고급 인덱싱 구조를 갖춥니다.</p></li>
+<li><p><strong>망각(Forgetting)</strong>: 오래되거나 유효성이 떨어진 정보를 <strong>의도적으로 삭제</strong>하여 메모리 용량을 확보하고, 검색 시 노이즈를 줄인다.</p></li>
+<li><p><strong>통합 및 정련(Consolidation)</strong>: 저장된 정보를 요약하거나 서로 연관된 지식들을 <strong>지식 그래프(knowledge graph)</strong> 형태로 구조화하여 재구성한다. 이를 통해 정보 인출을 돕고 <strong>더 깊은 의미적 이해</strong>를 가능케 한다.</p></li>
+</ul>
+</section>
+<section id="id9">
+<h3>4.4 진화된 RAG 아키텍처: 그래프 기반 추론의 부상<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<p>이러한 장기 기억 시스템 개념을 구현한 최신 RAG 프레임워크의 예로 <strong>HippoRAG</strong>이 있다. 인간 **해마(hippocampus)**의 기억 형성 원리에 영감을 받은 이 프레임워크는 RAG의 새로운 가능성을 보여줍니다.</p>
+<ul class="simple">
+<li><p><strong>HippoRAG의 아키텍처</strong>:</p></li>
+<li><p><strong>오프라인 지식 그래프 구축</strong> – LLM을 이용해 전체 문서 코퍼스를 분석하고, 문서들 간의 관계를 나타내는 **지식 그래프(KG)**를 사전에 만들어 둔다. 이는 인간 두뇌에서 대뇌피질(neocortex)이 정보를 저장하고 해마가 그 인덱스를 관리하는 과정과 유사하다.</p></li>
+<li><p><strong>온라인 검색 및 추론</strong> – 사용자의 질문이 들어오면, 질문의 핵심 개념을 **시드(seed)**로 삼아 지식 그래프 위에서 <strong>퍼스널라이즈드 페이지랭크(Personalized PageRank)</strong> 알고리즘을 수행한다. 단 한 번의 그래프 탐색으로 여러 문서에 흩어진 관련 정보를 <strong>통합・추론</strong>하여, 질의에 필요한 핵심 내용을 찾아냅니다.</p></li>
+<li><p><strong>HippoRAG의 장점</strong>: 이러한 접근은 <strong>멀티홉 질의응답</strong>처럼 여러 단계를 거쳐야 도달할 수 있는 복잡한 질문에서도 뛰어난 성능을 발휘한다. 또한, 그동안 RAG에서 흔히 사용되던 <strong>반복적 검색(Query Rewriting)</strong> 방식에 비해 <strong>단일 LLM 호출로</strong> 답을 도출하므로 훨씬 빠르고 비용도 낮다. 후속 연구인 <strong>HippoRAG 2</strong>는 **연관성 추론(associative reasoning)**과 <strong>의미 형성(sense-making)</strong> 능력을 더욱 향상시켜 복잡한 지식 통합 시나리오에 적용되고 있다.</p></li>
+</ul>
+<p>이와 같은 발전은 우리가 LLM을 단순한 입출력 함수로 보는 관점에서 벗어나, 그 주변에 **정교한 인지 아키텍처(cognitive architecture)**를 구축하는 방향으로 나아가고 있음을 보여준다. 초장문 컨텍스트가 <strong>‘작업 기억’</strong>, 진화된 RAG가 **”장기 기억”**을 담당하며, 이 둘 사이의 유기적인 상호작용을 어떻게 설계하느냐가 <strong>AI 에이전트 개발의 핵심 과제</strong>로 부상하고 있다. 이는 단순 정보 제공 문제를 넘어서, <strong>AI의 기억 체계와 사고 구조를 설계하는 시대</strong>의 도래를 의미한다.</p>
+</section>
+</section>
+<section id="id10">
+<h2>5. 실용적 고려사항: 벤치마크와 현실의 격차<a class="headerlink" href="#id10" title="Link to this heading">#</a></h2>
+<p>초장문 컨텍스트 기술이 빠르게 발전하고 있지만, 이를 <strong>실제 애플리케이션에 적용</strong>하기 위해서는 홍보되는 스펙과 현실적인 한계 사이의 간극을 명확히 이해해야 한다. 최신 벤치마크들은 이러한 간극을 측정하고, 개발자들에게 실용적인 가이드라인을 제공하는 중요한 역할을 한다.</p>
+<section id="llm">
+<h3>5.1 2025년 LLM 생태계의 다각화<a class="headerlink" href="#llm" title="Link to this heading">#</a></h3>
+<p>초장문 컨텍스트가 2025년 LLM 기술의 가장 두드러진 트렌드인 것은 분명하지만, 이것이 유일한 방향은 아닙니다. LLM 생태계는 다양한 요구사항에 맞춰 <strong>여러 갈래로 발전</strong>하고 있으며, 다른 주요 트렌드들과 공존하고 있다:</p>
+<ul class="simple">
+<li><p><strong>멀티모달리티(Multimodality)</strong>: Google의 Gemini 2.5 Pro와 같은 최신 모델들은 텍스트뿐 아니라 이미지, 오디오, 비디오 등 <strong>다양한 형태의 데이터를 네이티브하게 이해</strong>하고 처리한다. 이는 텍스트 이해 능력을 뛰어넘어 시각 정보, 청각 정보까지 통합하여 추론하는 능력을 의미한다.</p></li>
+<li><p><strong>소형 특화 모델 (Smaller, Specialized Models)</strong>: 거대 모델과 반대되는 흐름으로, 특정 도메인이나 작업에 최적화된 <strong>작고 효율적인 모델</strong>들이 각광받고 있다. 이런 모델들은 응답 속도가 빠르고 운영 비용이 낮으며, 스마트폰이나 IoT 기기에서 <strong>엣지 배포</strong>가 가능하다는 강점을 지닙니다.</p></li>
+<li><p><strong>에이전틱 워크플로우 (Agentic Workflows)</strong>: LLM을 핵심 엔진으로 활용하여 스스로 복잡한 작업을 계획하고 여러 단계를 거쳐 문제를 해결하는 <strong>자율 AI 에이전트</strong> 기술이 확산되고 있다. OpenAI의 GPT-5 역시 <strong>툴 사용 및 논리적 계획 수행</strong> 면에서 GPT-4보다 강화되어 이러한 워크플로우를 효과적으로 지원한다.</p></li>
+</ul>
+</section>
+<section id="id11">
+<h3>5.2 더 나은 평가의 필요성 - 장문 컨텍스트 벤치마크의 등장<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<p>모델의 컨텍스트 처리 능력이 비약적으로 향상됨에 따라, 기존의 벤치마크로는 이를 충분히 평가하기 어려워졌다. 이에 <strong>장문 컨텍스트</strong>에 특화된 새로운 평가 프레임워크들이 등장하고 있다.</p>
+<ul class="simple">
+<li><p><strong>LongBench v2</strong>: 최대 <strong>200만 단어</strong>에 이르는 방대한 컨텍스트를 포함하는 도전적인 문제들로 구성된 벤치마크로, 모델이 긴 맥락 속에서 <strong>깊이 있는 이해와 추론</strong>을 수행하는 능력을 평가한다. 예컨대 긴 논문 여러 편을 주고 종합적인 질문에 답하기, 소설 한 권을 읽고 줄거리 요약하기 등의 과제가 포함됩니다.</p></li>
+<li><p><strong>SWE-Bench</strong>: 실제 GitHub 저장소의 <strong>소프트웨어 이슈</strong>들을 활용하여, 모델이 현실적인 개발 환경과 유사한 <strong>복잡하고 긴 코드 컨텍스트</strong> 내에서 문제를 해결하는 능력을 측정한다. 이는 모델의 장문 코드 이해 및 디버깅 능력을 살펴보는 실용적 지표를 제공한다.</p></li>
+</ul>
+</section>
+<section id="longcodeu">
+<h3>5.3 현실 점검 - LONGCODEU 벤치마크의 발견<a class="headerlink" href="#longcodeu" title="Link to this heading">#</a></h3>
+<p>2025년에 발표된 <strong>LONGCODEU</strong> 벤치마크는 특히 <strong>“긴 코드 이해(long code understanding)”</strong> 능력에 초점을 맞춰, 현재 장문 컨텍스트 LLM들의 현실적인 한계를 드러낸 중요한 연구다.</p>
+<ul class="simple">
+<li><p><strong>핵심 발견</strong>: LONGCODEU 실험 결과, <strong>가장 진보된 LLM들조차 코드 길이가 32,000 토큰을 초과하면 성능이 급격히 저하</strong>되는 현상이 나타났다. 이는 모델들이 광고되는 128k~1M 토큰의 컨텍스트 창을 갖고 있더라도, 실제 <strong>복잡한 추론에서는 32k 정도 이후로는 제대로 기능하지 못한다</strong>는 것을 의미한다.</p></li>
+<li><p><strong>가장 어려운 과제</strong>: 특히 **코드 단위 간의 관계 이해(inter-code unit relation understanding)**가 LLM에게 가장 어려운 것으로 밝혀졌다. 즉, 대규모 코드베이스 내에서 서로 다른 함수・클래스・파일들이 어떻게 상호작용하는지를 파악하는 데 모델들이 취약하다는 의미다.</p></li>
+</ul>
+<p>이러한 발견은 <strong>초장문 컨텍스트 시대의 핵심 과제</strong>를 드러낸다. <strong>“광고된 컨텍스트 창”과 “실제 추론 가능한 창” 사이에 분명한 차이가 존재</strong>한다는 점이다. 현재 기술은 방대한 양의 정보를 입력으로 받는 능력은 확보했지만, 그 전체 정보에 걸쳐 <strong>깊이 있고 일관된 추론을 하는 능력</strong>은 아직 제한적이다. 요컨대, 모델이 단순히 정보를 <strong>찾는</strong> 능력은 컨텍스트 확장으로 향상되었을지 몰라도, 그 안에서 인간처럼 <strong>사고하는</strong> 능력은 아직 그 속도를 따라가지 못하고 있다. 이 간극을 메우는 것이 다음 세대 LLM 연구의 중요한 방향이 될 것이다.</p>
+</section>
+<section id="id12">
+<h3>5.4 결론 - 현업 개발자를 위한 전략적 권고<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<p>2025년 최첨단 기술 동향과 현실적인 한계를 종합하여, <strong>현업 개발자들이 초장문 컨텍스트 기술을 효과적으로 활용하기 위한 전략적 권고사항</strong>을 제시하며 강의를 마무리하고자 한다.</p>
+<ul class="simple">
+<li><p><strong>필요에 맞게 선택적으로 사용하라 (Be Selective)</strong>: 최대 컨텍스트 창이 크다고 무조건 다 사용할 필요는 없다. 작업에 정말 필요한 정보만 선별하여 컨텍스트에 포함시키고, 불필요한 토큰 낭비를 줄이는 것이 중요하다.</p></li>
+<li><p><strong>맥락을 지능적으로 구조화하라 (Structure Intelligently)</strong>: ‘중간 정보 손실’ 문제를 완화하기 위해, 가장 중요한 정보는 컨텍스트의 <strong>앞부분이나 끝부분</strong>에 배치하는 것이 유리하다. 또한 문서 내 섹션 구분이나 요약을 활용해 모델의 <strong>주의(attention)를 환기</strong>시키는 것도 한 방법이다.</p></li>
+<li><p><strong>성능과 비용을 모니터링하라 (Monitor and Benchmark)</strong>: 애플리케이션 개발 시 <strong>응답 속도</strong>, <strong>출력 품질</strong>, <strong>토큰 비용</strong> 등을 지속적으로 측정하여, 해당 작업에 <strong>최적화된 컨텍스트 길이</strong>를 찾아야 한다. 경우에 따라서는 16k나 32k만으로도 충분하고, 그 이상은 오버스펙일 수 있다.</p></li>
+<li><p><strong>하이브리드 접근을 활용하라 (Embrace Hybrid Approaches)</strong>: 하나의 기술 패러다임에 올인하기보다, 각 기법의 장점을 조합하는 <strong>하이브리드 아키텍처</strong>를 고려해야 한다. 예를 들어 <strong>초장문 컨텍스트</strong>는 에이전트의 ‘작업 기억’으로, **캐시 증강 생성(CAG)**은 자주 쓰는 데이터의 ‘고속 캐시’로, **진화된 RAG(HippoRAG 등)**는 방대한 외부 지식으로부터 필요한 정보를 ‘검색하고 추론하는 장기 기억’으로 활용하는 식이다. 이런 구성은 성능과 비용, 응답 속도 면에서 균형 잡힌 솔루션을 제공할 수 있다.</p></li>
+</ul>
+<p>초장문 컨텍스트 혁명은 LLM의 가능성을 새로운 차원으로 끌어올렸지만, 동시에 우리에게 <strong>더 정교하고 전략적인 활용법</strong>을 요구하고 있다. 기술의 잠재력을 최대한 활용하되 그 한계를 명확히 인지하고, 이를 보완하는 지혜가 앞으로의 AI 애플리케이션 개발의 성패를 좌우할 것이다.</p>
+</section>
+</section>
+<section id="id13">
+<h2>체크포인트 질문<a class="headerlink" href="#id13" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><strong>컨텍스트 창 확장의 의미</strong>: 100만 토큰 이상의 컨텍스트 창이 가능해진 것이 LLM의 활용 방식에 어떤 근본적인 변화를 가져왔는가? 과거의 “지식 압축” 방식과 현재의 “컨텍스트 내 정보 처리” 방식의 차이점은 무엇인가?</p></li>
+<li><p><strong>FlashAttention의 핵심</strong>: FlashAttention이 표준 어텐션과 동일한 결과를 내면서도 성능을 향상시킬 수 있는 핵심 원리는 무엇인가? 타일링과 커널 퓨전 기법이 어떻게 I/O 병목을 해결하는가?</p></li>
+<li><p><strong>LongRoPE의 혁신</strong>: LongRoPE가 RoPE의 외삽 문제를 해결하기 위해 사용한 세 가지 핵심 메커니즘은 무엇인가? 점진적 확장 전략이 왜 중요한가?</p></li>
+<li><p><strong>RAG vs 초장문 컨텍스트</strong>: 초장문 컨텍스트가 가능해졌음에도 불구하고 RAG가 여전히 필요한 이유는 무엇인가? ‘중간 정보 손실’ 문제와 “Hard Negatives” 문제는 무엇인가?</p></li>
+<li><p><strong>현실적 한계</strong>: LONGCODEU 벤치마크에서 드러난 초장문 컨텍스트 모델들의 현실적 한계는 무엇인가? 광고된 컨텍스트 창과 실제 추론 가능한 창 사이의 차이가 발생하는 이유는 무엇인가?</p></li>
+<li><p><strong>전략적 활용</strong>: 초장문 컨텍스트 기술을 효과적으로 활용하기 위한 네 가지 전략적 권고사항은 무엇인가? 각각이 해결하려는 문제는 무엇인가?</p></li>
+</ol>
+</section>
+<section id="id14">
+<h2>참고자료<a class="headerlink" href="#id14" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Meibel (2025). “Understanding the Impact of Increasing LLM Context Windows”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google AI Developers. “Long context - Gemini API Docs”. (Accessed Sep. 30, 2025)</p></li>
+<li><p><a class="reference external" href="http://Lablab.ai">Lablab.ai</a>. “LTM-2-mini AI technology page”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Shakudo (2025). “Top 9 Large Language Models as of September 2025”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google Cloud. “Generative AI on Vertex AI - Gemini 2.5 Pro”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google DeepMind (2025). “Gemini 2.5: Our most intelligent AI model - The Keyword”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Google I/O 2025. “Updates to Gemini 2.5”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Anthropic (2025). “Claude Sonnet 4 now supports 1M tokens of context”. (Accessed Sep. 30, 2025)</p></li>
+<li><p><a class="reference external" href="http://Lablab.ai">Lablab.ai</a> (2025). “How Magic.dev’s LTM-2-mini is Redefining AI’s Ability to Handle Vast Contexts”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Elinext (2025). “The Future of Large Language Models - Trends”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>GoPenAI (2024). “A Visual Guide to FlashAttention, Linear Attention, and Efficient Transformers”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Hailey Schoelkopf (2024). “Linear Attention Fundamentals”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Dao et al. (2024). “The I/O Complexity of Attention, or How Optimal is FlashAttention?”. arXiv:2402.07443</p></li>
+<li><p>Li et al. (2025). “LONGCODEU: Benchmarking Long-Context Language Models on Long Code Understanding”. arXiv:2503.04359</p></li>
+<li><p>Aussie AI (2025). “Ring Attention”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>OpenReview (2025). “RingAttention with Blockwise Transformers for Near-Infinite Context”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Wang et al. (2023). “Ring Attention with Blockwise Transformers for Near-Infinite Context”. arXiv:2310.01889</p></li>
+<li><p>Magic.dev (2025). “100M Token Context Windows”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Hopsworks (2025). “What is RoPE Scaling”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Ding et al. (2024). “LongRoPE: Extending LLM Context Window Beyond 2 Million Tokens”. arXiv:2402.13753</p></li>
+<li><p>LongRoPE GitHub Repository. “Implementation of LongRoPE”. (2024)</p></li>
+<li><p>Reddit (2025). “What are your thoughts on the ‘RAG is dead’ debate?”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Wu et al. (2025). “U-NIAH: Unified RAG and LLM Evaluation for Long Context Needle-In-A-Haystack”. arXiv:2503.00353</p></li>
+<li><p>OpenReview (2025). “Long-Context LLMs Meet RAG: Overcoming Challenges…”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Su et al. (2024). “HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs”. arXiv:2405.14831</p></li>
+<li><p>OSU-NLP-Group (2024). “HippoRAG GitHub Repository”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>PrajnaAI (2025). “LLM Trends 2025: A Deep Dive into the Future”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>LongBench v2 (2025). “LongBench v2 Benchmark Suite”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Evidently AI (2025). “10 LLM coding benchmarks”. (Accessed Sep. 30, 2025)</p></li>
+<li><p>Li et al. (2025). “LONGCODEU: Benchmarking Long-Context LMs on Long Code Understanding”. ACL Anthology</p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week07"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="ko"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week06/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 6: 멀티모달 NLP의 발전</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../week08/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 8: 핵심 복습 및 최신 동향</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#context-window">1. 컨텍스트 창(Context Window)의 패러다임 전환</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">1.1 킬로바이트에서 메가바이트로 - 컨텍스트의 양적 도약</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">1.2 2025년 플래그십 모델들의 역량</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">1.3 새로운 개발자 패러다임: 단순 질의응답을 넘어서</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">1.4 숨겨진 비용 - 피할 수 없는 트레이드오프</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#i">2. 핵심 기술 I: 어텐션 메커니즘의 재창조</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#o-n-2">2.1 표준 셀프 어텐션의 <span class="math notranslate nohighlight">\(O(n^2)\)</span> 병목 현상</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#flashattention-i-o">2.2 공학적 효율화: FlashAttention의 I/O 병목 최적화</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hugging-face-transformers-flashattention">2.2.1 실습: Hugging Face Transformers에서 FlashAttention 활성화</a><ul class="nav section-nav flex-column">
+<li class="toc-h5 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">체크포인트 질문</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#linear-attention">2.3 알고리즘적 효율화: 선형 시간 근사 (Linear Attention)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ring-attention">2.4 시스템적 효율화: Ring Attention을 이용한 분산 어텐션</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#magic">2.5 아키텍처 혁신: Magic의 시퀀스-차원 알고리즘</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ii-positional-encoding">3. 핵심 기술 II: 위치 정보(Positional Encoding)의 확장</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rope">3.1 RoPE의 한계 - “외삽” 문제</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longrope">3.2 LongRoPE - 정교한 스케일링 솔루션</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#non-uniformity">3.2.1 메커니즘 1 - 불균일성(Non-Uniformity)의 활용</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#progressive-extension">3.2.2 메커니즘 2 - 점진적 확장 전략 (Progressive Extension)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">3.2.3 메커니즘 3 - 단문 컨텍스트 성능 복원</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">3.3 실습: LongRoPE를 활용한 컨텍스트 확장 예시</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-vs-2025">4. RAG vs 초장문 컨텍스트: 2025년의 논쟁과 통합</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#rag">4.1 논쟁의 시작 - “RAG는 구시대의 유물인가”</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">4.2 RAG의 필요성 - 순진한 초장문 컨텍스트의 한계</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#haystack-rag-qa">4.2.1 실습: Haystack를 활용한 RAG 기반 QA 파이프라인</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-rag">4.3 2025년의 통합 - AI 에이전트 메모리로서의 RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">4.4 진화된 RAG 아키텍처: 그래프 기반 추론의 부상</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">5. 실용적 고려사항: 벤치마크와 현실의 격차</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#llm">5.1 2025년 LLM 생태계의 다각화</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">5.2 더 나은 평가의 필요성 - 장문 컨텍스트 벤치마크의 등장</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#longcodeu">5.3 현실 점검 - LONGCODEU 벤치마크의 발견</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">5.4 결론 - 현업 개발자를 위한 전략적 권고</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">체크포인트 질문</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">참고자료</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
