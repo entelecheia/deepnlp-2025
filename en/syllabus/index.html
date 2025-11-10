@@ -1,0 +1,1252 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Syllabus &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'syllabus/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Who made this book?" href="../about/index.html" />
+    <link rel="prev" title="Team Project Guidelines" href="../projects/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: Revolutionary Alignment Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: Production Agent Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI Regulation and Responsible AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/syllabus/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fsyllabus/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/syllabus/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Syllabus</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-educational-content">Weekly Educational Content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-transformer-and-next-generation-architectures">Week 1 – Transformer and Next-Generation Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#core-topics">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activities">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2-pytorch-2-x-and-latest-deep-learning-frameworks">Week 2 – PyTorch 2.x and Latest Deep Learning Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques">Week 3 – Efficient Fine-tuning with Modern PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-advanced-prompting-techniques-and-optimization">Week 4 – Advanced Prompting Techniques and Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5-llm-evaluation-paradigms-and-benchmarks">Week 5 – LLM Evaluation Paradigms and Benchmarks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6-multimodal-nlp-advancements">Week 6 – Multimodal NLP Advancements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7-ultra-long-context-processing-and-efficient-inference">Week 7 – Ultra-Long Context Processing and Efficient Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-core-review-and-latest-trends">Week 8 – Core Review and Latest Trends</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9-advanced-rag-architectures">Week 9 – Advanced RAG Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-assignment">Hands-on/Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10-innovation-in-alignment-techniques">Week 10 – Innovation in Alignment Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-11-production-agent-systems">Week 11 – Production Agent Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-12-ai-regulation-and-responsible-ai">Week 12 – AI Regulation and Responsible AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Hands-on/Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-13-latest-research-trends-and-paper-reviews">Week 13 – Latest Research Trends and Paper Reviews</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-14-final-project-development-and-mlops">Week 14 – Final Project Development and MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-15-industry-application-case-analysis-and-final-presentations">Week 15 – Industry Application Case Analysis and Final Presentations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Hands-on/Activities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-selected-latest-papers-and-materials">References (Selected Latest Papers and Materials)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-architectures-and-models">Latest Architectures and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-fine-tuning">Parameter-Efficient Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-and-evaluation">Prompt Engineering and Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-integration-and-rag">Knowledge Integration and RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-and-responsible-ai">Alignment and Responsible AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#industry-applications-and-mlops">Industry Applications and MLOps</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="syllabus">
+<h1>Syllabus<a class="headerlink" href="#syllabus" title="Link to this heading">#</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
+<p>In recent years, natural language processing (NLP) research has undergone a massive transformation. The emergence of large language models (LLMs) has dramatically improved the ability to generate and understand text, revolutionizing various application domains such as translation, question answering, and summarization. In 2024-2025, multimodal LLMs like GPT-5 and <strong>Gemini 2.5 Pro</strong> that can simultaneously process text, images, and audio have emerged, further expanding the scope of applications. Particularly noteworthy is the emergence of new architectures beyond <strong>Transformer</strong>. For example, <strong>Mamba</strong>, a state space model (SSM), can efficiently process up to millions of tokens with linear O(n) complexity, while <strong>RWKV</strong> can process conversational messages at 10x or more lower cost than existing methods in real-time.</p>
+<p>This course reflects these latest developments to provide <strong>hands-on</strong> deep learning-based NLP techniques. Students first learn <strong>core tool utilization methods</strong> such as PyTorch and Hugging Face usage, then directly experience fine-tuning of <strong>Transformer-based models and latest SSM architectures</strong>, <strong>prompt engineering</strong>, <strong>retrieval-augmented generation (RAG)</strong>, <strong>reinforcement learning from human feedback (RLHF)</strong>, and <strong>agent framework</strong> implementation. Additionally, we cover latest <strong>parameter-efficient fine-tuning (PEFT)</strong> techniques (WaveFT, DoRA, VB-LoRA, etc.) and advanced <strong>RAG architectures</strong> (HippoRAG, GraphRAG), and practice cutting-edge concepts such as <strong>multimodal LLMs</strong> and <strong>ultra-long context processing</strong>. Finally, through team projects, students integrate learned content to implement <strong>complete models and applications</strong> that solve real problems.</p>
+<p>This course is designed for third-year undergraduate level and assumes completion of prerequisite course <em>Language Models and Natural Language Processing (131107967A)</em>. Through team projects, students challenge real problem-solving using Korean corpora, and in the final project phase, we provide opportunities to work with industry datasets and receive feedback from industry experts, considering <strong>industry-academia collaboration</strong>.</p>
+</section>
+<section id="learning-objectives">
+<h2>Learning Objectives<a class="headerlink" href="#learning-objectives" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Understand <strong>the role and limitations of large language models</strong> in modern NLP and utilize related tools such as PyTorch and Hugging Face.</p></li>
+<li><p>Understand the principles and trade-offs of <strong>State Space Models</strong> (e.g., Mamba, RWKV) along with <strong>latest architectures</strong>.</p></li>
+<li><p>Apply <strong>fine-tuning</strong> to pre-trained models or latest <strong>parameter-efficient fine-tuning methods</strong> like WaveFT, DoRA, VB-LoRA.</p></li>
+<li><p>Learn methods to systematically optimize prompts using <strong>prompt engineering</strong> techniques and DSPy framework.</p></li>
+<li><p>Understand <strong>the evolution of evaluation metrics</strong> (e.g., G-Eval, LiveCodeBench, etc.) and the importance of human evaluation, and learn latest alternatives to RLHF such as DPO (Direct Preference Optimization).</p></li>
+<li><p>Design and implement <strong>advanced RAG</strong> (Retrieval-Augmented Generation) architectures like <strong>HippoRAG, GraphRAG</strong> and hybrid search strategies.</p></li>
+<li><p>Understand AI regulatory frameworks like <strong>EU AI Act</strong> and acquire methodologies for implementing responsible AI systems.</p></li>
+<li><p>Track latest research trends to discuss <strong>multimodal LLMs</strong>, <strong>small language models (SLM)</strong>, <strong>state space models (SSM)</strong>, <strong>multi-agent systems</strong>, <strong>mixture of experts (MoE)</strong>, and other diverse latest technologies.</p></li>
+<li><p>Understand <strong>the characteristics and challenges of Korean NLP</strong> and develop application capabilities through hands-on practice using Korean corpora.</p></li>
+<li><p>Strengthen <strong>collaboration and practical problem-solving capabilities</strong> through team projects and gain project experience connected to industry.</p></li>
+</ul>
+</section>
+<section id="course-schedule">
+<h2>Course Schedule<a class="headerlink" href="#course-schedule" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Week</p></th>
+<th class="head text-left"><p>Main Topics and Keywords</p></th>
+<th class="head text-left"><p>Key Hands-on/Assignments</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p>1</p></td>
+<td class="text-left"><p>Transformer and Next-Generation Architectures<br/>• Self-Attention Mechanism and Limitations<br/>• Mamba (SSM), RWKV, Jamba</p></td>
+<td class="text-left"><p>Transformer Component Implementation<br/>Mamba vs Transformer Performance Comparison<br/>Architecture Complexity Analysis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>2</p></td>
+<td class="text-left"><p>PyTorch 2.x and Latest Deep Learning Frameworks<br/>• torch.compile Compiler Revolution<br/>• FlashAttention-3 Hardware Acceleration<br/>• AI Agent Frameworks</p></td>
+<td class="text-left"><p>torch.compile Performance Optimization<br/>FlashAttention-3 Implementation<br/>AI Agent Framework Comparison</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>3</p></td>
+<td class="text-left"><p>Modern PEFT Techniques for Efficient Fine-tuning<br/>• LoRA, DoRA, QLoRA<br/>• Advanced PEFT Techniques</p></td>
+<td class="text-left"><p>PEFT Method Comparison Experiment<br/>LoRA/DoRA/QLoRA Performance Evaluation<br/>Memory Efficiency Analysis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>4</p></td>
+<td class="text-left"><p>Advanced Prompt Techniques and Optimization<br/>• Prompt Engineering Fundamentals<br/>• Self-Consistency, Tree of Thoughts<br/>• DSPy Framework</p></td>
+<td class="text-left"><p>DSPy-based Automatic Prompt Optimization<br/>Self-Consistency Implementation<br/>Tree of Thoughts Problem Solving</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>5</p></td>
+<td class="text-left"><p>LLM Evaluation Paradigms and Benchmarks<br/>• Evaluation Paradigm Evolution<br/>• LLM-as-a-Judge (GPTScore, G-Eval, FLASK)<br/>• Specialized and Domain-specific Benchmarks</p></td>
+<td class="text-left"><p>G-Eval Implementation<br/>Benchmark Comparison Experiment<br/>Evaluation Bias Analysis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>6</p></td>
+<td class="text-left"><p>Multimodal NLP Advancements<br/>• Vision-Language Models (LLaVA, MiniGPT-4, Qwen-2.5-Omni)<br/>• Visual Reasoning (QVQ-Max)<br/>• Speech Integration</p></td>
+<td class="text-left"><p>Multimodal QA Application Development<br/>Vision-Language Model Comparison<br/>End-to-end Multimodal System</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>7</p></td>
+<td class="text-left"><p>Ultra-Long Context Processing and Efficient Inference<br/>• Context Window Revolution (1M+ tokens)<br/>• Attention Mechanism Optimization<br/>• LongRoPE and RAG Integration</p></td>
+<td class="text-left"><p>FlashAttention-3 Integration<br/>Long Context Processing Comparison<br/>Performance Analysis</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>8</p></td>
+<td class="text-left"><p>Core Review and Latest Trends<br/>• Architecture Review<br/>• Latest Model Trends (GPT-5, Gemini 2.5 Pro, Claude 4.1)<br/>• Industry Applications</p></td>
+<td class="text-left"><p>Comprehensive Review<br/>Model Comparison<br/>Industry Case Analysis</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>9</p></td>
+<td class="text-left"><p>Advanced RAG Systems – HippoRAG, GraphRAG, Hybrid Search Strategies</p></td>
+<td class="text-left"><p>Assignment 3: Building Korean Enterprise Search System based on GraphRAG</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>10</p></td>
+<td class="text-left"><p>Innovation in Alignment Techniques – DPO, Constitutional AI, Process Reward Models</p></td>
+<td class="text-left"><p>Comparison Practice between DPO and Existing RLHF Techniques</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>11</p></td>
+<td class="text-left"><p>Production Agent Systems – CrewAI, Mirascope, Type-Safety Development</p></td>
+<td class="text-left"><p>Multi-agent Orchestration Implementation</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>12</p></td>
+<td class="text-left"><p>AI Regulation and Responsible AI – EU AI Act, Differential Privacy, Federated Learning</p></td>
+<td class="text-left"><p>Assignment for Designing Regulation-Compliant AI Systems</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>13</p></td>
+<td class="text-left"><p>Latest Research Trends – Small Language Models (Gemma 3, Mistral NeMo), Enhanced Reasoning (Long CoT, PAL)</p></td>
+<td class="text-left"><p>Student Presentations of Latest Papers and Comprehensive Discussion</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p>14</p></td>
+<td class="text-left"><p>Final Project Development and MLOps</p></td>
+<td class="text-left"><p>Team Prototype Implementation and Feedback Sessions (Industry Mentor Participation)</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p>15</p></td>
+<td class="text-left"><p>Final Project Presentations and Comprehensive Evaluation</p></td>
+<td class="text-left"><p>Team Presentations, Course Content Summary and Future Prospects Discussion</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="weekly-educational-content">
+<h2>Weekly Educational Content<a class="headerlink" href="#weekly-educational-content" title="Link to this heading">#</a></h2>
+<section id="week-1-transformer-and-next-generation-architectures">
+<h3>Week 1 – Transformer and Next-Generation Architectures<a class="headerlink" href="#week-1-transformer-and-next-generation-architectures" title="Link to this heading">#</a></h3>
+<section id="core-topics">
+<h4>Core Topics<a class="headerlink" href="#core-topics" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Transformer Architecture</strong>: Self-attention mechanism, encoder-decoder structure, computational complexity <span class="math notranslate nohighlight">\(O(N^2)\)</span></p></li>
+<li><p><strong>Mamba Architecture</strong>: Selective State Space Model (SSM), linear time complexity <span class="math notranslate nohighlight">\(O(N)\)</span>, hardware optimization through selective mechanisms</p></li>
+<li><p><strong>RWKV Architecture</strong>: RNN-Transformer hybrid, parallel training capability, infinite context processing</p></li>
+<li><p><strong>Jamba Architecture</strong>: Hybrid Transformer-Mamba with Mixture-of-Experts (MoE), long context window support, efficiency optimization</p></li>
+</ul>
+</section>
+<section id="hands-on-activities">
+<h4>Hands-on/Activities<a class="headerlink" href="#hands-on-activities" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement basic Transformer components (multi-head self-attention, positional encoding) and compare with Mamba’s selective state space mechanisms</p></li>
+<li><p><strong>Architecture Comparison</strong>: Analyze computational complexity and memory usage differences between Transformer (<span class="math notranslate nohighlight">\(O(N^2)\)</span>) and Mamba (<span class="math notranslate nohighlight">\(O(N)\)</span>)</p></li>
+<li><p><strong>Performance Evaluation</strong>: Benchmark different architectures on sequence modeling tasks, focusing on long-range dependency learning</p></li>
+</ul>
+</section>
+</section>
+<section id="week-2-pytorch-2-x-and-latest-deep-learning-frameworks">
+<h3>Week 2 – PyTorch 2.x and Latest Deep Learning Frameworks<a class="headerlink" href="#week-2-pytorch-2-x-and-latest-deep-learning-frameworks" title="Link to this heading">#</a></h3>
+<section id="id1">
+<h4>Core Topics<a class="headerlink" href="#id1" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>PyTorch 2.x Revolution</strong>: <code class="docutils literal notranslate"><span class="pre">torch.compile</span></code> compiler revolution, TorchDynamo, AOTAutograd, PrimTorch, TorchInductor</p></li>
+<li><p><strong>FlashAttention-3</strong>: Hardware acceleration with tiling, TMA, WGMMA, FP8 support, ~2× speed improvement on H100 GPU</p></li>
+<li><p><strong>Hugging Face Transformers Ecosystem</strong>: Model support, quantization, Zero-Build Kernels, <code class="docutils literal notranslate"><span class="pre">pipeline</span></code> API</p></li>
+<li><p><strong>AI Agent Frameworks</strong>: LangGraph, CrewAI, LlamaIndex, Haystack, DSPy for building intelligent agent systems</p></li>
+</ul>
+</section>
+<section id="id2">
+<h4>Hands-on/Activities<a class="headerlink" href="#id2" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement <code class="docutils literal notranslate"><span class="pre">torch.compile</span></code> performance optimization and FlashAttention-3 integration</p></li>
+<li><p><strong>Framework Comparison</strong>: Compare different AI agent frameworks (LangGraph vs CrewAI vs DSPy) for specific use cases</p></li>
+<li><p><strong>Performance Benchmarking</strong>: Measure speed improvements and memory efficiency gains from latest optimizations</p></li>
+</ul>
+</section>
+</section>
+<section id="week-3-efficient-fine-tuning-with-modern-peft-techniques">
+<h3>Week 3 – Efficient Fine-tuning with Modern PEFT Techniques<a class="headerlink" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques" title="Link to this heading">#</a></h3>
+<section id="id3">
+<h4>Core Topics<a class="headerlink" href="#id3" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>PEFT Fundamentals</strong>: Parameter-Efficient Fine-Tuning techniques that achieve 95%+ performance with &lt;1% parameters</p></li>
+<li><p><strong>LoRA (Low-Rank Adaptation)</strong>: Decompose weight matrices into low-rank form, learn only small rank matrices</p></li>
+<li><p><strong>DoRA (Weight-Decomposed LoRA)</strong>: Adaptive fine-tuning through weight decomposition for fine-grained representation learning</p></li>
+<li><p><strong>QLoRA</strong>: 4-bit quantization + LoRA, enabling 65B model fine-tuning on single 48GB GPU</p></li>
+<li><p><strong>Advanced PEFT</strong>: NF4 quantization, double quantization, VB-LoRA, QR-Adaptor techniques</p></li>
+</ul>
+</section>
+<section id="id4">
+<h4>Hands-on/Activities<a class="headerlink" href="#id4" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement LoRA, DoRA, and QLoRA fine-tuning on Korean sentiment analysis dataset</p></li>
+<li><p><strong>Performance Comparison</strong>: Compare memory usage, training speed, and final performance across different PEFT methods</p></li>
+<li><p><strong>Efficiency Analysis</strong>: Measure parameter reduction ratios and performance retention rates</p></li>
+</ul>
+</section>
+</section>
+<section id="week-4-advanced-prompting-techniques-and-optimization">
+<h3>Week 4 – Advanced Prompting Techniques and Optimization<a class="headerlink" href="#week-4-advanced-prompting-techniques-and-optimization" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h4>Core Topics<a class="headerlink" href="#id5" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Prompt Engineering Fundamentals</strong>: Role prompting, structured prompting, few-shot vs zero-shot techniques</p></li>
+<li><p><strong>Self-Consistency</strong>: Multiple solution path exploration for improved accuracy (+17% improvement on GSM8K)</p></li>
+<li><p><strong>Tree of Thoughts</strong>: Deliberate problem solving through thought expansion (24 game success rate 9%→74%)</p></li>
+<li><p><strong>DSPy Framework</strong>: Declarative Self-Improving Python, Signature, Module, Optimizer for automated prompt optimization</p></li>
+<li><p><strong>Automated Prompt Engineering</strong>: APE, OPRO techniques for algorithmic prompt optimization</p></li>
+</ul>
+</section>
+<section id="id6">
+<h4>Hands-on/Activities<a class="headerlink" href="#id6" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement DSPy-based automatic prompt optimization pipeline</p></li>
+<li><p><strong>Technique Comparison</strong>: Compare Self-Consistency, Tree of Thoughts, and automated prompt engineering approaches</p></li>
+<li><p><strong>Performance Evaluation</strong>: Measure accuracy improvements across different prompting strategies on reasoning tasks</p></li>
+</ul>
+</section>
+</section>
+<section id="week-5-llm-evaluation-paradigms-and-benchmarks">
+<h3>Week 5 – LLM Evaluation Paradigms and Benchmarks<a class="headerlink" href="#week-5-llm-evaluation-paradigms-and-benchmarks" title="Link to this heading">#</a></h3>
+<section id="id7">
+<h4>Core Topics<a class="headerlink" href="#id7" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Evaluation Paradigm Evolution</strong>: Traditional metrics (BLEU/ROUGE) vs meaning-based evaluation (BERTScore/BLEURT) vs LLM-as-a-Judge</p></li>
+<li><p><strong>LLM-as-a-Judge</strong>: GPTScore, G-Eval, FLASK frameworks for automated evaluation using LLMs</p></li>
+<li><p><strong>Specialized Purpose Benchmarks</strong>: LiveCodeBench, EvalPlus, HELM-Code, MMLU-Pro, GPQA, BBH</p></li>
+<li><p><strong>Domain-Specific Benchmarks</strong>: FinBen, AgentHarm, LEXam, CSEDB, MATH, GSM8K</p></li>
+<li><p><strong>Evaluation Bias and Limitations</strong>: Narcissistic bias, verbosity bias, inconsistency, differences from human evaluation</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>Hands-on/Activities<a class="headerlink" href="#id8" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement G-Eval and other LLM-based evaluation techniques</p></li>
+<li><p><strong>Benchmark Comparison</strong>: Compare traditional metrics (BLEU/ROUGE) with LLM-as-a-Judge approaches on identical responses</p></li>
+<li><p><strong>Bias Analysis</strong>: Analyze evaluation biases and limitations in different evaluation paradigms</p></li>
+</ul>
+</section>
+</section>
+<section id="week-6-multimodal-nlp-advancements">
+<h3>Week 6 – Multimodal NLP Advancements<a class="headerlink" href="#week-6-multimodal-nlp-advancements" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h4>Core Topics<a class="headerlink" href="#id9" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Multimodal Integration</strong>: Text, image, audio, and video processing in unified models</p></li>
+<li><p><strong>Vision-Language Models</strong>: LLaVA, MiniGPT-4, Qwen-2.5-Omni for comprehensive multimodal understanding</p></li>
+<li><p><strong>Visual Reasoning</strong>: QVQ-Max specialized for visual reasoning and logical context understanding</p></li>
+<li><p><strong>Speech Integration</strong>: Voxtral for speech recognition, Orpheus for zero-shot speaker synthesis</p></li>
+<li><p><strong>Real-time Multimodal Streaming</strong>: Streaming input/output capabilities in multimodal LLMs</p></li>
+</ul>
+</section>
+<section id="id10">
+<h4>Hands-on/Activities<a class="headerlink" href="#id10" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement multimodal QA application with image, text, and audio input</p></li>
+<li><p><strong>Model Comparison</strong>: Compare different vision-language models (LLaVA vs MiniGPT-4 vs Qwen-2.5-Omni)</p></li>
+<li><p><strong>Integration Challenge</strong>: Build end-to-end multimodal system with voice input, image analysis, and text generation</p></li>
+</ul>
+</section>
+</section>
+<section id="week-7-ultra-long-context-processing-and-efficient-inference">
+<h3>Week 7 – Ultra-Long Context Processing and Efficient Inference<a class="headerlink" href="#week-7-ultra-long-context-processing-and-efficient-inference" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h4>Core Topics<a class="headerlink" href="#id11" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Context Window Revolution</strong>: From kilobytes to megabytes - quantitative leap in context processing capabilities</p></li>
+<li><p><strong>2025 Flagship Models</strong>: GPT-5, Gemini 2.5 Pro (1M tokens), Claude Sonnet 4 (1M tokens), Llama 4 (10M tokens), LTM-2-Mini (100M tokens)</p></li>
+<li><p><strong>Attention Mechanism Optimization</strong>: FlashAttention I/O bottleneck optimization, Linear Attention approximation, Ring Attention distributed processing</p></li>
+<li><p><strong>Positional Encoding Extension</strong>: LongRoPE for extending context windows beyond 2M tokens with minimal fine-tuning</p></li>
+<li><p><strong>RAG vs Ultra-Long Context</strong>: Integration paradigms, HippoRAG as long-term memory system</p></li>
+</ul>
+</section>
+<section id="id12">
+<h4>Hands-on/Activities<a class="headerlink" href="#id12" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Implement FlashAttention-3 integration and LongRoPE context extension</p></li>
+<li><p><strong>RAG vs Long Context</strong>: Compare RAG-based summarization with ultra-long context LLMs on long documents</p></li>
+<li><p><strong>Performance Analysis</strong>: Measure cost, latency, and accuracy trade-offs in long context processing</p></li>
+</ul>
+</section>
+</section>
+<section id="week-8-core-review-and-latest-trends">
+<h3>Week 8 – Core Review and Latest Trends<a class="headerlink" href="#week-8-core-review-and-latest-trends" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h4>Core Topics<a class="headerlink" href="#id13" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Architecture Review</strong>: Transformer vs SSM architectures, computational complexity analysis, performance trade-offs</p></li>
+<li><p><strong>Optimization Techniques</strong>: FlashAttention optimization, PEFT methods (LoRA, DoRA, QLoRA), efficiency improvements</p></li>
+<li><p><strong>Advanced Techniques</strong>: Prompt engineering, LLM evaluation paradigms, multimodal integration, long context processing</p></li>
+<li><p><strong>Latest Model Trends</strong>: GPT-5, Gemini 2.5 Pro, Claude 4.1, Qwen 2.5 series - comprehensive model comparison</p></li>
+<li><p><strong>Industry Applications</strong>: Medical, legal, financial field applications, real-world deployment considerations</p></li>
+</ul>
+</section>
+<section id="id14">
+<h4>Hands-on/Activities<a class="headerlink" href="#id14" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Core Practice</strong>: Comprehensive review of key concepts through hands-on reinforcement</p></li>
+<li><p><strong>Model Comparison</strong>: Compare latest models across different dimensions (performance, cost, capabilities)</p></li>
+<li><p><strong>Industry Case Analysis</strong>: Analyze real-world applications and deployment strategies</p></li>
+</ul>
+</section>
+</section>
+<section id="week-9-advanced-rag-architectures">
+<h3>Week 9 – Advanced RAG Architectures<a class="headerlink" href="#week-9-advanced-rag-architectures" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h4>Core Topics<a class="headerlink" href="#id15" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Next-generation Retrieval-Augmented Generation</strong>: Structures of advanced RAG systems that integrate large-scale knowledge to improve response accuracy</p></li>
+<li><p><strong>Main Content</strong>:</p>
+<ul>
+<li><p><em>HippoRAG</em>: RAG that mimics human <strong>hippocampus</strong> operation principles to reduce vector DB storage space by 25% and enhance <strong>long-term memory</strong> (persistent memory strengthening in information networks)</p></li>
+<li><p><em>GraphRAG</em>: Improve query response precision to 99% by explicitly modeling <strong>associations</strong> between contexts using <strong>knowledge graphs</strong></p></li>
+<li><p><em>Hybrid search</em>: Multi-strategy search combining latest <strong>dense embedding</strong> techniques (NV-Embed-v2, etc.) and <strong>sparse search techniques</strong> (SPLADE) and graph exploration to secure both <strong>accuracy and speed</strong> in large-scale knowledge bases</p></li>
+</ul>
+</li>
+<li><p><strong>Production Case Studies</strong>: Analyze <strong>large-scale RAG system</strong> architectures that maintain P95 response latency within 100ms while processing tens of millions of tokens daily</p></li>
+</ul>
+</section>
+<section id="hands-on-assignment">
+<h4>Hands-on/Assignment<a class="headerlink" href="#hands-on-assignment" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Assignment 3</strong>: Build <strong>Korean enterprise search system</strong> based on GraphRAG. Create Q&amp;A RAG system for given in-house wiki/document database and evaluate search accuracy and response speed</p></li>
+</ul>
+</section>
+</section>
+<section id="week-10-innovation-in-alignment-techniques">
+<h3>Week 10 – Innovation in Alignment Techniques<a class="headerlink" href="#week-10-innovation-in-alignment-techniques" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h4>Core Topics<a class="headerlink" href="#id16" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>LLM Output Control Techniques Emerging After RLHF</strong>: New techniques for improving usefulness and safety of LLMs</p></li>
+<li><p><strong>Various Approaches</strong>:</p>
+<ul>
+<li><p><em>DPO (Direct Preference Optimization)</em>: Method that directly learns user preferences without separate <strong>reward models</strong> (simplified pipeline compared to RLHF)</p></li>
+<li><p><em>Constitutional AI</em>: Technique that suppresses harmful content generation by AI self-correcting responses according to about 75 <strong>constitutional principles</strong> (applied to Anthropic Claude models)</p></li>
+<li><p><em>Process Supervision</em>: Reward model technique that gives granular feedback on <strong>problem-solving process</strong> (Chain-of-Thought) rather than final answer quality to strengthen correct reasoning process</p></li>
+<li><p><em>RLAIF (RL from AI Feedback)</em>: Approach where <strong>AI evaluates AI</strong> while learning using AI evaluators instead of humans (mimicking human-level evaluation)</p></li>
+</ul>
+</li>
+<li><p><strong>Open-source Implementation Trends</strong>: Public implementations such as TRL (Transformer Reinforcement Learning) library and OpenRLHF project have emerged, allowing anyone to experiment with latest alignment techniques (3-4× training speed improvement compared to existing DeepSpeed-Chat)</p></li>
+</ul>
+</section>
+<section id="id17">
+<h4>Hands-on/Activities<a class="headerlink" href="#id17" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Hands-on</strong>: Compare and evaluate responses of models fine-tuned with DPO and existing <strong>RLHF</strong> for identical prompts/instructions. (Comparison in aspects such as safety, content quality)</p></li>
+</ul>
+</section>
+</section>
+<section id="week-11-production-agent-systems">
+<h3>Week 11 – Production Agent Systems<a class="headerlink" href="#week-11-production-agent-systems" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h4>Core Topics<a class="headerlink" href="#id18" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Agent Frameworks and Multi-agent Systems</strong>: Technology that utilizes LLMs as multiple entities rather than single QA bots to handle complex tasks</p></li>
+<li><p><strong>Main Content</strong>:</p>
+<ul>
+<li><p><em>CrewAI</em>: Role-based <strong>multi-agent collaboration</strong> framework – Assign different specialized roles to multiple LLMs to perform <strong>team-like problem solving</strong></p></li>
+<li><p><em>Mirascope</em>: Agent development tool ensuring <strong>type-safety</strong> – Strictly manage format and type of prompt I/O through Pydantic data validation</p></li>
+<li><p><em>Haystack Agents</em>: Open-source agent framework specialized for document RAG pipelines – Easily configure search-comprehension chains to implement domain knowledge specialized agents</p></li>
+<li><p><em>Low-code integration platforms</em>: Environment where Flowise AI, LangFlow, n8n, etc. can design prompt workflows and visually integrate various tools through <strong>GUI</strong></p></li>
+</ul>
+</li>
+<li><p><strong>Toolformer and LLM Internal Tool Usage</strong>: Approaches that internalize external tool usage capabilities in LLMs themselves: Train by inserting API call signals beforehand so models decide to use <strong>tools</strong> such as calculators or search at necessary moments during responses</p></li>
+</ul>
+</section>
+<section id="id19">
+<h4>Hands-on/Activities<a class="headerlink" href="#id19" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Hands-on</strong>: Implement <strong>automated customer service system</strong> prototype using multi-agent frameworks. For example, have one agent handle <strong>FAQ Q&amp;A</strong>, another agent handle <strong>database queries</strong> or <strong>ticket generation</strong> to practice <strong>orchestration</strong> that handles users’ complex demands through collaboration</p></li>
+</ul>
+</section>
+</section>
+<section id="week-12-ai-regulation-and-responsible-ai">
+<h3>Week 12 – AI Regulation and Responsible AI<a class="headerlink" href="#week-12-ai-regulation-and-responsible-ai" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h4>Core Topics<a class="headerlink" href="#id20" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>AI Governance and Ethical Issues</strong>: Learn impact on industry and developer compliance requirements of world’s first comprehensive AI legislation including <strong>EU AI Act</strong> implemented in August 2024</p></li>
+<li><p><strong>Privacy and Safety Enhancement Technologies</strong>: Methodologies for responsible and regulation-compliant LLM service deployment:</p>
+<ul>
+<li><p><em>Differential privacy</em>: Prevent <strong>personal information exposure</strong> by introducing Differential Privacy to text embeddings, etc.</p></li>
+<li><p><em>Federated Learning</em>: Utilize frameworks for <strong>collaborative learning locally</strong> so user data doesn’t gather at central servers</p></li>
+<li><p><em>Homomorphic encryption learning</em>: Protect sensitive information by performing model training with data itself encrypted</p></li>
+</ul>
+</li>
+<li><p><strong>Industry-specific Regulation Response Cases</strong>: <strong>Domain-specific NLP solution design</strong> cases such as HIPAA-compliant chatbots in healthcare, GDPR response examples in finance, FERPA-compliant tutor AI in education</p></li>
+</ul>
+</section>
+<section id="id21">
+<h4>Hands-on/Assignment<a class="headerlink" href="#id21" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Assignment</strong>: Write <strong>suitable LLM service design</strong> for given scenarios according to EU AI Act and other related regulations. Create checklist of measures to take from model development to deployment and present <strong>regulatory compliance</strong> by team</p></li>
+</ul>
+</section>
+</section>
+<section id="week-13-latest-research-trends-and-paper-reviews">
+<h3>Week 13 – Latest Research Trends and Paper Reviews<a class="headerlink" href="#week-13-latest-research-trends-and-paper-reviews" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h4>Core Topics<a class="headerlink" href="#id22" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Survey of Latest Research Results</strong>: Examine currently published latest models and techniques while discussing future directions in rapidly changing NLP field</p></li>
+<li><p><strong>Main Topics</strong>:</p>
+<ul>
+<li><p><strong>Development of ultra-large multimodal LLMs</strong>: Analyze innovative features of cutting-edge models such as GPT-5, <strong>Claude 4.1 Opus</strong>, <strong>Qwen 2.5 Omni</strong>, <strong>QVQ-Max</strong>. For example, GPT-5 shows performance exceeding GPT-4 in <strong>reasoning ability and context expansion</strong>, and Claude 4.1 strengthens response consistency and safety by applying <strong>constitutional AI principles</strong>. Qwen 2.5 Omni and QVQ-Max pioneer new frontiers in multimodal <strong>visual-language reasoning</strong>, demonstrating ability to simultaneously perform image interpretation and complex reasoning.</p></li>
+<li><p><strong>Renaissance of small language models</strong>: Also cover advances of lightweight <strong>small models (SLM)</strong>. <em>Gemma 3</em> (1B-4B scale) series are attracting attention as ultra-lightweight LLMs optimized to work smoothly on consumer devices, and <em>Mistral NeMo 12B</em> shows specialized performance such as supporting <strong>128K token</strong> long context windows through NVIDIA NeMo optimization. Cases like <em>MathΣtral 7B</em> specialized for specific areas (mathematics) achieving results comparable to GPT-4 are also introduced. These small models are being researched as <strong>alternatives to large models</strong> in terms of specialization and lightweighting.</p></li>
+<li><p><strong>Evolution of reasoning capabilities</strong>: Examine new attempts by LLMs for complex problem solving. <em>Long CoT</em> reasons with very long <strong>Chain-of-Thought</strong> and performs <strong>backtracking</strong> and error correction when necessary, and <em>PAL (Program-Aided LM)</em> improves numerical calculation or logical reasoning accuracy by combining code execution capabilities. <em>ReAct</em> is a strategy that generates more accurate and factual answers by utilizing <strong>external tools</strong> (calculators, web search, etc.) during reasoning. Additionally, introduce <em>Thinking Mode</em> concept – For example, Qwen series significantly improve performance in complex math·code problems by enabling <strong>internal self-reasoning steps</strong> in models through enable<em>thinking mode. Also cover cutting-edge approaches like Meta’s _Toolformer</em> that <strong>embed tool usage capabilities in models</strong> during pre-training so models call external APIs at necessary moments during responses to solve problems.</p></li>
+<li><p><strong>Deployment and optimization frameworks</strong>: Tools for efficiently <strong>deploying</strong> LLMs in actual service environments are also advancing. For example, <em>llama.cpp</em> enabled execution of large models on CPU with single-file C++ implementation, and <em>MLC-LLM</em> supports <strong>LLM inference on mobile/browsers</strong> using WebGPU. <em>PowerInfer-2</em> is a framework that <strong>maximizes power efficiency</strong> for large model distributed inference, contributing to operational cost reduction.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id23">
+<h4>Hands-on/Activities<a class="headerlink" href="#id23" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Student latest paper presentations</strong>: Review and present <strong>latest NLP papers</strong> selected by groups and discuss significance, limitations, and application possibilities of the research. For example, by selecting and discussing papers on new benchmarks (MMMU, HLE, etc.) or latest model techniques mentioned above, <strong>comprehensively organize latest technology trends</strong> <em>(Industry mentors or invited researchers participate in feedback)</em></p></li>
+</ul>
+</section>
+</section>
+<section id="week-14-final-project-development-and-mlops">
+<h3>Week 14 – Final Project Development and MLOps<a class="headerlink" href="#week-14-final-project-development-and-mlops" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h4>Core Topics<a class="headerlink" href="#id24" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Complete Prototype Implementation</strong>: Complete <strong>prototype implementation</strong> of team projects and apply MLOps concepts</p></li>
+<li><p><strong>NLP Model MLOps Concepts</strong>: Introduce model <strong>version management</strong> strategies, A/B testing techniques, <strong>deployment pipeline</strong> design, etc. Also cover methods for building <strong>online learning pipelines</strong> that continuously reflect user feedback in learning, real-time <strong>monitoring and performance drift detection</strong> systems</p></li>
+<li><p><strong>Team Prototype Development</strong>: Each team implements <strong>final models and application prototypes</strong> for selected project topics. Reflect industry datasets or actual user scenarios to increase completeness and demonstrate intermediate results this week</p></li>
+<li><p><strong>Mentor Review Sessions</strong>: Review project progress with invited industry mentors. Receive feedback on appropriateness of model architecture, utilization of latest technologies (e.g., multimodal integration, agent usage, etc.), practicality, etc., and reflect in final improvement direction</p></li>
+</ul>
+</section>
+<section id="id25">
+<h4>Hands-on/Activities<a class="headerlink" href="#id25" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Key Activities</strong>: Team prototype <strong>demo presentations</strong> (share current performance and remaining tasks) and mentor feedback reflection discussions</p></li>
+</ul>
+</section>
+</section>
+<section id="week-15-industry-application-case-analysis-and-final-presentations">
+<h3>Week 15 – Industry Application Case Analysis and Final Presentations<a class="headerlink" href="#week-15-industry-application-case-analysis-and-final-presentations" title="Link to this heading">#</a></h3>
+<section id="id26">
+<h4>Core Topics<a class="headerlink" href="#id26" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Industry Application Case Analysis</strong>: Conclude the course by analyzing <strong>industry cases where latest technologies are applied</strong> and sharing final results of team projects</p></li>
+<li><p><strong>Industry-specific NLP Success Cases</strong>: Introduce <strong>latest application cases of LLM and NLP technologies</strong> in each field such as healthcare, finance, and education. For example, in healthcare, cases where clinical record automation NLP reduced doctor documentation burden from 49% to 27%, in finance, cases where Morgan Stanley’s contract analysis bot introduction saved 360,000 hours annually, in education, cases where <strong>customized tutor AI</strong> with multilingual support improved learning efficiency and increased student engagement by 30%. Through these cases, understand <strong>practical impact of latest NLP technologies</strong></p></li>
+<li><p><strong>Final Project Result Presentations</strong>: Each team presents final project outputs and demonstrates demos. Each team shares developed <strong>model architecture</strong>, core technology application content (e.g., ultra-long context support, multimodal input, agent collaboration, etc.), performance evaluation results and limitations. Receive feedback on practicality and improvement points through Q&amp;A with industry mentors and students</p></li>
+<li><p><strong>Course Comprehensive Discussion</strong>: Finally, <strong>comprehensively organize</strong> content covered in the course and conduct free discussion. Students <strong>reflect on learning content</strong> from week 1 to week 15 and share opinions about most impressive technologies or topics they want to study more. Faculty present <strong>future prospects</strong> (e.g., expected developments after GPT-5, direction of AI-human collaboration, etc.) and advise students to track and utilize latest NLP trends afterwards <em>(Collect course feedback through surveys)</em></p></li>
+</ul>
+</section>
+<section id="id27">
+<h4>Hands-on/Activities<a class="headerlink" href="#id27" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>Final project result presentations</strong>: Team project result presentations and demo demonstrations (sharing model architecture, demonstration results and limitations)</p></li>
+<li><p><strong>Course comprehensive discussion</strong>: Overall summary of course content and Q&amp;A, future prospects brainstorming (student feedback collection and future learning guidance)</p></li>
+</ul>
+</section>
+</section>
+</section>
+<section id="references-selected-latest-papers-and-materials">
+<h2>References (Selected Latest Papers and Materials)<a class="headerlink" href="#references-selected-latest-papers-and-materials" title="Link to this heading">#</a></h2>
+<section id="latest-architectures-and-models">
+<h3>Latest Architectures and Models<a class="headerlink" href="#latest-architectures-and-models" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Gu &amp; Dao (2023), <em>Mamba: Linear-Time Sequence Modeling with Selective State Spaces.</em></p></li>
+<li><p>Peng et al. (2023), <em>RWKV: Reinventing RNNs for the Transformer Era.</em></p></li>
+<li><p>Lieber et al. (2024), <em>Jamba: A Hybrid Transformer-Mamba Language Model.</em></p></li>
+<li><p><strong>(Multimodal LLM)</strong> OpenAI (2025), <em>GPT-4 Technical Report (Augmentations for GPT-5 Preview).</em></p></li>
+<li><p>Anthropic (2025), <em>Claude 4.1 Opus System Card.</em></p></li>
+</ul>
+</section>
+<section id="parameter-efficient-fine-tuning">
+<h3>Parameter-Efficient Fine-tuning<a class="headerlink" href="#parameter-efficient-fine-tuning" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Zhang et al. (2024), <em>WaveFT: Wavelet-based Parameter-Efficient Fine-Tuning.</em></p></li>
+<li><p>Liu et al. (2024), <em>DoRA: Weight-Decomposed Low-Rank Adaptation.</em></p></li>
+<li><p>Chen et al. (2024), <em>VB-LoRA: Vector Bank for Efficient Multi-Task Adaptation.</em></p></li>
+<li><p>Dettmers et al. (2023), <em>QLoRA: Efficient Finetuning of Quantized LLMs.</em></p></li>
+</ul>
+</section>
+<section id="prompt-engineering-and-evaluation">
+<h3>Prompt Engineering and Evaluation<a class="headerlink" href="#prompt-engineering-and-evaluation" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Khattab et al. (2023), <em>DSPy: Compiling Declarative Language Model Calls.</em></p></li>
+<li><p>Zhou et al. (2023), <em>Self-Consistency for Chain-of-Thought.</em></p></li>
+<li><p>Yao et al. (2023), <em>Tree of Thoughts: Deliberate Problem Solving with Large Language Models.</em></p></li>
+<li><p>Liu et al. (2023), <em>G-Eval: NLG Evaluation using GPT-4 with Better Human Alignment.</em></p></li>
+<li><p>Jain et al. (2024), <em>LiveCodeBench: Holistic and Contamination-Free Code Evaluation.</em></p></li>
+</ul>
+</section>
+<section id="knowledge-integration-and-rag">
+<h3>Knowledge Integration and RAG<a class="headerlink" href="#knowledge-integration-and-rag" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Zhang et al. (2024), <em>HippoRAG: Neurobiologically Inspired Long-Term Memory for LLMs.</em></p></li>
+<li><p>Edge et al. (2024), <em>GraphRAG: A Modular Graph-Based RAG Approach.</em></p></li>
+<li><p>Chen et al. (2024), <em>Hybrid Retrieval-Augmented Generation: Best Practices.</em></p></li>
+</ul>
+</section>
+<section id="alignment-and-responsible-ai">
+<h3>Alignment and Responsible AI<a class="headerlink" href="#alignment-and-responsible-ai" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Rafailov et al. (2023), <em>Direct Preference Optimization: Your Language Model is Secretly a Reward Model.</em></p></li>
+<li><p>Bai et al. (2022), <em>Constitutional AI: Harmlessness from AI Feedback.</em></p></li>
+<li><p>OpenAI (2024), <em>SWE-bench Verified: Real-world Software Engineering Benchmark.</em></p></li>
+<li><p>Phan et al. (2025), <em>Humanity’s Last Exam: The Ultimate Multimodal Benchmark at the Frontier of Knowledge.</em></p></li>
+<li><p>EU Commission (2024), <em>EU AI Act: Implementation Guidelines.</em></p></li>
+</ul>
+</section>
+<section id="industry-applications-and-mlops">
+<h3>Industry Applications and MLOps<a class="headerlink" href="#industry-applications-and-mlops" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>Healthcare NLP</strong> Market Report 2024–2028 (Markets&amp;Markets).</p></li>
+<li><p><strong>Financial Services AI</strong> Applications 2025 (McKinsey Global Institute).</p></li>
+<li><p><strong>State of AI in Education 2025</strong> (Stanford HAI).</p></li>
+<li><p>Cremer &amp; Liu (2025), <em>PowerInfer-2: Energy-Efficient LLM Inference at Scale.</em></p></li>
+<li><p><strong>Development Tools:</strong> CrewAI Documentation – <em>Multi-agent Scenario Implementation Guide</em></p></li>
+<li><p>DSPy Official Guide – <em>Prompt DSL Usage Guide</em></p></li>
+<li><p>OpenRLHF Project – <em>Open-source RLHF Implementation</em></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./syllabus"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../projects/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Team Project Guidelines</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../about/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Who made this book?</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overview">Overview</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#learning-objectives">Learning Objectives</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#course-schedule">Course Schedule</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#weekly-educational-content">Weekly Educational Content</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-transformer-and-next-generation-architectures">Week 1 – Transformer and Next-Generation Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#core-topics">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-activities">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2-pytorch-2-x-and-latest-deep-learning-frameworks">Week 2 – PyTorch 2.x and Latest Deep Learning Frameworks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-efficient-fine-tuning-with-modern-peft-techniques">Week 3 – Efficient Fine-tuning with Modern PEFT Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-advanced-prompting-techniques-and-optimization">Week 4 – Advanced Prompting Techniques and Optimization</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5-llm-evaluation-paradigms-and-benchmarks">Week 5 – LLM Evaluation Paradigms and Benchmarks</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6-multimodal-nlp-advancements">Week 6 – Multimodal NLP Advancements</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7-ultra-long-context-processing-and-efficient-inference">Week 7 – Ultra-Long Context Processing and Efficient Inference</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-core-review-and-latest-trends">Week 8 – Core Review and Latest Trends</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9-advanced-rag-architectures">Week 9 – Advanced RAG Architectures</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#hands-on-assignment">Hands-on/Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10-innovation-in-alignment-techniques">Week 10 – Innovation in Alignment Techniques</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-11-production-agent-systems">Week 11 – Production Agent Systems</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-12-ai-regulation-and-responsible-ai">Week 12 – AI Regulation and Responsible AI</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Hands-on/Assignment</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-13-latest-research-trends-and-paper-reviews">Week 13 – Latest Research Trends and Paper Reviews</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-14-final-project-development-and-mlops">Week 14 – Final Project Development and MLOps</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id25">Hands-on/Activities</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#week-15-industry-application-case-analysis-and-final-presentations">Week 15 – Industry Application Case Analysis and Final Presentations</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id26">Core Topics</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id27">Hands-on/Activities</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references-selected-latest-papers-and-materials">References (Selected Latest Papers and Materials)</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#latest-architectures-and-models">Latest Architectures and Models</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parameter-efficient-fine-tuning">Parameter-Efficient Fine-tuning</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering-and-evaluation">Prompt Engineering and Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#knowledge-integration-and-rag">Knowledge Integration and RAG</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#alignment-and-responsible-ai">Alignment and Responsible AI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#industry-applications-and-mlops">Industry Applications and MLOps</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

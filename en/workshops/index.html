@@ -1,0 +1,1495 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>LLM From Scratch Workshop &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'workshops/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Week 1 Workshop: LLM Overview and Development Environment Setup" href="week01.html" />
+    <link rel="prev" title="Week 12: AI Regulation and Responsible AI" href="../week12/index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: Revolutionary Alignment Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: Production Agent Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI Regulation and Responsible AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/workshops/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fworkshops/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/workshops/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>LLM From Scratch Workshop</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-overview">Workshop Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-characteristics-of-llms">Definition and Characteristics of LLMs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-roadmap">Workshop Roadmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-llm-overview-and-environment-setup">Week 1: LLM Overview and Environment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup-practice">Environment Setup Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-model-execution-example">Basic Model Execution Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2-data-collection-and-preprocessing">Week 2: Data Collection and Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-dataset-collection">Korean Dataset Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-tokenizer-design-and-construction">Week 3: Tokenizer Design and Construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-tokenizer-training">Korean Tokenizer Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer-performance-comparison">Tokenizer Performance Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-model-architecture-exploration">Week 4: Model Architecture Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-architecture-implementation">Transformer Architecture Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba-architecture-implementation">Mamba Architecture Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5-llm-pre-training">Week 5: LLM Pre-training</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-setup-and-configuration">Pre-training Setup and Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-training-setup">Distributed Training Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6-fine-tuning-and-peft">Week 6: Fine-tuning and PEFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning-implementation">LoRA Fine-tuning Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora-fine-tuning-implementation">DoRA Fine-tuning Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7-model-evaluation-and-prompt-utilization">Week 7: Model Evaluation and Prompt Utilization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance-evaluation">Model Performance Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-inference-optimization-and-deployment">Week 8: Inference Optimization and Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-quantization">Model Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-using-gradio">Deployment using Gradio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9-model-alignment">Week 9: Model Alignment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-implementation">DPO Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10-integration-and-conclusion">Week 10: Integration and Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-pipeline-integration">Full Pipeline Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demo-construction">Final Demo Construction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-papers-and-research-materials">Key Papers and Research Materials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-documentation-and-implementations">Technical Documentation and Implementations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online-resources-and-blogs">Online Resources and Blogs</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="llm-from-scratch-workshop">
+<h1>LLM From Scratch Workshop<a class="headerlink" href="#llm-from-scratch-workshop" title="Link to this heading">#</a></h1>
+<section id="workshop-overview">
+<h2>Workshop Overview<a class="headerlink" href="#workshop-overview" title="Link to this heading">#</a></h2>
+<p>Modern Large Language Models (LLMs) are often treated as ‘black boxes’ with their internal workings hidden. However, true expertise comes not just from using tools, but from understanding their fundamental principles. This workshop is based on this philosophy, aiming to achieve deep understanding beyond surface-level applications through the process of building LLMs ‘from scratch’. Even though these may be small-scale models for educational purposes, the experience of building them directly provides unparalleled insights into the potential, limitations, and design choices that shape LLM behavior.</p>
+<section id="definition-and-characteristics-of-llms">
+<h3>Definition and Characteristics of LLMs<a class="headerlink" href="#definition-and-characteristics-of-llms" title="Link to this heading">#</a></h3>
+<p>The Large Language Models covered in this workshop are concepts newly defined since the emergence of the Transformer architecture. This is not simply about size. Modern LLMs are distinguished from previous Natural Language Processing (NLP) models by three key characteristics:</p>
+<ol class="arabic simple">
+<li><p><strong>Scale</strong>: Massive parameters ranging from billions to trillions</p></li>
+<li><p><strong>Generative Pre-training</strong>: Learning statistical patterns of language from large-scale text corpora before supervised learning for specific tasks</p></li>
+<li><p><strong>Emergent Abilities</strong>: Few-shot learning capabilities that can perform new tasks with just a few examples without separate fine-tuning</p></li>
+</ol>
+<p>Even for educational small-scale models, the direct building experience provides unparalleled insights into the potential, limitations, and design choices that shape LLM behavior.</p>
+</section>
+</section>
+<section id="workshop-roadmap">
+<h2>Workshop Roadmap<a class="headerlink" href="#workshop-roadmap" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Week</p></th>
+<th class="head text-left"><p>Topic</p></th>
+<th class="head text-left"><p>Practical Goals</p></th>
+<th class="head text-left"><p>Tools Used</p></th>
+<th class="head text-left"><p>Deliverables</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p>1</p></td>
+<td class="text-left"><p>LLM Overview and Environment Setup</p></td>
+<td class="text-left"><p>Understanding LLM lifecycle, NeMo/HF practice environment setup</p></td>
+<td class="text-left"><p><strong>NGC Container</strong>, HF Transformers</p></td>
+<td class="text-left"><p>Workshop environment preparation, simple model execution verification</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>2</p></td>
+<td class="text-left"><p>Data Collection and Preprocessing</p></td>
+<td class="text-left"><p>Korean corpus collection and preprocessing, quality improvement techniques</p></td>
+<td class="text-left"><p><strong>NeMo Curator</strong>, HF Datasets</p></td>
+<td class="text-left"><p>Refined training corpus (Korean text)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>3</p></td>
+<td class="text-left"><p>Tokenizer Design and Construction</p></td>
+<td class="text-left"><p>Korean tokenizer training, tokenization method comparison</p></td>
+<td class="text-left"><p><strong>HF Tokenizers</strong>, SentencePiece</p></td>
+<td class="text-left"><p>Korean BPE tokenizer model</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>4</p></td>
+<td class="text-left"><p>Model Architecture Exploration</p></td>
+<td class="text-left"><p>Understanding Transformer and latest alternatives (Mamba, RWKV, etc.)</p></td>
+<td class="text-left"><p>PyTorch (HF or NeMo AutoModel)</p></td>
+<td class="text-left"><p>Small-scale model implementation and feature comparison</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>5</p></td>
+<td class="text-left"><p>LLM Pre-training</p></td>
+<td class="text-left"><p>Custom GPT model initialization and pre-training</p></td>
+<td class="text-left"><p><strong>NeMo Run</strong>, Megatron (AutoModel integration)</p></td>
+<td class="text-left"><p>Korean-based LLM initial model</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>6</p></td>
+<td class="text-left"><p>Fine-tuning and PEFT</p></td>
+<td class="text-left"><p>Downstream task model fine-tuning, PEFT techniques application</p></td>
+<td class="text-left"><p><strong>HF PEFT</strong> (LoRA, WaveFT, DoRA, etc.)</p></td>
+<td class="text-left"><p>Task-specific model (e.g., sentiment analyzer)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>7</p></td>
+<td class="text-left"><p>Model Evaluation and Prompt Utilization</p></td>
+<td class="text-left"><p>Performance evaluation with KLUE benchmarks, prompt tuning practice</p></td>
+<td class="text-left"><p><strong>HF Evaluation</strong> (Metrics), generation output analysis</p></td>
+<td class="text-left"><p>Evaluation report and response improvement tips</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>8</p></td>
+<td class="text-left"><p>Inference Optimization and Deployment</p></td>
+<td class="text-left"><p>Inference speed/memory optimization, production deployment environment setup</p></td>
+<td class="text-left"><p><strong>TensorRT-LLM</strong>, Triton, HF Pipelines</p></td>
+<td class="text-left"><p>Lightweight model and demo service</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p>9</p></td>
+<td class="text-left"><p>Model Alignment</p></td>
+<td class="text-left"><p>RLHF/DPO retraining for instruction-following models</p></td>
+<td class="text-left"><p><strong>NeMo Aligner</strong>, RLHF (DPO algorithm)</p></td>
+<td class="text-left"><p>Instruction-following improved LLM</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p>10</p></td>
+<td class="text-left"><p>Integration and Conclusion</p></td>
+<td class="text-left"><p>Full pipeline integration, model sharing and future task discussion</p></td>
+<td class="text-left"><p><strong>NeMo &amp; HF integration</strong>, Gradio demo</p></td>
+<td class="text-left"><p>Final demo and future development direction</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="week-1-llm-overview-and-environment-setup">
+<h2>Week 1: LLM Overview and Environment Setup<a class="headerlink" href="#week-1-llm-overview-and-environment-setup" title="Link to this heading">#</a></h2>
+<p>Week 1 provides an overview of the entire lifecycle of Large Language Models (LLMs) and prepares the practice environment. Using NVIDIA’s <strong>NGC Container</strong>, we set up an environment that includes the NeMo framework and HuggingFace toolkit. We load example models using simple HuggingFace <strong>Transformers</strong> pipelines to verify operation and understand how NeMo and HF tools can work together. This ensures GPU acceleration environment and library compatibility needed for future practice, and helps understand the big picture of LLM workflows.</p>
+<section id="environment-setup-practice">
+<h3>Environment Setup Practice<a class="headerlink" href="#environment-setup-practice" title="Link to this heading">#</a></h3>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run NVIDIA NGC container</span>
+docker<span class="w"> </span>run<span class="w"> </span>--gpus<span class="w"> </span>all<span class="w"> </span>-it<span class="w"> </span>--rm<span class="w"> </span>-v<span class="w"> </span><span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/workspace<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>nvcr.io/nvidia/pytorch:23.10-py3
+
+<span class="c1"># Install required libraries</span>
+pip<span class="w"> </span>install<span class="w"> </span>transformers<span class="w"> </span>datasets<span class="w"> </span>accelerate
+pip<span class="w"> </span>install<span class="w"> </span>nemo-toolkit<span class="o">[</span>all<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="basic-model-execution-example">
+<h3>Basic Model Execution Example<a class="headerlink" href="#basic-model-execution-example" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span><span class="p">,</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Simple text generation pipeline</span>
+<span class="n">generator</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span><span class="s2">&quot;text-generation&quot;</span><span class="p">,</span> 
+                    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span> 
+                    <span class="n">device</span><span class="o">=</span><span class="mi">0</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Text generation test</span>
+<span class="n">prompt</span> <span class="o">=</span> <span class="s2">&quot;The future of artificial intelligence is&quot;</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">num_return_sequences</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">])</span>
+</pre></div>
+</div>
+</section>
+<section id="checkpoint-questions">
+<h3>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the most important stages in the entire LLM lifecycle?</p></li>
+<li><p>What are the main differences between NeMo and HuggingFace Transformers?</p></li>
+<li><p>What are the main considerations when running models in GPU environments?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-2-data-collection-and-preprocessing">
+<h2>Week 2: Data Collection and Preprocessing<a class="headerlink" href="#week-2-data-collection-and-preprocessing" title="Link to this heading">#</a></h2>
+<p>Week 2 covers <strong>Korean corpus data collection and preprocessing</strong>. Using <strong>NeMo Curator</strong>, we collect vast amounts of Korean text from Wikipedia, news, etc., and perform deduplication and filtering. For example, we load public datasets like KLUE corpus or NSMC sentiment corpus using <strong>HuggingFace Datasets</strong>, review quality, and add them to the training corpus. Curator’s distributed processing filters out noisy data and builds homogeneous learning data. As a result, we secure <strong>refined Korean text corpus</strong> suitable for LLM pre-training and learn the considerations embedded in data composition.</p>
+<section id="korean-dataset-collection">
+<h3>Korean Dataset Collection<a class="headerlink" href="#korean-dataset-collection" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+
+<span class="c1"># Load public Korean datasets</span>
+<span class="n">nsmc</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;nsmc&quot;</span><span class="p">)</span>
+<span class="n">klue_nli</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;klue&quot;</span><span class="p">,</span> <span class="s2">&quot;nli&quot;</span><span class="p">)</span>
+
+<span class="c1"># Korean Wikipedia data collection example</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_dataset</span>
+<span class="n">wiki_ko</span> <span class="o">=</span> <span class="n">load_dataset</span><span class="p">(</span><span class="s2">&quot;wikipedia&quot;</span><span class="p">,</span> <span class="s2">&quot;20220301.ko&quot;</span><span class="p">,</span> <span class="n">split</span><span class="o">=</span><span class="s2">&quot;train[:10000]&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;NSMC data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">nsmc</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;KLUE NLI data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">klue_nli</span><span class="p">[</span><span class="s1">&#39;train&#39;</span><span class="p">])</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Wikipedia data: </span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">wiki_ko</span><span class="p">)</span><span class="si">}</span><span class="s2"> samples&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="data-cleaning-and-preprocessing">
+<h3>Data Cleaning and Preprocessing<a class="headerlink" href="#data-cleaning-and-preprocessing" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">clean_korean_text</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Korean text cleaning function&quot;&quot;&quot;</span>
+    <span class="c1"># Remove HTML tags</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;&lt;[^&gt;]+&gt;&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Clean special characters</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;[^\w\s가-힣]&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="c1"># Remove consecutive spaces</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">re</span><span class="o">.</span><span class="n">sub</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;\s+&#39;</span><span class="p">,</span> <span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">text</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">text</span><span class="o">.</span><span class="n">strip</span><span class="p">()</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">filter_by_length</span><span class="p">(</span><span class="n">texts</span><span class="p">,</span> <span class="n">min_length</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Filter by length criteria&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">[</span><span class="n">text</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">texts</span> 
+            <span class="k">if</span> <span class="n">min_length</span> <span class="o">&lt;=</span> <span class="nb">len</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">max_length</span><span class="p">]</span>
+
+<span class="c1"># Apply data cleaning</span>
+<span class="n">cleaned_texts</span> <span class="o">=</span> <span class="p">[</span><span class="n">clean_korean_text</span><span class="p">(</span><span class="n">text</span><span class="p">)</span> <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">raw_texts</span><span class="p">]</span>
+<span class="n">filtered_texts</span> <span class="o">=</span> <span class="n">filter_by_length</span><span class="p">(</span><span class="n">cleaned_texts</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Checkpoint Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the main quality indicators to consider when collecting Korean text data?</p></li>
+<li><p>How does NeMo Curator’s distributed processing differ from existing data cleaning methods?</p></li>
+<li><p>What are the characteristics of data suitable for LLM pre-training?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-3-tokenizer-design-and-construction">
+<h2>Week 3: Tokenizer Design and Construction<a class="headerlink" href="#week-3-tokenizer-design-and-construction" title="Link to this heading">#</a></h2>
+<p>Week 3 involves directly building a <strong>Korean tokenizer</strong>. We train tokenizers based on <strong>SentencePiece BPE</strong> or WordPiece from the collected corpus and analyze whether tokenization results preserve Korean word units and context well. Using HuggingFace <strong>🤗Tokenizers</strong> library, we train custom tokenizers and perform <strong>token segmentation comparison</strong> with existing multilingual model tokenizers. For example, we check how sentences like “한국어 형태소” are tokenized and determine vocabulary size and tokenization strategies optimized for Korean. Through this practice, we build <strong>custom tokenizer models</strong> before LLM training and experience the importance of the tokenization stage.</p>
+<section id="korean-tokenizer-training">
+<h3>Korean Tokenizer Training<a class="headerlink" href="#korean-tokenizer-training" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers</span><span class="w"> </span><span class="kn">import</span> <span class="n">Tokenizer</span><span class="p">,</span> <span class="n">models</span><span class="p">,</span> <span class="n">pre_tokenizers</span><span class="p">,</span> <span class="n">trainers</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">tokenizers.processors</span><span class="w"> </span><span class="kn">import</span> <span class="n">TemplateProcessing</span>
+
+<span class="c1"># Initialize BPE tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">Tokenizer</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">BPE</span><span class="p">())</span>
+
+<span class="c1"># Korean preprocessing setup</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">pre_tokenizer</span> <span class="o">=</span> <span class="n">pre_tokenizers</span><span class="o">.</span><span class="n">Whitespace</span><span class="p">()</span>
+
+<span class="c1"># Training configuration</span>
+<span class="n">trainer</span> <span class="o">=</span> <span class="n">trainers</span><span class="o">.</span><span class="n">BpeTrainer</span><span class="p">(</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="mi">32000</span><span class="p">,</span>
+    <span class="n">special_tokens</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;&lt;unk&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;pad&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,</span> <span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">],</span>
+    <span class="n">min_frequency</span><span class="o">=</span><span class="mi">2</span>
+<span class="p">)</span>
+
+<span class="c1"># Train with Korean corpus</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">train_from_iterator</span><span class="p">(</span><span class="n">korean_texts</span><span class="p">,</span> <span class="n">trainer</span><span class="p">)</span>
+
+<span class="c1"># Post-processing setup</span>
+<span class="n">tokenizer</span><span class="o">.</span><span class="n">post_processor</span> <span class="o">=</span> <span class="n">TemplateProcessing</span><span class="p">(</span>
+    <span class="n">single</span><span class="o">=</span><span class="s2">&quot;&lt;s&gt; $A &lt;/s&gt;&quot;</span><span class="p">,</span>
+    <span class="n">special_tokens</span><span class="o">=</span><span class="p">[(</span><span class="s2">&quot;&lt;s&gt;&quot;</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="p">(</span><span class="s2">&quot;&lt;/s&gt;&quot;</span><span class="p">,</span> <span class="mi">3</span><span class="p">)]</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="tokenizer-performance-comparison">
+<h3>Tokenizer Performance Comparison<a class="headerlink" href="#tokenizer-performance-comparison" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">compare_tokenizers</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compare performance of multiple tokenizers&quot;&quot;&quot;</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">tokenizer</span> <span class="ow">in</span> <span class="n">tokenizers</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">tokens</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
+        <span class="n">results</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+            <span class="s1">&#39;tokens&#39;</span><span class="p">:</span> <span class="n">tokens</span><span class="o">.</span><span class="n">tokens</span><span class="p">,</span>
+            <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="nb">len</span><span class="p">(</span><span class="n">tokens</span><span class="o">.</span><span class="n">tokens</span><span class="p">),</span>
+            <span class="s1">&#39;ids&#39;</span><span class="p">:</span> <span class="n">tokens</span><span class="o">.</span><span class="n">ids</span>
+        <span class="p">}</span>
+    <span class="k">return</span> <span class="n">results</span>
+
+<span class="c1"># Comparison example</span>
+<span class="n">text</span> <span class="o">=</span> <span class="s2">&quot;한국어 자연어 처리는 매우 흥미로운 분야입니다.&quot;</span>
+<span class="n">tokenizers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;custom_korean&#39;</span><span class="p">:</span> <span class="n">custom_tokenizer</span><span class="p">,</span>
+    <span class="s1">&#39;bert_multilingual&#39;</span><span class="p">:</span> <span class="n">bert_tokenizer</span><span class="p">,</span>
+    <span class="s1">&#39;sentencepiece&#39;</span><span class="p">:</span> <span class="n">sp_tokenizer</span>
+<span class="p">}</span>
+
+<span class="n">comparison</span> <span class="o">=</span> <span class="n">compare_tokenizers</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">tokenizers</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id2">
+<h3>Checkpoint Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the main factors to consider when designing Korean tokenizers?</p></li>
+<li><p>What are the differences between BPE and WordPiece tokenizers in Korean processing?</p></li>
+<li><p>How does tokenizer vocabulary size affect model performance?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-4-model-architecture-exploration">
+<h2>Week 4: Model Architecture Exploration<a class="headerlink" href="#week-4-model-architecture-exploration" title="Link to this heading">#</a></h2>
+<p>Week 4 explores the diversity of <strong>LLM model architectures</strong>. We first review the core of Transformer structure (self-attention, feedforward, etc.) and examine latest alternative architectures. For example, <strong>Mamba</strong> is based on SSM (State Space Model) enabling linear inference for long sequences, achieving similar performance to transformers while dramatically improving inference latency and memory usage. Also, <strong>RWKV</strong> is an innovative LLM architecture 100% RNN-based, operating with linear time complexity without KV cache while achieving transformer-level performance. We also cover concepts of <strong>DeepSeek</strong>, the latest LLM from China. DeepSeek uses Mixture-of-Experts (MoE) structure to activate only some experts per input for efficiency, and introduces Multi-Head Latent Attention to show high performance with low resources. For practice, we implement small-scale Transformers and simple RNN models through PyTorch and compare <strong>learning speed and memory usage</strong> on the same data. Through this, we learn to understand various structural trade-offs and reflect latest research trends in LLM design.</p>
+<section id="transformer-architecture-implementation">
+<h3>Transformer Architecture Implementation<a class="headerlink" href="#transformer-architecture-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">math</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_heads</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span> <span class="o">=</span> <span class="n">d_model</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span> <span class="o">=</span> <span class="n">d_model</span> <span class="o">//</span> <span class="n">num_heads</span>
+        
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_q</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_k</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_v</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="n">batch_size</span> <span class="o">=</span> <span class="n">query</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        
+        <span class="c1"># Linear transformations</span>
+        <span class="n">Q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_q</span><span class="p">(</span><span class="n">query</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">K</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_k</span><span class="p">(</span><span class="n">key</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">V</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_v</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+        
+        <span class="c1"># Scaled dot-product attention</span>
+        <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">Q</span><span class="p">,</span> <span class="n">K</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">d_k</span><span class="p">)</span>
+        
+        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+            
+        <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">attention_weights</span><span class="p">,</span> <span class="n">V</span><span class="p">)</span>
+        
+        <span class="c1"># Concatenate heads</span>
+        <span class="n">context</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span>
+            <span class="n">batch_size</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">d_model</span>
+        <span class="p">)</span>
+        
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">W_o</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="mamba-architecture-implementation">
+<h3>Mamba Architecture Implementation<a class="headerlink" href="#mamba-architecture-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">mamba_ssm</span><span class="w"> </span><span class="kn">import</span> <span class="n">Mamba</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">MambaBlock</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">d_state</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">d_conv</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">expand</span><span class="o">=</span><span class="mi">2</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">mamba</span> <span class="o">=</span> <span class="n">Mamba</span><span class="p">(</span>
+            <span class="n">d_model</span><span class="o">=</span><span class="n">d_model</span><span class="p">,</span>
+            <span class="n">d_state</span><span class="o">=</span><span class="n">d_state</span><span class="p">,</span>
+            <span class="n">d_conv</span><span class="o">=</span><span class="n">d_conv</span><span class="p">,</span>
+            <span class="n">expand</span><span class="o">=</span><span class="n">expand</span>
+        <span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+        <span class="c1"># Residual connection with layer norm</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">mamba</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+
+<span class="c1"># Mamba model composition</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">MambaModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">,</span> <span class="n">num_layers</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">vocab_size</span><span class="p">,</span> <span class="n">d_model</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">layers</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ModuleList</span><span class="p">([</span>
+            <span class="n">MambaBlock</span><span class="p">(</span><span class="n">d_model</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_layers</span><span class="p">)</span>
+        <span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lm_head</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">d_model</span><span class="p">,</span> <span class="n">vocab_size</span><span class="p">)</span>
+        
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_ids</span><span class="p">):</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">embedding</span><span class="p">(</span><span class="n">input_ids</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">layer</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">layers</span><span class="p">:</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">layer</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">lm_head</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3>Checkpoint Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the time complexity differences between Transformer and Mamba architectures?</p></li>
+<li><p>How does RWKV combine the advantages of RNN and Transformer?</p></li>
+<li><p>What is the principle behind MoE (Mixture-of-Experts) structure improving efficiency?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-5-llm-pre-training">
+<h2>Week 5: LLM Pre-training<a class="headerlink" href="#week-5-llm-pre-training" title="Link to this heading">#</a></h2>
+<p>Week 5 involves <strong>pre-training Korean LLMs</strong> in earnest. Using the tokenizer and corpus prepared in previous weeks, we train GPT-series <strong>basic language models</strong> from scratch. We perform distributed training using NVIDIA’s <strong>NeMo Run</strong> tool and Megatron-based recipes, and apply <strong>NeMo AutoModel</strong> functionality for HuggingFace integration. AutoModel allows loading HuggingFace model architectures directly in NeMo, with model parallelization and PyTorch JIT optimization supported by default. For example, we initialize custom GPT models with configured hidden size or layer count and train them in multi-GPU environments. We observe loss reduction trends through several epochs of training and evaluate initial model’s language generation characteristics through <strong>Korean sentence generation examples</strong>. Through this week, we obtain <strong>Korean-based LLM initial models</strong> with our own corpus and practice large-scale pre-training processes and distributed training techniques.</p>
+<section id="pre-training-setup-and-configuration">
+<h3>Pre-training Setup and Configuration<a class="headerlink" href="#pre-training-setup-and-configuration" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoTokenizer</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span><span class="p">,</span> <span class="n">TrainingArguments</span><span class="p">,</span> <span class="n">Trainer</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Load Korean tokenizer</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;custom_korean_tokenizer&quot;</span><span class="p">)</span>
+
+<span class="c1"># Initialize GPT model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>  <span class="c1"># Use basic structure</span>
+    <span class="n">vocab_size</span><span class="o">=</span><span class="nb">len</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">),</span>
+    <span class="n">pad_token_id</span><span class="o">=</span><span class="n">tokenizer</span><span class="o">.</span><span class="n">pad_token_id</span>
+<span class="p">)</span>
+
+<span class="c1"># Pre-training configuration</span>
+<span class="n">training_args</span> <span class="o">=</span> <span class="n">TrainingArguments</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./korean_llm_pretraining&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">gradient_accumulation_steps</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">5e-4</span><span class="p">,</span>
+    <span class="n">warmup_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
+    <span class="n">save_steps</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+    <span class="n">fp16</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">dataloader_num_workers</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>
+    <span class="n">remove_unused_columns</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Training data preparation</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">preprocess_function</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">tokenizer</span><span class="p">(</span>
+        <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span>
+        <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">512</span><span class="p">,</span>
+        <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="distributed-training-setup">
+<h3>Distributed Training Setup<a class="headerlink" href="#distributed-training-setup" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Distributed training setup using NeMo</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">nemo.collections.nlp.models.language_modeling</span><span class="w"> </span><span class="kn">import</span> <span class="n">GPTModel</span>
+
+<span class="c1"># NeMo GPT model configuration</span>
+<span class="n">nemo_model</span> <span class="o">=</span> <span class="n">GPTModel</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="n">model_name</span><span class="o">=</span><span class="s2">&quot;gpt2&quot;</span><span class="p">,</span>
+    <span class="n">trainer</span><span class="o">=</span><span class="n">Trainer</span><span class="p">(</span>
+        <span class="n">devices</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span>  <span class="c1"># Use 4 GPUs</span>
+        <span class="n">accelerator</span><span class="o">=</span><span class="s2">&quot;gpu&quot;</span><span class="p">,</span>
+        <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;ddp&quot;</span><span class="p">,</span>  <span class="c1"># Distributed data parallel</span>
+    <span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># Train with Korean data</span>
+<span class="n">nemo_model</span><span class="o">.</span><span class="n">setup_training_data</span><span class="p">(</span>
+    <span class="n">train_file</span><span class="o">=</span><span class="s2">&quot;korean_corpus.txt&quot;</span><span class="p">,</span>
+    <span class="n">validation_file</span><span class="o">=</span><span class="s2">&quot;korean_validation.txt&quot;</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3>Checkpoint Questions<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What are the most important hyperparameters in LLM pre-training?</p></li>
+<li><p>What are the main factors to consider in distributed training?</p></li>
+<li><p>What are the differences between Korean and English pre-training?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-6-fine-tuning-and-peft">
+<h2>Week 6: Fine-tuning and PEFT<a class="headerlink" href="#week-6-fine-tuning-and-peft" title="Link to this heading">#</a></h2>
+<p>Week 6 involves <strong>fine-tuning pre-trained models</strong> for downstream tasks. We first specialize models to NSMC movie review sentiment analysis data through simple <strong>supervised learning fine-tuning</strong>. Instead of updating all parameters using HuggingFace’s Trainer, we use PEFT techniques like <strong>LoRA</strong> to adjust only some weights for efficiency. LoRA application is easily done through HuggingFace <strong>PEFT</strong> library, and using <strong>NeMo AutoModel</strong>, we can attach LoRA adapters directly to pre-trained HF models for training. At this time, we also introduce latest techniques like <strong>WaveFT</strong> and <strong>DoRA</strong>. WaveFT achieves fine control and high-efficiency tuning superior to LoRA by learning only minimal parameters in the <strong>wavelet domain</strong> of weight residual matrices, experimentally showing that performance can be maintained with very few variables. <strong>DoRA</strong> (Weight-Decomposed LoRA) decomposes weight changes into magnitude and direction components for learning, achieving <strong>accuracy closer to original full fine-tuning</strong> than LoRA, which is NVIDIA’s latest method. In practice, we perform the same sentiment analysis task with existing LoRA and DoRA and compare results. Through this, we learn <strong>retraining techniques</strong> that effectively retrain models with few resources and understand the advantages and disadvantages of each technique.</p>
+<section id="lora-fine-tuning-implementation">
+<h3>LoRA Fine-tuning Implementation<a class="headerlink" href="#lora-fine-tuning-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">LoraConfig</span><span class="p">,</span> <span class="n">get_peft_model</span><span class="p">,</span> <span class="n">TaskType</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">AutoModelForSequenceClassification</span>
+
+<span class="c1"># LoRA configuration</span>
+<span class="n">lora_config</span> <span class="o">=</span> <span class="n">LoraConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply LoRA to model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForSequenceClassification</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span><span class="s2">&quot;korean_llm_base&quot;</span><span class="p">)</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">lora_config</span><span class="p">)</span>
+
+<span class="c1"># Check trainable parameters</span>
+<span class="n">model</span><span class="o">.</span><span class="n">print_trainable_parameters</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="dora-fine-tuning-implementation">
+<h3>DoRA Fine-tuning Implementation<a class="headerlink" href="#dora-fine-tuning-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">peft</span><span class="w"> </span><span class="kn">import</span> <span class="n">DoRAConfig</span><span class="p">,</span> <span class="n">get_peft_model</span>
+
+<span class="c1"># DoRA configuration</span>
+<span class="n">dora_config</span> <span class="o">=</span> <span class="n">DoRAConfig</span><span class="p">(</span>
+    <span class="n">task_type</span><span class="o">=</span><span class="n">TaskType</span><span class="o">.</span><span class="n">SEQ_CLS</span><span class="p">,</span>
+    <span class="n">r</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span>
+    <span class="n">lora_alpha</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
+    <span class="n">target_modules</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;query&quot;</span><span class="p">,</span> <span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="s2">&quot;key&quot;</span><span class="p">,</span> <span class="s2">&quot;dense&quot;</span><span class="p">],</span>
+    <span class="n">lora_dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span>
+    <span class="n">bias</span><span class="o">=</span><span class="s2">&quot;none&quot;</span>
+<span class="p">)</span>
+
+<span class="c1"># Apply DoRA</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">get_peft_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">dora_config</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h3>Checkpoint Questions<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why are PEFT techniques more efficient than full fine-tuning?</p></li>
+<li><p>What are the main differences between LoRA and DoRA?</p></li>
+<li><p>Which layers should be selected as targets during fine-tuning?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-7-model-evaluation-and-prompt-utilization">
+<h2>Week 7: Model Evaluation and Prompt Utilization<a class="headerlink" href="#week-7-model-evaluation-and-prompt-utilization" title="Link to this heading">#</a></h2>
+<p>Week 7 focuses on <strong>model performance evaluation and utilization methods</strong>. We first conduct quantitative evaluation using parts of <strong>KLUE benchmark</strong> on fine-tuned models. For example, we measure model accuracy using natural language inference (NLI) or question answering (MRC) data and calculate metrics like Accuracy, F1 using <strong>HuggingFace’s evaluate library</strong>. We also manually review model responses to prepared prompts for <strong>generative evaluation</strong> or evaluate summary accuracy using metrics like BLEU/ROUGE. In this process, we cover considerations for Korean evaluation and introduce <strong>model output rating evaluation</strong> techniques using GPT-4 when necessary. We also conduct practice on <strong>prompt optimization</strong>. We adjust prompt phrases for the same question and observe changes in model response content, sharing <strong>prompt engineering tips</strong> to elicit desired output formats. For example, we give prompts that induce step-by-step thinking to make models answer reasoning processes in detail. Through this week, we learn to measure <strong>objective model performance</strong> and utilize models through <strong>effective prompt design</strong>.</p>
+<section id="model-performance-evaluation">
+<h3>Model Performance Evaluation<a class="headerlink" href="#model-performance-evaluation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">evaluate</span><span class="w"> </span><span class="kn">import</span> <span class="n">load</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># KLUE benchmark evaluation</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">evaluate_model</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Evaluate model performance&quot;&quot;&quot;</span>
+    
+    <span class="c1"># Accuracy evaluation</span>
+    <span class="n">accuracy_metric</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">&quot;accuracy&quot;</span><span class="p">)</span>
+    <span class="n">f1_metric</span> <span class="o">=</span> <span class="n">load</span><span class="p">(</span><span class="s2">&quot;f1&quot;</span><span class="p">)</span>
+    
+    <span class="n">predictions</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">test_dataset</span><span class="p">:</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;text&quot;</span><span class="p">],</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">truncation</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">)</span>
+            <span class="n">preds</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">outputs</span><span class="o">.</span><span class="n">logits</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">predictions</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">preds</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">())</span>
+            <span class="n">references</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">batch</span><span class="p">[</span><span class="s2">&quot;label&quot;</span><span class="p">])</span>
+    
+    <span class="n">accuracy</span> <span class="o">=</span> <span class="n">accuracy_metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">references</span><span class="p">)</span>
+    <span class="n">f1</span> <span class="o">=</span> <span class="n">f1_metric</span><span class="o">.</span><span class="n">compute</span><span class="p">(</span><span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">references</span><span class="o">=</span><span class="n">references</span><span class="p">,</span> <span class="n">average</span><span class="o">=</span><span class="s2">&quot;weighted&quot;</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="p">{</span><span class="s2">&quot;accuracy&quot;</span><span class="p">:</span> <span class="n">accuracy</span><span class="p">[</span><span class="s2">&quot;accuracy&quot;</span><span class="p">],</span> <span class="s2">&quot;f1&quot;</span><span class="p">:</span> <span class="n">f1</span><span class="p">[</span><span class="s2">&quot;f1&quot;</span><span class="p">]}</span>
+</pre></div>
+</div>
+</section>
+<section id="prompt-engineering">
+<h3>Prompt Engineering<a class="headerlink" href="#prompt-engineering" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">test_prompt_variations</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">,</span> <span class="n">question</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test model responses with various prompts&quot;&quot;&quot;</span>
+    
+    <span class="n">prompts</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="sa">f</span><span class="s2">&quot;Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\n</span><span class="s2">Answer:&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;Think step by step about the following question.</span><span class="se">\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\n</span><span class="s2">Answer:&quot;</span><span class="p">,</span>
+        <span class="sa">f</span><span class="s2">&quot;You are a helpful AI assistant.</span><span class="se">\n</span><span class="s2">Question: </span><span class="si">{</span><span class="n">question</span><span class="si">}</span><span class="se">\n</span><span class="s2">Answer:&quot;</span><span class="p">,</span>
+    <span class="p">]</span>
+    
+    <span class="n">responses</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">prompt</span> <span class="ow">in</span> <span class="n">prompts</span><span class="p">:</span>
+        <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">prompt</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+            <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+            <span class="n">responses</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">response</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">responses</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3>Checkpoint Questions<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What special factors should be considered in Korean model evaluation?</p></li>
+<li><p>What are the core principles of prompt engineering?</p></li>
+<li><p>How can generative model quality be objectively evaluated?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-8-inference-optimization-and-deployment">
+<h2>Week 8: Inference Optimization and Deployment<a class="headerlink" href="#week-8-inference-optimization-and-deployment" title="Link to this heading">#</a></h2>
+<p>Week 8 covers <strong>inference optimization techniques</strong> for deploying completed models to production services. We first practice methods to reduce memory usage and increase CPU/GPU inference speed by quantizing model parameters to 8-bit or 4-bit. Using HuggingFace <strong>Transformers</strong> and <strong>BitsAndBytes</strong>, we generate INT8/INT4 quantized checkpoints and verify that response quality degradation is minimized. We then cover high-speed inference engine construction using NVIDIA’s <strong>TensorRT-LLM</strong> toolkit. TensorRT-LLM automatically builds optimized TensorRT engines when LLMs are defined through Python API and efficiently performs inference on NVIDIA GPUs. For practice, we convert pre-trained models to TensorRT-LLM and deploy them through <strong>Triton Inference Server</strong> or <strong>Gradio</strong> interface. We measure <strong>latency and throughput changes</strong> before and after optimization to experience performance improvements. As a result, Week 8 teaches how to build <strong>lightweight LLM services</strong> and master optimization techniques to consider when deploying large models to real-world environments.</p>
+<section id="model-quantization">
+<h3>Model Quantization<a class="headerlink" href="#model-quantization" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">BitsAndBytesConfig</span><span class="p">,</span> <span class="n">AutoModelForCausalLM</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># 4-bit quantization configuration</span>
+<span class="n">quantization_config</span> <span class="o">=</span> <span class="n">BitsAndBytesConfig</span><span class="p">(</span>
+    <span class="n">load_in_4bit</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+    <span class="n">bnb_4bit_quant_type</span><span class="o">=</span><span class="s2">&quot;nf4&quot;</span><span class="p">,</span>
+    <span class="n">bnb_4bit_compute_dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float16</span><span class="p">,</span>
+    <span class="n">bnb_4bit_use_double_quant</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Load quantized model</span>
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoModelForCausalLM</span><span class="o">.</span><span class="n">from_pretrained</span><span class="p">(</span>
+    <span class="s2">&quot;korean_llm_finetuned&quot;</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="n">quantization_config</span><span class="p">,</span>
+    <span class="n">device_map</span><span class="o">=</span><span class="s2">&quot;auto&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="deployment-using-gradio">
+<h3>Deployment using Gradio<a class="headerlink" href="#deployment-using-gradio" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">generate_response</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate response to user input&quot;&quot;&quot;</span>
+    <span class="n">inputs</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">return_tensors</span><span class="o">=</span><span class="s2">&quot;pt&quot;</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">generate</span><span class="p">(</span><span class="o">**</span><span class="n">inputs</span><span class="p">,</span> <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span> <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">)</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">tokenizer</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="n">outputs</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">skip_special_tokens</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span>
+
+<span class="c1"># Create Gradio interface</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">ChatInterface</span><span class="p">(</span>
+    <span class="n">fn</span><span class="o">=</span><span class="n">generate_response</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;Korean LLM Chatbot&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Chat with the Korean LLM built in this workshop.&quot;</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3>Checkpoint Questions<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What impact does model quantization have on performance?</p></li>
+<li><p>What are the main factors to consider in production deployment?</p></li>
+<li><p>What are the advantages and disadvantages of inference optimization techniques?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-9-model-alignment">
+<h2>Week 9: Model Alignment<a class="headerlink" href="#week-9-model-alignment" title="Link to this heading">#</a></h2>
+<p>Week 9 focuses on the <strong>Model Alignment</strong> stage, practicing latest techniques to tune LLMs to user instructions or values. We first explain concepts of instruction-following model generation through Human Feedback reinforcement and learn procedures of representative method <strong>RLHF</strong> (Reinforcement Learning from Human Feedback). This includes learning <strong>reward models</strong> reflecting human feedback and optimizing language models through PPO algorithms. However, since RLHF is complex to implement and costly, we directly apply <strong>DPO</strong> (Direct Preference Optimization) presented as an alternative. DPO is a technique that <strong>directly retrains models</strong> using human preference data without separate reinforcement learning, showing performance comparable to RLHF while having the advantage of simple implementation. In practice, we retune our models to <strong>follow instructions in conversation</strong> using DPO algorithms with open <strong>preference datasets</strong> (e.g., rankings for instruction responses). Using NVIDIA’s <strong>NeMo-Aligner</strong> toolkit, we can easily perform RLHF pipelines and DPO algorithms, and efficiently align models of hundreds of billions scale. After training completion, we input sensitive questions or complex instructions as prompts to verify that <strong>safe and helpful responses</strong> are generated. Through Week 9, participants understand the <strong>importance of LLM Alignment</strong> and implementation methods, and finally obtain user-friendly <strong>instruction models</strong>.</p>
+<section id="dpo-implementation">
+<h3>DPO Implementation<a class="headerlink" href="#dpo-implementation" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">trl</span><span class="w"> </span><span class="kn">import</span> <span class="n">DPOTrainer</span><span class="p">,</span> <span class="n">DPOConfig</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span>
+
+<span class="c1"># DPO configuration</span>
+<span class="n">dpo_config</span> <span class="o">=</span> <span class="n">DPOConfig</span><span class="p">(</span>
+    <span class="n">output_dir</span><span class="o">=</span><span class="s2">&quot;./dpo_results&quot;</span><span class="p">,</span>
+    <span class="n">num_train_epochs</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span>
+    <span class="n">per_device_train_batch_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">learning_rate</span><span class="o">=</span><span class="mf">5e-5</span><span class="p">,</span>
+    <span class="n">logging_steps</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
+<span class="p">)</span>
+
+<span class="c1"># Prepare preference data</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">prepare_dpo_data</span><span class="p">(</span><span class="n">examples</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prepare data for DPO training&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;prompt&quot;</span><span class="p">:</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;instruction&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;chosen&quot;</span><span class="p">:</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;chosen_response&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;rejected&quot;</span><span class="p">:</span> <span class="n">examples</span><span class="p">[</span><span class="s2">&quot;rejected_response&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+<span class="c1"># DPO training</span>
+<span class="n">dpo_trainer</span> <span class="o">=</span> <span class="n">DPOTrainer</span><span class="p">(</span>
+    <span class="n">model</span><span class="o">=</span><span class="n">model</span><span class="p">,</span>
+    <span class="n">ref_model</span><span class="o">=</span><span class="n">ref_model</span><span class="p">,</span>
+    <span class="n">args</span><span class="o">=</span><span class="n">dpo_config</span><span class="p">,</span>
+    <span class="n">train_dataset</span><span class="o">=</span><span class="n">train_dataset</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="n">tokenizer</span><span class="p">,</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3>Checkpoint Questions<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Why is model alignment important?</p></li>
+<li><p>What are the main differences between RLHF and DPO?</p></li>
+<li><p>What considerations are needed to build safe AI models?</p></li>
+</ul>
+</section>
+</section>
+<section id="week-10-integration-and-conclusion">
+<h2>Week 10: Integration and Conclusion<a class="headerlink" href="#week-10-integration-and-conclusion" title="Link to this heading">#</a></h2>
+<p>The final Week 10 <strong>integrates</strong> the content covered so far to organize final deliverables and explore additional development directions. We first connect processes from Week 1 to Week 9 into one pipeline for review. We organize the flow from data preparation, tokenization, pre-training, fine-tuning, evaluation, optimization, to alignment, and review how NeMo and HuggingFace tools collaborated at each stage. We upload the <strong>final Korean LLM</strong> created through practice to HuggingFace Hub or share with team members to run actual Q&amp;A demos. We also build simple web interfaces using <strong>Gradio</strong> to complete <strong>chatbot demos</strong> where general users input questions and models respond. In this process, we can attempt final tuning to improve response usefulness and stability through prompt design optimization or additional fine-tuning. Finally, we conclude the workshop by briefly discussing topics like multimodal integration, continuous model monitoring, and feedback loops, which are latest LLM research trends. Through the final week, participants organize their direct experience of <strong>the entire LLM development cycle</strong> and gain direction for practical applications and future learning.</p>
+<section id="full-pipeline-integration">
+<h3>Full Pipeline Integration<a class="headerlink" href="#full-pipeline-integration" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Full workflow integration example</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">complete_llm_pipeline</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Execute the entire LLM development pipeline&quot;&quot;&quot;</span>
+    
+    <span class="c1"># 1. Data preparation</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">prepare_korean_corpus</span><span class="p">()</span>
+    
+    <span class="c1"># 2. Tokenizer training</span>
+    <span class="n">tokenizer</span> <span class="o">=</span> <span class="n">train_korean_tokenizer</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    
+    <span class="c1"># 3. Model pre-training</span>
+    <span class="n">base_model</span> <span class="o">=</span> <span class="n">pretrain_llm</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">tokenizer</span><span class="p">)</span>
+    
+    <span class="c1"># 4. Fine-tuning</span>
+    <span class="n">finetuned_model</span> <span class="o">=</span> <span class="n">fine_tune_with_peft</span><span class="p">(</span><span class="n">base_model</span><span class="p">,</span> <span class="n">task_data</span><span class="p">)</span>
+    
+    <span class="c1"># 5. Model alignment</span>
+    <span class="n">aligned_model</span> <span class="o">=</span> <span class="n">align_model_with_dpo</span><span class="p">(</span><span class="n">finetuned_model</span><span class="p">,</span> <span class="n">preference_data</span><span class="p">)</span>
+    
+    <span class="c1"># 6. Optimization and deployment</span>
+    <span class="n">optimized_model</span> <span class="o">=</span> <span class="n">optimize_for_inference</span><span class="p">(</span><span class="n">aligned_model</span><span class="p">)</span>
+    <span class="n">deploy_model</span><span class="p">(</span><span class="n">optimized_model</span><span class="p">)</span>
+    
+    <span class="k">return</span> <span class="n">optimized_model</span>
+</pre></div>
+</div>
+</section>
+<section id="final-demo-construction">
+<h3>Final Demo Construction<a class="headerlink" href="#final-demo-construction" title="Link to this heading">#</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">gradio</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">gr</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">transformers</span><span class="w"> </span><span class="kn">import</span> <span class="n">pipeline</span>
+
+<span class="c1"># Load final model</span>
+<span class="n">final_model</span> <span class="o">=</span> <span class="n">pipeline</span><span class="p">(</span>
+    <span class="s2">&quot;text-generation&quot;</span><span class="p">,</span>
+    <span class="n">model</span><span class="o">=</span><span class="s2">&quot;korean_llm_final&quot;</span><span class="p">,</span>
+    <span class="n">tokenizer</span><span class="o">=</span><span class="s2">&quot;korean_tokenizer&quot;</span>
+<span class="p">)</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">chat_with_model</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">history</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Function to chat with final model&quot;&quot;&quot;</span>
+    <span class="n">response</span> <span class="o">=</span> <span class="n">final_model</span><span class="p">(</span>
+        <span class="n">message</span><span class="p">,</span>
+        <span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">,</span>
+        <span class="n">temperature</span><span class="o">=</span><span class="mf">0.7</span><span class="p">,</span>
+        <span class="n">do_sample</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+    <span class="k">return</span> <span class="n">response</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;generated_text&#39;</span><span class="p">]</span>
+
+<span class="c1"># Final demo interface</span>
+<span class="n">demo</span> <span class="o">=</span> <span class="n">gr</span><span class="o">.</span><span class="n">ChatInterface</span><span class="p">(</span>
+    <span class="n">fn</span><span class="o">=</span><span class="n">chat_with_model</span><span class="p">,</span>
+    <span class="n">title</span><span class="o">=</span><span class="s2">&quot;LLM From Scratch Workshop - Final Demo&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="s2">&quot;Chat with the Korean LLM built from scratch in this workshop!&quot;</span>
+<span class="p">)</span>
+
+<span class="n">demo</span><span class="o">.</span><span class="n">launch</span><span class="p">()</span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3>Checkpoint Questions<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>What is the most important stage in the LLM development process?</p></li>
+<li><p>What is the biggest insight gained through the workshop?</p></li>
+<li><p>What fields should be focused on in future LLM research?</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<section id="key-papers-and-research-materials">
+<h3>Key Papers and Research Materials<a class="headerlink" href="#key-papers-and-research-materials" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Vaswani, A., et al. (2017). “Attention is all you need.” Advances in neural information processing systems.</p></li>
+<li><p>Gu, A., &amp; Dao, T. (2023). “Mamba: Linear-Time Sequence Modeling with Selective State Spaces.” arXiv preprint.</p></li>
+<li><p>Peng, B., et al. (2023). “RWKV: Reinventing RNNs for the Transformer Era.” arXiv preprint.</p></li>
+<li><p>Hu, E. J., et al. (2021). “LoRA: Low-Rank Adaptation of Large Language Models.” ICLR 2022.</p></li>
+<li><p>Liu, H., et al. (2024). “DoRA: Weight-Decomposed Low-Rank Adaptation.” arXiv preprint.</p></li>
+<li><p>Dettmers, T., et al. (2023). “QLoRA: Efficient Finetuning of Quantized LLMs.” arXiv preprint.</p></li>
+<li><p>Rafailov, R., et al. (2023). “Direct Preference Optimization: Your Language Model is Secretly a Reward Model.” arXiv preprint.</p></li>
+</ul>
+</section>
+<section id="technical-documentation-and-implementations">
+<h3>Technical Documentation and Implementations<a class="headerlink" href="#technical-documentation-and-implementations" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Hugging Face Transformers Documentation: <a class="reference external" href="https://huggingface.co/docs/transformers">https://huggingface.co/docs/transformers</a></p></li>
+<li><p>NVIDIA NeMo Documentation: <a class="reference external" href="https://docs.nvidia.com/deeplearning/nemo/user-guide/docs/en/stable/">https://docs.nvidia.com/deeplearning/nemo/user-guide/docs/en/stable/</a></p></li>
+<li><p>Mamba GitHub Repository: <a class="github reference external" href="https://github.com/state-spaces/mamba">state-spaces/mamba</a></p></li>
+<li><p>RWKV GitHub Repository: <a class="github reference external" href="https://github.com/BlinkDL/RWKV-LM">BlinkDL/RWKV-LM</a></p></li>
+<li><p>PEFT Library Documentation: <a class="reference external" href="https://huggingface.co/docs/peft">https://huggingface.co/docs/peft</a></p></li>
+<li><p>TensorRT-LLM Documentation: <a class="reference external" href="https://docs.nvidia.com/tensorrt-llm/">https://docs.nvidia.com/tensorrt-llm/</a></p></li>
+</ul>
+</section>
+<section id="online-resources-and-blogs">
+<h3>Online Resources and Blogs<a class="headerlink" href="#online-resources-and-blogs" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>“A Visual Guide to Mamba and State Space Models” - Newsletter by Maarten Grootendorst</p></li>
+<li><p>“The RWKV language model: An RNN with the advantages of a transformer” - The Good Minima</p></li>
+<li><p>“Mamba Explained” - The Gradient</p></li>
+<li><p>“Introducing RWKV - An RNN with the advantages of a transformer” - Hugging Face Blog</p></li>
+<li><p>“Parameter-Efficient Fine-Tuning: A Comprehensive Guide” - Hugging Face Blog</p></li>
+<li><p>“DoRA: A High-Performing Alternative to LoRA” - NVIDIA Developer Blog</p></li>
+<li><p>“QLoRA: Making Large Language Models More Accessible” - Hugging Face Blog</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./workshops"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../week12/index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Week 12: AI Regulation and Responsible AI</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="week01.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Week 1 Workshop: LLM Overview and Development Environment Setup</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-overview">Workshop Overview</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-characteristics-of-llms">Definition and Characteristics of LLMs</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#workshop-roadmap">Workshop Roadmap</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-1-llm-overview-and-environment-setup">Week 1: LLM Overview and Environment Setup</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#environment-setup-practice">Environment Setup Practice</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-model-execution-example">Basic Model Execution Example</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-2-data-collection-and-preprocessing">Week 2: Data Collection and Preprocessing</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-dataset-collection">Korean Dataset Collection</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-cleaning-and-preprocessing">Data Cleaning and Preprocessing</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-3-tokenizer-design-and-construction">Week 3: Tokenizer Design and Construction</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#korean-tokenizer-training">Korean Tokenizer Training</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tokenizer-performance-comparison">Tokenizer Performance Comparison</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-4-model-architecture-exploration">Week 4: Model Architecture Exploration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#transformer-architecture-implementation">Transformer Architecture Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mamba-architecture-implementation">Mamba Architecture Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-5-llm-pre-training">Week 5: LLM Pre-training</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-training-setup-and-configuration">Pre-training Setup and Configuration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-training-setup">Distributed Training Setup</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-6-fine-tuning-and-peft">Week 6: Fine-tuning and PEFT</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lora-fine-tuning-implementation">LoRA Fine-tuning Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dora-fine-tuning-implementation">DoRA Fine-tuning Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-7-model-evaluation-and-prompt-utilization">Week 7: Model Evaluation and Prompt Utilization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-performance-evaluation">Model Performance Evaluation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#prompt-engineering">Prompt Engineering</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-8-inference-optimization-and-deployment">Week 8: Inference Optimization and Deployment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#model-quantization">Model Quantization</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#deployment-using-gradio">Deployment using Gradio</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-9-model-alignment">Week 9: Model Alignment</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#dpo-implementation">DPO Implementation</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#week-10-integration-and-conclusion">Week 10: Integration and Conclusion</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#full-pipeline-integration">Full Pipeline Integration</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#final-demo-construction">Final Demo Construction</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">Checkpoint Questions</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#key-papers-and-research-materials">Key Papers and Research Materials</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#technical-documentation-and-implementations">Technical Documentation and Implementations</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#online-resources-and-blogs">Online Resources and Blogs</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
