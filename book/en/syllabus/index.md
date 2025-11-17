@@ -46,7 +46,7 @@ This course is designed for third-year undergraduate level and assumes completio
 |  10  | Innovation in Alignment Techniques – DPO, Constitutional AI, Process Reward Models                                                                                           | Comparison Practice between DPO and Existing RLHF Techniques                                                              |
 |  11  | Production Agent Systems – CrewAI, Mirascope, Type-Safety Development                                                                                                        | Multi-agent Orchestration Implementation                                                                                  |
 |  12  | AI Regulation and Responsible AI – EU AI Act, Differential Privacy, Federated Learning                                                                                       | Assignment for Designing Regulation-Compliant AI Systems                                                                  |
-|  13  | Latest Research Trends – Small Language Models (Gemma 3, Mistral NeMo), Enhanced Reasoning (Long CoT, PAL)                                                                   | Student Presentations of Latest Papers and Comprehensive Discussion                                                       |
+|  13  | Ontology and AI – Modeling Reality and Operating it with AI<br/>• Data Science to Decision Science<br/>• Semantic Ontology, GraphRAG<br/>• Kinetic Ontology, Closed-Loop Systems                                                      | Semantic Ontology Modeling<br/>GraphRAG Implementation<br/>Closed-Loop Simulation                                                      |
 |  14  | Final Project Development and MLOps                                                                                                                                          | Team Prototype Implementation and Feedback Sessions (Industry Mentor Participation)                                       |
 |  15  | Final Project Presentations and Comprehensive Evaluation                                                                                                                     | Team Presentations, Course Content Summary and Future Prospects Discussion                                                |
 
@@ -240,7 +240,40 @@ This course is designed for third-year undergraduate level and assumes completio
 
 - **Assignment**: Write **suitable LLM service design** for given scenarios according to EU AI Act and other related regulations. Create checklist of measures to take from model development to deployment and present **regulatory compliance** by team
 
-### Week 13 – Latest Research Trends and Paper Reviews
+### Week 13 – Ontology and AI: Modeling Reality and Operating it with AI
+
+#### Core Topics
+
+- **Paradigm Shift: From Data Science to Decision Science**:
+  - The "Data-Rich, Decision-Poor" problem and the "last mile" gap
+  - Limitations of Data Science (DS): Remaining at prediction and insight as "dashboard" builders
+  - Goal of Decision Science (DSci): "Pilots" who prescribe optimal actions and create business impact
+  - The need to convert expert "Tacit Knowledge" into "Explicit Models" that AI can understand
+  - "Ontology-First" strategy: Modeling the semantics and logic of reality before data collection
+- **Modeling Reality: Semantic Ontology (Semantic Layer)**:
+  - Semantic Layer: A "Digital Twin" that reflects an organization's real world
+  - Three core components of semantic ontology: Object Types, Properties, Link Types
+  - Semantic Digital Twin: Modeling that integrates "meaning" and "context" beyond simple data replication
+  - Root cause of LLM hallucinations: Limitations of "flat models" and the need for explicit semantics
+- **Integrating AI: Grounding and GraphRAG**:
+  - Two faces of AI: Symbolic AI (logical reasoning) vs Statistical AI (LLM, statistical prediction)
+  - Neuro-Symbolic AI: Complementary combination of both approaches
+  - Three-step "Grounding" governance: Data grounding (input control), Logic grounding (processing control), Action grounding (output control)
+  - GraphRAG: Beyond standard RAG to knowledge graph-based multi-hop reasoning, improving precision by up to 35%
+- **Operating Reality: Kinetic Ontology (Kinetic Layer)**:
+  - Kinetic Ontology: Explicitly modeling "Verbs" (Actions) of reality in addition to semantic ontology ("Nouns")
+  - "Writeback": Mechanism that reflects AI decisions into actual operational systems
+  - Difference between analytical and operational systems: Automating the "last mile" through Writeback
+  - "Closed-Loop" decision-making: Complete automation cycle of Read-Decide-Write-Feedback-Learn
+  - AI Operating System: Enterprise-wide AI platform integrating semantic and kinetic layers
+
+#### Hands-on/Activities
+
+- **Core Practice**: Semantic ontology modeling exercise - Define object types, properties, and link types for a given business domain (e.g., university hospital, manufacturing) and create an ontology schema
+- **GraphRAG Implementation**: Build a RAG system using knowledge graphs - Implement a hybrid search system combining vector search and graph traversal
+- **Closed-Loop Simulation**: Implement a simple decision-making system prototype connecting semantic layer (read) and kinetic layer (write)
+
+### Week 14 – Final Project Development and MLOps
 
 #### Core Topics
 
@@ -255,31 +288,17 @@ This course is designed for third-year undergraduate level and assumes completio
 
 - **Student latest paper presentations**: Review and present **latest NLP papers** selected by groups and discuss significance, limitations, and application possibilities of the research. For example, by selecting and discussing papers on new benchmarks (MMMU, HLE, etc.) or latest model techniques mentioned above, **comprehensively organize latest technology trends** _(Industry mentors or invited researchers participate in feedback)_
 
-### Week 14 – Final Project Development and MLOps
+### Week 15 – MLOps and Industry Application Case Analysis
 
 #### Core Topics
 
-- **Complete Prototype Implementation**: Complete **prototype implementation** of team projects and apply MLOps concepts
 - **NLP Model MLOps Concepts**: Introduce model **version management** strategies, A/B testing techniques, **deployment pipeline** design, etc. Also cover methods for building **online learning pipelines** that continuously reflect user feedback in learning, real-time **monitoring and performance drift detection** systems
-- **Team Prototype Development**: Each team implements **final models and application prototypes** for selected project topics. Reflect industry datasets or actual user scenarios to increase completeness and demonstrate intermediate results this week
-- **Mentor Review Sessions**: Review project progress with invited industry mentors. Receive feedback on appropriateness of model architecture, utilization of latest technologies (e.g., multimodal integration, agent usage, etc.), practicality, etc., and reflect in final improvement direction
-
-#### Hands-on/Activities
-
-- **Key Activities**: Team prototype **demo presentations** (share current performance and remaining tasks) and mentor feedback reflection discussions
-
-### Week 15 – Industry Application Case Analysis and Final Presentations
-
-#### Core Topics
-
 - **Industry Application Case Analysis**: Conclude the course by analyzing **industry cases where latest technologies are applied** and sharing final results of team projects
 - **Industry-specific NLP Success Cases**: Introduce **latest application cases of LLM and NLP technologies** in each field such as healthcare, finance, and education. For example, in healthcare, cases where clinical record automation NLP reduced doctor documentation burden from 49% to 27%, in finance, cases where Morgan Stanley's contract analysis bot introduction saved 360,000 hours annually, in education, cases where **customized tutor AI** with multilingual support improved learning efficiency and increased student engagement by 30%. Through these cases, understand **practical impact of latest NLP technologies**
-- **Final Project Result Presentations**: Each team presents final project outputs and demonstrates demos. Each team shares developed **model architecture**, core technology application content (e.g., ultra-long context support, multimodal input, agent collaboration, etc.), performance evaluation results and limitations. Receive feedback on practicality and improvement points through Q&A with industry mentors and students
 - **Course Comprehensive Discussion**: Finally, **comprehensively organize** content covered in the course and conduct free discussion. Students **reflect on learning content** from week 1 to week 15 and share opinions about most impressive technologies or topics they want to study more. Faculty present **future prospects** (e.g., expected developments after GPT-5, direction of AI-human collaboration, etc.) and advise students to track and utilize latest NLP trends afterwards _(Collect course feedback through surveys)_
 
 #### Hands-on/Activities
 
-- **Final project result presentations**: Team project result presentations and demo demonstrations (sharing model architecture, demonstration results and limitations)
 - **Course comprehensive discussion**: Overall summary of course content and Q&A, future prospects brainstorming (student feedback collection and future learning guidance)
 
 ## References (Selected Latest Papers and Materials)
