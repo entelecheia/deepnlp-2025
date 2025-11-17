@@ -1,4 +1,4 @@
-# Week 13: Ontology and AI - Modeling Reality and Operating it with AI
+# Week 13: Ontology and AI
 
 ## Introduction: A New "Ontological Literacy" for the AI Era
 

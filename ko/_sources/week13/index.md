@@ -1,4 +1,4 @@
-# Week 13: 온톨로지와 AI - 현실을 모델링하고 AI로 작동시키기
+# Week 13: 온톨로지와 AI
 
 ## **서론: AI 시대를 위한 새로운 "존재론적 문해력(Ontological Literacy)"**
 
