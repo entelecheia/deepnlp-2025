@@ -518,17 +518,17 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">실습/과제</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 온톨로지와 AI: 현실을 모델링하고 AI로 작동시키기</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">핵심 주제</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">실습/활동</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">14주차 – 최종 프로젝트 개발 및 MLOps</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">핵심 주제</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">실습/활동</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">14주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">실습/활동</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">15주차 – 산업 응용 사례 분석 및 최종 발표</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">15주차 – MLOps 및 산업 응용 사례 분석</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">핵심 주제</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">실습/활동</a></li>
 </ul>
@@ -637,8 +637,8 @@ document.write(`
 <td class="text-left"><p>규제 준수 AI 시스템 설계 과제</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p>13</p></td>
-<td class="text-left"><p>최신 연구 동향 – 소형 언어모델(Gemma 3, Mistral NeMo), 향상된 추론(Long CoT, PAL)</p></td>
-<td class="text-left"><p>학생별 최신 논문 발표 및 종합 토론</p></td>
+<td class="text-left"><p>온톨로지와 AI – 현실 모델링 및 AI 작동<br/>• 데이터 과학에서 의사결정 과학으로<br/>• 시맨틱 온톨로지, GraphRAG<br/>• 키네틱 온톨로지, 폐쇄 루프 시스템</p></td>
+<td class="text-left"><p>시맨틱 온톨로지 모델링<br/>GraphRAG 구현<br/>폐쇄 루프 시뮬레이션</p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p>14</p></td>
 <td class="text-left"><p>최종 프로젝트 개발 및 MLOps</p></td>
@@ -1020,9 +1020,59 @@ document.write(`
 </section>
 </section>
 <section id="id35">
-<h3>13주차 – 최신 연구 동향 및 논문 리뷰<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
+<h3>13주차 – 온톨로지와 AI: 현실을 모델링하고 AI로 작동시키기<a class="headerlink" href="#id35" title="Link to this heading">#</a></h3>
 <section id="id36">
 <h4>핵심 주제<a class="headerlink" href="#id36" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>패러다임의 전환: 데이터 과학에서 의사결정 과학으로</strong>:</p>
+<ul>
+<li><p>“데이터 풍부, 결정 빈곤(Data-Rich, Decision-Poor)” 문제와 “마지막 마일”의 간극</p></li>
+<li><p>데이터 과학(DS)의 한계: 예측과 통찰에 머무르는 “계기판” 제작자</p></li>
+<li><p>의사결정 과학(DSci)의 목표: 최적의 행동 처방과 비즈니스 임팩트 창출을 위한 “조종사”</p></li>
+<li><p>전문가의 “암묵지(Tacit Knowledge)”를 AI가 이해할 수 있는 “명시적 모델”로 변환하는 필요성</p></li>
+<li><p>“온톨로지-퍼스트(Ontology-First)” 전략: 데이터 수집 전에 현실의 의미와 규칙을 먼저 모델링</p></li>
+</ul>
+</li>
+<li><p><strong>현실 모델링: 시맨틱 온톨로지 (Semantic Layer)</strong>:</p>
+<ul>
+<li><p>시맨틱 레이어: 조직의 현실을 반영하는 “디지털 트윈(Digital Twin)”</p></li>
+<li><p>시맨틱 온톨로지의 3대 구성 요소: 객체 유형(Object Types), 속성(Properties), 연결 유형(Link Types)</p></li>
+<li><p>시맨틱 디지털 트윈: 단순 데이터 복제를 넘어 “의미”와 “맥락”을 통합한 모델링</p></li>
+<li><p>LLM 환각(Hallucination)의 근본 원인: “평면 모델(Flat Model)”의 한계와 명시적 의미론의 필요성</p></li>
+</ul>
+</li>
+<li><p><strong>AI와의 통합: 접지(Grounding)와 GraphRAG</strong>:</p>
+<ul>
+<li><p>AI의 두 얼굴: 기호주의 AI(논리적 추론) vs 통계적 AI(LLM, 통계적 예측)</p></li>
+<li><p>신경-기호주의(Neuro-Symbolic AI): 두 접근법의 상호 보완적 결합</p></li>
+<li><p>“접지(Grounding)”의 3단계 거버넌스: 데이터 접지(입력 제어), 로직 접지(처리 제어), 행동 접지(출력 제어)</p></li>
+<li><p>GraphRAG: 표준 RAG를 넘어 지식 그래프 기반 다단계 추론으로 정밀도 최대 35% 향상</p></li>
+</ul>
+</li>
+<li><p><strong>현실 작동: 키네틱 온톨로지 (Kinetic Layer)</strong>:</p>
+<ul>
+<li><p>키네틱 온톨로지: 시맨틱 온톨로지(“명사”)에 더해 현실의 “동사(Verbs)”, 즉 행동(Actions)을 명시적으로 모델링</p></li>
+<li><p>“쓰기(Writeback)”: AI의 결정을 실제 운영 시스템에 반영하는 메커니즘</p></li>
+<li><p>분석 시스템과 운영 시스템의 차이: Writeback을 통한 “마지막 마일” 자동화</p></li>
+<li><p>“폐쇄 루프(Closed-Loop)” 의사결정: 읽기-결정-쓰기-피드백-학습의 완전 자동화 사이클</p></li>
+<li><p>AI 운영체제(AI Operating System): 시맨틱과 키네틱 레이어를 통합한 전사적 AI 플랫폼</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id37">
+<h4>실습/활동<a class="headerlink" href="#id37" title="Link to this heading">#</a></h4>
+<ul class="simple">
+<li><p><strong>핵심 실습</strong>: 시맨틱 온톨로지 모델링 실습 - 주어진 비즈니스 도메인(예: 대학 병원, 제조업)에 대해 객체 유형, 속성, 연결 유형을 정의하고 온톨로지 스키마 작성</p></li>
+<li><p><strong>GraphRAG 구현</strong>: 지식 그래프를 활용한 RAG 시스템 구축 - 벡터 검색과 그래프 탐색을 결합한 하이브리드 검색 시스템 구현</p></li>
+<li><p><strong>폐쇄 루프 시뮬레이션</strong>: 시맨틱 레이어(읽기)와 키네틱 레이어(쓰기)를 연결한 간단한 의사결정 시스템 프로토타입 구현</p></li>
+</ul>
+</section>
+</section>
+<section id="id38">
+<h3>14주차 – 최신 연구 동향 및 논문 리뷰<a class="headerlink" href="#id38" title="Link to this heading">#</a></h3>
+<section id="id39">
+<h4>핵심 주제<a class="headerlink" href="#id39" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>급변하는 NLP 분야의 최신 연구 결과</strong>: 현재 공개된 최신 모델 및 기법들을 살펴보며 미래 방향을 토론</p></li>
 <li><p><strong>주요 토픽</strong>:</p>
@@ -1035,37 +1085,19 @@ document.write(`
 </li>
 </ul>
 </section>
-<section id="id37">
-<h4>실습/활동<a class="headerlink" href="#id37" title="Link to this heading">#</a></h4>
+<section id="id40">
+<h4>실습/활동<a class="headerlink" href="#id40" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p><strong>학생 최신 논문 발표</strong>: 조별로 선정한 <strong>최신 NLP 논문</strong>을 리뷰하여 발표하고, 해당 연구의 의의와 한계, 응용 가능성을 토론. 예를 들어 위에서 언급된 새로운 벤치마크(MMMU, HLE 등) 논문이나 최신 모델 기법들을 선정하여 토의함으로써, <strong>최신 기술 동향을 종합적으로 정리</strong> <em>(산업체 멘토 또는 초청 연구자가 피드백 참여)</em></p></li>
 </ul>
 </section>
 </section>
 <section id="mlops">
-<h3>14주차 – 최종 프로젝트 개발 및 MLOps<a class="headerlink" href="#mlops" title="Link to this heading">#</a></h3>
-<section id="id38">
-<h4>핵심 주제<a class="headerlink" href="#id38" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>팀 프로젝트의 프로토타입 구현 완성</strong>: MLOps 개념을 적용하여 실제 서비스 수준의 NLP 모델을 배포하기 위해 고려해야 할 요소들을 다루며, 각 팀의 진행 상황을 점검</p></li>
-<li><p><strong>NLP 모델 MLOps 개념</strong>: 모델 <strong>버전 관리</strong> 전략, A/B 테스트 기법, <strong>배포 파이프라인</strong> 설계 등을 소개. 사용자 피드백을 지속적으로 학습에 반영하는 <strong>온라인 러닝 파이프라인</strong>, 실시간 <strong>모니터링 및 성능 드리프트 감지</strong> 시스템 구축 방법도 다룸</p></li>
-<li><p><strong>팀별 프로토타입 개발</strong>: 각 팀은 선정된 프로젝트 주제에 대한 <strong>최종 모델과 애플리케이션 프로토타입</strong>을 구현. 산업 데이터셋이나 실제 사용자 시나리오를 반영하여 완성도를 높이고, 이번 주차에 중간 결과를 시연</p></li>
-<li><p><strong>멘토 리뷰 세션</strong>: 초청된 산업 멘토들과 함께 프로젝트 진행 상황을 검토. 모델 아키텍처의 적절성, 최신 기술 활용 여부(예: 멀티모달 통합, 에이전트 사용 등), 실용성 등을 피드백 받아 최종 개선 방향에 반영</p></li>
-</ul>
-</section>
-<section id="id39">
-<h4>실습/활동<a class="headerlink" href="#id39" title="Link to this heading">#</a></h4>
-<ul class="simple">
-<li><p><strong>핵심 활동</strong>: 팀별 프로토타입 <strong>데모 발표</strong> (현재까지 성능 및 남은 과제 공유) 및 멘토 피드백 반영 토론</p></li>
-</ul>
-</section>
-</section>
-<section id="id40">
-<h3>15주차 – 산업 응용 사례 분석 및 최종 발표<a class="headerlink" href="#id40" title="Link to this heading">#</a></h3>
+<h3>15주차 – MLOps 및 산업 응용 사례 분석<a class="headerlink" href="#mlops" title="Link to this heading">#</a></h3>
 <section id="id41">
 <h4>핵심 주제<a class="headerlink" href="#id41" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>강의의 대미를 장식하며, 최신 기술이 적용된 산업 사례를 분석하고 팀 프로젝트 최종 결과를 공유</strong></p></li>
+<li><p><strong>NLP 모델 MLOps 개념</strong>: 모델 <strong>버전 관리</strong> 전략, A/B 테스트 기법, <strong>배포 파이프라인</strong> 설계 등을 소개. 사용자 피드백을 지속적으로 학습에 반영하는 <strong>온라인 러닝 파이프라인</strong>, 실시간 <strong>모니터링 및 성능 드리프트 감지</strong> 시스템 구축 방법도 다룸</p></li>
 <li><p><strong>산업별 NLP 성공 사례</strong>: 의료, 금융, 교육 등 각 분야에서 <strong>LLM 및 NLP 기술의 최신 적용 사례</strong>를 소개</p>
 <ul>
 <li><p>의료 분야: 임상 기록 자동화 NLP로 의사 문서작성 부담을 49%에서 27%로 감소시킨 사례</p></li>
@@ -1074,14 +1106,12 @@ document.write(`
 <li><p>이러한 사례들을 통해 <strong>최신 NLP 기술의 실무 영향</strong>을 파악</p></li>
 </ul>
 </li>
-<li><p><strong>최종 프로젝트 결과 발표</strong>: 팀별로 프로젝트 최종 산출물을 발표하고 데모를 시연. 각 팀은 개발한 <strong>모델 아키텍처</strong>, 핵심 기술 적용 내용(예: 초장문맥 지원, 멀티모달 입력, 에이전트 협업 등), 성능 평가 결과와 한계를 공유. 산업 멘토 및 수강생들의 질의응답을 통해 실용성 및 개선점에 대한 피드백을 받음</p></li>
 <li><p><strong>강좌 종합 토의</strong>: 마지막으로 강의에서 다룬 내용들을 <strong>종합적으로 정리</strong>하고 자유 토론을 진행. 학생들은 1주차부터 15주차까지의 <strong>학습 내용을 돌이켜보고</strong>, 가장 인상 깊었던 기술이나 앞으로 더 공부하고 싶은 주제에 대해 의견을 나눔. 교수진은 <strong>미래 전망</strong>을 제시하며 (예: GPT-5 이후 예상되는 발전, AI와 인간 협업의 방향 등), 수강생들이 이후에도 최신 NLP 동향을 추적하고 활용할 수 있도록 조언 <em>(설문을 통한 강의 피드백 수렴)</em></p></li>
 </ul>
 </section>
 <section id="id42">
 <h4>실습/활동<a class="headerlink" href="#id42" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p><strong>최종 발표</strong>: 팀별 프로젝트 결과 발표 및 데모 시연</p></li>
 <li><p><strong>강좌 종합 토의</strong>: 강의 내용 전체 요약 및 질의응답, 미래 전망 브레인스토밍</p></li>
 </ul>
 </section>
@@ -1281,17 +1311,17 @@ document.write(`
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id34">실습/과제</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id35">13주차 – 온톨로지와 AI: 현실을 모델링하고 AI로 작동시키기</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id36">핵심 주제</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id37">실습/활동</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">14주차 – 최종 프로젝트 개발 및 MLOps</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">핵심 주제</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">실습/활동</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id38">14주차 – 최신 연구 동향 및 논문 리뷰</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id39">핵심 주제</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">실습/활동</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id40">15주차 – 산업 응용 사례 분석 및 최종 발표</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mlops">15주차 – MLOps 및 산업 응용 사례 분석</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id41">핵심 주제</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#id42">실습/활동</a></li>
 </ul>

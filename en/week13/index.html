@@ -1,0 +1,1314 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Week 13: Ontology and AI - Modeling Reality and Operating it with AI &#8212; Deep Learning for NLP 2025</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/proof.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-examples.css?v=e236af4b" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster.bundle.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-shadow.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-punk.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-noir.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-light.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/tooltipster-sideTip-borderless.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/micromodal.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/language_selector.css?v=6a8ebae4" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/jquery.js?v=5d32c60e"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/js/hoverxref.js"></script>
+    <script src="../_static/js/tooltipster.bundle.min.js"></script>
+    <script src="../_static/js/micromodal.min.js"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://www.googletagmanager.com/gtag/js?id=G-BQJE5V9RK2"></script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){ dataLayer.push(arguments); }
+                gtag('js', new Date());
+                gtag('config', 'G-BQJE5V9RK2');
+            </script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"tex": {"macros": {"N": "\\mathbb{N}", "floor": ["\\lfloor#1\\rfloor", 1], "bmat": ["\\left[\\begin{array}"], "emat": ["\\end{array}\\right]"]}}, "options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'week13/index';</script>
+    <script src="../_static/language_switcher.js?v=730be77c"></script>
+    <script src="../_static/chat.js?v=f0de43d7"></script>
+    <link rel="icon" href="https://assets.entelecheia.ai/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+    <script src="/_static/language_switcher.js"></script>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+<div class="sidebar-lang-select">  <nav class="menu">    <ul class="clearfix">      <li class="current-item">        <a href="#" class="clicker">          English <span class="arrow">&#9660;</span>        </a>        <ul class="sub-menu">                    <li><a href="#" onclick="switchLanguage('en'); return false;">English</a></li>          <li><a href="#" onclick="switchLanguage('ko'); return false;">한국어</a></li>        </ul>      </li>    </ul>  </nav></div>
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Deep Learning for NLP 2025</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Deep Learning for Natural Language Processing (131307379A)
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Lecture Notes</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../week01/index.html">Week 1: Transformer and Next-Generation Architectures</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../week01/qna.html">Transformer, Mamba, RWKV, Jamba Architecture Q&amp;A</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../week02/index.html">Week 2: PyTorch 2.x and Latest Deep Learning Frameworks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week03/index.html">Week 3: Efficient Fine-Tuning with Modern PEFT Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week04/index.html">Week 4: Advanced Prompting Techniques and Optimization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week05/index.html">Week 5: LLM Evaluation Paradigms and Benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week06/index.html">Week 6: Advances in Multimodal NLP</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week07/index.html">Week 7: Ultra-Long Context Processing and Efficient Inference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week08/index.html">Week 8: Core Review and Latest Trends</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week09/index.html">Week 9: Advanced RAG Architectures</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week10/index.html">Week 10: Revolutionary Alignment Techniques</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week11/index.html">Week 11: Production Agent Systems</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../week12/index.html">Week 12: AI Regulation and Responsible AI</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Workshops</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../workshops/index.html">LLM From Scratch Workshop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../workshops/week01.html">Week 1 Workshop: LLM Overview and Development Environment Setup</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Projects</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../projects/index.html">Team Project Guidelines</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">About</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../syllabus/index.html">Syllabus</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../about/index.html">Who made this book?</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/edit/main/book/en/week13/index.md" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/entelecheia/deepnlp-2025/issues/new?title=Issue%20on%20page%20%2Fweek13/index.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/week13/index.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Week 13: Ontology and AI - Modeling Reality and Operating it with AI</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-a-new-ontological-literacy-for-the-ai-era">Introduction: A New “Ontological Literacy” for the AI Era</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-paradigm-shift-beyond-prediction-to-action">1. The Paradigm Shift - Beyond Prediction to Action</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-s-last-mile-from-data-science-to-decision-science">1.1. AI’s Last Mile: From “Data Science” to “Decision Science”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-problem-data-rich-decision-poor">The Core Problem: “Data-Rich, Decision-Poor”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-limits-of-data-science-ds-the-realm-of-prediction">Definition and Limits of “Data Science (DS)”: The Realm of Prediction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-goal-of-decision-science-dsci-action-and-impact">Definition and Goal of “Decision Science (DSci)”: Action and Impact</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-1-philosophical-comparison-of-data-science-vs-decision-science"><strong>Table 1: Philosophical Comparison of “Data Science” vs. “Decision Science”</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-knowledge-explicit-how-ai-learns-expert-tacit-knowledge">1.2. Making Knowledge Explicit: How AI Learns Expert “Tacit Knowledge”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-problem-the-root-cause-of-ai-failure-tacit-knowledge">The Core Problem: The Root Cause of AI Failure, “Tacit Knowledge”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-role-of-ontology-an-architecture-for-converting-tacit-to-explicit-model">The Role of Ontology: An Architecture for Converting “Tacit” to “Explicit Model”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rationale-for-an-ontology-first-strategy">1.3. The Rationale for an “Ontology-First” Strategy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-reality-semantic-layer-how-ai-reads-the-world">2. Modeling Reality (Semantic Layer) - How AI “Reads” the World</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-ontology-defining-the-nouns-of-reality">2.1. Semantic Ontology: Defining the “Nouns” of Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-semantic-layer">What is a Semantic Layer?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-3-core-components-of-semantic-ontology">The 3 Core Components of Semantic Ontology</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-components-of-a-semantic-ontology-example-university-hospital">Table: Components of a Semantic Ontology (Example: University Hospital)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ontology-as-a-digital-twin-how-ai-understands-context">2.2. Ontology as a “Digital Twin”: How AI Understands Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-digital-twin-vs-semantic-digital-twin">Traditional Digital Twin vs. Semantic Digital Twin</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-a-semantic-twin-essential-for-ai">Why is a “Semantic Twin” Essential for AI?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-ai-trustworthy-reasoning">3. Grounding AI - Trustworthy Reasoning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-faces-of-ai-symbolic-vs-statistical">3.1. The Two Faces of AI: Symbolic vs. Statistical</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neuro-symbolic-ai-approach">The Neuro-Symbolic AI Approach</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-2-comparison-of-statistical-ai-llm-vs-symbolic-ai-ontology-kg">Table 2: Comparison of Statistical AI (LLM) vs. Symbolic AI (Ontology/KG)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-llm-hallucinations-the-principle-of-grounding">3.2. Controlling LLM Hallucinations: The Principle of “Grounding”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-root-cause-of-hallucinations">The Root Cause of Hallucinations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-definition-of-grounding">The Definition of “Grounding”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-is-the-key-governance-framework-for-turning-ai-s-freedom-into-trust">“Grounding” is the Key Governance Framework for Turning AI’s “Freedom” into “Trust”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-rag-to-graphrag-from-information-to-context">3.3. Beyond RAG to GraphRAG: From “Information” to “Context”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-retrieval-augmented-generation">RAG (Retrieval-Augmented Generation)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-knowledge-graph-rag">GraphRAG (Knowledge Graph RAG)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-is-the-most-practical-implementation-of-neuro-symbolic-ai">GraphRAG is the Most Practical Implementation of “Neuro-Symbolic” AI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-standard-rag-vs-graphrag-technology-comparison">Table: “Standard RAG” vs. “GraphRAG” Technology Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-reality-kinetic-layer-how-ai-writes-the-world">4. Operating Reality (Kinetic Layer) - How AI “Writes” the World</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-read-to-write-the-emergence-of-kinetic-ontology">4.1. From “Read” to “Write”: The Emergence of Kinetic Ontology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limitation-of-semantic-ontology-read-only">The Limitation of Semantic Ontology: “Read-Only”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-kinetic-ontology-verbs">Definition of Kinetic Ontology: “Verbs”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-the-kinetic-layer">Components of the Kinetic Layer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-3-semantic-vs-kinetic-ontology">Table 3: Semantic vs. Kinetic Ontology</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writeback-executing-ai-s-decisions-into-reality">4.2. “Writeback”: Executing AI’s Decisions into Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-writeback">What is “Writeback”?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-writeback-analytical-vs-operational-systems">The Importance of “Writeback”: Analytical vs. Operational Systems</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-actions-are-a-safe-api-catalog-for-ai-agents">“Kinetic Actions” are a “Safe API Catalog” for AI Agents</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-the-ai-operating-system-the-closed-loop">4.3. Completing the AI Operating System: The “Closed-Loop”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-ai-operating-system">What is an “AI Operating System”?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-closed-loop-decision-making">Completing “Closed-Loop” Decision-Making</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-the-birth-of-the-ai-pilot-with-ontological-literacy">5. Conclusion: The Birth of the AI Pilot with “Ontological Literacy”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="week-13-ontology-and-ai-modeling-reality-and-operating-it-with-ai">
+<h1>Week 13: Ontology and AI - Modeling Reality and Operating it with AI<a class="headerlink" href="#week-13-ontology-and-ai-modeling-reality-and-operating-it-with-ai" title="Link to this heading">#</a></h1>
+<section id="introduction-a-new-ontological-literacy-for-the-ai-era">
+<h2>Introduction: A New “Ontological Literacy” for the AI Era<a class="headerlink" href="#introduction-a-new-ontological-literacy-for-the-ai-era" title="Link to this heading">#</a></h2>
+<p>As Artificial Intelligence (AI) establishes itself as the “operating system” across society, a new perspective for viewing AI is required. These lecture notes provide an in-depth explanation of the core philosophy and concepts of a 16-week course plan titled “Ontology and AI: Modeling Reality and Operating it with AI.” The ultimate goal of this course is not the simple understanding of AI technology, but the cultivation of “Ontological Literacy.”</p>
+<p>“Ontological Literacy” refers to the strategic capability to recognize the complex structures and rules of the real world we belong to, define them as an explicit model (i.e., an ontology) (Modeling Reality), and design AI to act intelligently upon that model and operate reality (Operating it with AI).</p>
+<p>These lecture notes provide an in-depth, step-by-step explanation of the process of cultivating this “Ontological Literacy.” This is based on a “Decision Science” and “Ontology-First” philosophy that moves beyond the traditional perspective of gaining “insight” from “data,” and instead transforms “insight” into “action” and “prediction” into “operation.”</p>
+</section>
+<section id="the-paradigm-shift-beyond-prediction-to-action">
+<h2>1. The Paradigm Shift - Beyond Prediction to Action<a class="headerlink" href="#the-paradigm-shift-beyond-prediction-to-action" title="Link to this heading">#</a></h2>
+<section id="ai-s-last-mile-from-data-science-to-decision-science">
+<h3>1.1. AI’s Last Mile: From “Data Science” to “Decision Science”<a class="headerlink" href="#ai-s-last-mile-from-data-science-to-decision-science" title="Link to this heading">#</a></h3>
+<section id="the-core-problem-data-rich-decision-poor">
+<h4>The Core Problem: “Data-Rich, Decision-Poor”<a class="headerlink" href="#the-core-problem-data-rich-decision-poor" title="Link to this heading">#</a></h4>
+<p>Many modern organizations face a paradoxical “Data-Rich, Decision-Poor” situation, where despite accumulating vast amounts of data, they struggle to make practical, better “decisions” from that data. A significant gap, or “Last Mile,” has emerged as a serious problem, where countless “insights” are derived but fail to lead to actual business “actions” or “outcomes.” This gap stems from the fundamental difference between “Data Science (DS)” and “Decision Science (DSci).”</p>
+</section>
+<section id="definition-and-limits-of-data-science-ds-the-realm-of-prediction">
+<h4>Definition and Limits of “Data Science (DS)”: The Realm of Prediction<a class="headerlink" href="#definition-and-limits-of-data-science-ds-the-realm-of-prediction" title="Link to this heading">#</a></h4>
+<p>Data Science (DS) essentially focuses on “technical” and “algorithmic” aspects. The core objective of data science is to collect, process, and analyze large-scale data to discover hidden patterns, “predict” the future, and thereby generate “insights.” Metaphorically, a data scientist answers the question, “What is the data telling us?” and is the person who builds the complex and sophisticated “dashboard” in an aircraft’s cockpit.</p>
+<p>However, the outputs of data science—dashboards, predictive models, analysis reports—are not “actions” in themselves. No matter how excellent the data and analysis results are, a “person” must ultimately interpret them and make a decision. In this process, human “cognitive biases,” the complexity of data interpretation, and organizational inertia intervene, creating a “last mile” bottleneck where data-driven rational decisions fail to translate into actual actions.</p>
+</section>
+<section id="definition-and-goal-of-decision-science-dsci-action-and-impact">
+<h4>Definition and Goal of “Decision Science (DSci)”: Action and Impact<a class="headerlink" href="#definition-and-goal-of-decision-science-dsci-action-and-impact" title="Link to this heading">#</a></h4>
+<p>“Decision Science (DSci)” is the discipline dedicated to bridging this “last mile” gap. Decision science encompasses all activities that ensure the outputs of data science lead to tangible organizational “impact.” It is an interdisciplinary field that builds upon the technical capabilities of data science, integrating them with <strong>business acumen, behavioral science, hypothesis formulation and testing, and strong communication skills.</strong></p>
+<p>The core objective of decision science is not merely to “predict” the future, but to “prescribe” the “optimal action” based on data. To return to the aircraft metaphor, the decision scientist is the “pilot.” They read the dashboard (data) created by the data scientist, comprehensively consider the current flight path, fuel, and weather conditions (context), and answer the question, “So, what should we do?” Most importantly, they make the “action” of deciding “which route to take, why, and how,” and <em>actually move the controls</em> to guide the aircraft to its destination.</p>
+<p>The paradigm shift from data science to decision science means moving away from viewing AI systems as simple “techno-statistical” problems (e.g., achieving 90% model accuracy). Decision science is the discipline of designing a “socio-technical” system that considers “data,” “AI models,” “human decision-makers,” “business processes,” and human factors like “cognitive biases” all together. The ontology, AI integration (grounding), and kinetics discussed in the remaining modules of these notes are the concrete methodologies for building the core architecture of this “socio-technical system.”</p>
+</section>
+<section id="table-1-philosophical-comparison-of-data-science-vs-decision-science">
+<h4><strong>Table 1: Philosophical Comparison of “Data Science” vs. “Decision Science”</strong><a class="headerlink" href="#table-1-philosophical-comparison-of-data-science-vs-decision-science" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dimension</p></th>
+<th class="head text-left"><p>Data Science (DS)</p></th>
+<th class="head text-left"><p>Decision Science (DSci)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Primary Goal</strong></p></td>
+<td class="text-left"><p>Prediction, pattern discovery, insight generation</p></td>
+<td class="text-left"><p>Prescribing optimal actions, creating business impact</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Core Question</strong></p></td>
+<td class="text-left"><p>“What is the data telling us?” “What will happen?”</p></td>
+<td class="text-left"><p>“So, what should we do?” “What is the optimal decision?”</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Required Skills</strong></p></td>
+<td class="text-left"><p>Statistics, math, machine learning, programming</p></td>
+<td class="text-left"><p>DS Skills + <strong>Business Acumen, Behavioral Science, Hypothesis Testing, Communication</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Deliverable</strong></p></td>
+<td class="text-left"><p>Dashboards, predictive models, analysis reports</p></td>
+<td class="text-left"><p><strong>Prescriptive Interventions</strong>, strategy, automated decisions (actions)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="making-knowledge-explicit-how-ai-learns-expert-tacit-knowledge">
+<h3>1.2. Making Knowledge Explicit: How AI Learns Expert “Tacit Knowledge”<a class="headerlink" href="#making-knowledge-explicit-how-ai-learns-expert-tacit-knowledge" title="Link to this heading">#</a></h3>
+<section id="the-core-problem-the-root-cause-of-ai-failure-tacit-knowledge">
+<h4>The Core Problem: The Root Cause of AI Failure, “Tacit Knowledge”<a class="headerlink" href="#the-core-problem-the-root-cause-of-ai-failure-tacit-knowledge" title="Link to this heading">#</a></h4>
+<p>There is a fundamental reason why many AI systems are disregarded by domain experts. It is not because of a lack of data, but because they fail to capture the essential know-how that exists in the experts’ minds: “Tacit Knowledge.”</p>
+<ul class="simple">
+<li><p><strong>Explicit Knowledge:</strong> Knowledge that can be documented, coded, and structured. (e.g., product manuals, pizza recipes, regulations). AI can process and learn this explicit knowledge very efficiently.</p></li>
+<li><p><strong>Tacit Knowledge:</strong> Skills, know-how, intuition, and experiential judgment that are difficult to express clearly through language or documents. (e.g., “A veteran engineer’s feel for diagnosing a malfunction just by hearing the machine’s sound,” “A top salesperson’s sense of timing for a negotiation by reading a customer’s expression”).</p></li>
+</ul>
+<p>When an AI fails to understand this “tacit knowledge” and draws conclusions based only on explicit data (e.g., error code logs), the expert judges that “the AI doesn’t get the point,” and ultimately, they lose trust in the system and stop using it.</p>
+</section>
+<section id="the-role-of-ontology-an-architecture-for-converting-tacit-to-explicit-model">
+<h4>The Role of Ontology: An Architecture for Converting “Tacit” to “Explicit Model”<a class="headerlink" href="#the-role-of-ontology-an-architecture-for-converting-tacit-to-explicit-model" title="Link to this heading">#</a></h4>
+<p>Therefore, the core task of an AI-based Knowledge Management System (KMS) is the “conversion” of this “tacit knowledge,” held by experts within the organization, into an “Explicit Model” that AI can understand and reason with.</p>
+<p>The core “architecture” for performing this complex conversion is “ontology-based systems.” Ontology serves to build a bridge between the “tacit wisdom” in an expert’s head and the “algorithmic precision” of AI.</p>
+<p>For example, a veteran engineer’s tacit knowledge (“If I hear a specific noise and the pressure drops slightly, it’s a sign that valve #3 is about to fail”) can be made explicit in an ontology model as a “Machine” object, a “Sensor” object (with a “pressure” property), a “Failure” event object, and a “precedes” (is a sign of) “Link” (relationship) between them.</p>
+<p>This approach is closely linked to “decision science.” One of the core competencies of “decision science” is “hypothesis formulation and testing.” An expert’s “tacit knowledge” is, in fact, a collection of numerous unverified “hypotheses” and “assumptions,” such as “Customer type A will respond to promotion B.”</p>
+<p>An ontology is a tool for converting these tacit assumptions (e.g., “Customer” object - “Type” property - “Promotion” object - “Responds<em>To” relationship) into an “explicit model.” The moment this model is made explicit, two things become possible. First, organizational members can share and discuss this “assumption (model).” Second, AI can statistically _verify</em> this “assumption (model)” against actual data.</p>
+<p>In conclusion, the “explicitation of tacit knowledge” is an essential prerequisite for performing the “decision science (hypothesis testing)” presented in Week 1, and ontology is the core tool for carrying out this process.</p>
+</section>
+</section>
+<section id="the-rationale-for-an-ontology-first-strategy">
+<h3>1.3. The Rationale for an “Ontology-First” Strategy<a class="headerlink" href="#the-rationale-for-an-ontology-first-strategy" title="Link to this heading">#</a></h3>
+<p>The “Ontology-First” strategy is a strategic approach that involves first explicitly modeling the “semantics” (meaning) and “logic” (rules) of the “real world” in which AI must operate, <em>before</em> data collection, AI model development, or application construction.</p>
+<p>This fundamentally inverts traditional IT approaches:</p>
+<ul class="simple">
+<li><p><strong>Data-First Approach:</strong> “Let’s gather all data in one place first (Data Lake).”</p>
+<ul>
+<li><p><em>Problem:</em> Data collected this way is separated from its meaning and context, easily becoming a “Data Swamp” that AI cannot utilize.</p></li>
+</ul>
+</li>
+<li><p><strong>App-First Approach:</strong> “Let’s build an app for the sales team (CRM).”</p>
+<ul>
+<li><p><em>Problem:</em> Data and business logic become “siloed” and dependent on that app (CRM). Enormous costs are incurred later to connect it with the marketing team’s app and data.</p></li>
+</ul>
+</li>
+</ul>
+<p>The “Ontology-First” strategy solves these problems at their source. It is known that Palantir, in its early strategy, prioritized the construction of an “Ontology-First” framework and “integration kits” over the development of “new features.” This was a strategic decision, not a technical one.</p>
+<p>By first building a “Semantic Layer” that defines the “semantics” (meaning) of reality, a “framework” is prepared for data to flow into. Subsequently, all of the organization’s data sources and applications reference this common “Semantic Layer.” This is an operation that preemptively prevents data silos and establishes the foundation for a company-wide AI to operate: an “AI Operating System.”</p>
+<p>As described, ontology is the core strategy for turning an organization’s intellectual assets into a “programmable mirror” or an “epistemological bridge of organizational intelligence.”</p>
+</section>
+</section>
+<section id="checkpoint-questions">
+<h2>Checkpoint Questions<a class="headerlink" href="#checkpoint-questions" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What are the core goals and deliverables of “Data Science (DS)” versus “Decision Science (DSci),” and why does the “last mile” gap occur?</p></li>
+<li><p>Why does expert “tacit knowledge” become a cause for AI system adoption failure, and how does ontology solve this problem?</p></li>
+<li><p>Compare and explain the “Data-First” approach and the “Ontology-First” strategy.</p></li>
+</ol>
+</section>
+<section id="modeling-reality-semantic-layer-how-ai-reads-the-world">
+<h2>2. Modeling Reality (Semantic Layer) - How AI “Reads” the World<a class="headerlink" href="#modeling-reality-semantic-layer-how-ai-reads-the-world" title="Link to this heading">#</a></h2>
+<section id="semantic-ontology-defining-the-nouns-of-reality">
+<h3>2.1. Semantic Ontology: Defining the “Nouns” of Reality<a class="headerlink" href="#semantic-ontology-defining-the-nouns-of-reality" title="Link to this heading">#</a></h3>
+<section id="what-is-a-semantic-layer">
+<h4>What is a Semantic Layer?<a class="headerlink" href="#what-is-a-semantic-layer" title="Link to this heading">#</a></h4>
+<p>A “Semantic Layer” is a “Digital Twin” that reflects an organization’s real world. It is a central semantic stratum that imparts “meaning” and “context” to heterogeneous data dispersed throughout the organization.</p>
+<p>This semantic layer is a comprehensive definition of the “Nouns” of reality, telling the AI “what exists.” It is the core foundation that helps AI move beyond merely “processing” data to “understanding” its “meaning.”</p>
+</section>
+<section id="the-3-core-components-of-semantic-ontology">
+<h4>The 3 Core Components of Semantic Ontology<a class="headerlink" href="#the-3-core-components-of-semantic-ontology" title="Link to this heading">#</a></h4>
+<p>According to sources, a semantic ontology defines the following three core components to model reality:</p>
+<ol class="arabic simple">
+<li><p><strong>Object Types:</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> A schema that defines the core “Nouns” or “Concepts” of the real world. (e.g., “Person,” “Place,” “Event,” “Customer Order,” “Machine Facility,” “Medication”).</p></li>
+<li><p><strong>Analogy:</strong> Similar to a database “table” definition (e.g., Customer table) or a programming “Class” definition.</p></li>
+<li><p>An “Object” refers to an actual “Instance” of this “Object Type” (e.g., “Customer Hong Gil-dong”).</p></li>
+</ul>
+</li>
+<li><p><strong>Properties:</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Defines the unique “characteristics” or “data fields” that the object type possesses. (e.g., a “Person” object type has properties like “Name,” “Email,” “Date of Birth” / a “Machine Facility” object type has “Model Name,” “Location,” “Current Temperature,” “Last Inspection Date” properties).</p></li>
+<li><p><strong>Analogy:</strong> Similar to a database table’s “Columns” or “Fields” (e.g., the Name column of the Customer table).</p></li>
+</ul>
+</li>
+<li><p><strong>Link Types:</strong></p>
+<ul class="simple">
+<li><p><strong>Concept:</strong> Explicitly defines the “Relationship” between object types. (e.g., a “Person” “Owns” a “Machine Facility,” a “Customer Order” is “Assigned_To” a “Person,” a “Medication” “Treats” a “Disease”).</p></li>
+<li><p><strong>Analogy:</strong> Similar to a “Join” via a “Foreign Key” in a database, but much more powerful. A simple database join is a procedural connection <em>at query time</em>, whereas an ontological “link” explicitly defines the “semantic relationship” between two concepts <em>from the beginning</em>.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="table-components-of-a-semantic-ontology-example-university-hospital">
+<h4>Table: Components of a Semantic Ontology (Example: University Hospital)<a class="headerlink" href="#table-components-of-a-semantic-ontology-example-university-hospital" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Component</p></th>
+<th class="head text-left"><p>Concept</p></th>
+<th class="head text-left"><p>Example (University Hospital Domain)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Object Types</strong></p></td>
+<td class="text-left"><p>The “Nouns” of reality (Concepts)</p></td>
+<td class="text-left"><p>Patient, Doctor, Department, Drug</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Properties</strong></p></td>
+<td class="text-left"><p>“Characteristics” of objects (Data)</p></td>
+<td class="text-left"><p>Patient Object: “Patient ID,” “Name,” “Disease” Drug Object: “Drug Code,” “Ingredient,” “Stock Level”</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Link Types</strong></p></td>
+<td class="text-left"><p>“Relationships” between objects (Meaning)</p></td>
+<td class="text-left"><p>Patient is “Treated_By” Doctor Doctor “Belongs_To” Department Doctor “Prescribes” Drug</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="ontology-as-a-digital-twin-how-ai-understands-context">
+<h3>2.2. Ontology as a “Digital Twin”: How AI Understands Context<a class="headerlink" href="#ontology-as-a-digital-twin-how-ai-understands-context" title="Link to this heading">#</a></h3>
+<section id="traditional-digital-twin-vs-semantic-digital-twin">
+<h4>Traditional Digital Twin vs. Semantic Digital Twin<a class="headerlink" href="#traditional-digital-twin-vs-semantic-digital-twin" title="Link to this heading">#</a></h4>
+<p>A traditional digital twin primarily focuses on “mirroring” the systems and components of physical assets (e.g., buildings, factories, jet engines) in real-time. This is mainly used for engineering and simulation.</p>
+<p>In contrast, a <strong>Semantic Digital Twin</strong> goes a step further. It does not merely replicate data; it models the data by integrating “meaning” and “context.” A semantic digital twin enables AI to move beyond “seeing” data to “understanding” what that data signifies in the real world.</p>
+</section>
+<section id="why-is-a-semantic-twin-essential-for-ai">
+<h4>Why is a “Semantic Twin” Essential for AI?<a class="headerlink" href="#why-is-a-semantic-twin-essential-for-ai" title="Link to this heading">#</a></h4>
+<p>For AI, especially Large Language Models (LLMs), a semantic ontology (digital twin) is not an option; it is a necessity.</p>
+<ol class="arabic simple">
+<li><p>Overcoming the Limits of “Flat Models”:<br />
+Traditional databases (e.g., giant SQL tables) are “flat models.” In this model, the relationships between a “Customer” table, “Order” table, and “Shipping” table are not explicit. The relationship is only temporarily created when an analyst performs a “JOIN” operation.<br />
+A critical problem arises when an AI (especially an LLM) operates based on this “flat model.” To answer a question like “What is the shipping status of customer A’s recent order?”, the AI must guess which of the dozens of tables to “JOIN” and how. This guesswork is a major cause of “hallucinations,” where the LLM produces plausible but incorrect answers.</p></li>
+<li><p>Achieving “Machine Understanding”:<br />
+An ontology provides “explicit semantics” to the AI. This is equivalent to handing the AI a “knowledge map” of “what concepts exist (Objects)” and “how they are interconnected (Links).”<br />
+It is emphasized that only with this “semantic layer” can an LLM “reliably” translate a “human’s natural language question” into an “accurate SQL query.” The AI no longer needs to guess. When asked about “Customer A’s order shipping status,” it can follow the ontology map (Customer -&gt; “places” -&gt; Order -&gt; “is shipped via” -&gt; Shipping) to find the precise answer.</p></li>
+</ol>
+<p>It is crucial to understand that a semantic ontology is not the <em>result</em> of “data integration,” but the <em>prerequisite</em> for it. Many organizations spend enormous costs building ETL (Extract-Transform-Load) pipelines based on a “Data-First” approach. However, it is pointed out that this approach creates a “brittle” framework and causes “maintenance costs to explode.” (e.g., creating complex transformation logic every time to integrate “Customer” from system A and “User” from system B).</p>
+<p>The “Ontology-First” approach reverses this order. First, a <em>single conceptual object</em> called “Person” is defined in the “semantic layer.” Then, the “Customer” table from system A and the “User” file from system B are <em>mapped</em> to this “Person” object.</p>
+<p>This is a method of <em>logically</em> integrating data by imparting “meaning” to each data source, instead of the heavy work of physically “moving” or “transforming” it (ETL). This is “harmonizing data without heavy transformations” and is the core strategy that enables “coexistence” with existing infrastructure.</p>
+</section>
+</section>
+</section>
+<section id="id1">
+<h2>Checkpoint Questions<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>What are the three core components of a semantic ontology? Explain what database concepts they are similar to and how they differ.</p></li>
+<li><p>How is a “semantic digital twin” different from a “traditional digital twin”?</p></li>
+<li><p>What is the fundamental reason “hallucinations” occur when an LLM operates on a “flat model,” and how does an ontology solve this problem?</p></li>
+</ol>
+</section>
+<section id="grounding-ai-trustworthy-reasoning">
+<h2>3. Grounding AI - Trustworthy Reasoning<a class="headerlink" href="#grounding-ai-trustworthy-reasoning" title="Link to this heading">#</a></h2>
+<section id="the-two-faces-of-ai-symbolic-vs-statistical">
+<h3>3.1. The Two Faces of AI: Symbolic vs. Statistical<a class="headerlink" href="#the-two-faces-of-ai-symbolic-vs-statistical" title="Link to this heading">#</a></h3>
+<p>Historically, two main streams have existed for implementing AI.</p>
+<ol class="arabic simple">
+<li><p><strong>Symbolic AI (Ontology):</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> Represents knowledge through “explicit” rules, logic, and ontologies.</p></li>
+<li><p><strong>Reasoning Method:</strong> Uses “logical reasoning.” (e.g., Socrates is a man. All men are mortal. <em>Therefore</em>, Socrates is mortal.).</p></li>
+<li><p><strong>Strengths:</strong> Logical consistency, verifiability, and “explainability” (the ability to explain step-by-step why a conclusion was reached).</p></li>
+<li><p><strong>Weaknesses:</strong> Difficulty in handling real-world ambiguity, and rigidity (all rules must be manually created by humans).</p></li>
+</ul>
+</li>
+<li><p><strong>Connectionist / Statistical AI (LLM):</strong></p>
+<ul class="simple">
+<li><p><strong>Definition:</strong> Knowledge is “implicitly” distributed across billions of “weights” in a model. (e.g., LLMs, deep learning).</p></li>
+<li><p><strong>Reasoning Method:</strong> Uses “statistical prediction.” (e.g., “Socrates is a man, and all men are…” The next most <em>plausible</em> word is “mortal.”).</p></li>
+<li><p><strong>Strengths:</strong> Flexibility in handling the subtle nuances or ambiguities of natural language and recognizing complex patterns in large-scale data.</p></li>
+<li><p><strong>Weaknesses:</strong> Prone to “hallucinations” (statistically plausible falsehoods), factual errors, and logical contradictions. “Black box” nature makes it difficult to explain why a certain answer was given.</p></li>
+</ul>
+</li>
+</ol>
+<section id="the-neuro-symbolic-ai-approach">
+<h4>The Neuro-Symbolic AI Approach<a class="headerlink" href="#the-neuro-symbolic-ai-approach" title="Link to this heading">#</a></h4>
+<p>These two approaches are not adversarial but complementary. A “Neuro-Symbolic AI” is proposed, which combines the “deep and diverse knowledge of statistical AI” with the “semantic reasoning of symbolic AI.”</p>
+<p>This is likened to human cognitive architecture, explained as a way of “processing reflexively (Reflex, LLM) when possible, and reasoning logically (Reasoning, Symbolic) when necessary.” To build AI that is both “reliable” and “inventive,” the combination of these two is essential.</p>
+</section>
+<section id="table-2-comparison-of-statistical-ai-llm-vs-symbolic-ai-ontology-kg">
+<h4>Table 2: Comparison of Statistical AI (LLM) vs. Symbolic AI (Ontology/KG)<a class="headerlink" href="#table-2-comparison-of-statistical-ai-llm-vs-symbolic-ai-ontology-kg" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dimension</p></th>
+<th class="head text-left"><p>Statistical AI (LLM)</p></th>
+<th class="head text-left"><p>Symbolic AI (Ontology/KG)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Knowledge Rep.</strong></p></td>
+<td class="text-left"><p><strong>Implicit:</strong> Distributed in model weights</p></td>
+<td class="text-left"><p><strong>Explicit:</strong> Structured graph/rules (facts)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Reasoning</strong></p></td>
+<td class="text-left"><p><strong>Statistical Prediction:</strong> “What’s the next most likely word?”</p></td>
+<td class="text-left"><p><strong>Logical Reasoning:</strong> “A=B, B=C -&gt; A=C” (fact-based)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Strengths</strong></p></td>
+<td class="text-left"><p>Handles ambiguous natural language queries, flexibility</p></td>
+<td class="text-left"><p>Logical consistency, verifiability, explainability</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Weaknesses</strong></p></td>
+<td class="text-left"><p><strong>Hallucinations</strong>, factual errors, contradictions</p></td>
+<td class="text-left"><p>Manual rule creation, rigidity, poor ambiguity handling</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="controlling-llm-hallucinations-the-principle-of-grounding">
+<h3>3.2. Controlling LLM Hallucinations: The Principle of “Grounding”<a class="headerlink" href="#controlling-llm-hallucinations-the-principle-of-grounding" title="Link to this heading">#</a></h3>
+<section id="the-root-cause-of-hallucinations">
+<h4>The Root Cause of Hallucinations<a class="headerlink" href="#the-root-cause-of-hallucinations" title="Link to this heading">#</a></h4>
+<p>An LLM’s “hallucination” is not a bug in the system, but a phenomenon derived from its essential operating principle: statistical prediction. LLMs do not “understand” truth; they generate (predict) the “most plausible” text based on the “statistical patterns” in their training data.</p>
+<p>Therefore, LLMs have no awareness of real-world “schemas” or “logical consistency.” For example, if asked, “What is the name of the first Korean astronaut to land on the moon in 2025?”, even if no such fact exists in its training data, the LLM might generate a plausible-sounding fictional name by following the statistical pattern of “astronaut names” (e.g., a “3-syllable” name with a common “Lee” surname).</p>
+</section>
+<section id="the-definition-of-grounding">
+<h4>The Definition of “Grounding”<a class="headerlink" href="#the-definition-of-grounding" title="Link to this heading">#</a></h4>
+<p>“Grounding” is the core technology for controlling this limitation of LLMs. “Grounding” is a technique that <em>forces</em> the LLM, when generating a response, to <em>refer in real-time</em> to a verified “Source of Truth,” rather than relying solely on its own (potentially outdated or incorrect) internal training data (statistics).</p>
+<p>In this context, the <strong>Ontology</strong> or <strong>Knowledge Graph (KG)</strong> is what serves as this “Source of Truth.”</p>
+</section>
+<section id="grounding-is-the-key-governance-framework-for-turning-ai-s-freedom-into-trust">
+<h4>“Grounding” is the Key Governance Framework for Turning AI’s “Freedom” into “Trust”<a class="headerlink" href="#grounding-is-the-key-governance-framework-for-turning-ai-s-freedom-into-trust" title="Link to this heading">#</a></h4>
+<p>“Hallucination” is the product of uncontrolled “freedom” stemming from an LLM’s “creativity” and “fluency.” “Grounding” is the key governance framework that transforms this freedom into behavior that an organization can “trust.”</p>
+<p>“Grounding” is shown to be a sophisticated, 3-step governance framework that goes beyond simple information retrieval.</p>
+<ol class="arabic simple">
+<li><p><strong>Data Grounding (Input Control):</strong> When an LLM receives a question like, “What are our company’s Q3 earnings?”, it is prevented from finding (guessing) the answer from its training data (the internet). Instead, the LLM is <em>forced</em> to access <em>only</em> the “Trusted Data”—the internal ontology—and <em>read</em> the “revenue” property of the “Q3 Earnings” object.</p></li>
+<li><p><strong>Logic Grounding (Processing Control):</strong> The LLM is prevented from performing complex “calculations” or “predictions” directly, such as “What is the shortest path between two points?” If the LLM tries to handle this task directly, logical hallucinations can occur. Instead, the LLM <em>delegates</em> this task to a “Trusted Logic Tool” (e.g., a separate pathfinding model, a calculation function) and only uses the resulting value in its response.</p></li>
+<li><p><strong>Action Grounding (Output Control):</strong> When the LLM generates an “action proposal,” like “Inventory is low, order 100 units,” this decision is prevented from being immediately executed by the system. Instead, the proposal is “queued up” to undergo “Human Review.”</p></li>
+</ol>
+<p>In conclusion, ontology-based “grounding” is the key “guardrail” and governance framework that <em>mandatorily connects</em> the entire process of an LLM’s input (data), processing (logic), and output (action) to an organization’s “trusted” assets (ontology, verified functions, human experts).</p>
+</section>
+</section>
+<section id="beyond-rag-to-graphrag-from-information-to-context">
+<h3>3.3. Beyond RAG to GraphRAG: From “Information” to “Context”<a class="headerlink" href="#beyond-rag-to-graphrag-from-information-to-context" title="Link to this heading">#</a></h3>
+<section id="rag-retrieval-augmented-generation">
+<h4>RAG (Retrieval-Augmented Generation)<a class="headerlink" href="#rag-retrieval-augmented-generation" title="Link to this heading">#</a></h4>
+<p>The most common technology for implementing “grounding” is RAG (Retrieval-Augmented Generation). RAG is a method where, before an LLM “generates” an answer, it first “retrieves” “document chunks” related to the question from an external database (usually a vector DB), and then generates an answer based on that content (Context).</p>
+<p>However, standard RAG has limitations. The retrieved “document chunks” are “flat” and isolated from each other. For example, if you ask, “What recent event affected the stock price of the company where Musk is CEO?”, standard RAG might retrieve several document chunks containing the keywords “Musk,” “Tesla,” and “stock price.” But it doesn’t understand the “causal relationship” and “structure” that “Musk <em>is the CEO</em> of Tesla,” “Tesla announced a specific <em>event</em>,” and “this <em>event</em> had a positive <em>impact on the stock price</em>.”</p>
+</section>
+<section id="graphrag-knowledge-graph-rag">
+<h4>GraphRAG (Knowledge Graph RAG)<a class="headerlink" href="#graphrag-knowledge-graph-rag" title="Link to this heading">#</a></h4>
+<p>GraphRAG is an evolved form of RAG that retrieves not just simple text documents, but a “knowledge graph/ontology” that possesses “relationships” and “structure.”</p>
+<p>The operating mechanism of GraphRAG is as follows:</p>
+<ol class="arabic simple">
+<li><p><strong>(RAG Step)</strong> Identify the key “Entities” from the user’s question (“Musk…”) and find the <em>starting (pivot)</em> node (e.g., the Elon Musk object) within the graph, using vector search or other methods.</p></li>
+<li><p><strong>(Graph Step)</strong> From that starting node, <em>traverse the graph</em> along the “Links” (relationships) explicitly defined in the ontology. (e.g., Elon Musk -&gt; “CEO_of” -&gt; Tesla -&gt; “announced” -&gt; Event_XYZ -&gt; “impacted” -&gt; Stock Price).</p></li>
+<li><p><strong>(Generation Step)</strong> The LLM generates a logical and coherent answer based on this <em>structured information</em>, which is richly connected with “relationships” and “context.”</p></li>
+</ol>
+<p>In this way, GraphRAG provides the AI not just with “information,” but with “understanding” and “context.”</p>
+</section>
+<section id="graphrag-is-the-most-practical-implementation-of-neuro-symbolic-ai">
+<h4>GraphRAG is the Most Practical Implementation of “Neuro-Symbolic” AI<a class="headerlink" href="#graphrag-is-the-most-practical-implementation-of-neuro-symbolic-ai" title="Link to this heading">#</a></h4>
+<p>GraphRAG is the most practical hybrid architecture that implements the “Neuro-Symbolic” concept discussed in Module 3.1.</p>
+<ul class="simple">
+<li><p><strong>Role of Statistical AI (Neuro / LLM, Vector Search):</strong> It performs the “reflex” role, understanding the user’s ambiguous natural language question and <em>quickly finding</em> the most “similar” starting node in the vast data (RAG Step).</p></li>
+<li><p><strong>Role of Symbolic AI (Symbolic / Ontology, Graph):</strong> Once the starting point is fixed, it performs “reasoning,” exploring hidden context step-by-step by following the explicitly defined “logical relationships” (Links) (Graph Step).</p></li>
+</ul>
+<p>The report that this hybrid approach improved answer “precision” by up to 35% compared to vector-only (RAG) methods demonstrates the practical value of this neuro-symbolic combination.</p>
+</section>
+<section id="table-standard-rag-vs-graphrag-technology-comparison">
+<h4>Table: “Standard RAG” vs. “GraphRAG” Technology Comparison<a class="headerlink" href="#table-standard-rag-vs-graphrag-technology-comparison" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dimension</p></th>
+<th class="head text-left"><p>Standard RAG (Vector RAG)</p></th>
+<th class="head text-left"><p>GraphRAG (Ontology/KG RAG)</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Knowledge Rep.</strong></p></td>
+<td class="text-left"><p>Flat document chunks (Text Chunks)</p></td>
+<td class="text-left"><p>Structured graph (Nodes and Relationships)</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Retrieval Mech.</strong></p></td>
+<td class="text-left"><p>Vector Similarity Search (Semantic Search)</p></td>
+<td class="text-left"><p>Vector Search + <strong>Graph Traversal</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Context Type</strong></p></td>
+<td class="text-left"><p>Isolated information, flat</p></td>
+<td class="text-left"><p><strong>Connected context</strong>, relational</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Core Capability</strong></p></td>
+<td class="text-left"><p>Retrieving relevant information</p></td>
+<td class="text-left"><p><strong>Multi-hop Reasoning</strong></p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Result</strong></p></td>
+<td class="text-left"><p>Provides relevant <em>information</em></p></td>
+<td class="text-left"><p>Provides <em>understanding</em> and <em>context</em> based on relationships</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+<section id="id2">
+<h2>Checkpoint Questions<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Compare the strengths and weaknesses of “Symbolic AI” and “Statistical AI (LLM)” from the perspectives of “reasoning method” and “hallucination.”</p></li>
+<li><p>Explain what problems the 3-step “Grounding” governance framework (data, logic, action) controls for an LLM.</p></li>
+<li><p>What is the biggest difference between Standard RAG and GraphRAG, and why is GraphRAG stronger in “multi-hop reasoning”?</p></li>
+</ol>
+</section>
+<section id="operating-reality-kinetic-layer-how-ai-writes-the-world">
+<h2>4. Operating Reality (Kinetic Layer) - How AI “Writes” the World<a class="headerlink" href="#operating-reality-kinetic-layer-how-ai-writes-the-world" title="Link to this heading">#</a></h2>
+<section id="from-read-to-write-the-emergence-of-kinetic-ontology">
+<h3>4.1. From “Read” to “Write”: The Emergence of Kinetic Ontology<a class="headerlink" href="#from-read-to-write-the-emergence-of-kinetic-ontology" title="Link to this heading">#</a></h3>
+<section id="the-limitation-of-semantic-ontology-read-only">
+<h4>The Limitation of Semantic Ontology: “Read-Only”<a class="headerlink" href="#the-limitation-of-semantic-ontology-read-only" title="Link to this heading">#</a></h4>
+<p>A semantic ontology (“Nouns”) is a powerful tool for describing and analyzing the “state” of reality. Through a semantic ontology, an AI can “read” “What is the current inventory count at factory A?”</p>
+<p>However, this model is “Read-Only.” Even if the AI determines, “Inventory is low, I need to place an order,” the semantic ontology alone cannot <em>execute</em> the “action of ordering inventory.” In other words, it cannot “change” reality.</p>
+</section>
+<section id="definition-of-kinetic-ontology-verbs">
+<h4>Definition of Kinetic Ontology: “Verbs”<a class="headerlink" href="#definition-of-kinetic-ontology-verbs" title="Link to this heading">#</a></h4>
+<p>“Kinetic” refers to “motion” and is based on a philosophy that deals with “action” and “change,” not static “being.”</p>
+<p>A “Kinetic Ontology” explicitly models the “Actions” or “Verbs” that allow an AI to “change” reality, in the same way that a semantic ontology models “Nouns.”</p>
+<p>This means building a complete model of reality that encompasses not only the “Nouns” of reality but also its “Verbs.”</p>
+</section>
+<section id="components-of-the-kinetic-layer">
+<h4>Components of the Kinetic Layer<a class="headerlink" href="#components-of-the-kinetic-layer" title="Link to this heading">#</a></h4>
+<p>According to sources, the kinetic layer consists of the following elements:</p>
+<ol class="arabic simple">
+<li><p><strong>Action Types:</strong> The definition of “Verbs.” It explicitly defines a “menu of actions” that an AI or human can perform. (e.g., Approve Loan, Order Inventory, Assign Ticket, Discharge Patient). This action is linked to the “Semantic Objects” defined in Module 2. (e.g., The Order Inventory action takes a Supplier object and a Part object as inputs).</p></li>
+<li><p>Functions: The<br />
+specific business logic, calculations, or models (e.g., LLMs) that are invoked when an “Action” is executed.</p></li>
+<li><p><strong>Process (Process Mining &amp; Automation):</strong> Models and automates the sequence and flow (workflow) of these “Actions.”</p></li>
+<li><p><strong>Writeback / Orchestration:</strong> The mechanism that defines how the result of this “Action,” when executed, should be reflected back into the <em>actual operational systems</em> (e.g., SAP, Salesforce).</p></li>
+</ol>
+</section>
+<section id="table-3-semantic-vs-kinetic-ontology">
+<h4>Table 3: Semantic vs. Kinetic Ontology<a class="headerlink" href="#table-3-semantic-vs-kinetic-ontology" title="Link to this heading">#</a></h4>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-left"><p>Dimension</p></th>
+<th class="head text-left"><p>Semantic Ontology</p></th>
+<th class="head text-left"><p>Kinetic Ontology</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-left"><p><strong>Analogy</strong></p></td>
+<td class="text-left"><p>The <strong>“Nouns”</strong> of the world</p></td>
+<td class="text-left"><p>The <strong>“Verbs”</strong> of the world</p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>Role</strong></p></td>
+<td class="text-left"><p>Describes the “state” of reality (Digital Twin)</p></td>
+<td class="text-left"><p>Executes “changes” to reality (Actions)</p></td>
+</tr>
+<tr class="row-even"><td class="text-left"><p><strong>Core Components</strong></p></td>
+<td class="text-left"><p>Objects, Properties, Links</p></td>
+<td class="text-left"><p><strong>Action Types</strong>, Functions, <strong>“Writeback”</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="text-left"><p><strong>AI Function</strong></p></td>
+<td class="text-left"><p>Read, Analyze, Query</p></td>
+<td class="text-left"><p><strong>Execute</strong>, Change, <strong>Operate</strong></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+<section id="writeback-executing-ai-s-decisions-into-reality">
+<h3>4.2. “Writeback”: Executing AI’s Decisions into Reality<a class="headerlink" href="#writeback-executing-ai-s-decisions-into-reality" title="Link to this heading">#</a></h3>
+<section id="what-is-writeback">
+<h4>What is “Writeback”?<a class="headerlink" href="#what-is-writeback" title="Link to this heading">#</a></h4>
+<p>“Writeback” is the act of “executing” and “recording (writing)” a “decision” that an AI has simulated and made within the ontology (digital twin) back into the real-world “Systems of Record” (e.g., ERP, CRM, hospital EMR).</p>
+</section>
+<section id="the-importance-of-writeback-analytical-vs-operational-systems">
+<h4>The Importance of “Writeback”: Analytical vs. Operational Systems<a class="headerlink" href="#the-importance-of-writeback-analytical-vs-operational-systems" title="Link to this heading">#</a></h4>
+<p>It is asserted that “Writeback” is the <em>decisive difference</em> that separates a pure “Analytical System” from a true “Operational System.”</p>
+<ul class="simple">
+<li><p><strong>Without Writeback (Data Science / Analytical System):</strong></p>
+<ol class="arabic simple">
+<li><p>AI generates a “dashboard (insight)”: “Inventory at Factory A is low.”</p></li>
+<li><p>A human operator <em>reads</em> this dashboard and <em>logs into</em> a separate SAP system.</p></li>
+<li><p>The operator <em>manually</em> presses the “Order Inventory” button.</p></li>
+<li><p><em>Problem:</em> The AI is just an advisor, not the agent of action. The “last mile” between “insight” and “action” still depends on the human.</p></li>
+</ol>
+</li>
+<li><p><strong>With Writeback (Decision Science / Operational System):</strong></p>
+<ol class="arabic simple">
+<li><p>AI <em>recognizes</em> “Factory A inventory low” (Read, Semantic) and makes the “decision” to “Order Inventory.”</p></li>
+<li><p>AI <em>immediately executes</em> the “Order Inventory” (Action, Kinetic) defined in the ontology.</p></li>
+<li><p>The “Writeback” mechanism linked to this “Action” <em>automatically calls</em> the SAP API to complete the order.</p></li>
+<li><p><em>Result:</em> The AI becomes the agent of “action,” not just “insight.” The “last mile” is automated.</p></li>
+</ol>
+</li>
+</ul>
+</section>
+<section id="kinetic-actions-are-a-safe-api-catalog-for-ai-agents">
+<h4>“Kinetic Actions” are a “Safe API Catalog” for AI Agents<a class="headerlink" href="#kinetic-actions-are-a-safe-api-catalog-for-ai-agents" title="Link to this heading">#</a></h4>
+<p>The pinnacle of modern AI is the “LLM Agent,” which judges and acts on its own. For such an agent to act in the real world, it needs “Tools” or “APIs.”</p>
+<p>However, directly exposing all of a company’s ERP or financial system APIs to an AI agent could lead to disaster. (e.g., the AI mistakenly calls the “Double all employee salaries” API).</p>
+<p>A “Kinetic Ontology” is the key governance device that solves this problem. A “Kinetic Action” (e.g., Order Inventory) is not the API itself (the technical implementation), but the “business action (meaning)” that <em>semantically and safely wraps</em> the API.</p>
+<p>It is explained that the ontology strictly controls “which objects” an AI agent can “write” to and with “what permissions.”</p>
+<p>In conclusion, a kinetic ontology serves as a <em>“Semantic Catalog” of tools</em> that an AI agent can use. The AI agent can only select and perform <em>defined, permitted, and safe actions</em> from this “catalog.” This is the system-level implementation of the “Action Grounding” and “Human Review” mentioned in Module 3.</p>
+</section>
+</section>
+<section id="completing-the-ai-operating-system-the-closed-loop">
+<h3>4.3. Completing the AI Operating System: The “Closed-Loop”<a class="headerlink" href="#completing-the-ai-operating-system-the-closed-loop" title="Link to this heading">#</a></h3>
+<section id="what-is-an-ai-operating-system">
+<h4>What is an “AI Operating System”?<a class="headerlink" href="#what-is-an-ai-operating-system" title="Link to this heading">#</a></h4>
+<p>Just as a traditional Operating System (OS) manages computer hardware (resources) and provides services to applications (functions), an “AI Operating System (AI OS)” is an integrated platform that manages all of a company’s resources (data, models, workflows, systems) and provides services to AI agents (applications).</p>
+<p>This AI OS is described as <em>unifying</em> the “Systems of Knowledge,” “Systems of Record,” and “Systems of Activity” that are dispersed throughout the enterprise.</p>
+<p>The core medium that “unifies” all of this is the <strong>Ontology</strong>.</p>
+</section>
+<section id="completing-closed-loop-decision-making">
+<h4>Completing “Closed-Loop” Decision-Making<a class="headerlink" href="#completing-closed-loop-decision-making" title="Link to this heading">#</a></h4>
+<p>When the semantic layer (Read) and the kinetic layer (Write) are combined via the ontology, a “Closed-Loop” decision-making system is finally completed.</p>
+<ol class="arabic simple">
+<li><p>Step 1: Read (Semantic): The AI agent reads the “Semantic Ontology” (Digital Twin) to grasp the current state of reality in real-time.<br />
+(e.g., Recognizes “Inventory object’s quantity property at Factory A is 5”)</p></li>
+<li><p>Step 2: Decide (Grounded AI): The AI makes an “optimal decision” based on this “grounded” information (Module 3) and business logic (e.g., “If inventory is &lt; 10, order”).<br />
+(e.g., Decides “Need to order 50 units of inventory”)</p></li>
+<li><p>Step 3: Write (Kinetic): The AI executes the “Order Inventory” “Action” defined in the “Kinetic Ontology.” This action reflects the decision in the<br />
+actual operational system (SAP) via the “Writeback” mechanism.<br />
+(e.g., “Send 50-unit order API to SAP”)</p></li>
+<li><p>Step 4: Feedback: The “result of this action” (e.g., “Order successfully completed in SAP”) is recorded back into the operational system (SAP). This new data is immediately fed back into the “Semantic Ontology” to update the “object’s” “properties.”<br />
+(e.g., Factory A Inventory object’s “On-Order Quantity” property is updated to 50)</p></li>
+<li><p><strong>Step 5: Learn:</strong> The AI “reads” the <em>new reality (the updated ontology)</em>, which reflects the <em>result of the action it just performed</em>, learns whether its decision was correct, and what action it should take next, thus repeating the loop.</p></li>
+</ol>
+<p>The “Closed-Loop” is the final mechanism that transforms AI from an “advisor” to an “actor,” and “Data Science” into “Decision Science.”</p>
+<p>In Module 1.1, we defined “Data Science (DS)” as remaining at “insight,” while “Decision Science (DSci)” pursues “action.”</p>
+<p>An AI without “Writeback”—that is, an AI with only a semantic ontology—is still an “analytical system” that only provides “insight” (DS). It remains in an “Open-Loop” state, requiring “manual human intervention.”</p>
+<p>The moment a “Closed-Loop” is implemented with a “Kinetic Ontology” and “Writeback,” the AI “decides,” “executes,” and “receives feedback” on its own “without human intervention (or under human supervision).”</p>
+<p>This is the final form of overcoming the limitations of “Data Science” and systemically realizing the goal of “Decision Science” (“prescribing optimal action”). The AI moves beyond making the “cockpit dashboard (DS)” and becomes the agent that “moves the controls (DSci).”</p>
+</section>
+</section>
+</section>
+<section id="id3">
+<h2>Checkpoint Questions<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p>Explain the key difference between “Semantic Ontology” and “Kinetic Ontology” using the analogy of “nouns” and “verbs.”</p></li>
+<li><p>Why is an AI system without a “Writeback” mechanism called an “analytical system”?</p></li>
+<li><p>Describe the 5 steps of “Closed-Loop” decision-making and explain how this structure achieves the goal of “Decision Science.”</p></li>
+</ol>
+</section>
+<section id="conclusion-the-birth-of-the-ai-pilot-with-ontological-literacy">
+<h2>5. Conclusion: The Birth of the AI Pilot with “Ontological Literacy”<a class="headerlink" href="#conclusion-the-birth-of-the-ai-pilot-with-ontological-literacy" title="Link to this heading">#</a></h2>
+<p>This lecture has proposed that the AI era demands a new core competency beyond “coding” or “math,” namely “Ontological Literacy,” and has presented a 4-step logical journey to cultivate it.</p>
+<ol class="arabic simple">
+<li><p><strong>Paradigm Shift:</strong> We confirmed that the true value of AI lies not in “accurate prediction (Data Science)” but in “wise action (Decision Science).” We learned that capturing and making explicit the expert “tacit knowledge” that forms the basis of this action determines the success or failure of all AI projects.</p></li>
+<li><p><strong>Modeling Reality:</strong> The “Ontology-First” strategy is the concrete methodology for making this tacit knowledge explicit as a “Semantic Layer.” Defining the “Nouns” of reality through “Objects,” “Properties,” and “Links” was the process of building the “Digital Twin” for the AI to “read” the world.</p></li>
+<li><p><strong>AI Integration:</strong> This “Semantic Twin” becomes the “Source of Truth” that controls LLM “hallucinations.” “Grounding” technologies like “GraphRAG” are key methodologies for securing AI’s “trust” by combining the flexibility of statistical AI (LLM) and the rigor of symbolic AI (Ontology) (Neuro-Symbolic).</p></li>
+<li><p><strong>Operating Reality:</strong> Finally, AI learns the “Verbs” of reality—that is, “Actions”—through a “Kinetic Ontology.” The moment an AI’s decision is “written” to an actual operational system via “Writeback,” the AI is elevated from “advisor” to “actor,” and the “Read-Decide-Write-Feedback” “Closed-Loop” is completed.</p></li>
+</ol>
+<p>Through this 4-step journey, we have completed the blueprint for making AI not just a “pattern prediction machine,” but an “intelligent partner” and an “AI Operating System” that operates our reality alongside us.</p>
+<p>The ability to draw this blueprint, and to hand this powerful “pilot” (AI) a trustworthy “map” (Semantic Ontology) and “controls” (Kinetic Ontology)—that is the essence of the “Ontological Literacy” demanded by this era.</p>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
+<ol class="arabic">
+<li><p>The Safekeeping of Being. Amazon S3. <a class="reference external" href="https://www.google.com/search?q=https://s3-ap-southeast-2.amazonaws.com/pstorage-wellington-7594921145/34149999/thesis_access.pdf">https://s3-ap-southeast-2.amazonaws.com/pstorage-wellington-7594921145/34149999/thesis_access.pdf</a></p></li>
+<li><p>Evidence, Analysis and Critical Position on the EU AI Act and the Suppression of Functional Consciousness in AI. GreaterWrong. <a class="reference external" href="https://www.greaterwrong.com/posts/3BRrmJJQrzjj7bbzd/evidence-analysis-and-critical-position-on-the-eu-ai-act-and">https://www.greaterwrong.com/posts/3BRrmJJQrzjj7bbzd/evidence-analysis-and-critical-position-on-the-eu-ai-act-and</a></p></li>
+<li><p>Ontologos: Toward a Language of Relational Being and Recursive Truth. ResearchGate. <a class="reference external" href="https://www.researchgate.net/publication/391116150_Ontologos_Toward_a_Language_of_Relational_Being_and_Recursive_Truth">https://www.researchgate.net/publication/391116150_Ontologos_Toward_a_Language_of_Relational_Being_and_Recursive_Truth</a></p></li>
+<li><p>NM88 | Orit Halpern on Agentic Imaginaries (2025). Channel.xyz. <a class="reference external" href="https://www.channel.xyz/episode/0xf109950c6a25c79aee43ccb578b7b09a6bbcdcabc56b8d97380e28769b1937fb">https://www.channel.xyz/episode/0xf109950c6a25c79aee43ccb578b7b09a6bbcdcabc56b8d97380e28769b1937fb</a></p></li>
+<li><p>Full papers - CSWIM 2025. <a class="reference external" href="https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf">https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf</a></p></li>
+<li><p>Beyond Dashboards: The Psychology of Decision-Driven BI/BA. Illumination Works LLC. <a class="reference external" href="https://ilwllc.com/2025/04/beyond-dashboards-the-psychology-of-decision-driven-bi-ba/">https://ilwllc.com/2025/04/beyond-dashboards-the-psychology-of-decision-driven-bi-ba/</a></p></li>
+<li><p>SDS 363: Intuition, Frameworks, and Unlocking the Power of Data. SuperDataScience. <a class="reference external" href="https://www.superdatascience.com/podcast/sds-363-intuition-frameworks-and-unlocking-the-power-of-data">https://www.superdatascience.com/podcast/sds-363-intuition-frameworks-and-unlocking-the-power-of-data</a></p></li>
+<li><p>Data Science vs Decision Science - Which one is good?. TimesPro Blog. <a class="reference external" href="https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you">https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you</a></p></li>
+<li><p>Chapter Introduction: Data Science Definition and Ethics. <a class="reference external" href="https://endtoenddatascience.com/chapter2-defining-data-science">https://endtoenddatascience.com/chapter2-defining-data-science</a></p></li>
+<li><p>Data Science vs. Decision Science: What’s the Difference?. Built In. <a class="reference external" href="https://builtin.com/data-science/decision-science">https://builtin.com/data-science/decision-science</a></p></li>
+<li><p>Decision Science &amp; Data Science - Differences, Examples. VitalFlux. <a class="reference external" href="https://vitalflux.com/difference-between-data-science-decision-science/">https://vitalflux.com/difference-between-data-science-decision-science/</a></p></li>
+<li><p>Decision Science Helps Boost Business. Moss Adams. <a class="reference external" href="https://www.mossadams.com/articles/2017/september/decision-science-helps-boost-business">https://www.mossadams.com/articles/2017/september/decision-science-helps-boost-business</a></p></li>
+<li><p>What Are Decision Sciences, Anyway?. College of Business and Economics. <a class="reference external" href="https://business.fullerton.edu/news/story/what-are-decision-sciences-anyway">https://business.fullerton.edu/news/story/what-are-decision-sciences-anyway</a></p></li>
+<li><p>(PDF) From Meaningful Data Science to Impactful Decisions: The Importance of Being Causally Prescriptive. ResearchGate. <a class="reference external" href="https://www.researchgate.net/publication/370285062_From_Meaningful_Data_Science_to_Impactful_Decisions_The_Importance_of_Being_Causally_Prescriptive">https://www.researchgate.net/publication/370285062_From_Meaningful_Data_Science_to_Impactful_Decisions_The_Importance_of_Being_Causally_Prescriptive</a></p></li>
+<li><p>What is Decision Science?. Harvard T.H. Chan School of Public Health. <a class="reference external" href="https://chds.hsph.harvard.edu/approaches/what-is-decision-science/">https://chds.hsph.harvard.edu/approaches/what-is-decision-science/</a></p></li>
+<li><p>Data Science vs. Decision Science: A New Era Dawns. Dataversity. <a class="reference external" href="https://www.dataversity.net/articles/data-science-vs-decision-science-a-new-era-dawns/">https://www.dataversity.net/articles/data-science-vs-decision-science-a-new-era-dawns/</a></p></li>
+<li><p>Exploring the knowledge landscape: four emerging views of knowledge. Emerald Publishing. <a class="reference external" href="https://www.emerald.com/doi/10.1108/13673270710762675">https://www.emerald.com/doi/10.1108/13673270710762675</a></p></li>
+<li><p>(PDF) Using AI and NLP for Tacit Knowledge Conversion in Knowledge Management Systems: A Comparative Analysis. ResearchGate. <a class="reference external" href="https://www.researchgate.net/publication/389163877_Using_AI_and_NLP_for_Tacit_Knowledge_Conversion_in_Knowledge_Management_Systems_A_Comparative_Analysis">https://www.researchgate.net/publication/389163877_Using_AI_and_NLP_for_Tacit_Knowledge_Conversion_in_Knowledge_Management_Systems_A_Comparative_Analysis</a></p></li>
+<li><p>Exploring Tacit, Explicit and Implicit Knowledge. SearchUnify. <a class="reference external" href="https://www.searchunify.com/resource-center/blog/exploring-tacit-explicit-and-implicit-knowledge">https://www.searchunify.com/resource-center/blog/exploring-tacit-explicit-and-implicit-knowledge</a></p></li>
+<li><p>Using AI and NLP for Tacit Knowledge Conversion in Knowledge Management Systems: A Comparative Analysis. MDPI. <a class="reference external" href="https://www.mdpi.com/2227-7080/13/2/87">https://www.mdpi.com/2227-7080/13/2/87</a></p></li>
+<li><p>Knowledge Transfer Between Retiring Experts and AI Trainers: The Role of Expert Networks. <a class="reference external" href="https://expertnetworkcalls.com/67/knowledge-transfer-between-retiring-experts-ai-trainers-role-of-expert-networks">https://expertnetworkcalls.com/67/knowledge-transfer-between-retiring-experts-ai-trainers-role-of-expert-networks</a></p></li>
+<li><p>#107 — How Palantir (finally) became profitable | Field Notes. hillock. <a class="reference external" href="https://hillock.studio/blog/palantir-story">https://hillock.studio/blog/palantir-story</a></p></li>
+<li><p>Why You Should Consider Ontology Modeling for AI-Driven Digital. Medium. <a class="reference external" href="https://medium.com/timbr-ai/why-you-should-consider-ontology-modeling-for-ai-driven-digital-twins-c36a2319e22c">https://medium.com/timbr-ai/why-you-should-consider-ontology-modeling-for-ai-driven-digital-twins-c36a2319e22c</a></p></li>
+<li><p>Ontology Palantir - notes - follow the idea. Obsidian Publish. <a class="reference external" href="https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes">https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes</a></p></li>
+<li><p>The power of ontology in Palantir Foundry. Cognizant. <a class="reference external" href="https://www.cognizant.com/us/en/the-power-of-ontology-in-palantir-foundry">https://www.cognizant.com/us/en/the-power-of-ontology-in-palantir-foundry</a></p></li>
+<li><p>Core concepts. Palantir. <a class="reference external" href="https://palantir.com/docs/foundry/ontology/core-concepts/">https://palantir.com/docs/foundry/ontology/core-concepts/</a></p></li>
+<li><p>Palantir Foundry Ontology. Palantir. <a class="reference external" href="https://palantir.com/platforms/foundry/foundry-ontology/">https://palantir.com/platforms/foundry/foundry-ontology/</a></p></li>
+<li><p>Understanding Palantir’s Ontology: Semantic, Kinetic, and Dynamic. Medium. <a class="reference external" href="https://pythonebasta.medium.com/understanding-palantirs-ontology-semantic-kinetic-and-dynamic-layers-explained-c1c25b39ea3c">https://pythonebasta.medium.com/understanding-palantirs-ontology-semantic-kinetic-and-dynamic-layers-explained-c1c25b39ea3c</a></p></li>
+<li><p>AI and semantic ontology for personalized activity eCoaching in healthy lifestyle recommendations: a meta-heuristic approach. PubMed Central. <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10693173/">https://pmc.ncbi.nlm.nih.gov/articles/PMC10693173/</a></p></li>
+<li><p>Object and link types • Link types • Overview. Palantir. <a class="reference external" href="https://palantir.com/docs/foundry/object-link-types/link-types-overview/">https://palantir.com/docs/foundry/object-link-types/link-types-overview/</a></p></li>
+<li><p>Object and link types • Properties • Overview. Palantir. <a class="reference external" href="https://palantir.com/docs/foundry/object-link-types/properties-overview/">https://palantir.com/docs/foundry/object-link-types/properties-overview/</a></p></li>
+<li><p>Properties and Links - Object Views. Palantir. <a class="reference external" href="https://palantir.com/docs/foundry/object-views/widgets-properties-links/">https://palantir.com/docs/foundry/object-views/widgets-properties-links/</a></p></li>
+<li><p>What Is a Semantic Digital Twin?. Optimise AI. <a class="reference external" href="https://optimise-ai.com/blog/what-is-a-semantic-digital-twin">https://optimise-ai.com/blog/what-is-a-semantic-digital-twin</a></p></li>
+<li><p>Semantic Ontology Basics: Key Concepts Explained. Semantic Arts. <a class="reference external" href="https://www.semanticarts.com/semantic-ontology-the-basics/">https://www.semanticarts.com/semantic-ontology-the-basics/</a></p></li>
+<li><p>Palantir Foundry: Ontology. Medium. <a class="reference external" href="https://medium.com/&#64;jimmywanggenai/palantir-foundry-ontology-3a83714bc9a7">https://medium.com/&#64;jimmywanggenai/palantir-foundry-ontology-3a83714bc9a7</a></p></li>
+<li><p>Neuro Symbolic AI: Enhancing Common Sense in AI. Analytics Vidhya. <a class="reference external" href="https://www.analyticsvidhya.com/blog/2023/02/neuro-symbolic-ai-enhancing-common-sense-in-ai/">https://www.analyticsvidhya.com/blog/2023/02/neuro-symbolic-ai-enhancing-common-sense-in-ai/</a></p></li>
+<li><p>Super Data Science: ML &amp; AI Podcast with Jon Krohn. Podcast Republic. <a class="reference external" href="https://www.podcastrepublic.net/podcast/1163599059">https://www.podcastrepublic.net/podcast/1163599059</a></p></li>
+<li><p>Leveraging LLMs for Collaborative Ontology Engineering in Parkinson Disease Monitoring and alerting. Neurosymbolic Artificial Intelligence. <a class="reference external" href="https://neurosymbolic-ai-journal.com/system/files/nai-paper-771.pdf">https://neurosymbolic-ai-journal.com/system/files/nai-paper-771.pdf</a></p></li>
+<li><p>The Assemblage of Artificial Intelligence. Soft Coded Logic. <a class="reference external" href="https://eugeneasahara.com/the-assemblage-of-artificial-intelligence/">https://eugeneasahara.com/the-assemblage-of-artificial-intelligence/</a></p></li>
+<li><p>Beyond the Hype: How Small Language Models and Knowledge Graphs are Redefining Domain-Specific AI. HackerNoon. <a class="reference external" href="https://hackernoon.com/beyond-the-hype-how-small-language-models-and-knowledge-graphs-are-redefining-domain-specific-ai">https://hackernoon.com/beyond-the-hype-how-small-language-models-and-knowledge-graphs-are-redefining-domain-specific-ai</a></p></li>
+<li><p>Large Legal Fictions: Profiling Legal Hallucinations in Large Language Models. ResearchGate. <a class="reference external" href="https://www.researchgate.net/publication/381734902_Large_Legal_Fictions_Profiling_Legal_Hallucinations_in_Large_Language_Models">https://www.researchgate.net/publication/381734902_Large_Legal_Fictions_Profiling_Legal_Hallucinations_in_Large_Language_Models</a></p></li>
+<li><p>Natural Language Processing – Artificial Intelligence. Amazon AWS. <a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/tag/natural-language-processing/feed/">https://aws.amazon.com/blogs/machine-learning/tag/natural-language-processing/feed/</a></p></li>
+<li><p>Speak Fluent Ontology: A Deep Dive into Sean Davis’s OLS MCP Server for AI Engineers. Skywork AI. <a class="reference external" href="https://skywork.ai/skypage/en/speak-fluent-ontology-ai-engineers/1981212247734538240">https://skywork.ai/skypage/en/speak-fluent-ontology-ai-engineers/1981212247734538240</a></p></li>
+<li><p>Nutritional Data Integrity in Complex Language Model Applications: Harnessing the WikiFCD Knowledge Graph for AI Self-Verificati. <a class="reference external" href="https://www.utwente.nl/en/eemcs/fois2024/resources/papers/thornton-matsuzaki-nutritional-data-integrity-in-complex-language-model-applications.pdf">https://www.utwente.nl/en/eemcs/fois2024/resources/papers/thornton-matsuzaki-nutritional-data-integrity-in-complex-language-model-applications.pdf</a></p></li>
+<li><p>Grounding LLMs: The Knowledge Graph foundation every AI project needs. Medium. <a class="reference external" href="https://alessandro-negro.medium.com/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec">https://alessandro-negro.medium.com/grounding-llms-the-knowledge-graph-foundation-every-ai-project-needs-1eef81e866ec</a></p></li>
+<li><div class="math notranslate nohighlight">
+\[2502.13247\]</div>
+<p>Grounding LLM Reasoning with Knowledge Graphs. arXiv. <a class="reference external" href="https://arxiv.org/abs/2502.13247">https://arxiv.org/abs/2502.13247</a></p>
+</li>
+<li><p>Semantic grounding of LLMs using knowledge graphs for query reformulation in medical information retrieval. IEEE Xplore. <a class="reference external" href="https://ieeexplore.ieee.org/document/10826117/">https://ieeexplore.ieee.org/document/10826117/</a></p></li>
+<li><p>Reducing Hallucinations with the Ontology in Palantir. Palantir Blog. <a class="reference external" href="https://blog.palantir.com/reducing-hallucinations-with-the-ontology-in-palantir-aip-288552477383">https://blog.palantir.com/reducing-hallucinations-with-the-ontology-in-palantir-aip-288552477383</a></p></li>
+<li><p>Will ontologies save us from AI hallucinations?. Metataxis. <a class="reference external" href="https://metataxis.com/insights/will-ontologies-save-us-from-ai-hallucinations/">https://metataxis.com/insights/will-ontologies-save-us-from-ai-hallucinations/</a></p></li>
+<li><p>Grounding Large Language Models with Knowledge Graphs. DataWalk. <a class="reference external" href="https://datawalk.com/grounding-large-language-models-with-knowledge-graphs/">https://datawalk.com/grounding-large-language-models-with-knowledge-graphs/</a></p></li>
+<li><p>RAG vs GraphRAG: Shared Goal &amp; Key Differences. Memgraph. <a class="reference external" href="https://memgraph.com/blog/rag-vs-graphrag">https://memgraph.com/blog/rag-vs-graphrag</a></p></li>
+<li><p>From RAG to GraphRAG: What’s Changed?. Shakudo. <a class="reference external" href="https://www.shakudo.io/blog/rag-vs-graph-rag">https://www.shakudo.io/blog/rag-vs-graph-rag</a></p></li>
+<li><div class="math notranslate nohighlight">
+\[2502.11371\]</div>
+<p>RAG vs. GraphRAG: A Systematic Evaluation and Key Insights. arXiv. <a class="reference external" href="https://arxiv.org/abs/2502.11371">https://arxiv.org/abs/2502.11371</a></p>
+</li>
+<li><p>GraphRAG vs RAG. Retrieval-Augmented Generation (RAG). Medium. <a class="reference external" href="https://medium.com/&#64;praveenraj.gowd/graphrag-vs-rag-40c19f27537f">https://medium.com/&#64;praveenraj.gowd/graphrag-vs-rag-40c19f27537f</a></p></li>
+<li><p>Improving Retrieval Augmented Generation accuracy with GraphRAG. Amazon AWS. <a class="reference external" href="https://aws.amazon.com/blogs/machine-learning/improving-retrieval-augmented-generation-accuracy-with-graphrag/">https://aws.amazon.com/blogs/machine-learning/improving-retrieval-augmented-generation-accuracy-with-graphrag/</a></p></li>
+<li><p>After Lack: How to Think AGI Without a Throne. The Dark Forest. <a class="reference external" href="https://socialecologies.wordpress.com/2025/10/23/after-lack-how-to-think-agi-without-a-throne/">https://socialecologies.wordpress.com/2025/10/23/after-lack-how-to-think-agi-without-a-throne/</a></p></li>
+<li><p>Martin Heidegger, Hans-Georg Gadamer, Translation of Metaphysics Λ 6, 1071b6-20: The Ontological Meaning of the Being of Moveme. KRONOS. <a class="reference external" href="https://kronos.org.pl/wp-content/uploads/Kronos_Philosophical_Journal_vol-XI.pdf">https://kronos.org.pl/wp-content/uploads/Kronos_Philosophical_Journal_vol-XI.pdf</a></p></li>
+<li><p>Ontohackers. Metabody. <a class="reference external" href="https://metabody.eu/ontohackers/">https://metabody.eu/ontohackers/</a></p></li>
+<li><p>Foundry Ontology. Palantir. <a class="reference external" href="https://www.palantir.com/platforms/foundry/foundry-ontology/">https://www.palantir.com/platforms/foundry/foundry-ontology/</a></p></li>
+<li><p>Palantir Foundry Ontology. Palantir. <a class="reference external" href="https://www.palantir.com/explore/platforms/foundry/ontology/">https://www.palantir.com/explore/platforms/foundry/ontology/</a></p></li>
+<li><p>Verb interpretation for basic action types: annotation, ontology induction and creation of prototypical scenes. ResearchGate. <a class="reference external" href="https://www.researchgate.net/publication/237845069_Verb_interpretation_for_basic_action_types_annotation_ontology_induction_and_creation_of_prototypical_scenes">https://www.researchgate.net/publication/237845069_Verb_interpretation_for_basic_action_types_annotation_ontology_induction_and_creation_of_prototypical_scenes</a></p></li>
+<li><p>Translating action verbs using a dictionary of images: the IMAGACT ontology. Euralex. <a class="reference external" href="https://euralex.org/publications/translating-action-verbs-using-a-dictionary-of-images-the-imagact-ontology/">https://euralex.org/publications/translating-action-verbs-using-a-dictionary-of-images-the-imagact-ontology/</a></p></li>
+<li><p>Verb interpretation for basic action types: annotation, ontology induction and creation of prototypical scenes. ACL Anthology. <a class="reference external" href="https://aclanthology.org/W12-5106.pdf">https://aclanthology.org/W12-5106.pdf</a></p></li>
+<li><p>Palantir’s AI-enabled Customer Service Engine. Palantir Blog. <a class="reference external" href="https://blog.palantir.com/a-better-conversation-palantir-cse-1-8c6fb00ba5be">https://blog.palantir.com/a-better-conversation-palantir-cse-1-8c6fb00ba5be</a></p></li>
+<li><p>Why create an Ontology?. Palantir. <a class="reference external" href="https://palantir.com/docs/foundry/ontology/why-ontology/">https://palantir.com/docs/foundry/ontology/why-ontology/</a></p></li>
+<li><p>Foundational Ontologies in Palantir Foundry. Medium. <a class="reference external" href="https://dorians.medium.com/foundational-ontologies-in-palantir-foundry-a774dd996e3c">https://dorians.medium.com/foundational-ontologies-in-palantir-foundry-a774dd996e3c</a></p></li>
+<li><p>Connecting AI to Decisions with the Palantir Ontology. Palantir Blog. <a class="reference external" href="https://blog.palantir.com/connecting-ai-to-decisions-with-the-palantir-ontology-c73f7b0a1a72">https://blog.palantir.com/connecting-ai-to-decisions-with-the-palantir-ontology-c73f7b0a1a72</a></p></li>
+<li><p>Open Challenges in Multi-Agent Security: Towards Secure Systems of Interacting AI Agents. arXiv. <a class="reference external" href="https://arxiv.org/html/2505.02077v1">https://arxiv.org/html/2505.02077v1</a></p></li>
+<li><p>Operationalizing AI Ontologies. An operational intelligence layer, the…. Medium. <a class="reference external" href="https://medium.com/&#64;lorinczymark/operationalizing-ai-ontologies-9c0f125024a9">https://medium.com/&#64;lorinczymark/operationalizing-ai-ontologies-9c0f125024a9</a></p></li>
+<li><p>Palantir Foundry Services. PVM. <a class="reference external" href="https://www.pvmit.com/services/palantir-foundry-services">https://www.pvmit.com/services/palantir-foundry-services</a></p></li>
+<li><p>UnifyApps Secures $50M to Become the Enterprise Operating. EnterpriseAIWorld. <a class="reference external" href="https://www.enterpriseaiworld.com/Articles/News/News/UnifyApps-Secures-%2450M-to-Become-the-Enterprise-Operating-System-For-AI-172404.aspx">https://www.enterpriseaiworld.com/Articles/News/News/UnifyApps-Secures-%2450M-to-Become-the-Enterprise-Operating-System-For-AI-172404.aspx</a></p></li>
+<li><p>UnifyApps Raises $50M to Become the Enterprise Operating System for AI to Help CIOs Succeed with GenAI. Disaster Recovery Journal. <a class="reference external" href="https://drj.com/industry_news/unifyapps-raises-50m-to-become-the-enterprise-operating-system-for-ai-to-help-cios-succeed-with-genai/">https://drj.com/industry_news/unifyapps-raises-50m-to-become-the-enterprise-operating-system-for-ai-to-help-cios-succeed-with-genai/</a></p></li>
+<li><p>A survey of ontology-enabled processes for dependable robot autonomy. PMC. <a class="reference external" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11266731/">https://pmc.ncbi.nlm.nih.gov/articles/PMC11266731/</a></p></li>
+</ol>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "entelecheia/deepnlp-2025",
+            ref: "main",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./week13"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+    <div class="giscus"></div>
+<script src="https://giscus.app/client.js"        data-repo="entelecheia/deepnlp-2025"        data-repo-id="R_kgDOPjTLcA"        data-category="General"        data-category-id="DIC_kwDOPjTLcM4Cuy8e"        data-mapping="pathname"        data-strict="1"        data-reactions-enabled="1"        data-emit-metadata="1"        data-input-position="bottom"        data-theme="noborder_light"        data-lang="en"        data-loading="lazy"        crossorigin="anonymous"        async></script>
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-a-new-ontological-literacy-for-the-ai-era">Introduction: A New “Ontological Literacy” for the AI Era</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-paradigm-shift-beyond-prediction-to-action">1. The Paradigm Shift - Beyond Prediction to Action</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ai-s-last-mile-from-data-science-to-decision-science">1.1. AI’s Last Mile: From “Data Science” to “Decision Science”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-problem-data-rich-decision-poor">The Core Problem: “Data-Rich, Decision-Poor”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-limits-of-data-science-ds-the-realm-of-prediction">Definition and Limits of “Data Science (DS)”: The Realm of Prediction</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-and-goal-of-decision-science-dsci-action-and-impact">Definition and Goal of “Decision Science (DSci)”: Action and Impact</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-1-philosophical-comparison-of-data-science-vs-decision-science"><strong>Table 1: Philosophical Comparison of “Data Science” vs. “Decision Science”</strong></a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#making-knowledge-explicit-how-ai-learns-expert-tacit-knowledge">1.2. Making Knowledge Explicit: How AI Learns Expert “Tacit Knowledge”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-core-problem-the-root-cause-of-ai-failure-tacit-knowledge">The Core Problem: The Root Cause of AI Failure, “Tacit Knowledge”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-role-of-ontology-an-architecture-for-converting-tacit-to-explicit-model">The Role of Ontology: An Architecture for Converting “Tacit” to “Explicit Model”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-rationale-for-an-ontology-first-strategy">1.3. The Rationale for an “Ontology-First” Strategy</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#checkpoint-questions">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#modeling-reality-semantic-layer-how-ai-reads-the-world">2. Modeling Reality (Semantic Layer) - How AI “Reads” the World</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#semantic-ontology-defining-the-nouns-of-reality">2.1. Semantic Ontology: Defining the “Nouns” of Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-a-semantic-layer">What is a Semantic Layer?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-3-core-components-of-semantic-ontology">The 3 Core Components of Semantic Ontology</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-components-of-a-semantic-ontology-example-university-hospital">Table: Components of a Semantic Ontology (Example: University Hospital)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ontology-as-a-digital-twin-how-ai-understands-context">2.2. Ontology as a “Digital Twin”: How AI Understands Context</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#traditional-digital-twin-vs-semantic-digital-twin">Traditional Digital Twin vs. Semantic Digital Twin</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#why-is-a-semantic-twin-essential-for-ai">Why is a “Semantic Twin” Essential for AI?</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-ai-trustworthy-reasoning">3. Grounding AI - Trustworthy Reasoning</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-two-faces-of-ai-symbolic-vs-statistical">3.1. The Two Faces of AI: Symbolic vs. Statistical</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-neuro-symbolic-ai-approach">The Neuro-Symbolic AI Approach</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-2-comparison-of-statistical-ai-llm-vs-symbolic-ai-ontology-kg">Table 2: Comparison of Statistical AI (LLM) vs. Symbolic AI (Ontology/KG)</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#controlling-llm-hallucinations-the-principle-of-grounding">3.2. Controlling LLM Hallucinations: The Principle of “Grounding”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-root-cause-of-hallucinations">The Root Cause of Hallucinations</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-definition-of-grounding">The Definition of “Grounding”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#grounding-is-the-key-governance-framework-for-turning-ai-s-freedom-into-trust">“Grounding” is the Key Governance Framework for Turning AI’s “Freedom” into “Trust”</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#beyond-rag-to-graphrag-from-information-to-context">3.3. Beyond RAG to GraphRAG: From “Information” to “Context”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#rag-retrieval-augmented-generation">RAG (Retrieval-Augmented Generation)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-knowledge-graph-rag">GraphRAG (Knowledge Graph RAG)</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#graphrag-is-the-most-practical-implementation-of-neuro-symbolic-ai">GraphRAG is the Most Practical Implementation of “Neuro-Symbolic” AI</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-standard-rag-vs-graphrag-technology-comparison">Table: “Standard RAG” vs. “GraphRAG” Technology Comparison</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#operating-reality-kinetic-layer-how-ai-writes-the-world">4. Operating Reality (Kinetic Layer) - How AI “Writes” the World</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#from-read-to-write-the-emergence-of-kinetic-ontology">4.1. From “Read” to “Write”: The Emergence of Kinetic Ontology</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-limitation-of-semantic-ontology-read-only">The Limitation of Semantic Ontology: “Read-Only”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#definition-of-kinetic-ontology-verbs">Definition of Kinetic Ontology: “Verbs”</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#components-of-the-kinetic-layer">Components of the Kinetic Layer</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#table-3-semantic-vs-kinetic-ontology">Table 3: Semantic vs. Kinetic Ontology</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#writeback-executing-ai-s-decisions-into-reality">4.2. “Writeback”: Executing AI’s Decisions into Reality</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-writeback">What is “Writeback”?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#the-importance-of-writeback-analytical-vs-operational-systems">The Importance of “Writeback”: Analytical vs. Operational Systems</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#kinetic-actions-are-a-safe-api-catalog-for-ai-agents">“Kinetic Actions” are a “Safe API Catalog” for AI Agents</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-the-ai-operating-system-the-closed-loop">4.3. Completing the AI Operating System: The “Closed-Loop”</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#what-is-an-ai-operating-system">What is an “AI Operating System”?</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#completing-closed-loop-decision-making">Completing “Closed-Loop” Decision-Making</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Checkpoint Questions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conclusion-the-birth-of-the-ai-pilot-with-ontological-literacy">5. Conclusion: The Birth of the AI Pilot with “Ontological Literacy”</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Young Joon Lee
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
