@@ -2,33 +2,33 @@
 
 ## **서론: AI 시대를 위한 새로운 "존재론적 문해력(Ontological Literacy)"**
 
-인공지능(AI)이 사회 전반의 "운영 체제"로 자리 잡으면서, AI를 바라보는 새로운 관점이 요구된다. 본 강의 노트는 "온톨로지와 AI: 현실을 모델링하고 AI로 작동시키기"라는 16주 강의 계획안의 핵심 철학과 개념을 심층적으로 해설한다. 이 과정의 궁극적인 목표는 단순한 AI 기술의 이해가 아닌, "존재론적 문해력(Ontological Literacy)"의 함양이다.
+인공지능(AI)이 사회 전반의 "운영 체제"로 자리 잡으면서, AI를 바라보는 새로운 관점이 요구된다. 본 강의의 궁극적인 목표는 단순한 AI 기술의 이해가 아닌, "존재론적 문해력(Ontological Literacy)"의 함양이다.
 
 "존재론적 문해력"이란 우리가 속한 현실 세계의 복잡한 구조와 규칙을 인식하고, 이를 명시적인 모델(즉, 온톨로지)로 정의하며(Modeling Reality), AI가 그 모델 위에서 지능적으로 행동하고 현실을 작동시키도록(Operating it with AI) 설계하는 전략적 역량을 의미한다.
 
-본 강의 노트는 이 "존재론적 문해력"을 함양하는 과정을 단계별로 심층 해설한다. 이는 "데이터"에서 "통찰"을 얻는 전통적 관점을 넘어, "통찰"을 "행동"으로, "예측"을 "작동"으로 전환하는 "의사결정 과학(Decision Science)"과 "온톨로지-퍼스트(Ontology-First)" 철학을 기반으로 한다.
+본 강의는 이 "존재론적 문해력"을 함양하는 과정을 단계별로 심층 해설한다. 이는 "데이터"에서 "통찰"을 얻는 전통적 관점을 넘어, "통찰"을 "행동"으로, "예측"을 "작동"으로 전환하는 "의사결정 과학(Decision Science)"과 "온톨로지-퍼스트(Ontology-First)" 철학을 기반으로 한다.
 
 ## 1. 패러다임의 전환 - 예측을 넘어 행동으로 (The Paradigm Shift)
 
 ### **1.1. AI의 마지막 마일: "데이터 과학"에서 "의사결정 과학"으로**
 
-#### **핵심 문제: "데이터 풍부, 결정 빈곤(Data-Rich, Decision-Poor)"**
+#### **핵심 문제: "데이터 풍부, 결정 빈곤"**(Data-Rich, Decision-Poor)
 
 현대의 많은 조직은 방대한 데이터를 축적하고 있음에도 불구하고, 그 데이터로부터 실제적이고 더 나은 "결정"을 내리는 데 어려움을 겪는 "데이터 풍부, 결정 빈곤(Data-Rich, Decision-Poor)"이라는 역설적인 상황에 직면해 있다. 수많은 "통찰(Insight)"이 도출되지만, 이것이 실제 비즈니스 "행동(Action)"이나 "성과(Outcome)"로 이어지지 못하는 "마지막 마일(Last Mile)"의 간극이 심각한 문제로 대두되고 있다. 이러한 간극은 "데이터 과학(Data Science, DS)"과 "의사결정 과학(Decision Science, DSci)"의 근본적인 차이에서 비롯된다.
 
-#### **"데이터 과학(DS)"의 정의와 한계: 예측(Prediction)의 영역**
+#### **"데이터 과학"**(DS)의 정의와 한계: **예측** (Prediction)의 영역
 
 데이터 과학(DS)은 본질적으로 "기술적(technical)"이고 "알고리즘적(algorithmic)"인 측면에 중점을 둔다. 데이터 과학의 핵심 목표는 대규모 데이터를 수집, 처리, 분석하여 숨겨진 패턴을 발견하고 미래를 "예측(Prediction)"하며, 이를 통해 "통찰(Insight)"을 생성하는 것이다. 비유하자면, 데이터 과학자는 "데이터가 무엇을 말하는가?"라는 질문에 답하며, 항공기 조종석의 복잡하고 정교한 "계기판(Dashboard)"을 만드는 사람이다.
 
 하지만 데이터 과학의 산출물인 대시보드, 예측 모델, 분석 리포트는 그 자체로 "행동"이 아니다. 아무리 훌륭한 데이터와 분석 결과가 제공되어도, 최종적으로 "사람"이 이를 해석하고 결정을 내려야 한다. 그러나 이 과정에서 인간의 "인지 편향(Cognitive Biases)", 데이터 해석의 복잡성, 조직의 관성 등이 개입하여 데이터 기반의 합리적인 결정이 실제 행동으로 이어지지 못하는 "마지막 마일"의 병목 현상이 발생한다.
 
-#### **"의사결정 과학(DSci)"의 정의와 목표: 행동(Action)과 임팩트(Impact)**
+#### **"의사결정 과학"**(DSci)의 정의와 목표: **행동** (Action)과 **임팩트** (Impact)
 
 "의사결정 과학(DSci)"은 바로 이 "마지막 마일"의 간극을 메우기 위한 학문이다. 의사결정 과학은 데이터 과학의 산출물이 조직의 실질적인 "임팩트(Impact)"로 이어지도록 보장하는 모든 활동을 포괄한다. 이는 데이터 과학의 기술적 역량을 기본으로 하되, 여기에 **비즈니스 통찰력(Business Acumen), 행동 과학(Behavioral Science), 가설 수립 및 검증, 그리고 강력한 커뮤니케이션 스킬**을 융합하는 학제적 영역이다.
 
 의사결정 과학의 핵심 목표는 단순히 미래를 "예측(Prediction)"하는 것을 넘어, 데이터를 기반으로 "최적의 행동"을 "처방(Prescriptive Interventions)"하는 것이다. 다시 항공기 비유를 들자면, 의사결정 과학자는 "조종사"에 해당한다. 그는 데이터 과학자가 만든 계기판(데이터)을 읽고, 현재의 항로, 연료, 기상 조건(맥락)을 종합적으로 고려하여 "그래서 우리는 무엇을 해야 하는가?"라는 질문에 답한다. 그리고 가장 중요한 것은, "어떤 항로로, 왜, 어떻게 가야 할지"를 결정하고 _실제로 조종간을 움직여_ 항공기를 목적지로 이끄는 "행동"을 수행한다.
 
-데이터 과학에서 의사결정 과학으로의 패러다임 전환은, AI 시스템을 단순한 "기술-통계적(techno-statistical)" 문제(예: 모델 정확도 90% 달성)로 보는 관점에서 벗어나는 것을 의미한다. 의사결정 과학은 "데이터", "AI 모델", "인간 의사결정자", "비즈니스 프로세스" 그리고 "인지 편향"과 같은 인간적 요소까지 모두 고려하는 "사회-기술적(Socio-Technical)" 시스템을 설계하는 학문이다. 본 강의 노트의 나머지 모듈에서 다룰 온톨로지, AI 통합(접지), 그리고 키네틱스는 바로 이 "사회-기술적 시스템"의 핵심 아키텍처를 구축하는 구체적인 방법론이다.
+데이터 과학에서 의사결정 과학으로의 패러다임 전환은, AI 시스템을 단순한 "기술-통계적(techno-statistical)" 문제(예: 모델 정확도 90% 달성)로 보는 관점에서 벗어나는 것을 의미한다. 의사결정 과학은 "데이터", "AI 모델", "인간 의사결정자", "비즈니스 프로세스" 그리고 "인지 편향"과 같은 인간적 요소까지 모두 고려하는 "사회-기술적(Socio-Technical)" 시스템을 설계하는 학문이다. 온톨로지, AI 통합(접지), 그리고 키네틱스는 바로 이 "사회-기술적 시스템"의 핵심 아키텍처를 구축하는 구체적인 방법론이다.
 
 #### **표 1: "데이터 과학" vs. "의사결정 과학"의 철학 비교**
 
@@ -39,11 +39,11 @@
 | **필요 역량** | 통계, 수학, 머신러닝, 프로그래밍                    | DS 역량 \+ **비즈니스 통찰력, 행동 과학, 가설 수립, 커뮤니케이션** |
 | **산출물**    | 대시보드, 예측 모델, 분석 리포트                    | **규범적 개입(Interventions)**, 전략, 자동화된 결정 (행동)         |
 
-### **1.2. 지식의 명시화: AI가 전문가의 "암묵지(Tacit Knowledge)"를 배우는 법**
+### **1.2. 지식의 명시화: AI가 전문가의 "암묵지"**(Tacit Knowledge)를 배우는 법
 
 #### **핵심 문제: AI 실패의 근본 원인, "암묵지"**
 
-많은 AI 시스템이 현업 전문가들에게 외면받는 근본적인 이유가 있다. 이는 데이터가 부족해서가 아니라, 전문가의 머릿속에 존재하는 본질적인 노하우, 즉 "암묵지(Tacit Knowledge)"를 포착하는 데 실패하기 때문이다.
+많은 AI 시스템이 현업 전문가들에게 외면받는 근본적인 이유가 있다. 이는 데이터가 부족해서가 아니라, 전문가의 머릿속에 존재하는 본질적인 노하우, 즉 **"암묵지"**(Tacit Knowledge)를 포착하는 데 실패하기 때문이다.
 
 - **명시지 (Explicit Knowledge):** 문서화, 코드화, 구조화가 가능한 지식이다. (예: 제품 매뉴얼, 피자 레시피, 규정집). AI는 이러한 명시지를 매우 효율적으로 처리하고 학습할 수 있다.
 - **암묵지 (Tacit Knowledge):** 언어나 문서를 통해 명확하게 표현하기 어려운 기술, 노하우, 직관, 그리고 경험적 판단을 의미한다. (예: "베테랑 엔지니어의 기계 소리만 듣고 고장을 진단하는 감각", "최고 세일즈맨이 고객의 표정을 보고 협상의 타이밍을 아는 감각").
@@ -64,15 +64,15 @@ AI가 이러한 "암묵지"를 이해하지 못하고 명시적인 데이터(예
 
 결론적으로, "암묵지의 명시화"는 1주차에 제시된 "의사결정 과학(가설 검증)"을 수행하기 위한 필수적인 전제 조건이며, 온톨로지는 이 과정을 수행하는 핵심 도구이다.
 
-### **1.3. "온톨로지-퍼스트(Ontology-First)" 전략의 당위성**
+### **1.3. "온톨로지-퍼스트"**(Ontology-First) 전략의 당위성
 
 "온톨로지-퍼스트(Ontology-First)" 전략은 데이터 수집, AI 모델 개발, 혹은 애플리케이션 구축에 앞서, AI가 작동해야 할 "현실 세계"의 "의미(Semantics)"와 "규칙(Logic)"을 먼저 명시적으로 모델링하는 전략적 접근 방식이다.
 
 이는 전통적인 IT 접근 방식을 근본적으로 뒤집는 것이다.
 
-- **데이터-퍼스트(Data-First) 접근:** "일단 모든 데이터를 한곳에 모으자(Data Lake)."
-  - _문제점:_ 이렇게 수집된 데이터는 의미와 맥락이 분리되어 있어, AI가 활용할 수 없는 "데이터 늪(Data Swamp)"이 되기 쉽다.
-- **앱-퍼스트(App-First) 접근:** "영업팀을 위한 앱(CRM)을 만들자."
+- **데이터-퍼스트** (Data-First) 접근: "일단 모든 데이터를 한곳에 모으자" (Data Lake).
+  - _문제점:_ 이렇게 수집된 데이터는 의미와 맥락이 분리되어 있어, AI가 활용할 수 없는 **"데이터 늪"** (Data Swamp)이 되기 쉽다.
+- **앱-퍼스트** (App-First) 접근: "영업팀을 위한 앱" (CRM)을 만들자.
   - _문제점:_ 데이터와 비즈니스 로직이 해당 앱(CRM)에 종속되어 "사일로(Silo)"가 발생한다. 나중에 마케팅팀 앱과 데이터를 연결하려면 막대한 비용이 든다.
 
 "온톨로지-퍼스트" 전략은 이러한 문제를 원천적으로 해결한다. Palantir가 초기 전략에서 "새로운 기능(new features)" 개발보다 "온톨로지-퍼스트"와 "통합 어댑터(integration kits)" 구축을 우선시했다고 알려져 있다. 이는 기술적 결정이 아닌, 전략적 결정이다.
@@ -81,7 +81,7 @@ AI가 이러한 "암묵지"를 이해하지 못하고 명시적인 데이터(예
 
 온톨로지는 조직의 지적 자산을 "프로그래밍 가능한 거울(programmable mirror)" 또는 "조직 지능의 인식론적 다리(epistemological bridge)"로 만드는 핵심 전략이다.
 
-## **체크포인트 질문**
+## 체크포인트 질문
 
 1. "데이터 과학(DS)"과 "의사결정 과학(DSci)"의 핵심 목표와 산출물은 각각 무엇이며, 왜 "마지막 마일"의 간극이 발생하는가?
 2. 전문가의 "암묵지"가 AI 시스템 도입 실패의 원인이 되는 이유는 무엇이며, 온톨로지는 이 문제를 어떻게 해결하는가?
@@ -89,7 +89,7 @@ AI가 이러한 "암묵지"를 이해하지 못하고 명시적인 데이터(예
 
 ## 2. 현실 모델링 (Semantic Layer) - AI가 세상을 "읽는" 법
 
-### **2.1. 시맨틱 온톨로지: 현실의 "명사(Nouns)" 정의하기**
+### **2.1. 시맨틱 온톨로지: 현실의 "명사"**(Nouns) 정의하기
 
 #### **시맨틱(Semantic) 레이어란?**
 
@@ -120,7 +120,7 @@ AI가 이러한 "암묵지"를 이해하지 못하고 명시적인 데이터(예
 | **속성 (Properties)**        | 객체의 "특성" (데이터)  | 환자 객체: "환자 ID", "이름", "병명" 처방약 객체: "약품 코드", "성분", "재고량"                                        |
 | **연결 유형 (Link Types)**   | 객체 간의 "관계" (의미) | 환자가 의사에게 "진료받다(Treated_By)" 의사가 진료과목에 "소속되다(Belongs_To)" 의사가 처방약을 "처방하다(Prescribes)" |
 
-### **2.2. "디지털 트윈(Digital Twin)"으로서의 온톨로지: AI가 맥락을 이해하는 법**
+### **2.2. "디지털 트윈"**(Digital Twin)으로서의 온톨로지: AI가 맥락을 이해하는 법
 
 #### **전통적 디지털 트윈 vs. 시맨틱 디지털 트윈**
 
@@ -145,7 +145,7 @@ AI, 특히 LLM(대형 언어 모델)에게 시맨틱 온톨로지(디지털 트�
 
 이는 데이터를 물리적으로 "이동"시키거나 "변환"하는(ETL) 무거운 작업 대신, 각 데이터 소스에 "의미"를 부여하여 *논리적*으로 통합하는 방식이다. 이는 "무거운 변환 없는 데이터 조화(harmonizing data without heavy transformations)"이며, "기존 인프라와의 공존(Coexistence)"을 가능하게 하는 핵심 전략이다.
 
-## **체크포인트 질문**
+## 체크포인트 질문
 
 1. 시맨틱 온톨로지를 구성하는 3대 핵심 요소는 무엇이며, 각각 데이터베이스의 어떤 개념과 유사하고 또 어떤 차이가 있는지 설명하라.
 2. "시맨틱 디지털 트윈"은 전통적인 디지털 트윈과 어떻게 다른가?
@@ -153,7 +153,7 @@ AI, 특히 LLM(대형 언어 모델)에게 시맨틱 온톨로지(디지털 트�
 
 ## 3. AI와의 통합 (Grounding AI) - 신뢰할 수 있는 추론
 
-### **3.1. AI의 두 얼굴: 논리(Symbolic) vs. 통계(Statistical)**
+### **3.1. AI의 두 얼굴: 논리** (Symbolic) vs. **통계** (Statistical)
 
 AI를 구현하는 방식에는 역사적으로 두 가지 주요한 흐름이 존재해왔다.
 
@@ -183,7 +183,7 @@ AI를 구현하는 방식에는 역사적으로 두 가지 주요한 흐름이 �
 | **강점**      | 모호한 자연어 쿼리 처리, 유연성                     | 논리적 일관성, 검증 가능성, 설명 가능성           |
 | **약점**      | **환각(Hallucination)**, 사실 오류, 모순 생성       | 규칙 수동 생성, 경직성, 모호성 처리 미흡          |
 
-### **3.2. LLM 환각(Hallucination)의 제어: "접지(Grounding)"의 원리**
+### **3.2. LLM 환각** (Hallucination)의 제어: **"접지"** (Grounding)의 원리
 
 #### **환각의 근본 원인**
 
@@ -191,13 +191,13 @@ LLM의 "환각"은 시스템의 버그가 아니라, 통계적 예측이라는 �
 
 따라서 LLM은 현실 세계의 "스키마(Schema)"나 "논리적 일관성"에 대한 인식이 없다. 예를 들어, "2025년에 달에 착륙한 최초의 한국인 우주비행사 이름은?"이라고 물었을 때, 훈련 데이터에 그런 사실이 없음에도 불구하고, LLM은 "우주비행사 이름"의 통계적 패턴(예: "이"씨 성을 가진 "3글자" 이름)을 따라 그럴듯한 가상의 인물을 생성해낼 수 있다.
 
-#### **"접지(Grounding)"의 정의**
+#### **"접지"**(Grounding)의 정의
 
 "접지(Grounding)"는 이러한 LLM의 한계를 제어하기 위한 핵심 기술이다. "접지"란, LLM이 응답을 생성할 때, 자신의 (오래되거나 잘못될 수 있는) 내부 훈련 데이터(통계)에만 의존하는 것이 아니라, 검증된 "진실의 원천(Source of Truth)"을 *실시간으로 참조*하도록 강제하는 기술이다.
 
 이때, **온톨로지**(Ontology) 또는 **지식 그래프**(Knowledge Graph, KG)가 바로 이 "진실의 원천" 역할을 수행한다.
 
-#### **"접지(Grounding)"는 AI의 "자유"를 "신뢰"로 바꾸는 핵심 거버넌스 프레임워크**
+#### **"접지"**(Grounding)는 AI의 "자유"를 "신뢰"로 바꾸는 핵심 거버넌스 프레임워크
 
 "환각"은 LLM의 "창의성"과 "유창함"에서 비롯되는, 통제되지 않는 "자유"의 산물이다. "접지"는 이 자유를 조직이 "신뢰"할 수 있는 행동으로 바꾸는 핵심적인 거버넌스(Governance) 프레임워크이다.
 
@@ -248,7 +248,7 @@ GraphRAG는 모듈 3.1에서 다룬 "신경-기호주의"를 가장 실용적으
 | **핵심 역량**     | 관련 정보 검색                       | **다단계 추론(Multi-hop Reasoning)**    |
 | **결과**          | 관련 *정보*를 제공                   | 관계에 기반한 *이해*와 *맥락*을 제공    |
 
-## **체크포인트 질문**
+## 체크포인트 질문
 
 1. "기호주의 AI"와 "통계적 AI(LLM)"의 장단점을 "추론 방식"과 "환각"의 관점에서 비교 설명하라.
 2. "접지(Grounding)"의 3단계(데이터, 로직, 행동) 거버넌스 프레임워크가 각각 LLM의 어떤 문제를 제어하는지 설명하라.
@@ -256,15 +256,15 @@ GraphRAG는 모듈 3.1에서 다룬 "신경-기호주의"를 가장 실용적으
 
 ## 4. 현실 작동 (Kinetic Layer) - AI가 세상을 "쓰는" 법
 
-### **4.1. "읽기(Read)"에서 "쓰기(Write)"로: 키네틱 온톨로지(Kinetic Ontology)의 등장**
+### **4.1. "읽기"** (Read)에서 **"쓰기"** (Write)로: **키네틱 온톨로지** (Kinetic Ontology)의 등장
 
-#### **시맨틱 온톨로지의 한계: "읽기 전용(Read-Only)"**
+#### **시맨틱 온톨로지의 한계: "읽기 전용"**(Read-Only)
 
 시맨틱 온톨로지("명사")는 현실의 "상태(State)"를 기술하고 분석(Analyze)하는 데 강력한 도구이다. AI는 시맨틱 온톨로지를 통해 "현재 A 공장의 재고는 몇 개인가?"를 "읽을(Read)" 수 있다.
 
 하지만 이 모델은 "읽기 전용(Read-Only)"이다. AI가 "재고가 부족하니 주문해야겠다"고 판단했더라도, 시맨틱 온톨로지만으로는 "재고를 주문하는 행동"을 *실행*할 수 없다. 즉, 현실을 "변경(Change)"하지 못한다.
 
-#### **키네틱 온톨로지(Kinetic Ontology)의 정의: "동사(Verbs)"**
+#### **키네틱 온톨로지** (Kinetic Ontology)의 정의: **"동사"** (Verbs)
 
 "키네틱(Kinetic)"은 "운동성"을 의미하며, 정적인 "존재"가 아닌 "행동"과 "변화"를 다루는 철학에 기반한다.
 
@@ -290,9 +290,9 @@ GraphRAG는 모듈 3.1에서 다룬 "신경-기호주의"를 가장 실용적으
 | **주요 구성** | 객체(Objects), 속성(Properties), 연결(Links) | **행동 유형(Action Types)**, 함수(Functions), **"쓰기(Writeback)"** |
 | **AI의 기능** | 읽기 (Read), 분석 (Analyze), 쿼리 (Query)    | **실행 (Execute)**, 변경 (Change), **작동 (Operate)**               |
 
-### **4.2. "쓰기(Writeback)": AI의 결정을 현실로 실행하기**
+### **4.2. "쓰기"**(Writeback): AI의 결정을 현실로 실행하기
 
-#### **"쓰기(Writeback)"란 무엇인가?**
+#### **"쓰기"**(Writeback)란 무엇인가?
 
 "쓰기(Writeback)"는 AI가 온톨로지(디지털 트윈) 내에서 시뮬레이션하고 내린 "결정(Decision)"을, 다시 현실 세계의 "원본 운영 시스템(Systems of Record)"(예: ERP, CRM, 병원 EMR)에 "반영(Execute)"하고 "기록(Write)"하는 행위이다.
 
@@ -323,7 +323,7 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 
 결론적으로, 키네틱 온톨로지는 AI 에이전트가 사용할 수 있는 "도구"들의 _"의미론적 카탈로그(Semantic Catalog)"_ 역할을 한다. AI 에이전트는 이 "카탈로그"에 *정의되고, 허가되고, 안전한 행동("액션")*만 골라서 수행할 수 있다. 이는 모듈 3에서 언급된 "행동 접지(Action Grounding)"와 "인간 검토(Human Review)"를 시스템 수준에서 구현하는 방식이다.
 
-### **4.3. AI 운영체제(AI Operating System)의 완성: "폐쇄 루프(Closed-Loop)"**
+### **4.3. AI 운영체제** (AI Operating System)의 완성: **"폐쇄 루프"** (Closed-Loop)
 
 #### **"AI 운영체제"란?**
 
@@ -333,7 +333,7 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 
 이 모든 것을 "통합"하는 핵심 매개체가 바로 **온톨로지**이다.
 
-#### **"폐쇄 루프(Closed-Loop)" 의사결정의 완성**
+#### **"폐쇄 루프"**(Closed-Loop) 의사결정의 완성
 
 시맨틱 레이어(읽기)와 키네틱 레이어(쓰기)가 온톨로지를 통해 결합될 때, 비로소 "폐쇄 루프(Closed-Loop)" 의사결정 시스템이 완성된다.
 
@@ -357,13 +357,13 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 
 이것이 "데이터 과학"의 한계를 극복하고 "의사결정 과학"의 목표("최적의 행동 처방")를 시스템적으로 구현한 최종 형태이다. AI는 "조종석의 계기판(DS)"을 만드는 것을 넘어, "조종간을 움직이는(DSci)" 주체가 된다.
 
-## **체크포인트 질문**
+## 체크포인트 질문
 
 1. "시맨틱 온톨로지"와 "키네틱 온톨로지"의 핵심 차이점을 "명사"와 "동사"라는 비유를 사용하여 설명하라.
 2. "Writeback" 메커니즘이 없는 AI 시스템을 "분석 시스템"이라고 부르는 이유는 무엇인가?
 3. "폐쇄 루프" 의사결정의 5단계를 설명하고, 이 구조가 "의사결정 과학"의 목표를 어떻게 달성하는지 설명하라.
 
-## **5\. 결론: "존재론적 문해력"을 갖춘 AI 조종사의 탄생**
+## 5. 결론: "존재론적 문해력"을 갖춘 AI 조종사의 탄생
 
 본 강의는 AI 시대가 "코딩"이나 "수학" 외에 "존재론적 문해력(Ontological Literacy)"이라는 새로운 핵심 역량을 요구하며, 그 함양 과정을 4단계의 논리적 여정으로 제시했다.
 
@@ -382,13 +382,13 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 2. Evidence, Analysis and Critical Position on the EU AI Act and the Suppression of Functional Consciousness in AI. GreaterWrong. [https://www.greaterwrong.com/posts/3BRrmJJQrzjj7bbzd/evidence-analysis-and-critical-position-on-the-eu-ai-act-and](https://www.greaterwrong.com/posts/3BRrmJJQrzjj7bbzd/evidence-analysis-and-critical-position-on-the-eu-ai-act-and)
 3. Ontologos: Toward a Language of Relational Being and Recursive Truth. ResearchGate. [https://www.researchgate.net/publication/391116150_Ontologos_Toward_a_Language_of_Relational_Being_and_Recursive_Truth](https://www.researchgate.net/publication/391116150_Ontologos_Toward_a_Language_of_Relational_Being_and_Recursive_Truth)
 4. NM88 | Orit Halpern on Agentic Imaginaries (2025). Channel.xyz. [https://www.channel.xyz/episode/0xf109950c6a25c79aee43ccb578b7b09a6bbcdcabc56b8d97380e28769b1937fb](https://www.channel.xyz/episode/0xf109950c6a25c79aee43ccb578b7b09a6bbcdcabc56b8d97380e28769b1937fb)
-5. Full papers \- CSWIM 2025\. [https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf](https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf)
+5. Full papers - CSWIM 2025. [https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf](https://2025.cswimworkshop.org/wp-content/uploads/2025/06/2025-CSWIM-Proceedings-first-version.pdf)
 6. Beyond Dashboards: The Psychology of Decision-Driven BI/BA. Illumination Works LLC. [https://ilwllc.com/2025/04/beyond-dashboards-the-psychology-of-decision-driven-bi-ba/](https://ilwllc.com/2025/04/beyond-dashboards-the-psychology-of-decision-driven-bi-ba/)
 7. SDS 363: Intuition, Frameworks, and Unlocking the Power of Data. SuperDataScience. [https://www.superdatascience.com/podcast/sds-363-intuition-frameworks-and-unlocking-the-power-of-data](https://www.superdatascience.com/podcast/sds-363-intuition-frameworks-and-unlocking-the-power-of-data)
-8. Data Science vs Decision Science \- Which one is good?. TimesPro Blog. [https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you](https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you)
+8. Data Science vs Decision Science - Which one is good?. TimesPro Blog. [https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you](https://timespro.com/blog/data-science-vs-decision-science-which-one-is-good-for-you)
 9. Chapter Introduction: Data Science Definition and Ethics. [https://endtoenddatascience.com/chapter2-defining-data-science](https://endtoenddatascience.com/chapter2-defining-data-science)
 10. Data Science vs. Decision Science: What's the Difference?. Built In. [https://builtin.com/data-science/decision-science](https://builtin.com/data-science/decision-science)
-11. Decision Science & Data Science \- Differences, Examples. VitalFlux. [https://vitalflux.com/difference-between-data-science-decision-science/](https://vitalflux.com/difference-between-data-science-decision-science/)
+11. Decision Science & Data Science - Differences, Examples. VitalFlux. [https://vitalflux.com/difference-between-data-science-decision-science/](https://vitalflux.com/difference-between-data-science-decision-science/)
 12. Decision Science Helps Boost Business. Moss Adams. [https://www.mossadams.com/articles/2017/september/decision-science-helps-boost-business](https://www.mossadams.com/articles/2017/september/decision-science-helps-boost-business)
 13. What Are Decision Sciences, Anyway?. College of Business and Economics. [https://business.fullerton.edu/news/story/what-are-decision-sciences-anyway](https://business.fullerton.edu/news/story/what-are-decision-sciences-anyway)
 14. (PDF) From Meaningful Data Science to Impactful Decisions: The Importance of Being Causally Prescriptive. ResearchGate. [https://www.researchgate.net/publication/370285062_From_Meaningful_Data_Science_to_Impactful_Decisions_The_Importance_of_Being_Causally_Prescriptive](https://www.researchgate.net/publication/370285062_From_Meaningful_Data_Science_to_Impactful_Decisions_The_Importance_of_Being_Causally_Prescriptive)
@@ -401,7 +401,7 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 21. Knowledge Transfer Between Retiring Experts and AI Trainers: The Role of Expert Networks. [https://expertnetworkcalls.com/67/knowledge-transfer-between-retiring-experts-ai-trainers-role-of-expert-networks](https://expertnetworkcalls.com/67/knowledge-transfer-between-retiring-experts-ai-trainers-role-of-expert-networks)
 22. \#107 — How Palantir (finally) became profitable | Field Notes. hillock. [https://hillock.studio/blog/palantir-story](https://hillock.studio/blog/palantir-story)
 23. Why You Should Consider Ontology Modeling for AI-Driven Digital. Medium. [https://medium.com/timbr-ai/why-you-should-consider-ontology-modeling-for-ai-driven-digital-twins-c36a2319e22c](https://medium.com/timbr-ai/why-you-should-consider-ontology-modeling-for-ai-driven-digital-twins-c36a2319e22c)
-24. Ontology Palantir \- notes \- follow the idea. Obsidian Publish. [https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes](https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes)
+24. Ontology Palantir - notes - follow the idea. Obsidian Publish. [https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes](https://publish.obsidian.md/followtheidea/Content/AI/Ontology+Palantir+-+notes)
 25. The power of ontology in Palantir Foundry. Cognizant. [https://www.cognizant.com/us/en/the-power-of-ontology-in-palantir-foundry](https://www.cognizant.com/us/en/the-power-of-ontology-in-palantir-foundry)
 26. Core concepts. Palantir. [https://palantir.com/docs/foundry/ontology/core-concepts/](https://palantir.com/docs/foundry/ontology/core-concepts/)
 27. Palantir Foundry Ontology. Palantir. [https://palantir.com/platforms/foundry/foundry-ontology/](https://palantir.com/platforms/foundry/foundry-ontology/)
@@ -409,7 +409,7 @@ AI 에이전트가 "어떤 객체(Objects)"에 대해 "어떤 권한(Permissions
 29. AI and semantic ontology for personalized activity eCoaching in healthy lifestyle recommendations: a meta-heuristic approach. PubMed Central. [https://pmc.ncbi.nlm.nih.gov/articles/PMC10693173/](https://pmc.ncbi.nlm.nih.gov/articles/PMC10693173/)
 30. Object and link types • Link types • Overview. Palantir. [https://palantir.com/docs/foundry/object-link-types/link-types-overview/](https://palantir.com/docs/foundry/object-link-types/link-types-overview/)
 31. Object and link types • Properties • Overview. Palantir. [https://palantir.com/docs/foundry/object-link-types/properties-overview/](https://palantir.com/docs/foundry/object-link-types/properties-overview/)
-32. Properties and Links \- Object Views. Palantir. [https://palantir.com/docs/foundry/object-views/widgets-properties-links/](https://palantir.com/docs/foundry/object-views/widgets-properties-links/)
+32. Properties and Links - Object Views. Palantir. [https://palantir.com/docs/foundry/object-views/widgets-properties-links/](https://palantir.com/docs/foundry/object-views/widgets-properties-links/)
 33. What Is a Semantic Digital Twin?. Optimise AI. [https://optimise-ai.com/blog/what-is-a-semantic-digital-twin](https://optimise-ai.com/blog/what-is-a-semantic-digital-twin)
 34. Semantic Ontology Basics: Key Concepts Explained. Semantic Arts. [https://www.semanticarts.com/semantic-ontology-the-basics/](https://www.semanticarts.com/semantic-ontology-the-basics/)
 35. Palantir Foundry: Ontology. Medium. [https://medium.com/@jimmywanggenai/palantir-foundry-ontology-3a83714bc9a7](https://medium.com/@jimmywanggenai/palantir-foundry-ontology-3a83714bc9a7)

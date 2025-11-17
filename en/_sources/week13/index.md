@@ -2,11 +2,11 @@
 
 ## Introduction: A New "Ontological Literacy" for the AI Era
 
-As Artificial Intelligence (AI) establishes itself as the "operating system" across society, a new perspective for viewing AI is required. These lecture notes provide an in-depth explanation of the core philosophy and concepts of a 16-week course plan titled "Ontology and AI: Modeling Reality and Operating it with AI." The ultimate goal of this course is not the simple understanding of AI technology, but the cultivation of "Ontological Literacy."
+As Artificial Intelligence (AI) establishes itself as the "operating system" across society, a new perspective for viewing AI is required. The ultimate goal of this lecture is not the simple understanding of AI technology, but the cultivation of "Ontological Literacy."
 
 "Ontological Literacy" refers to the strategic capability to recognize the complex structures and rules of the real world we belong to, define them as an explicit model (i.e., an ontology) (Modeling Reality), and design AI to act intelligently upon that model and operate reality (Operating it with AI).
 
-These lecture notes provide an in-depth, step-by-step explanation of the process of cultivating this "Ontological Literacy." This is based on a "Decision Science" and "Ontology-First" philosophy that moves beyond the traditional perspective of gaining "insight" from "data," and instead transforms "insight" into "action" and "prediction" into "operation."
+This lecture provides an in-depth, step-by-step explanation of the process of cultivating this "Ontological Literacy." This is based on a "Decision Science" and "Ontology-First" philosophy that moves beyond the traditional perspective of gaining "insight" from "data," and instead transforms "insight" into "action" and "prediction" into "operation."
 
 ## 1. The Paradigm Shift - Beyond Prediction to Action
 
@@ -28,7 +28,7 @@ However, the outputs of data science—dashboards, predictive models, analysis r
 
 The core objective of decision science is not merely to "predict" the future, but to "prescribe" the "optimal action" based on data. To return to the aircraft metaphor, the decision scientist is the "pilot." They read the dashboard (data) created by the data scientist, comprehensively consider the current flight path, fuel, and weather conditions (context), and answer the question, "So, what should we do?" Most importantly, they make the "action" of deciding "which route to take, why, and how," and _actually move the controls_ to guide the aircraft to its destination.
 
-The paradigm shift from data science to decision science means moving away from viewing AI systems as simple "techno-statistical" problems (e.g., achieving 90% model accuracy). Decision science is the discipline of designing a "socio-technical" system that considers "data," "AI models," "human decision-makers," "business processes," and human factors like "cognitive biases" all together. The ontology, AI integration (grounding), and kinetics discussed in the remaining modules of these notes are the concrete methodologies for building the core architecture of this "socio-technical system."
+The paradigm shift from data science to decision science means moving away from viewing AI systems as simple "techno-statistical" problems (e.g., achieving 90% model accuracy). Decision science is the discipline of designing a "socio-technical" system that considers "data," "AI models," "human decision-makers," "business processes," and human factors like "cognitive biases" all together. The ontology, AI integration (grounding), and kinetics are the concrete methodologies for building the core architecture of this "socio-technical system."
 
 #### **Table 1: Philosophical Comparison of "Data Science" vs. "Decision Science"**
 
