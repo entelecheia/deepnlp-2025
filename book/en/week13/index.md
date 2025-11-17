@@ -62,7 +62,7 @@ This approach is closely linked to "decision science." One of the core competenc
 
 An ontology is a tool for converting these tacit assumptions (e.g., "Customer" object - "Type" property - "Promotion" object - "Responds*To" relationship) into an "explicit model." The moment this model is made explicit, two things become possible. First, organizational members can share and discuss this "assumption (model)." Second, AI can statistically \_verify* this "assumption (model)" against actual data.
 
-In conclusion, the "explicitation of tacit knowledge" is an essential prerequisite for performing the "decision science (hypothesis testing)" presented in Week 1, and ontology is the core tool for carrying out this process.
+In conclusion, the "explicitation of tacit knowledge" is an essential prerequisite for performing the "decision science (hypothesis testing)", and ontology is the core tool for carrying out this process.
 
 ### 1.3. The Rationale for an "Ontology-First" Strategy
 
