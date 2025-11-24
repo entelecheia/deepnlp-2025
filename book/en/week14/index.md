@@ -1,4 +1,4 @@
-# Week 14: The 2025 NLP Landscape: From Scaled Models to Capable Agents
+# Week 14: The 2025 NLP Landscape
 
 ## 1.0 Introduction: The Post-Scaling Era
 
