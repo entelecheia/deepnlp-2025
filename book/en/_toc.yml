@@ -21,6 +21,7 @@ parts:
       - file: week11/index
       - file: week12/index
       - file: week13/index
+      - file: week14/index
   - caption: Workshops
     chapters:
       - file: workshops/index
