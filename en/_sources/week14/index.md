@@ -1,6 +1,6 @@
 # Week 14: The 2025 NLP Landscape
 
-## 1.0 Introduction: The Post-Scaling Era
+## 1. Introduction: The Post-Scaling Era
 
 ### 1.1 Setting the Stage
 
@@ -34,7 +34,7 @@ Key application domains include:
 
 As we move through today's lecture, we will connect these abstract research trends back to the practical challenges and opportunities they unlock in the real world.
 
-## 2.0 Part 1: Architectural Revolutions (Beyond the Transformer)
+## 2. Part 1: Architectural Revolutions (Beyond the Transformer)
 
 ### 2.1 The Problem: The Transformer's Bottleneck
 
@@ -118,7 +118,7 @@ To summarize this new architectural landscape, the following table provides a cl
 | SSM (Mamba) 25          | Selective Scan (S6)     | $O(n)$                     | $O(N)$ (Dense)                        | Very Fast (Constant per token) | Long-Context (\>1M), Fast Inference |
 | MoE-Transformer 29      | Sparse Gating / Routing | $O(n^2)$                   | $O(k)$ (Sparse, $k \\ll N$)           | Slow (grows with K-V Cache)    | Massive Knowledge Scaling           |
 
-## 3.0 Part 2: The New Capability Frontier: Agentic AI
+## 3. Part 2: The New Capability Frontier: Agentic AI
 
 ### 3.1 From Generative Models to Autonomous Agents
 
@@ -186,7 +186,7 @@ The 2025 solution, as detailed in a new survey, is the development of entirely n
 - Planning and Tool Integration: Can the agent correctly choose and use tools to accomplish its plan?
 - User Experience: How efficient and intuitive is the human-agent collaboration?
 
-## 4.0 Part 3: The New Domains: True Multimodality
+## 4. Part 3: The New Domains: True Multimodality
 
 The third major trend of 2025 is the rapid maturation of Multimodal Large Language Models (MLLMs), moving them from simple image-captioners to true "any-to-any" systems that can fluently reason across text, images, audio, and video.
 
@@ -225,7 +225,7 @@ This EMNLP 2025 _Findings_ paper is a perfect example of research attacking this
 - Key Results: "Extensive experiments demonstrate that Grounded-VideoLLM not only surpasses existing models in fine-grained grounding tasks but also exhibits strong potential as a general video understanding assistant".
 - Conclusion & Impact: This paper is representative of the 2025 multimodal trend: moving beyond "whole video" understanding to precise, "in-the-moment" temporal reasoning. This is a critical capability for applications like video analysis, robotics, and human-computer interaction.
 
-## 5.0 Part 4: The Great Debates: Reasoning, Reliability, and Safety
+## 5. Part 4: The Great Debates: Reasoning, Reliability, and Safety
 
 As models have become more capable, the 2025 research landscape is dominated by a critical, introspective debate about the _reliability_ of these capabilities. Can these models _truly_ reason? Can they be trusted? And what are the hidden trade-offs of making them "safe"?
 
@@ -313,7 +313,7 @@ This NAACL 2024 paper proposes a scalable solution to the red-teaming bottleneck
 - Crucial Finding: Most importantly, "model helpfulness on non-adversarial prompts remains stable throughout iterations".
 - Conclusion & Impact: MART provides a scalable, automated framework for safety alignment. This finding provides a crucial counter-point to the "Safety Tax" paper. It suggests that _how_ you safety-tune matters. An iterative, adversarial fine-tuning loop (like MART) may be able to improve safety _without_ the catastrophic degradation of general helpfulness. This, along with a new wave of 2025 papers on adaptive adversarial attacks and defenses, marks the maturation of adversarial robustness as a formal sub-field.
 
-## 6.0 Part 5: The Data Engine: Self-Supervision and Synthetic Generation
+## 6. Part 5: The Data Engine: Self-Supervision and Synthetic Generation
 
 ### 6.1 The Role of Self-Supervised Learning (SSL)
 
@@ -360,7 +360,7 @@ This problem is so significant that it was the focus of a dedicated workshop at 
 
 This does not mean synthetic data is useless. Instead, it implies that as generative models become more common, the importance of data curation, data filtering, and "data-centric" AI is becoming _more_ critical, not less. The RLEF technique is a powerful example of a successful mitigation strategy because the code interpreter acts as an _external, objective filter_ that prevents the "hallucination" loop from taking over. Finding similar, automated "truth" filters for natural language remains a massive open challenge.
 
-## 7.0 Part 6: Concluding Lecture: The Frontiers of 2026 and Beyond
+## 7. Part 6: Concluding Lecture: The Frontiers of 2026 and Beyond
 
 As this lecture concludes, we look to the immediate future. The trends of 2025 point directly to the open problems and research frontiers that will define 2026 and beyond.
 
